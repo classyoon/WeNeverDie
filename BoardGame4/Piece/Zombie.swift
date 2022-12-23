@@ -7,13 +7,16 @@
 
 import SwiftUI
 struct Zombie: Piece {
+    var health = 2
+    var damage = 1
+    
  var isNPC = true
     var isSelected = false
     var movementCount = 0
     let faction = "Z"
     
     var facing: Direction = .down
-    let stamina = 3
+    let stamina = 1
     
     var id = UUID()
     
@@ -41,6 +44,13 @@ struct Zombie: Piece {
             .scaledToFit()
             
         )
+//        AnyView(health>0 ? Image("pawn")
+//            .resizable()
+//            .scaledToFit() : Image("SurvivorW")
+//            .resizable()
+//            .scaledToFit()
+//
+//        )
     }
   
 }

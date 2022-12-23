@@ -18,6 +18,8 @@ protocol Piece: Moveable & Displayable {}
 protocol Moveable: Identifiable  {
     var isSelected: Bool {set get}
     var isNPC: Bool {get}
+    var health: Int {set get}
+    var damage: Int {set get}
     var id: UUID { set get }
     var board: BoardProtocol { set get }
     var vectors: [Vector] { set get }
@@ -28,6 +30,7 @@ protocol Moveable: Identifiable  {
     mutating func incrementMoveCounter()
     func getMoves()->[Location]
     func getCanMove()->Bool
+    
 }
 extension Moveable {
     mutating func incrementMoveCounter() {

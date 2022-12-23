@@ -7,6 +7,10 @@
 
 import SwiftUI
 struct King: Piece {
+
+    
+    var health: Int = 10
+    var damage = 5
     let faction: String = "S"
     
     var isNPC = false
@@ -36,9 +40,9 @@ struct King: Piece {
         Vector(row: -2, col: 2),
         Vector(row: -2, col: 0),
         Vector(row: -2, col: -2),
-
+        
     ]
-
+    
     func getCanMove()->Bool {
         movementCount < stamina ? true : false
     }
@@ -47,7 +51,7 @@ struct King: Piece {
         AnyView(Image("SurvivorW")
             .resizable()
             .scaledToFit()
-            
+                
         )
     }
 }
