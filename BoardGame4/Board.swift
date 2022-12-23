@@ -24,8 +24,8 @@ class Board : ObservableObject, BoardProtocol {
     }
     @Published var possibleLoc: [Location] = []
     
-    let rowMax: Int = 4
-    let colMax: Int = 4
+    let rowMax: Int = 8
+    let colMax: Int = 8
     func reset()->Board{
         Board()
     }
@@ -44,17 +44,11 @@ class Board : ObservableObject, BoardProtocol {
         * * *
         * *  S
          */
-//        set(moveable: King(board: self), location: Location(row: 0, col: 0))
-//        set(moveable: Zombie(board: self), location: Location(row: 6, col: 6))
+        set(moveable: King(board: self), location: Location(row: 0, col: 0))
+        set(moveable: Zombie(board: self), location: Location(row: 6, col: 0))
+//        set(moveable: King(board: self), location: Location(row: 6, col: 6))
+//        set(moveable: Zombie(board: self), location: Location(row: 0, col: 0))
       
-        /** Visual Representation, T is target. S is seeker
-        * *  S
-        * * *
-        T  *  *
-         */
-        set(moveable: King(board: self), location: Location(row: 3, col: 1))
-        set(moveable: Zombie(board: self), location: Location(row: 0, col: 2))
-        
         /**
         Pattern Observation. Whenever seeker is on the right and there is a difference in **vertical, the 'y' cordinate (within this intializer it is defined by column, (oddly enough), elsewhere it should be defined by row)**.
          */
@@ -98,7 +92,7 @@ extension Board {
                     if piece.getCanMove() {
                         piece.incrementMoveCounter()
                         board[row][col] = piece
-                        board[tappedRow][tappedCol] = nil
+                        board[tappedRow][tappedCol] = nil//Erases original copy of player pieces moved.
                     }
                 }
             }
@@ -172,6 +166,9 @@ extension Board {
             returnLocation.col+=1
             print("down")
         }
+//        if distance.RowD < 0 && distance.ColD < 0 {// Target row 1  Seeker row 2 = Distance is -1 // seeker should go up
+            board[distance.seekerLocation.row][distance.seekerLocation.col] = nil
+//        }
         print("From \(distance.seekerLocation) I go to \(returnLocation)")
         return returnLocation
     }
@@ -182,7 +179,7 @@ extension Board {
     }
     func nextTurn(){
         var seeker : Zombie?
-        
+
         var originalLocation : Location?
         var rowS = 0
         var colS = 0
@@ -191,32 +188,32 @@ extension Board {
                 //                print("Checking \(row) \(col)")
                 if ((board[row][col]?.faction=="Z")) {//Identifies the first NPC it meets as a seeker
                     seeker = board[row][col] as? Zombie//designates seeker piece by where it encounters on the map
-                    rowS = row
-                    colS = col
-                    originalLocation = Location(row: row, col: col)
+//                    rowS = row
+//                    colS = col
+//                    originalLocation = Location(row: row, col: col)
                 }
             }
         }
         
         //
-        set(moveable: seeker!, location:seekFor())
-        
-        print("Erasing \(rowS) \(colS) ")
-        var newLocation : Location?
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                //                print("Checking \(row) \(col)")
-                if ((board[row][col]?.faction=="Z")) {//Identifies the first NPC it meets as a seeker
-                    seeker = board[row][col] as? Zombie//designates seeker piece by where it encounters on the map
-                    newLocation = Location(row: row, col: col)
-                }
+ var counter = 0
+        if seeker != nil{
+            while(counter<seeker?.stamina ?? 0){
+                set(moveable: seeker!, location:seekFor())
+                counter+=1
             }
         }
         
-        if !(newLocation==originalLocation){
-            board[rowS][colS] = nil
-        }
-        
+//        var newLocation : Location?
+//        for row in 0..<rowMax {
+//            for col in 0..<colMax {
+//                //                print("Checking \(row) \(col)")
+//                if ((board[row][col]?.faction=="Z")) {//Identifies the first NPC it meets as a seeker
+//                    seeker = board[row][col] as? Zombie//designates seeker piece by where it encounters on the map
+//                    newLocation = Location(row: row, col: col)
+//                }
+//            }
+//        }
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if (board[row][col] != nil) {//If it encounters anything
@@ -230,11 +227,12 @@ extension Board {
 extension Board {
     // MARK: Private Functions
     private func setPossibleLocations() {
-        guard let loc = tappedLoc, let piece = board[loc.col][loc.row]
+        guard let loc = tappedLoc, let piece = board[loc.row][loc.col]
         else {
             possibleLoc = []
             return
         }
+        print("\(piece.getMoves())")
         possibleLoc = piece.getMoves()
     }
     private func locationIsValid(location: Location) -> Bool {

@@ -44,24 +44,25 @@ extension Moveable {
             locs.append(combine(vector: vector, location: currentLoc))
         }
         return locs
-        
-        func combine(vector: Vector, location: Location) -> Location {
-            var row = vector.row
-            var col = vector.col
-            
-            switch facing {
-            case .up:
-                row = -row
-            case .down:
-                break
-            case .left:
-                col = -col
-            case .right:
-                break
-            }
-            return Vector(row: row, col: col) + location
-        }
     }
+    
+    func combine(vector: Vector, location: Location) -> Location {
+        var row = vector.row
+        var col = vector.col
+        
+        switch facing {
+        case .up:
+            row = -row
+        case .down:
+            break
+        case .left:
+            col = -col
+        case .right:
+            break
+        }
+        return Vector(row: row, col: col) + location
+    }
+
 }
 
 protocol Displayable {

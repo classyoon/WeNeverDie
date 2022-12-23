@@ -13,7 +13,7 @@ struct Zombie: Piece {
     let faction = "Z"
     
     var facing: Direction = .down
-    let stamina = 1
+    let stamina = 3
     
     var id = UUID()
     

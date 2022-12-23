@@ -19,7 +19,7 @@ struct BoardView: View {
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 Group{
                                     
-                                    if let piece = vm.board[col][row] {
+                                    if let piece = vm.board[row][col] {
                                         piece.getView()
                                             .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }else{
@@ -34,7 +34,7 @@ struct BoardView: View {
                                 .background(
                                     Group{
                                         
-                                        if let loc = vm.tappedLoc, loc.row == row && loc.col == col {
+                                        if let loc = vm.tappedLoc, loc.col == col && loc.row == row {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.green.opacity(0.8))
                                         }
                                         if vm.isPossibleLoc(row: row, col: col) {
