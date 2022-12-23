@@ -7,12 +7,13 @@
 
 import SwiftUI
 struct Zombie: Piece {
-
+ var isNPC = true
     var isSelected = false
     var movementCount = 0
+    let faction = "Z"
     
     var facing: Direction = .down
-    let stamina = 3
+    let stamina = 1
     
     var id = UUID()
     
@@ -29,11 +30,13 @@ struct Zombie: Piece {
     ]
 
     func getCanMove()->Bool {
-        movementCount < stamina ? true : false
+        print("I have taken \(movementCount) moves, while my limit is \(stamina)")
+        return movementCount < stamina ? true : false
+        
     }
     
     func getView() -> AnyView {
-        AnyView(Image("Pawn")
+        AnyView(Image("pawn")
             .resizable()
             .scaledToFit()
             

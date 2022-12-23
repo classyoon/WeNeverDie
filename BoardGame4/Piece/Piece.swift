@@ -17,12 +17,14 @@ protocol Piece: Moveable & Displayable {}
 
 protocol Moveable: Identifiable  {
     var isSelected: Bool {set get}
+    var isNPC: Bool {get}
     var id: UUID { set get }
     var board: BoardProtocol { set get }
     var vectors: [Vector] { set get }
     var facing: Direction { set get }
     var stamina: Int { get }
     var movementCount: Int { set get }
+    var faction: String {get}
     mutating func incrementMoveCounter()
     func getMoves()->[Location]
     func getCanMove()->Bool

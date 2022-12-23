@@ -18,20 +18,19 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 Group{
+                                    
                                     if let piece = vm.board[col][row] {
                                         piece.getView()
                                             .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }else{
                                         Tile(size: 25.0, colored: Color.green, difference: 0.15, isSelected: false, tileLocation: Loc(row: row, col: col))
-//                                        Rectangle().fill(Color.blue.gradient)
-//                                            .padding(.all, 4).frame(width: 30, height: 30)
                                         
                                     }
                                 }
                                 .onTapGesture {
                                     vm.handleTap(row: row, col: col)
                                 }
-//                                .padding(4)
+                                //                                .padding(4)
                                 .background(
                                     Group{
                                         
@@ -42,7 +41,7 @@ struct BoardView: View {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
                                         }
                                     }
-                                    )
+                                )
                                 .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                 
                             }
@@ -50,9 +49,9 @@ struct BoardView: View {
                     }
                 }
             }
-//            .padding()
+            //            .padding()
             statusView
-            .frame(height: 100)
+                .frame(height: 100)
         }
     }
     var statusView: some View {
@@ -65,18 +64,20 @@ struct BoardView: View {
                     Text("Selected : \(vm.findStats())")//
                 }
             }
-            Button {
-                vm.nextTurn()
-            } label: {
-                ZStack{
-                    Rectangle().frame(width: 100, height: 50)
-                    Text("Next Turn").foregroundColor(Color.black)
+            HStack{
+                Button {
+                    vm.nextTurn()
+                } label: {
+                    ZStack{
+                        Rectangle().frame(width: 100, height: 50)
+                        Text("Next Turn").foregroundColor(Color.black)
+                    }
                 }
+                
             }
-
-//            ForEach(vm.possibleLoc, id: \.self) { location in
-//                Text("Possible: \(location.row), \(location.col)")
-//            }
+            //            ForEach(vm.possibleLoc, id: \.self) { location in
+            //                Text("Possible: \(location.row), \(location.col)")
+            //            }
         }
     }
 }

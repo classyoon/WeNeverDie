@@ -7,7 +7,9 @@
 
 import SwiftUI
 struct King: Piece {
-
+    let faction: String = "S"
+    
+    var isNPC = false
     var isSelected = false
     var movementCount = 0
     
