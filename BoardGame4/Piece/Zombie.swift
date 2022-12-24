@@ -15,7 +15,7 @@ struct Zombie: Piece {
     var movementCount = 0
     let faction = "Z"
     
-    var facing: Direction = .down
+    var facing: Direction = .up
     let stamina = 1
     
     var id = UUID()
@@ -39,11 +39,12 @@ struct Zombie: Piece {
     }
     
     func getView() -> AnyView {
-        AnyView(Image("pawn")
+        AnyView(Image("Zombie")
             .resizable()
             .scaledToFit()
             
         )
+        
 //        AnyView(health>0 ? Image("pawn")
 //            .resizable()
 //            .scaledToFit() : Image("SurvivorW")
