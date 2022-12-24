@@ -33,7 +33,7 @@ struct Zombie: Piece {
     ]
 
     func getCanMove()->Bool {
-        print("I have taken \(movementCount) moves, while my limit is \(stamina)")
+//        print("I have taken \(movementCount) moves, while my limit is \(stamina)")
         return movementCount < stamina ? true : false
         
     }
@@ -45,6 +45,7 @@ struct Zombie: Piece {
             
         )
         
+        
 //        AnyView(health>0 ? Image("pawn")
 //            .resizable()
 //            .scaledToFit() : Image("SurvivorW")
@@ -52,6 +53,9 @@ struct Zombie: Piece {
 //            .scaledToFit()
 //
 //        )
+    }
+    func getStats() -> any View {
+        return Text("H : \(health), S: \(stamina-movementCount)")
     }
   
 }

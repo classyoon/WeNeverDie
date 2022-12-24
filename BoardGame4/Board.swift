@@ -24,8 +24,8 @@ class Board : ObservableObject, BoardProtocol {
     }
     @Published var possibleLoc: [Location] = []
     
-    let rowMax: Int = 5
-    let colMax: Int = 5
+    let rowMax: Int = 3
+    let colMax: Int = 3
     func reset()->Board{
         Board()
     }
@@ -38,8 +38,9 @@ class Board : ObservableObject, BoardProtocol {
 
         set(moveable: King(board: self), location: Location(row: 0, col: 0))
         set(moveable: Zombie(board: self), location: Location(row: 2, col: 0))
-        set(moveable: King(board: self), location: Location(row: 0, col: 1))
-//        set(moveable: Zombie(board: self), location: Location(row: 0, col: 3))
+//        set(moveable: King(board: self), location: Location(row: 0, col: 1))
+        set(moveable: Zombie(board: self), location: Location(row: 0, col: 2))
+//        set(moveable: Zombie(board: self), location: Location(row: 2, col: 3))
             }
 }
 
@@ -52,8 +53,10 @@ extension Board {
                 if (board[row][col] != nil){
                     for r in safeNum(row-1)..<safeNum(row+2) {
                         for c in safeNum(col-1)..<safeNum(col+2) {
-                            if (board[r][c] != nil&&(!(r==row&&c==col))){
+                            if ((board[r][c] != nil)&&(!(r==row&&c==col))&&(board[row][col]?.faction=="Z")&&(board[row][col]?.movementCount ?? 1<1)){
+                                board[r][c]?.health -= board[row][col]!.damage
                                 print("In \(row) \(col) is in range to attack \(r) \(c)")
+                                print("Player health : \(board[r][c]?.health ?? 0)")
                             }
                         }
                     }
@@ -75,9 +78,10 @@ extension Board {
     func findStats()->String{
         for row in 0..<rowMax {
             for col in 0..<colMax {
-                if (board[row][col] != nil)&&((board[row][col]?.isSelected) != nil) {
+                if (board[row][col] != nil) {
                     
-                    return "\(board[row][col]?.faction) \(String(describing: board[row][col]?.movementCount)) / \(String(describing: board[row][col]?.stamina))"
+                    return "\(board[row][col]?.faction ?? "N") : \(board[row][col]?.health ?? 0)"
+                    //\(String(describing: board[row][col]?.movementCount)) / \(String(describing: board[row][col]?.stamina))"
                 }
             }
         }
@@ -110,6 +114,7 @@ extension Board {
                     }
                     if (piece.getCanMove() && board[row][col] != nil && board[row][col]?.faction == "Z"){
                         print("Attack")
+                        print("Deals \(piece.damage) to entity on \(row), \(col)")
                         board[row][col]?.health-=piece.damage
                         piece.incrementMoveCounter()
                     }
@@ -219,6 +224,13 @@ extension Board {
         findInRange()
     }
     func nextTurn(){
+        for row in 0..<rowMax {
+            for col in 0..<colMax {
+                if (board[row][col]?.health ?? 0 <= 0){
+                    board[row][col] = nil
+                }
+            }
+        }
         var seeker : Zombie?
         for row in 0..<rowMax {
             for col in 0..<colMax {
@@ -253,7 +265,7 @@ extension Board {
             possibleLoc = []
             return
         }
-        print("\(piece.getMoves())")
+//        print("\(piece.getMoves())")
         possibleLoc = piece.getMoves()
     }
     private func locationIsValid(location: Location) -> Bool {

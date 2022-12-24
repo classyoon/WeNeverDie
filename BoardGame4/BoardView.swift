@@ -19,19 +19,18 @@ struct BoardView: View {
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
                                     Tile(size: 25.0, colored: Color.green, difference: 0.15, isSelected: false, tileLocation: Loc(row: row, col: col))
+                                    
                                     if let piece = vm.board[row][col] {
                                         piece.getView()
                                             .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
-//
+                                        //  piece.getStats()
                                     }
-                                       
-                                        
                                     
                                 }
                                 .onTapGesture {
                                     vm.handleTap(row: row, col: col)
                                 }
-                                //                                .padding(4)
+//
                                 .background(
                                     Group{
                                         
@@ -44,27 +43,47 @@ struct BoardView: View {
                                     }
                                 )
                                 .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
-                                
                             }
                         }
                     }
                 }
-            }
+            }//.background(in: Color.green)
             //            .padding()
             statusView
-                .frame(height: 100)
+                .frame(height: 300)
         }
     }
     var statusView: some View {
         VStack{
-            Text("Is Tapped: \(vm.isTapped.description)")
-            
-            Group{
-                if let loc = vm.tappedLoc {
-                    Text("\(loc.row), \(loc.col)")
-                    Text("Selected : \(vm.findStats())")//
+            Text("Objective : ")
+//            Text("Is Tapped: \(vm.isTapped.description)")
+            Spacer()
+            HStack(spacing: 30.0){
+                Button {
+                    
+                } label: {
+                    Text("Search")
+                }
+                Button {
+                    
+                } label: {
+                    Text("Attack")
+                }
+                Button {
+                    
+                } label: {
+                    Text("Inventory")
+                }
+                Button {
+                    
+                } label: {
+                    ZStack{
+                        Text("Talk")
+                    
+                    }
                 }
             }
+Spacer()
             HStack{
                 Button {
                     vm.nextTurn()
@@ -74,11 +93,12 @@ struct BoardView: View {
                         Text("Next Turn").foregroundColor(Color.black)
                     }
                 }
-                
+                Group{
+                    if let loc = vm.tappedLoc {
+                        Text("\(loc.row), \(loc.col)")
+                    }
+                }
             }
-            //            ForEach(vm.possibleLoc, id: \.self) { location in
-            //                Text("Possible: \(location.row), \(location.col)")
-            //            }
         }
     }
 }

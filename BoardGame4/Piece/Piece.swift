@@ -65,6 +65,9 @@ extension Moveable {
         }
         return Vector(row: row, col: col) + location
     }
+    func getStats() -> any View {
+        return Text("H : \(health), S: \(stamina-movementCount)")
+    }
 
 }
 
