@@ -4,12 +4,21 @@
 //
 //  Created by Tim Yoon on 11/27/22.
 //
-
+import AVFoundation
 import SwiftUI
+var soundPlayer: AVAudioPlayer!
 
 struct BoardView: View {
+    @State var food = 0
+    @State var weaponry = true
+    @State var talk = true
     @ObservedObject var vm = Board()
-    @State var showStats = false
+//    func playSound() {
+//        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
+//        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
+//        soundPlayer.play()
+//    }
+    
     var body: some View {
         VStack{
             GeometryReader{ geo in
@@ -18,14 +27,13 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    Tile(size: 25.0, colored: Color.green, difference: 0.15, isSelected: false, tileLocation: Loc(row: row, col: col))
+                                    Tile(size: 25.0, colored: Color.green, difference: 0.25, isSelected: false, tileLocation: Loc(row: row, col: col))
                                     
                                     if let piece = vm.board[row][col] {
                                         VStack{
                                             piece.getView()
-                                            if showStats {
-                                                Text(showStats ? (("\(piece.health) \(piece.stamina-piece.movementCount)"))).padding()
-                                            }
+                                            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")//.padding()
+                                                
 //                                              piece.getStats()
                                         }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
@@ -53,43 +61,30 @@ struct BoardView: View {
                 }
             }//.background(in: Color.green)
             //            .padding()
-            HStack{
-                statusView
-                Button {
-                    showStats.toggle()
-                } label: {
-                    ZStack{
-                        Rectangle().frame(width: 100, height: 50)
-                        Text("Show Vitals").foregroundColor(Color.black)
-                    }
-                }
-            }
+            statusView
                 .frame(height: 300)
         }
     }
     var statusView: some View {
         VStack{
-            Text("Objective : ")
+            Text("Objective : We found a group of zombies near our pastures. We can't spare anyone else, go clear them out and then come back to camp. It shouldn't be too difficult.\n \nJournal Log : The cows are all dead. It was an ambush.")
 //            Text("Is Tapped: \(vm.isTapped.description)")
+            Text(weaponry ? "" : "Axe 5 Damage, Food \(food)")
+            Text(talk ? "" : "Nobody to talk to")
             Spacer()
             HStack(spacing: 30.0){
                 Button {
-                    
+                    food+=1
                 } label: {
                     Text("Search")
                 }
                 Button {
-                    
-                } label: {
-                    Text("Attack")
-                }
-                Button {
-                    
+                    weaponry.toggle()
                 } label: {
                     Text("Inventory")
                 }
                 Button {
-                    
+                    talk.toggle()
                 } label: {
                     ZStack{
                         Text("Talk")
@@ -101,13 +96,13 @@ Spacer()
             HStack{
                 Button {
                     vm.nextTurn()
+                   
                 } label: {
                     ZStack{
                         Rectangle().frame(width: 100, height: 50)
                         Text("Next Turn").foregroundColor(Color.black)
                     }
                 }
-                
                 Group{
                     if let loc = vm.tappedLoc {
                         Text("\(loc.row), \(loc.col)")

@@ -69,6 +69,8 @@
 		9157BE37294AA939002C6E4F /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
+		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		91355A90293AEE4700907610 /* BoardGame4 */ = {
 			isa = PBXGroup;
 			children = (
+				CA8A319A296CC03E00755BCE /* Sounds */,
 				91355A91293AEE4700907610 /* BoardGame4App.swift */,
 				91355ACB293AF17100907610 /* Piece */,
 				91355ACE293AF33600907610 /* Battle */,
@@ -187,6 +190,15 @@
 				91355A93293AEE4700907610 /* Persistence.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CA8A319A296CC03E00755BCE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CA8A319C296CC12A00755BCE /* POW.m4a */,
+				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

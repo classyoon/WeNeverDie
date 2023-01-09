@@ -7,8 +7,8 @@
 
 import SwiftUI
 struct Zombie: Piece {
-    var health = 2
-    var damage = 1
+    var health = 10
+    var damage = 3
     
  var isNPC = true
     var isSelected = false
@@ -30,6 +30,15 @@ struct Zombie: Piece {
         Vector(row: -1, col: 1),
         Vector(row: -1, col: 0),
         Vector(row: -1, col: -1),
+        
+                Vector(row: 2, col: 2),
+                Vector(row: 2, col: 0),
+                Vector(row: 2, col: -2),
+                Vector(row: 0, col: 2),
+                Vector(row: 0, col: -2),
+                Vector(row: -2, col: 2),
+                Vector(row: -2, col: 0),
+                Vector(row: -2, col: -2),
     ]
 
     func getCanMove()->Bool {

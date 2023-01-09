@@ -23,7 +23,7 @@ struct Loc: Equatable, Identifiable {
 struct Tile: View {
     var size : Double//PRobably should be set to something, so that it universally changes all types of tiles
     var colored : Color
-    var difference = 0.15
+    var difference = 0.5
     @State var isSelected = false
     var tileLocation : Loc
     var body: some View {

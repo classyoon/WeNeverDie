@@ -18,7 +18,7 @@ struct King: Piece {
     var movementCount = 0
     
     var facing: Direction = .down
-    let stamina = 5
+    let stamina = 2
     
     var id = UUID()
     
