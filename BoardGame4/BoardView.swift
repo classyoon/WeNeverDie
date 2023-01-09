@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BoardView: View {
     @ObservedObject var vm = Board()
-    
+    @State var showStats = false
     var body: some View {
         VStack{
             GeometryReader{ geo in
@@ -21,9 +21,13 @@ struct BoardView: View {
                                     Tile(size: 25.0, colored: Color.green, difference: 0.15, isSelected: false, tileLocation: Loc(row: row, col: col))
                                     
                                     if let piece = vm.board[row][col] {
-                                        piece.getView()
-                                            .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
-                                        //  piece.getStats()
+                                        VStack{
+                                            piece.getView()
+                                            if showStats {
+                                                Text(showStats ? (("\(piece.health) \(piece.stamina-piece.movementCount)"))).padding()
+                                            }
+//                                              piece.getStats()
+                                        }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
                                     
                                 }
@@ -49,7 +53,17 @@ struct BoardView: View {
                 }
             }//.background(in: Color.green)
             //            .padding()
-            statusView
+            HStack{
+                statusView
+                Button {
+                    showStats.toggle()
+                } label: {
+                    ZStack{
+                        Rectangle().frame(width: 100, height: 50)
+                        Text("Show Vitals").foregroundColor(Color.black)
+                    }
+                }
+            }
                 .frame(height: 300)
         }
     }
@@ -93,6 +107,7 @@ Spacer()
                         Text("Next Turn").foregroundColor(Color.black)
                     }
                 }
+                
                 Group{
                     if let loc = vm.tappedLoc {
                         Text("\(loc.row), \(loc.col)")
