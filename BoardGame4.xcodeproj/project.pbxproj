@@ -128,7 +128,7 @@
 				91355AD1293AF5FE00907610 /* CoreData */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
-				CA23AE5A29514D69003DC26D /* Tile.swift */,
+				CA8A319E296CF2C500755BCE /* Tiles */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* BoardGame4.entitlements */,
 				91355A95293AEE4700907610 /* BoardGame4.xcdatamodeld */,
@@ -199,6 +199,14 @@
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		CA8A319E296CF2C500755BCE /* Tiles */ = {
+			isa = PBXGroup;
+			children = (
+				CA23AE5A29514D69003DC26D /* Tile.swift */,
+			);
+			path = Tiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
