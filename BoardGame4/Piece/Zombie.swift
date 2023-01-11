@@ -10,10 +10,10 @@ struct Zombie: Piece {
     var health = 10
     var damage = 3
     
- var isNPC = true
+    var isNPC = true
     var isSelected = false
     var movementCount = 0
-    let faction = "Z"
+    var faction = "Z"
     
     var facing: Direction = .up
     let stamina = 1
@@ -31,18 +31,10 @@ struct Zombie: Piece {
         Vector(row: -1, col: 0),
         Vector(row: -1, col: -1),
         
-                Vector(row: 2, col: 2),
-                Vector(row: 2, col: 0),
-                Vector(row: 2, col: -2),
-                Vector(row: 0, col: 2),
-                Vector(row: 0, col: -2),
-                Vector(row: -2, col: 2),
-                Vector(row: -2, col: 0),
-                Vector(row: -2, col: -2),
     ]
-
+    
     func getCanMove()->Bool {
-//        print("I have taken \(movementCount) moves, while my limit is \(stamina)")
+        //        print("I have taken \(movementCount) moves, while my limit is \(stamina)")
         return movementCount < stamina ? true : false
         
     }
@@ -51,22 +43,14 @@ struct Zombie: Piece {
         AnyView(Image("Zombie")
             .resizable()
             .scaledToFit()
-            
+                
         )
         
-        
-//        AnyView(health>0 ? Image("pawn")
-//            .resizable()
-//            .scaledToFit() : Image("SurvivorW")
-//            .resizable()
-//            .scaledToFit()
-//
-//        )
     }
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")
     }
-  
+    
 }
 
 struct Zombie_Previews: PreviewProvider {

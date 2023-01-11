@@ -18,7 +18,7 @@ struct BoardView: View {
 //        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
 //        soundPlayer.play()
 //    }
-    
+    var treeLocations [Location] = [Location()]
     var body: some View {
         VStack{
             GeometryReader{ geo in
@@ -96,13 +96,13 @@ Spacer()
             HStack{
                 Button {
                     vm.nextTurn()
-                   
                 } label: {
                     ZStack{
                         Rectangle().frame(width: 100, height: 50)
                         Text("Next Turn").foregroundColor(Color.black)
                     }
                 }
+                
                 Group{
                     if let loc = vm.tappedLoc {
                         Text("\(loc.row), \(loc.col)")

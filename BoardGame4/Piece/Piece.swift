@@ -11,6 +11,7 @@ import SwiftUI
 struct Location: Equatable, Hashable {
     var row: Int = 0
     var col: Int = 0
+    
 }
 
 protocol Piece: Moveable & Displayable {}
@@ -26,7 +27,7 @@ protocol Moveable: Identifiable  {
     var facing: Direction { set get }
     var stamina: Int { get }
     var movementCount: Int { set get }
-    var faction: String {get}
+    var faction: String {set get}
     mutating func incrementMoveCounter()
     func getMoves()->[Location]
     func getCanMove()->Bool
