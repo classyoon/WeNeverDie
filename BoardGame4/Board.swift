@@ -28,7 +28,7 @@ class Board : ObservableObject, BoardProtocol {
     }
     @Published var possibleLoc: [Location] = []
     
-   
+    
     
     let rowMax: Int = 7
     let colMax: Int = 7
@@ -37,20 +37,15 @@ class Board : ObservableObject, BoardProtocol {
     }
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        //        set(moveable: Checker(board: self), location: Location(row: 1, col: 1))
-        //        set(moveable: Pawn(board: self), location: Location(row: 4, col: 4))
-        //        set(moveable: Knight(board: self), location: Location(row: 5, col: 2))
-        //var mob: Piece = [King(board: self),  Zombie(board: self)](any Piece)//Attempted array
+        
         set(moveable: Zombie(board: self), location: Location(row: 0, col: 0))
         set(moveable: King(board: self), location: Location(row: 3, col: 3))
         set(moveable: Zombie(board: self), location: Location(row: 1, col: 3))
         set(moveable: Zombie(board: self), location: Location(row: 3, col: 0))
         set(moveable: Zombie(board: self), location: Location(row: 4, col: 3))
-                set(moveable: Zombie(board: self), location: Location(row: 2, col: 3))
-        ////        set(moveable: King(board: self), location: Location(row: 0, col: 1))
-                set(moveable: Zombie(board: self), location: Location(row: 0, col: 2))
+        set(moveable: Zombie(board: self), location: Location(row: 2, col: 3))
+        set(moveable: Zombie(board: self), location: Location(row: 0, col: 2))
         set(moveable: Zombie(board: self), location: Location(row: 2, col: 0))
-        ////        set(moveable: King(board: self), location: Location(row: 4, col: 4))
     }
 }
 
@@ -116,6 +111,9 @@ extension Board {
             
             tappedLoc = nil
         }
+        /**
+         If tap on unit and send to place but still have stamina, that unit will remain selected
+         */
         isTapped.toggle()
     }
     
@@ -244,7 +242,7 @@ extension Board {
             }
         }
         
-
+        
         var zombies = [Zombie]()
         for row in 0..<rowMax {
             for col in 0..<colMax {
