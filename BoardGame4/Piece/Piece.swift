@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Location: Equatable, Hashable {
+struct Coord: Equatable, Hashable {
     var row: Int = 0
     var col: Int = 0
     init(_ row: Int, _ col: Int) {
@@ -48,7 +48,7 @@ protocol Moveable: Identifiable  {
     var movementCount: Int { set get }
     var faction: String {set get}
     mutating func incrementMoveCounter()
-    func getMoves()->[Location]
+    func getMoves()->[Coord]
     func getCanMove()->Bool
     
 }
@@ -59,17 +59,17 @@ extension Moveable {
     func getCanMove()->Bool {
         true
     }
-    func getMoves()->[Location] {
-        guard let currentLoc = board.getLocation(of: self) else { return [] }
+    func getMoves()->[Coord] {
+        guard let currentLoc = board.getCoord(of: self) else { return [] }
         
-        var locs = [Location]()
+        var locs = [Coord]()
         for vector in vectors {
-            locs.append(combine(vector: vector, location: currentLoc))
+            locs.append(combine(vector: vector, Coord: currentLoc))
         }
         return locs
     }
     
-    func combine(vector: Vector, location: Location) -> Location {
+    func combine(vector: Vector, Coord: Coord) -> Coord {
         var row = vector.row
         var col = vector.col
         
@@ -83,7 +83,7 @@ extension Moveable {
         case .right:
             break
         }
-        return Vector(row: row, col: col) + location
+        return Vector(row: row, col: col) + Coord
     }
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")
@@ -95,12 +95,12 @@ protocol Displayable {
     func getView()-> AnyView
 }
 
-typealias Vector = Location
+typealias Vector = Coord
 enum Direction {
     case up, down, left, right
 }
-func +(lhs: Location, rhs: Location) -> Location {
+func +(lhs: Coord, rhs: Coord) -> Coord {
     let r = lhs.row + rhs.row
     let c = lhs.col + rhs.col
-    return Location(row: r, col: c)
+    return Coord(row: r, col: c)
 }

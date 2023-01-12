@@ -13,12 +13,13 @@ struct BoardView: View {
     @State var weaponry = true
     @State var talk = true
     @ObservedObject var vm = Board()
-//    func playSound() {
-//        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
-//        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
-//        soundPlayer.play()
-//    }
-    var treeCoords = [ ]
+    //    func playSound() {
+    //        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
+    //        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
+    //        soundPlayer.play()
+    //    }
+    
+    //    var hillCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
     
     var body: some View {
         VStack{
@@ -28,17 +29,21 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-//                                    if vm.checkForTree(row, col){
-//                                        Rectangle()
-//                                    }
-                                    Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Loc(row: row, col: col))
+                                    //                                    if checkForTree(row, col){
+                                    //
+                                    //                                    }
+                                    Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col)).if(vm.checkForTree(row, col)) { view in
+                                        ZStack{
+                                            Tile(size: 25.0, colored: Color.brown, difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col))
+                                        }
+                                    }
                                     
                                     if let piece = vm.board[row][col] {
                                         VStack{
                                             piece.getView()
                                             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")//.padding()
-                                                
-//                                              piece.getStats()
+                                            
+                                            //                                              piece.getStats()
                                         }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
                                     
@@ -46,7 +51,7 @@ struct BoardView: View {
                                 .onTapGesture {
                                     vm.handleTap(row: row, col: col)
                                 }
-//
+                                //
                                 .background(
                                     Group{
                                         
@@ -69,10 +74,11 @@ struct BoardView: View {
                 .frame(height: 300)
         }
     }
+    
     var statusView: some View {
         VStack{
             Text("Objective : We found a group of zombies near our pastures. We can't spare anyone else, go clear them out and then come back to camp. It shouldn't be too difficult.\n \nJournal Log : The cows are all dead. It was an ambush.")
-//            Text("Is Tapped: \(vm.isTapped.description)")
+            //            Text("Is Tapped: \(vm.isTapped.description)")
             Text(weaponry ? "" : "Axe 5 Damage, Food \(food)")
             Text(talk ? "" : "Nobody to talk to")
             Spacer()
@@ -92,11 +98,11 @@ struct BoardView: View {
                 } label: {
                     ZStack{
                         Text("Talk")
-                    
+                        
                     }
                 }
             }
-Spacer()
+            Spacer()
             HStack{
                 Button {
                     vm.nextTurn()
@@ -107,6 +113,7 @@ Spacer()
                     }
                 }
                 
+                
                 Group{
                     if let loc = vm.tappedLoc {
                         Text("\(loc.row), \(loc.col)")
@@ -116,7 +123,20 @@ Spacer()
         }
     }
 }
-
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
         BoardView()

@@ -12,56 +12,65 @@ import Foundation
 protocol BoardProtocol {
     var rowMax: Int { get }
     var colMax: Int { get }
-    func getLocation(of moveable: any Moveable) -> Location?
+    func getCoord(of moveable: any Moveable) -> Coord?
 }
 class Board : ObservableObject, BoardProtocol {
     @Published private(set) var board: [[(any Piece)?]] = [[]]
+    @Published var treeCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
+    func createTreeList(_ amount : Int)->[Coord]{
+        var count = 0
+        var treeArray = [Coord]()
+        while count < amount {
+            treeArray.append(Coord(row: randomLoc().row, col: randomLoc().col))
+            count+=1
+        }
+        return treeArray
+    }
+    func checkForTree(_ r: Int,_ c: Int)->Bool{
+        for loc in 0..<treeCoords.count{
+            if treeCoords[loc].row == r && treeCoords[loc].col == c{
+                return true
+            }
+        }
+        return false
+    }
     
     //    @Published private(set) var mobs: [(any Piece)?] = []
     
     @Published var isTapped = false
-    @Published var tappedLoc : Location?{
+    @Published var tappedLoc : Coord?{
         didSet{
-            setPossibleLocations()
+            setPossibleCoords()
         }
     }
-    @Published var possibleLoc: [Location] = []
-    var treeLocations : [Location] = [Location(), Location(2,0), Location(2,1) ]
+    @Published var possibleLoc: [Coord] = []
+    
     let rowMax: Int = 10
     let colMax: Int = 10 //WARNING SafeNum only works for col, as long as they equal each other it will be safe.
     func reset()->Board{
         Board()
     }
-    func checkForTree(_ r: Int,_ c: Int)->Bool{
-        for loc in 0..<treeLocations.count-1{
-            if treeLocations[loc].row == r && treeLocations[loc].col == c{
-                return true
-                
-            }
-        }
-        return false
-    }
+    
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         
         
-        //set(moveable: King(board: self), location: Location(row: 9, col: 9))
-//        set(moveable: King(board: self), location: Location(row: 8, col: 9))
-//        set(moveable: King(board: self), location: Location(row: 7, col: 9))
-        set(moveable: Zombie(board: self), location: Location(row: 1, col: 3))
-        set(moveable: Zombie(board: self), location: Location(2, 2))
+        set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
+//        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
+//        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
         var counter = 0
-        var quota = 10
+        var quota = 1
         while counter<quota{
-            set(moveable: Zombie(board: self), location: randomLoc())
+            set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
+        treeCoords = createTreeList(10)
     }
 }
 
 extension Board {
     // MARK: Not private
-    func randomLoc() -> Location{
+    func randomLoc() -> Coord{
         var ranR = Int.random(in: 0...rowMax-1)
         var ranC = Int.random(in: 0...colMax-1)
         print("\(ranR) \(ranC)")
@@ -70,11 +79,11 @@ extension Board {
             ranC = Int.random(in: 0...colMax-1)
         }
         
-        return Location(row: ranR, col: ranC)
+        return Coord(row: ranR, col: ranC)
     }
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
-            tappedLoc = Location(row: row, col: col)
+            tappedLoc = Coord(row: row, col: col)
         }else{
             if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
                 if piece.getCanMove(){
@@ -100,14 +109,14 @@ extension Board {
         isTapped.toggle()
     }
     
-    func findDistance(zombie : Zombie)->(RowD : Int, ColD : Int, seekerLocation : Location){//This properly locates the targets.
-        let seekerLoc = getLocation(of: zombie) ?? Location()
-        var targetLoc = Location()
+    func findDistance(zombie : Zombie)->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
+        let seekerLoc = getCoord(of: zombie) ?? Coord()
+        var targetLoc = Coord()
         var thingSighted = false
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if (board[row][col]?.faction=="S") {//Locates target on the map
-                    targetLoc = Location(row: row, col: col)
+                    targetLoc = Coord(row: row, col: col)
                     thingSighted=true
                 }
             }
@@ -119,65 +128,71 @@ extension Board {
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
     
-    func seekFor(zombie : Zombie)->Location{
+    
+    
+    func seekFor(zombie : Zombie)->Coord{
         let distance = findDistance(zombie: zombie)
+        var returnCoord = distance.seekerCoord
         
-        var returnLocation = distance.seekerLocation
-        
-        for r in safeNum(returnLocation.row-1)..<safeNum(returnLocation.row+2) {//Checks if can attack
-            for c in safeNum(returnLocation.col-1)..<safeNum(returnLocation.col+2) {
-                if (board[r][c]?.faction == "S"&&(!(r==returnLocation.row&&c==returnLocation.col))){
+        //Attacks Neighbor
+        for r in safeNum(returnCoord.row-1)..<safeNum(returnCoord.row+2) {//Checks if can attack
+            for c in safeNum(returnCoord.col-1)..<safeNum(returnCoord.col+2) {
+                if (board[r][c]?.faction == "S"&&(!(r==returnCoord.row&&c==returnCoord.col))){
                     print("I am in range to attack.")
                     board[r][c]?.health -= zombie.damage
-                    return returnLocation
+                    return returnCoord
                 }
             }
         }
+        //Travels toward
         var directionText = ""
         if distance.RowD > 0 {// Target row 2  Seeker row 1 = Distance is 1//Seeker shoudl go right
-            returnLocation.row+=1
+            returnCoord.row+=1
             directionText+="Down "
         }
         else if distance.RowD < 0 {// Target row 1  Seeker row 2 = Distance is -1//Seeker should go left
-            returnLocation.row-=1
+            returnCoord.row-=1
             directionText+="Up "
         }
         if distance.ColD < 0 {// Target row 1  Seeker row 2 = Distance is -1 // seeker should go up
-            returnLocation.col-=1
+            returnCoord.col-=1
             directionText+="Left"
         }
         else if distance.ColD > 0 {// Target col 2  Seeker col 1 = Distance is 1//Seeker should go down
-            returnLocation.col+=1
+            returnCoord.col+=1
             directionText+="Right"
+       
         }
-        print(directionText)
-        
-        if (board[returnLocation.row][returnLocation.col]==nil){//Check if will collide
-            board[distance.seekerLocation.row][distance.seekerLocation.col] = nil//Prevents self duplication
+       
+        //Didn't print while here
+        if (board[returnCoord.row][returnCoord.col]==nil){//Check if will collide
+            board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
             //        }
-            print("From \(distance.seekerLocation) I go to \(returnLocation)")
-            return returnLocation
+            print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
+            return returnCoord
         }
-        let ranRow = safeNum(distance.seekerLocation.row+Int.random(in: -1...1))
-        let ranCol = safeNum(distance.seekerLocation.row+Int.random(in: -1...1))
+        let ranRow = safeNum(distance.seekerCoord.row+Int.random(in: -1...1))
+        let ranCol = safeNum(distance.seekerCoord.col+Int.random(in: -1...1))
         if board[ranRow][ranCol]==nil{//Check if will collide
-            board[distance.seekerLocation.row][distance.seekerLocation.col] = nil
+            board[distance.seekerCoord.row][distance.seekerCoord.col] = nil
             //Prevents self duplication
-            return Location(row: ranRow, col: ranCol)
+            print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
+            return Coord(row: ranRow, col: ranCol)
+            
         }
         else{
-            print("I remain at \(distance.seekerLocation)")
+            print("I remain at \(distance.seekerCoord)")
             //            var ranC = Int.random(in: -1..<1)
             //            var ranR = Int.random(in: -1..<1)
-            //            if (board[safeNum(returnLocation.row+ranR)][safeNum(returnLocation.col+ranC)]==nil){//Check if will collide
-            //                board[distance.seekerLocation.row][distance.seekerLocation.col] = nil//Prevents self duplication
+            //            if (board[safeNum(returnCoord.row+ranR)][safeNum(returnCoord.col+ranC)]==nil){//Check if will collide
+            //                board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
             //                //        }
-            //                returnLocation.row = safeNum(returnLocation.row+ranR)
-            //                returnLocation.col = safeNum(returnLocation.col+ranC)
-            //                print("From \(distance.seekerLocation) I wander to \(returnLocation)")
-            //                return returnLocation
+            //                returnCoord.row = safeNum(returnCoord.row+ranR)
+            //                returnCoord.col = safeNum(returnCoord.col+ranC)
+            //                print("From \(distance.seekerCoord) I wander to \(returnCoord)")
+            //                return returnCoord
             //            }
-            return distance.seekerLocation
+            return distance.seekerCoord
             
         }
     }
@@ -193,38 +208,45 @@ extension Board {
         }
         for currentZombie in 0..<zombies.count {
             if zombies[currentZombie].getCanMove(){
-                set(moveable: zombies[currentZombie], location:seekFor(zombie: zombies[currentZombie]))
-                print("I moved a zombie.")
+                print("I zombie number \(currentZombie+1)")
+                set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie]))
+                
                 //SeekFor erases the duplicate zombie
                 zombies[currentZombie].movementCount+=1
             }
         }
     }
-    
-    func nextTurn(){
-        checkHP()
-        var playerLocationPin = Location()
+    func applyConcealment(){
+        var playerCoordPins = [Coord]()
         for row in 0..<rowMax {
             for col in 0..<colMax {
-                if ((board[row][col]?.faction=="S")) {
-                    playerLocationPin = Location(row: row, col: col)
+                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
+                    playerCoordPins.append( Coord(row: row, col: col))
                 }
                 
             }
         }
-        if playerLocationPin == Location(row: 1, col: 1){
-            board[1][1]?.faction = "E"
-            print("HIDDEN")
+        for each in 0..<playerCoordPins.count{
+            if checkForTree(playerCoordPins[each].row, playerCoordPins[each].col){
+                board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"
+                print("HIDDEN")
+            }
+            else{
+                board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"
+            }
         }
+    }
+    func nextTurn(){
+        checkHP()
+        applyConcealment()
         moveZombie()
         refreshStamina()
-        
     }
 }
 
 extension Board {
     // MARK: Private Functions
-    private func setPossibleLocations() {
+    private func setPossibleCoords() {
         guard let loc = tappedLoc, let piece = board[loc.row][loc.col]
         else {
             possibleLoc = []
@@ -233,8 +255,8 @@ extension Board {
         //        print("\(piece.getMoves())")
         possibleLoc = piece.getMoves()
     }
-    private func locationIsValid(location: Location) -> Bool {
-        location.row >= 0 && location.row < rowMax && location.col >= 0 && location.col < colMax
+    private func CoordIsValid(Coord: Coord) -> Bool {
+        Coord.row >= 0 && Coord.row < rowMax && Coord.col >= 0 && Coord.col < colMax
     }
     //Internal functions, functions that will be used without much change to them.
     func safeNum(_ col : Int)->Int{
@@ -267,16 +289,16 @@ extension Board {
         
         return false
     }
-    func set(moveable: any Piece, location: Location) {
-        guard locationIsValid(location: location) else { return }
-        board[location.row][location.col] = moveable
+    func set(moveable: any Piece, Coord: Coord) {
+        guard CoordIsValid(Coord: Coord) else { return }
+        board[Coord.row][Coord.col] = moveable
         //findInRange()
     }
-    func getLocation(of moveable: any Moveable) -> Location? {
+    func getCoord(of moveable: any Moveable) -> Coord? {
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if board[row][col]?.id == moveable.id {
-                    return Location(row: row, col: col)
+                    return Coord(row: row, col: col)
                 }
             }
         }
