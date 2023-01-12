@@ -58,13 +58,14 @@ class Board : ObservableObject, BoardProtocol {
         set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
 //        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
 //        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
+        set(moveable: Zombie(board: self), Coord: Coord(row: 1, col: 1))
         var counter = 0
-        var quota = 1
+        var quota = 0
         while counter<quota{
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
-        treeCoords = createTreeList(10)
+        treeCoords = createTreeList(0)
     }
 }
 
@@ -135,13 +136,17 @@ extension Board {
         var returnCoord = distance.seekerCoord
         
         //Attacks Neighbor
-        for r in safeNum(returnCoord.row-1)..<safeNum(returnCoord.row+2) {//Checks if can attack
-            for c in safeNum(returnCoord.col-1)..<safeNum(returnCoord.col+2) {
+//        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
+//        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
+        for r in safeNum(returnCoord.row-1)...safeNum(returnCoord.row+1) {//Checks if can attack
+            for c in safeNum(returnCoord.col-1)...safeNum(returnCoord.col+1) {
+//                print("I check \(r) \(c)")
                 if (board[r][c]?.faction == "S"&&(!(r==returnCoord.row&&c==returnCoord.col))){
                     print("I am in range to attack.")
                     board[r][c]?.health -= zombie.damage
                     return returnCoord
                 }
+//                print("I not in range to attack.")
             }
         }
         //Travels toward
@@ -178,7 +183,7 @@ extension Board {
             //Prevents self duplication
             print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
             return Coord(row: ranRow, col: ranCol)
-            
+
         }
         else{
             print("I remain at \(distance.seekerCoord)")
@@ -207,12 +212,12 @@ extension Board {
             }
         }
         for currentZombie in 0..<zombies.count {
-            if zombies[currentZombie].getCanMove(){
-                print("I zombie number \(currentZombie+1)")
-                set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie]))
-                
-                //SeekFor erases the duplicate zombie
+            while zombies[currentZombie].getCanMove(){
+                print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
                 zombies[currentZombie].movementCount+=1
+                set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie]))
+                //SeekFor erases the duplicate zombie
+               
             }
         }
     }
