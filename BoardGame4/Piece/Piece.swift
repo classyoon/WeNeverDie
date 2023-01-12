@@ -11,7 +11,26 @@ import SwiftUI
 struct Location: Equatable, Hashable {
     var row: Int = 0
     var col: Int = 0
-    
+    init(_ row: Int, _ col: Int) {
+        self.row = row
+        self.col = col
+    }
+    init(row: Int, col: Int) {
+        self.row = row
+        self.col = col
+    }
+    init(row: Int) {
+        self.row = row
+        self.col = 0
+    }
+    init(col: Int) {
+        self.row = 0
+        self.col = col
+    }
+    init() {
+        self.row = 0
+        self.col = 0
+    }
 }
 
 protocol Piece: Moveable & Displayable {}

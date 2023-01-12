@@ -14,8 +14,6 @@ protocol BoardProtocol {
     var colMax: Int { get }
     func getLocation(of moveable: any Moveable) -> Location?
 }
-
-
 class Board : ObservableObject, BoardProtocol {
     @Published private(set) var board: [[(any Piece)?]] = [[]]
     
@@ -28,28 +26,52 @@ class Board : ObservableObject, BoardProtocol {
         }
     }
     @Published var possibleLoc: [Location] = []
-    
-    let rowMax: Int = 4
-    let colMax: Int = 4 //WARNING SafeNum only works for col, as long as they equal each other it will be safe.
+    var treeLocations : [Location] = [Location(), Location(2,0), Location(2,1) ]
+    let rowMax: Int = 10
+    let colMax: Int = 10 //WARNING SafeNum only works for col, as long as they equal each other it will be safe.
     func reset()->Board{
         Board()
+    }
+    func checkForTree(_ r: Int,_ c: Int)->Bool{
+        for loc in 0..<treeLocations.count-1{
+            if treeLocations[loc].row == r && treeLocations[loc].col == c{
+                return true
+                
+            }
+        }
+        return false
     }
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         
         
-        set(moveable: King(board: self), location: Location(row: 3, col: 3))
+        //set(moveable: King(board: self), location: Location(row: 9, col: 9))
+//        set(moveable: King(board: self), location: Location(row: 8, col: 9))
+//        set(moveable: King(board: self), location: Location(row: 7, col: 9))
         set(moveable: Zombie(board: self), location: Location(row: 1, col: 3))
-        //        set(moveable: Zombie(board: self), location: Location(row: 3, col: 0))
-        //        set(moveable: Zombie(board: self), location: Location(row: 4, col: 3))
-        //        set(moveable: Zombie(board: self), location: Location(row: 2, col: 3))
-        //        set(moveable: Zombie(board: self), location: Location(row: 0, col: 2))
-        //        set(moveable: Zombie(board: self), location: Location(row: 2, col: 0))
+        set(moveable: Zombie(board: self), location: Location(2, 2))
+        var counter = 0
+        var quota = 10
+        while counter<quota{
+            set(moveable: Zombie(board: self), location: randomLoc())
+            counter+=1
+        }
     }
 }
 
 extension Board {
     // MARK: Not private
+    func randomLoc() -> Location{
+        var ranR = Int.random(in: 0...rowMax-1)
+        var ranC = Int.random(in: 0...colMax-1)
+        print("\(ranR) \(ranC)")
+        while board[ranR][ranC] != nil {
+            ranR = Int.random(in: 0...rowMax-1)
+            ranC = Int.random(in: 0...colMax-1)
+        }
+        
+        return Location(row: ranR, col: ranC)
+    }
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
             tappedLoc = Location(row: row, col: col)
@@ -136,6 +158,13 @@ extension Board {
             print("From \(distance.seekerLocation) I go to \(returnLocation)")
             return returnLocation
         }
+        let ranRow = safeNum(distance.seekerLocation.row+Int.random(in: -1...1))
+        let ranCol = safeNum(distance.seekerLocation.row+Int.random(in: -1...1))
+        if board[ranRow][ranCol]==nil{//Check if will collide
+            board[distance.seekerLocation.row][distance.seekerLocation.col] = nil
+            //Prevents self duplication
+            return Location(row: ranRow, col: ranCol)
+        }
         else{
             print("I remain at \(distance.seekerLocation)")
             //            var ranC = Int.random(in: -1..<1)
@@ -209,8 +238,8 @@ extension Board {
     }
     //Internal functions, functions that will be used without much change to them.
     func safeNum(_ col : Int)->Int{
-        if col>colMax{
-            return colMax
+        if col>colMax-1{
+            return colMax-1
         }
         else if col<0 {
             return 0

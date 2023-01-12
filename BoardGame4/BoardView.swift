@@ -18,7 +18,8 @@ struct BoardView: View {
 //        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
 //        soundPlayer.play()
 //    }
-    var treeLocations [Location] = [Location()]
+    var treeCoords = [ ]
+    
     var body: some View {
         VStack{
             GeometryReader{ geo in
@@ -27,7 +28,10 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    Tile(size: 25.0, colored: Color.green, difference: 0.25, isSelected: false, tileLocation: Loc(row: row, col: col))
+//                                    if vm.checkForTree(row, col){
+//                                        Rectangle()
+//                                    }
+                                    Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Loc(row: row, col: col))
                                     
                                     if let piece = vm.board[row][col] {
                                         VStack{

@@ -10,7 +10,7 @@ struct King: Piece {
 
     
     var health: Int = 10
-    var damage = 10
+    var damage = 5
     var faction: String = "S"
     
     var isNPC = false
@@ -18,7 +18,7 @@ struct King: Piece {
     var movementCount = 0
     
     var facing: Direction = .down
-    let stamina = 20
+    let stamina = 2
     
     var id = UUID()
     
@@ -32,14 +32,22 @@ struct King: Piece {
         Vector(row: -1, col: 1),
         Vector(row: -1, col: 0),
         Vector(row: -1, col: -1),
-        Vector(row: 2, col: 2),
-        Vector(row: 2, col: 0),
-        Vector(row: 2, col: -2),
-        Vector(row: 0, col: 2),
-        Vector(row: 0, col: -2),
-        Vector(row: -2, col: 2),
-        Vector(row: -2, col: 0),
-        Vector(row: -2, col: -2),
+//        Vector(row: 2, col: 2),
+//        Vector(row: 2, col: 0),
+//        Vector(row: 2, col: -2),
+//        Vector(row: 0, col: 2),
+//        Vector(row: 0, col: -2),
+//        Vector(row: -2, col: 2),
+//        Vector(row: -2, col: 0),
+//        Vector(row: -2, col: -2),
+//        Vector(row: 3, col: 3),
+//        Vector(row: 3, col: 0),
+//        Vector(row: 3, col: -3),
+//        Vector(row: 0, col: 3),
+//        Vector(row: 0, col: -3),
+//        Vector(row: -3, col: 3),
+//        Vector(row: -3, col: 0),
+//        Vector(row: -3, col: -3),
         
     ]
     
