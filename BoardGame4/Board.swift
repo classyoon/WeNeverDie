@@ -16,8 +16,8 @@ protocol BoardProtocol {
 }
 class Board : ObservableObject, BoardProtocol {
     @Published private(set) var board: [[(any Piece)?]] = [[]]
-    @Published var treeCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
-    @Published var lootCoords = [Coord(2,1), Coord(4,0), Coord(3,1)]
+    @Published var treeCoords = [Coord]()
+    @Published var lootCoords = [Coord]()
     func createCoordList(_ amount : Int)->[Coord]{
         var count = 0
         var coordArray = [Coord]()
@@ -55,7 +55,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var possibleLoc: [Coord] = []
     
     let rowMax: Int = 10
-    let colMax: Int = 10 
+    let colMax: Int = 10
     func reset()->Board{
         Board()
     }
@@ -63,18 +63,21 @@ class Board : ObservableObject, BoardProtocol {
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         
+//        set(moveable: King(board: self), Coord: Coord())
+//        set(moveable: King(board: self), Coord: Coord(row: 6))
+//        set(moveable: Zombie(board: self), Coord: Coord(row: 4))
         
         set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
-        set(moveable: Zombie(board: self), Coord: Coord(row: 1, col: 1))
+       
         var counter = 0
-        let quota = 15
+        let quota = 30
         while counter<quota{
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
-        treeCoords = createCoordList(20)
+        treeCoords = createCoordList(30)
     }
 }
 
@@ -120,18 +123,33 @@ extension Board {
         isTapped.toggle()
     }
     
-    func findDistance(zombie : Zombie)->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
+    func findDistance(zombie : Zombie, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
         let seekerLoc = getCoord(of: zombie) ?? Coord()
         var targetLoc = Coord()
         var thingSighted = false
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if (board[row][col]?.faction=="S") {//Locates target on the map
-                    targetLoc = Coord(row: row, col: col)
-                    thingSighted=true
+        var DRow : Int = 100
+        var DCol : Int = 100
+        if targetList.count>0{
+            for target in 0..<targetList.count{
+                if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.faction == "S" {
+                    targetLoc = targetList[target]
+                    DRow = abs(targetList[target].row-seekerLoc.row)
+                    DCol = abs(targetList[target].col-seekerLoc.col)
+                    thingSighted = true
                 }
+                
             }
+            
         }
+//        for row in 0..<rowMax { // Old AI
+//            for col in 0..<colMax {
+//                if (board[row][col]?.faction=="S") {//Locates target on the map
+//                    targetLoc = Coord(row: row, col: col)
+//                    thingSighted=true
+//                }
+//            }
+//        }
+        
         if thingSighted==false {
             targetLoc=seekerLoc
         }
@@ -141,8 +159,8 @@ extension Board {
     
     
     
-    func seekFor(zombie : Zombie)->Coord{
-        let distance = findDistance(zombie: zombie)
+    func seekFor(zombie : Zombie, targetList: [Coord])->Coord{
+        let distance = findDistance(zombie: zombie, targetList: targetList)
         var returnCoord = distance.seekerCoord
         
         //Attacks Neighbor
@@ -212,26 +230,18 @@ extension Board {
         }
     }
     
-    func moveZombie(){//Collects list of zombie
-        var zombies = [Zombie]()
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if ((board[row][col]?.faction=="Z")) {
-                    zombies.append(board[row][col] as! Zombie)
-                }
-            }
-        }
+    func moveZombie(_ zombies : [Zombie], unitList: [Coord]){//Collects list of zombie
+        var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
             while zombies[currentZombie].getCanMove(){
                 print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
                 zombies[currentZombie].movementCount+=1
-                set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie]))
+                set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie], targetList: unitList))
                 //SeekFor erases the duplicate zombie
                
             }
         }
     }
-    //func collectListOf(
     func createLists()->(zombieList : [Zombie], unitList: [Coord] ){
         var playerCoordPins = [Coord]()
         var zombies = [Zombie]()
@@ -243,23 +253,12 @@ extension Board {
                 if ((board[row][col]?.faction=="Z")) {
                     zombies.append(board[row][col] as! Zombie)
                 }
-                
             }
         }
         return (zombies, playerCoordPins)
     }
     
-    func applyConcealment(){
-        var playerCoordPins = [Coord]()
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
-                    playerCoordPins.append( Coord(row: row, col: col))
-                }
-                
-                
-            }
-        }
+    func applyConcealment(_ playerCoordPins : [Coord]){
         for each in 0..<playerCoordPins.count{
             if checkForTree(playerCoordPins[each].row, playerCoordPins[each].col){
                 board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"
@@ -273,10 +272,9 @@ extension Board {
     }
     func nextTurn(){
         var zombies = createLists().zombieList
-        var player = createLists().unitList
-        
-        applyConcealment()
-        moveZombie()
+        let players = createLists().unitList
+        applyConcealment(players)
+        moveZombie(zombies, unitList: players)
         checkHPAndRefreshStamina()
     }
 }
