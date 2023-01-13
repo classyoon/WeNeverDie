@@ -17,18 +17,27 @@ protocol BoardProtocol {
 class Board : ObservableObject, BoardProtocol {
     @Published private(set) var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
-    func createTreeList(_ amount : Int)->[Coord]{
+    @Published var lootCoords = [Coord(2,1), Coord(4,0), Coord(3,1)]
+    func createCoordList(_ amount : Int)->[Coord]{
         var count = 0
-        var treeArray = [Coord]()
+        var coordArray = [Coord]()
         while count < amount {
-            treeArray.append(Coord(row: randomLoc().row, col: randomLoc().col))
+            coordArray.append(Coord(row: randomLoc().row, col: randomLoc().col))
             count+=1
         }
-        return treeArray
+        return coordArray
     }
     func checkForTree(_ r: Int,_ c: Int)->Bool{
-        for loc in 0..<treeCoords.count{
-            if treeCoords[loc].row == r && treeCoords[loc].col == c{
+        for treeNum in 0..<treeCoords.count{
+            if treeCoords[treeNum].row == r && treeCoords[treeNum].col == c{
+                return true
+            }
+        }
+        return false
+    }
+    func checkForLoot(_ r: Int,_ c: Int)->Bool{
+        for loc in 0..<lootCoords.count{
+            if lootCoords[loc].row == r && lootCoords[loc].col == c{
                 return true
             }
         }
@@ -46,7 +55,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var possibleLoc: [Coord] = []
     
     let rowMax: Int = 10
-    let colMax: Int = 10 //WARNING SafeNum only works for col, as long as they equal each other it will be safe.
+    let colMax: Int = 10 
     func reset()->Board{
         Board()
     }
@@ -56,16 +65,16 @@ class Board : ObservableObject, BoardProtocol {
         
         
         set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
-//        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
-//        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
+        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
+        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
         set(moveable: Zombie(board: self), Coord: Coord(row: 1, col: 1))
         var counter = 0
-        var quota = 0
+        let quota = 15
         while counter<quota{
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
-        treeCoords = createTreeList(0)
+        treeCoords = createCoordList(20)
     }
 }
 
@@ -82,6 +91,7 @@ extension Board {
         
         return Coord(row: ranR, col: ranC)
     }
+    
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
             tappedLoc = Coord(row: row, col: col)
@@ -138,8 +148,8 @@ extension Board {
         //Attacks Neighbor
 //        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
 //        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
-        for r in safeNum(returnCoord.row-1)...safeNum(returnCoord.row+1) {//Checks if can attack
-            for c in safeNum(returnCoord.col-1)...safeNum(returnCoord.col+1) {
+        for r in safeNum(r: returnCoord.row-1)...safeNum(r: returnCoord.row+1) {//Checks if can attack
+            for c in safeNum(c: returnCoord.col-1)...safeNum(c: returnCoord.col+1) {
 //                print("I check \(r) \(c)")
                 if (board[r][c]?.faction == "S"&&(!(r==returnCoord.row&&c==returnCoord.col))){
                     print("I am in range to attack.")
@@ -176,8 +186,8 @@ extension Board {
             print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
             return returnCoord
         }
-        let ranRow = safeNum(distance.seekerCoord.row+Int.random(in: -1...1))
-        let ranCol = safeNum(distance.seekerCoord.col+Int.random(in: -1...1))
+        let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
+        let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
         if board[ranRow][ranCol]==nil{//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil
             //Prevents self duplication
@@ -221,6 +231,24 @@ extension Board {
             }
         }
     }
+    //func collectListOf(
+    func createLists()->(zombieList : [Zombie], unitList: [Coord] ){
+        var playerCoordPins = [Coord]()
+        var zombies = [Zombie]()
+        for row in 0..<rowMax {
+            for col in 0..<colMax {
+                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
+                    playerCoordPins.append( Coord(row: row, col: col))
+                }
+                if ((board[row][col]?.faction=="Z")) {
+                    zombies.append(board[row][col] as! Zombie)
+                }
+                
+            }
+        }
+        return (zombies, playerCoordPins)
+    }
+    
     func applyConcealment(){
         var playerCoordPins = [Coord]()
         for row in 0..<rowMax {
@@ -228,6 +256,7 @@ extension Board {
                 if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
                     playerCoordPins.append( Coord(row: row, col: col))
                 }
+                
                 
             }
         }
@@ -240,12 +269,15 @@ extension Board {
                 board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"
             }
         }
+        
     }
     func nextTurn(){
-        checkHP()
+        var zombies = createLists().zombieList
+        var player = createLists().unitList
+        
         applyConcealment()
         moveZombie()
-        refreshStamina()
+        checkHPAndRefreshStamina()
     }
 }
 
@@ -264,27 +296,24 @@ extension Board {
         Coord.row >= 0 && Coord.row < rowMax && Coord.col >= 0 && Coord.col < colMax
     }
     //Internal functions, functions that will be used without much change to them.
-    func safeNum(_ col : Int)->Int{
-        if col>colMax-1{
+    func safeNum(c : Int)->Int{
+        if c>colMax-1{
             return colMax-1
         }
-        else if col<0 {
+        else if c<0 {
             return 0
         }
-        return col
+        return c
     }
-    func findStats()->String{
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if (board[row][col] != nil) {
-                    return "\(board[row][col]?.faction ?? "N") : \(board[row][col]?.health ?? 0)"
-                    //\(String(describing: board[row][col]?.movementCount)) / \(String(describing: board[row][col]?.stamina))"
-                }
-            }
+    func safeNum(r : Int)->Int{
+        if r>rowMax-1{
+            return rowMax-1
         }
-        return ""
+        else if r<0 {
+            return 0
+        }
+        return r
     }
-    
     func isPossibleLoc(row: Int, col: Int) -> Bool {
         for loc in possibleLoc {
             if loc.row == row && loc.col == col {
@@ -309,24 +338,39 @@ extension Board {
         }
         return nil
     }
-    func checkHP(){
+    func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if (board[row][col]?.health ?? 0 <= 0){
                     board[row][col] = nil
                 }
-            }
-        }
-    }
-    func refreshStamina(){
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
                 if (board[row][col] != nil) {//If it encounters anything
                     board[row][col]?.movementCount = 0//Resets movement counter
                 }
+                
             }
         }
     }
+    
+//    func checkHP(){
+//        for row in 0..<rowMax {
+//            for col in 0..<colMax {
+//                if (board[row][col]?.health ?? 0 <= 0){
+//                    board[row][col] = nil
+//                }
+//
+//            }
+//        }
+//    }
+//    func refreshStamina(){
+//        for row in 0..<rowMax {
+//            for col in 0..<colMax {
+//                if (board[row][col] != nil) {//If it encounters anything
+//                    board[row][col]?.movementCount = 0//Resets movement counter
+//                }
+//            }
+//        }
+//    }
 }
 
 

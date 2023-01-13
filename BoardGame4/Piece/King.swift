@@ -18,7 +18,7 @@ struct King: Piece {
     var movementCount = 0
     
     var facing: Direction = .down
-    let stamina = 10
+    let stamina = 3
     
     var id = UUID()
     
@@ -32,22 +32,22 @@ struct King: Piece {
         Vector(row: -1, col: 1),
         Vector(row: -1, col: 0),
         Vector(row: -1, col: -1),
-        Vector(row: 2, col: 2),
-        Vector(row: 2, col: 0),
-        Vector(row: 2, col: -2),
-        Vector(row: 0, col: 2),
-        Vector(row: 0, col: -2),
-        Vector(row: -2, col: 2),
-        Vector(row: -2, col: 0),
-        Vector(row: -2, col: -2),
-        Vector(row: 3, col: 3),
-        Vector(row: 3, col: 0),
-        Vector(row: 3, col: -3),
-        Vector(row: 0, col: 3),
-        Vector(row: 0, col: -3),
-        Vector(row: -3, col: 3),
-        Vector(row: -3, col: 0),
-        Vector(row: -3, col: -3),
+//        Vector(row: 2, col: 2),
+//        Vector(row: 2, col: 0),
+//        Vector(row: 2, col: -2),
+//        Vector(row: 0, col: 2),
+//        Vector(row: 0, col: -2),
+//        Vector(row: -2, col: 2),
+//        Vector(row: -2, col: 0),
+//        Vector(row: -2, col: -2),
+//        Vector(row: 3, col: 3),
+//        Vector(row: 3, col: 0),
+//        Vector(row: 3, col: -3),
+//        Vector(row: 0, col: 3),
+//        Vector(row: 0, col: -3),
+//        Vector(row: -3, col: 3),
+//        Vector(row: -3, col: 0),
+//        Vector(row: -3, col: -3),
         
     ]
     
@@ -61,6 +61,7 @@ struct King: Piece {
             .scaledToFit()
                 
         )
+        
     }
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")

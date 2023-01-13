@@ -19,7 +19,7 @@ struct BoardView: View {
     //        soundPlayer.play()
     //    }
     
-    //    var hillCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
+        var hillCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
     
     var body: some View {
         VStack{
@@ -29,9 +29,11 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
+                                    
                                     //                                    if checkForTree(row, col){
                                     //
                                     //                                    }
+                                    
                                     Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col)).if(vm.checkForTree(row, col)) { view in
                                         ZStack{
                                             Tile(size: 25.0, colored: Color.brown, difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col))
@@ -42,10 +44,12 @@ struct BoardView: View {
                                         VStack{
                                             piece.getView()
                                             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")//.padding()
+                                            Spacer()
                                             
                                             //                                              piece.getStats()
                                         }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
+                                    
                                     
                                 }
                                 .onTapGesture {
@@ -63,7 +67,7 @@ struct BoardView: View {
                                         }
                                     }
                                 )
-                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
+                                //.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
                     }
@@ -71,21 +75,30 @@ struct BoardView: View {
             }//.background(in: Color.green)
             //            .padding()
             statusView
-                .frame(height: 300)
+                .frame(height: 200)
         }
     }
     
+    
     var statusView: some View {
         VStack{
-            Text("Objective : We found a group of zombies near our pastures. We can't spare anyone else, go clear them out and then come back to camp. It shouldn't be too difficult.\n \nJournal Log : The cows are all dead. It was an ambush.")
+            Text("Objective : We found a group of zombies near our pastures. We can't spare anyone else, go clear them out and then come back to camp. It shouldn't be too difficult.\n\nJournal Log : The cows are all dead. It was an ambush.")
             //            Text("Is Tapped: \(vm.isTapped.description)")
             Text(weaponry ? "" : "Axe 5 Damage, Food \(food)")
             Text(talk ? "" : "Nobody to talk to")
+            Group{
+                if let loc = vm.tappedLoc {
+                    Text("Coordinate \(loc.row), \(loc.col)")
+                }
+            }
             Spacer()
             HStack(spacing: 30.0){
                 Button {
+                
                     food+=1
+                    
                 } label: {
+                  
                     Text("Search")
                 }
                 Button {
@@ -108,17 +121,12 @@ struct BoardView: View {
                     vm.nextTurn()
                 } label: {
                     ZStack{
-                        Rectangle().frame(width: 100, height: 50)
-                        Text("Next Turn").foregroundColor(Color.black)
+                        RoundedRectangle(cornerRadius: 20).frame(width: 100, height: 50).foregroundColor(Color.brown)
+                        Text("Next Turn").foregroundColor(Color.white)
                     }
                 }
+                    
                 
-                
-                Group{
-                    if let loc = vm.tappedLoc {
-                        Text("\(loc.row), \(loc.col)")
-                    }
-                }
             }
         }
     }
