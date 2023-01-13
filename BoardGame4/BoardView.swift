@@ -19,7 +19,6 @@ struct BoardView: View {
     //        soundPlayer.play()
     //    }
     
-        var hillCoords = [Coord(1,1), Coord(3,0), Coord(2,1)]
     
     var body: some View {
         VStack{
@@ -29,10 +28,6 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    
-                                    //                                    if checkForTree(row, col){
-                                    //
-                                    //                                    }
                                     
                                     Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col)).if(vm.checkForTree(row, col)) { view in
                                         ZStack{
@@ -45,20 +40,14 @@ struct BoardView: View {
                                             piece.getView()
                                             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")//.padding()
                                             Spacer()
-                                            
-                                            //                                              piece.getStats()
                                         }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
                                     
                                     
                                 }
-                                .onTapGesture {
-                                    vm.handleTap(row: row, col: col)
-                                }
-                                //
+                                .onTapGesture {vm.handleTap(row: row, col: col)}
                                 .background(
                                     Group{
-                                        
                                         if let loc = vm.tappedLoc, loc.col == col && loc.row == row {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
                                         }
@@ -66,7 +55,7 @@ struct BoardView: View {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
                                         }
                                     }
-                                )
+                            )
                                 //.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
@@ -94,11 +83,8 @@ struct BoardView: View {
             Spacer()
             HStack(spacing: 30.0){
                 Button {
-                
                     food+=1
-                    
                 } label: {
-                  
                     Text("Search")
                 }
                 Button {
@@ -111,7 +97,6 @@ struct BoardView: View {
                 } label: {
                     ZStack{
                         Text("Talk")
-                        
                     }
                 }
             }
@@ -125,8 +110,6 @@ struct BoardView: View {
                         Text("Next Turn").foregroundColor(Color.white)
                     }
                 }
-                    
-                
             }
         }
     }
