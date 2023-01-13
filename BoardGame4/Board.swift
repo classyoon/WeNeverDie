@@ -63,14 +63,14 @@ class Board : ObservableObject, BoardProtocol {
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         
-//        set(moveable: King(board: self), Coord: Coord())
-//        set(moveable: King(board: self), Coord: Coord(row: 6))
-//        set(moveable: Zombie(board: self), Coord: Coord(row: 4))
+        //        set(moveable: King(board: self), Coord: Coord())
+        //        set(moveable: King(board: self), Coord: Coord(row: 6))
+        //        set(moveable: Zombie(board: self), Coord: Coord(row: 4))
         
         set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
-       
+        
         var counter = 0
         let quota = 30
         while counter<quota{
@@ -141,14 +141,14 @@ extension Board {
             }
             
         }
-//        for row in 0..<rowMax { // Old AI
-//            for col in 0..<colMax {
-//                if (board[row][col]?.faction=="S") {//Locates target on the map
-//                    targetLoc = Coord(row: row, col: col)
-//                    thingSighted=true
-//                }
-//            }
-//        }
+        //        for row in 0..<rowMax { // Old AI
+        //            for col in 0..<colMax {
+        //                if (board[row][col]?.faction=="S") {//Locates target on the map
+        //                    targetLoc = Coord(row: row, col: col)
+        //                    thingSighted=true
+        //                }
+        //            }
+        //        }
         
         if thingSighted==false {
             targetLoc=seekerLoc
@@ -164,17 +164,17 @@ extension Board {
         var returnCoord = distance.seekerCoord
         
         //Attacks Neighbor
-//        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
-//        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
+        //        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
+        //        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
         for r in safeNum(r: returnCoord.row-1)...safeNum(r: returnCoord.row+1) {//Checks if can attack
             for c in safeNum(c: returnCoord.col-1)...safeNum(c: returnCoord.col+1) {
-//                print("I check \(r) \(c)")
+                //                print("I check \(r) \(c)")
                 if (board[r][c]?.faction == "S"&&(!(r==returnCoord.row&&c==returnCoord.col))){
                     print("I am in range to attack.")
                     board[r][c]?.health -= zombie.damage
                     return returnCoord
                 }
-//                print("I not in range to attack.")
+                //                print("I not in range to attack.")
             }
         }
         //Travels toward
@@ -194,9 +194,9 @@ extension Board {
         else if distance.ColD > 0 {// Target col 2  Seeker col 1 = Distance is 1//Seeker should go down
             returnCoord.col+=1
             directionText+="Right"
-       
+            
         }
-       
+        
         //Didn't print while here
         if (board[returnCoord.row][returnCoord.col]==nil){//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
@@ -211,7 +211,7 @@ extension Board {
             //Prevents self duplication
             print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
             return Coord(row: ranRow, col: ranCol)
-
+            
         }
         else{
             print("I remain at \(distance.seekerCoord)")
@@ -238,7 +238,7 @@ extension Board {
                 zombies[currentZombie].movementCount+=1
                 set(moveable: zombies[currentZombie], Coord:seekFor(zombie: zombies[currentZombie], targetList: unitList))
                 //SeekFor erases the duplicate zombie
-               
+                
             }
         }
     }
@@ -272,10 +272,23 @@ extension Board {
     }
     func nextTurn(){
         var zombies = createLists().zombieList
-        let players = createLists().unitList
+        var players = createLists().unitList
         applyConcealment(players)
         moveZombie(zombies, unitList: players)
         checkHPAndRefreshStamina()
+    }
+    func checkHPAndRefreshStamina(){
+        for row in 0..<rowMax {
+            for col in 0..<colMax {
+                if (board[row][col]?.health ?? 0 <= 0){
+                    board[row][col] = nil
+                }
+                if (board[row][col] != nil) {//If it encounters anything
+                    board[row][col]?.movementCount = 0//Resets movement counter
+                }
+                
+            }
+        }
     }
 }
 
@@ -336,39 +349,45 @@ extension Board {
         }
         return nil
     }
-    func checkHPAndRefreshStamina(){
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if (board[row][col]?.health ?? 0 <= 0){
-                    board[row][col] = nil
-                }
-                if (board[row][col] != nil) {//If it encounters anything
-                    board[row][col]?.movementCount = 0//Resets movement counter
-                }
-                
-            }
-        }
-    }
     
-//    func checkHP(){
-//        for row in 0..<rowMax {
-//            for col in 0..<colMax {
-//                if (board[row][col]?.health ?? 0 <= 0){
-//                    board[row][col] = nil
-//                }
-//
-//            }
-//        }
-//    }
-//    func refreshStamina(){
-//        for row in 0..<rowMax {
-//            for col in 0..<colMax {
-//                if (board[row][col] != nil) {//If it encounters anything
-//                    board[row][col]?.movementCount = 0//Resets movement counter
-//                }
-//            }
-//        }
-//    }
+    /**
+     Attempt to optimize checkHPAndRefreshStamina
+     //        for zombie in Zombies {
+     //            if zombie.health == 0 {
+     //                var locZ = getCoord(of: zombie)
+     //                board[locZ!.row][locZ!.col]  = nil
+     //                zombie.movementCount = 0
+     ////                board[getCoord(of: zombie])!.row][getCoord(of: Zombies[zombie])!.col] = nil
+     //            }
+     //        }
+     //        for player in PlayerUnit {
+     //            if board[player.row][player.col]?.health == 0 {
+     //                board[player.row][player.col] = nil
+     //                board[player.row][player.col]?.movementCount = 0
+     //            }
+     //        }
+     
+     */
+    
+    //    func checkHP(){
+    //        for row in 0..<rowMax {
+    //            for col in 0..<colMax {
+    //                if (board[row][col]?.health ?? 0 <= 0){
+    //                    board[row][col] = nil
+    //                }
+    //
+    //            }
+    //        }
+    //    }
+    //    func refreshStamina(){
+    //        for row in 0..<rowMax {
+    //            for col in 0..<colMax {
+    //                if (board[row][col] != nil) {//If it encounters anything
+    //                    board[row][col]?.movementCount = 0//Resets movement counter
+    //                }
+    //            }
+    //        }
+    //    }
 }
 
 
