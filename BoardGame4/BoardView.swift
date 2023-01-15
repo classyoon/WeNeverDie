@@ -8,17 +8,52 @@ import AVFoundation
 import SwiftUI
 var soundPlayer: AVAudioPlayer!
 
+
+
 struct BoardView: View {
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
     @ObservedObject var vm = Board()
+    
     //    func playSound() {
     //        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
     //        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
     //        soundPlayer.play()
     //    }
-    
+    @ViewBuilder
+    func getTile(row : Int, col : Int)-> some View{
+        if vm.checkForTree(row, col){
+            
+            Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))
+        }
+        else if vm.checkForLoot(row, col){
+            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))
+        }
+        else{
+            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+        }
+    }
+    func searchLocation(){
+        let piece = vm.getCoord(of: vm.selectedUnit!)
+        guard piece != nil else {return}
+       
+        if vm.selectedUnit!.getCanMove(){
+            if vm.lootBoard[piece!.row][piece!.col]>0{
+                food+=1
+                vm.lootBoard[piece!.row][piece!.col]-=1
+                vm.selectedUnit!.movementCount+=1
+                
+            }
+            else{
+                vm.selectedUnit!.movementCount+=1
+                
+            }
+        }
+       
+            vm.selectedUnit!.movementCount+=1
+            
+    }
     
     var body: some View {
         VStack{
@@ -29,11 +64,13 @@ struct BoardView: View {
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
                                     
-                                    Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col)).if(vm.checkForTree(row, col)) { view in
-                                        ZStack{
-                                            Tile(size: 25.0, colored: Color.brown, difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col))
-                                        }
-                                    }
+                                    //                                    Tile(size: 25.0, colored: Color.green , difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col)).if(vm.checkForTree(row, col)) { view in
+                                    //                                        ZStack{
+                                    //                                            Tile(size: 25.0, colored: Color.brown, difference: 0.25, isSelected: false, tileLocation: Coord(row: row, col: col))
+                                    //                                        }
+                                    //                                    }
+                                    getTile(row: row, col: col)
+                                    
                                     
                                     if let piece = vm.board[row][col] {
                                         VStack{
@@ -55,7 +92,7 @@ struct BoardView: View {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
                                         }
                                     }
-                            )
+                                )
                                 //.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
@@ -83,7 +120,7 @@ struct BoardView: View {
             Spacer()
             HStack(spacing: 30.0){
                 Button {
-                    food+=1
+                    searchLocation()
                 } label: {
                     Text("Search")
                 }

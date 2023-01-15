@@ -20,9 +20,13 @@ class Board : ObservableObject, BoardProtocol {
     @Published var lootCoords = [Coord]()
     @Published var isTapped = false
     @Published var lootBoard = [[Int]]()
-    @Published var mobArray = [(any Piece)?]()
+    @Published var selectedUnit : (any Piece)? = nil
+    //    @Published var zombieRef = [Zombie]()
+    //    @Published var unitCoords = [Coord]()
+    //@Published var mobArray = [any Piece]()
     @Published var tappedLoc : Coord?{
-       
+        
+        
         didSet{
             setPossibleCoords()
         }
@@ -41,6 +45,20 @@ class Board : ObservableObject, BoardProtocol {
         }
         return coordArray
     }
+    func createCoordList(loot amount : Int)->[Coord]{
+        var count = 0; var coordArray = [Coord]()
+        while count < amount {
+            
+            var Rrow = randomLoc().row
+            var Rcol = randomLoc().col
+            if checkForTree(Rrow, Rcol)==false {
+                coordArray.append(Coord(row: Rrow, col: Rcol))
+                lootBoard[Rrow][Rcol]+=5
+                count+=1
+            }
+        }
+        return coordArray
+    }
     func checkForTree(_ r: Int,_ c: Int)->Bool{
         for treeNum in 0..<treeCoords.count{
             if treeCoords[treeNum].row == r && treeCoords[treeNum].col == c{
@@ -50,13 +68,15 @@ class Board : ObservableObject, BoardProtocol {
         return false
     }
     func checkForLoot(_ r: Int,_ c: Int)->Bool{
-        for loc in 0..<lootCoords.count{
-            if lootCoords[loc].row == r && lootCoords[loc].col == c{
+        for lootNum in 0..<lootCoords.count{
+            if lootCoords[lootNum].row == r && lootCoords[lootNum].col == c{
                 return true
             }
         }
         return false
     }
+    
+    
     
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
@@ -69,30 +89,21 @@ class Board : ObservableObject, BoardProtocol {
         set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
         set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
-        
-        var counter = 0; let quota = 30
+        //   set(moveable: Zombie(board: self), Coord: Coord(row: 6, col: 9))
+        var counter = 0; let quota = 20
         while counter<quota{
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
-        mobArray = createMobArray()
+        //        zombieRef = createLists().zombieList
+        //        unitCoords = createLists().unitList
         treeCoords = createCoordList(30)
+        lootCoords = createCoordList(loot: 10)
     }
 }
 
 extension Board {
     // MARK: Not private
-    func createMobArray()->[any Piece]{
-        var mobList = [any Piece]()
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if !(board[row][col]==nil){
-                    mobList.append(board[row][col]!)
-                }
-            }
-        }
-        return mobList
-    }
     
     func randomLoc() -> Coord{
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
@@ -104,9 +115,13 @@ extension Board {
     /**
      future feature : If tap on unit and send to place but still have stamina, that unit will remain selected
      */
+    
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
             tappedLoc = Coord(row: row, col: col)
+            //board[row][col]?.isSelected = true
+            selectedUnit = board[row][col]
+            selectedUnit?.isSelected = true
         }
         else{
             if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
@@ -122,7 +137,11 @@ extension Board {
                         if board[row][col]?.health == 0 {board[row][col] = nil}
                     }
                 }
+                else{
+                    selectedUnit = nil
+                }
             }
+            
             tappedLoc = nil
         }
         isTapped.toggle()
@@ -132,13 +151,13 @@ extension Board {
         var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
         var thingSighted = false
         var DRow : Int = 100; var DCol : Int = 100
-            for target in 0..<targetList.count{
-                if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.faction == "S" {
-                    targetLoc = targetList[target]
-                    DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
-                    thingSighted = true
-                }
+        for target in 0..<targetList.count{
+            if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.faction == "S" {
+                targetLoc = targetList[target]
+                DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
+                thingSighted = true
             }
+        }
         if thingSighted==false {
             targetLoc=seekerLoc
         }
@@ -153,7 +172,7 @@ extension Board {
         for r in safeNum(r: returnCoord.row-1)...safeNum(r: returnCoord.row+1) {//Checks if can attack
             for c in safeNum(c: returnCoord.col-1)...safeNum(c: returnCoord.col+1) {
                 if (board[r][c]?.faction == "S"&&(!(r==returnCoord.row&&c==returnCoord.col))){ //print("I check \(r) \(c)")
-                    board[r][c]?.health -= zombie.damage; print("I am in range to attack.")
+                    board[r][c]?.health -= zombie.damage; //print("I am in range to attack.")
                     return returnCoord
                 }
             }
@@ -176,7 +195,7 @@ extension Board {
         //Actual moving
         if (board[returnCoord.row][returnCoord.col]==nil){//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
-            print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
+            //print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
             return returnCoord
         }
         
@@ -184,18 +203,19 @@ extension Board {
         let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
         if board[ranRow][ranCol]==nil{//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil //Prevents self duplication
-            print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
+            //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
             return Coord(row: ranRow, col: ranCol)
         }
         else{
-            print("I remain at \(distance.seekerCoord)"); return distance.seekerCoord
+            //print("I remain at \(distance.seekerCoord)")
+            return distance.seekerCoord
         }
     }
     func moveZombies(_ zombies : [Zombie], unitList: [Coord]){//Collects list of zombie
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
             while zombies[currentZombie].getCanMove(){
-                zombies[currentZombie].movementCount+=1; print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
+                zombies[currentZombie].movementCount+=1; //print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
                 set(moveable: zombies[currentZombie], Coord:approachAndDamage(zombie: zombies[currentZombie], targetList: unitList))//SeekFor erases the duplicate zombie
             }
         }
@@ -215,12 +235,17 @@ extension Board {
                 }
             }
         }
+        //        for mob in 0...mobArray.count {
+        //            if mobArray[mob].faction=="Z" {
+        //                zombies.append(mobArray[mob]as! Zombie)
+        //            }
+        //        }
         return (zombies, playerCoordPins)
     }
     func applyConcealment(_ playerCoordPins : [Coord]){
         for each in 0..<playerCoordPins.count{
             if checkForTree(playerCoordPins[each].row, playerCoordPins[each].col){
-                board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"; print("HIDDEN")
+                board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"; //print("HIDDEN")
             }
             else{board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"}
         }
@@ -237,6 +262,7 @@ extension Board {
                 
             }
         }
+        
     }
     func nextTurn(){
         let zombies = createLists().zombieList; let players = createLists().unitList
@@ -279,6 +305,7 @@ extension Board {
         }
         return r
     }
+    
     func isPossibleLoc(row: Int, col: Int) -> Bool {
         for loc in possibleLoc {
             if loc.row == row && loc.col == col {
@@ -296,10 +323,12 @@ extension Board {
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if board[row][col]?.id == moveable.id {
+                    //                    print(Coord(row: row, col: col))
                     return Coord(row: row, col: col)
                 }
             }
         }
+    
         return nil
     }
 }
@@ -320,6 +349,24 @@ extension Board {
  //            }
  //        }
  
+ 
+ for zombie in 0..<zombieRef.count{
+ if zombieRef[zombie].health == 0{
+ zombieRef.remove(at: zombie)
+ }
+ else{
+ zombieRef[zombie].movementCount = 0
+ }
+ }
+ for player in 0..<unitCoords.count{
+ if board[unitCoords[player].row][unitCoords[player].col]?.health == 0{
+ board[unitCoords[player].row][unitCoords[player].col] = nil
+ unitCoords.remove(at: player)
+ }
+ else{
+ board[unitCoords[player].row][unitCoords[player].col]?.movementCount = 0
+ }
+ }
  */
 
 //    func checkHP(){

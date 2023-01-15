@@ -10,7 +10,7 @@ struct King: Piece {
 
     
     var health: Int = 10
-    var damage = 0
+    var damage = 5
     var faction: String = "S"
     
     var isNPC = false
@@ -18,7 +18,7 @@ struct King: Piece {
     var movementCount = 0
     
     var facing: Direction = .down
-    let stamina = 30
+    let stamina = 3
     
     var id = UUID()
     

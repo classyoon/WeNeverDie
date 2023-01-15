@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+var colorArray = [Color.green, Color.red, Color.brown]//UGH this is so crude but I can't figure it out.
 struct FixedTile: View {
     var size : Double = 100.0
     var colored : Color = Color.green
@@ -23,11 +23,13 @@ struct FixedTile: View {
 }
 
 struct Tile: View {
+
     var size : Double//PRobably should be set to something, so that it universally changes all types of tiles
     var colored : Color
     var difference = 0.5
     @State var isSelected = false
     var tileLocation : Coord
+    @ViewBuilder
     var body: some View {
         ZStack{
             
