@@ -14,7 +14,10 @@ protocol BoardProtocol {
     var colMax: Int { get }
     func getCoord(of moveable: any Moveable) -> Coord?
 }
+
+
 class Board : ObservableObject, BoardProtocol {
+    @Published var terrainBoard: [[String]] = [["g"]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord]()
     @Published var lootCoords = [Coord]()
@@ -26,15 +29,42 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published var unitCoords = [Coord]()
     //@Published var mobArray = [any Piece]()
     @Published var escapeCoord : Coord = Coord()
+    @Published var survivorList = [King]()
     @Published var tappedLoc : Coord?{
                 didSet{
             setPossibleCoords()
         }
     }
+    
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 4
     let colMax: Int = 4
- 
+    func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[String]]{
+        var tempTerrain = Array(repeating: Array(repeating: "g", count: rowMax), count: colMax)
+        escapeCoord = escapePoint
+        tempTerrain[escapePoint.row][escapePoint.col] = "X"
+        var counter = 0
+        while ((counter<trees)&&(counter<houses)){
+            var Rrow = randomLoc().row
+            var Rcol = randomLoc().col
+            if counter<trees {
+                if tempTerrain[Rrow][Rcol] == "g"{
+                    tempTerrain[Rrow][Rcol] = "t"
+                  
+                }
+            }
+            else if counter<houses {
+                if tempTerrain[Rrow][Rcol] == "g"{
+                    tempTerrain[Rrow][Rcol] = "h"
+                    
+                }
+            }
+            counter+=1
+           
+        }
+        return tempTerrain
+        
+    }
     func createCoordList(_ amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
         
@@ -45,6 +75,7 @@ class Board : ObservableObject, BoardProtocol {
         }
         return coordArray
     }
+  
     func createCoordList(loot amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
         while count < amount {
@@ -82,6 +113,7 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
+        //terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord())
         lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
                 set(moveable: King(board: self), Coord: Coord())
         //        set(moveable: King(board: self), Coord: Coord(row: 6))
@@ -96,8 +128,6 @@ class Board : ObservableObject, BoardProtocol {
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
-        //        zombieRef = createLists().zombieList
-        //        unitCoords = createLists().unitList
         treeCoords = createCoordList(1)
         lootCoords = createCoordList(loot: 1)
     }
@@ -135,7 +165,9 @@ extension Board {
                     if (!(board[row][col] != nil)){//Checks stamina and if a piece is already there
                         piece.incrementMoveCounter()//FOR SOME reason this function "piece.incrementMoveCounter()" works here.
                         board[row][col] = piece; board[tappedRow][tappedCol] = nil//Actual move process.
+                        
                         if escapeCoord.row == row &&  escapeCoord.col == col {
+                            survivorList.append(board[row][col] as! King)
                             board[row][col] = nil
                             print("Escape!")
                         }

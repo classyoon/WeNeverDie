@@ -24,6 +24,13 @@ struct BoardView: View {
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
         var getTileCoor = Coord(row, col)
+//        switch vm.terrainBoard[row][col]{
+//        case "h":
+//            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
+//            print("")
+//        default:
+//            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+//        }
         if vm.escapeCoord==getTileCoor{
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//Escape
         }
