@@ -23,23 +23,27 @@ struct BoardView: View {
     //    }
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
-        if vm.checkForTree(row, col){
-            
-            Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))
+        var getTileCoor = Coord(row, col)
+        if vm.escapeCoord==getTileCoor{
+            Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//Escape
+        }
+        else if vm.checkForTree(row, col){
+            Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
         }
         else if vm.checkForLoot(row, col){
-            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))
+            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
         }
         else{
-            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))//Grass
         }
     }
     func searchLocation(){
      
-        guard vm.getCoord(of: vm.selectedUnit!) != nil else {return}
+     
+       // guard vm.getCoord(of: vm.selectedUnit!) != nil else {return}
         
         let piece = vm.getCoord(of: vm.selectedUnit!)
-        
+       
         if vm.selectedUnit!.getCanMove(){
             if vm.lootBoard[piece!.row][piece!.col]>0{
                 food+=1
@@ -51,6 +55,7 @@ struct BoardView: View {
             }
             else{
 //                vm.selectedUnit!.movementCount+=1
+                
                 vm.board[piece!.row][piece!.col]?.movementCount+=1
                 print("Search 2 \(String(describing: vm.board[piece!.row][piece!.col]?.movementCount))")
                 

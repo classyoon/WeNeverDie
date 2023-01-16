@@ -25,10 +25,9 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published var zombieRef = [Zombie]()
     //    @Published var unitCoords = [Coord]()
     //@Published var mobArray = [any Piece]()
+    @Published var escapeCoord : Coord = Coord()
     @Published var tappedLoc : Coord?{
-        
-        
-        didSet{
+                didSet{
             setPossibleCoords()
         }
     }
@@ -38,7 +37,9 @@ class Board : ObservableObject, BoardProtocol {
  
     func createCoordList(_ amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
+        
         while count < amount {
+
             coordArray.append(Coord(row: randomLoc().row, col: randomLoc().col))
             count+=1
         }
@@ -50,11 +51,12 @@ class Board : ObservableObject, BoardProtocol {
             
             var Rrow = randomLoc().row
             var Rcol = randomLoc().col
-            if checkForTree(Rrow, Rcol)==false {
+            if checkForTree(Rrow, Rcol)==false && !(escapeCoord.row==Rrow&&escapeCoord.col==Rcol){
                 coordArray.append(Coord(row: Rrow, col: Rcol))
                 lootBoard[Rrow][Rcol]+=5
                 count+=1
             }
+            
         }
         return coordArray
     }
@@ -84,7 +86,7 @@ class Board : ObservableObject, BoardProtocol {
                 set(moveable: King(board: self), Coord: Coord())
         //        set(moveable: King(board: self), Coord: Coord(row: 6))
         //        set(moveable: Zombie(board: self), Coord: Coord(row: 4))
-        
+        escapeCoord = Coord(row: rowMax-1, col: colMax-1)
 //        set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
 //        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
 //        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
@@ -133,7 +135,10 @@ extension Board {
                     if (!(board[row][col] != nil)){//Checks stamina and if a piece is already there
                         piece.incrementMoveCounter()//FOR SOME reason this function "piece.incrementMoveCounter()" works here.
                         board[row][col] = piece; board[tappedRow][tappedCol] = nil//Actual move process.
-                        print("Move \(piece.movementCount)")
+                        if escapeCoord.row == row &&  escapeCoord.col == col {
+                            board[row][col] = nil
+                            print("Escape!")
+                        }
                     }
                     if (board[row][col]?.faction == "Z"){
                         board[row][col]?.health-=piece.damage
@@ -325,6 +330,7 @@ extension Board {
         //findInRange()
     }
     func getCoord(of moveable: any Moveable) -> Coord? {
+       
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if board[row][col]?.id == moveable.id {
