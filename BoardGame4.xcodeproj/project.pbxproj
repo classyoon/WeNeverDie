@@ -27,6 +27,9 @@
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */; };
+		CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */; };
+		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
+		CAE88A532975E9B000AEB5B0 /* DemoOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieMob.swift; sourceTree = "<group>"; };
+		CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMob.swift; sourceTree = "<group>"; };
+		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
+		CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOptional.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +135,11 @@
 				91355ACE293AF33600907610 /* Battle */,
 				91355AD1293AF5FE00907610 /* CoreData */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
+				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
+				CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */,
 				CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */,
 				CA8A319E296CF2C500755BCE /* Tiles */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* BoardGame4.entitlements */,
@@ -347,11 +356,14 @@
 				CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */,
 				91355ACA293AF0E600907610 /* King.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
+				CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */,
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
 				9157BE38294AA939002C6E4F /* Knight.swift in Sources */,
+				CAE88A532975E9B000AEB5B0 /* DemoOptional.swift in Sources */,
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
+				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				91355A99293AEE4700907610 /* ContentView.swift in Sources */,
 				91355AD0293AF34000907610 /* Battle.swift in Sources */,
 				91355AC7293AEE6A00907610 /* Checker.swift in Sources */,
