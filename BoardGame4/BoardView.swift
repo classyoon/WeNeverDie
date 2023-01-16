@@ -35,24 +35,27 @@ struct BoardView: View {
         }
     }
     func searchLocation(){
+     
+        guard vm.getCoord(of: vm.selectedUnit!) != nil else {return}
+        
         let piece = vm.getCoord(of: vm.selectedUnit!)
-        guard piece != nil else {return}
-       
+        
         if vm.selectedUnit!.getCanMove(){
             if vm.lootBoard[piece!.row][piece!.col]>0{
                 food+=1
                 vm.lootBoard[piece!.row][piece!.col]-=1
-                vm.selectedUnit!.movementCount+=1
+//                vm.selectedUnit!.movementCount+=1
+                vm.board[piece!.row][piece!.col]?.movementCount+=1
+                print("Search 1 \(String(describing: vm.selectedUnit?.movementCount))")
                 
             }
             else{
-                vm.selectedUnit!.movementCount+=1
+//                vm.selectedUnit!.movementCount+=1
+                vm.board[piece!.row][piece!.col]?.movementCount+=1
+                print("Search 2 \(String(describing: vm.board[piece!.row][piece!.col]?.movementCount))")
                 
             }
         }
-       
-            vm.selectedUnit!.movementCount+=1
-            
     }
     
     var body: some View {
@@ -120,7 +123,16 @@ struct BoardView: View {
             Spacer()
             HStack(spacing: 30.0){
                 Button {
+                    
                     searchLocation()
+                    if vm.getCoord(of: vm.selectedUnit!) != nil {
+                        print(vm.selectedUnit?.getCanMove() ?? "There is none")
+                        print(vm.selectedUnit?.movementCount ??  "There is none")
+                    }
+                    else{
+                        print(vm.selectedUnit?.getCanMove() ?? "There is none")
+                        print(vm.selectedUnit?.movementCount ??  "There is none")
+                    }
                 } label: {
                     Text("Search")
                 }
@@ -167,6 +179,6 @@ extension View {
 }
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView()
+        BoardView(vm: Board())
     }
 }

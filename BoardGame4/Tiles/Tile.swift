@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-var colorArray = [Color.green, Color.red, Color.brown]//UGH this is so crude but I can't figure it out.
 struct FixedTile: View {
     var size : Double = 100.0
     var colored : Color = Color.green

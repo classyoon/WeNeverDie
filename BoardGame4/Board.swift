@@ -15,12 +15,13 @@ protocol BoardProtocol {
     func getCoord(of moveable: any Moveable) -> Coord?
 }
 class Board : ObservableObject, BoardProtocol {
-    @Published private(set) var board: [[(any Piece)?]] = [[]]
+    @Published var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord]()
     @Published var lootCoords = [Coord]()
     @Published var isTapped = false
     @Published var lootBoard = [[Int]]()
     @Published var selectedUnit : (any Piece)? = nil
+    @Published var selectedUnitLoc :Coord? = nil
     //    @Published var zombieRef = [Zombie]()
     //    @Published var unitCoords = [Coord]()
     //@Published var mobArray = [any Piece]()
@@ -32,11 +33,9 @@ class Board : ObservableObject, BoardProtocol {
         }
     }
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 10
-    let colMax: Int = 10
-    func reset()->Board{
-        Board()
-    }
+    let rowMax: Int = 4
+    let colMax: Int = 4
+ 
     func createCoordList(_ amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
         while count < amount {
@@ -82,23 +81,23 @@ class Board : ObservableObject, BoardProtocol {
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
-        //        set(moveable: King(board: self), Coord: Coord())
+                set(moveable: King(board: self), Coord: Coord())
         //        set(moveable: King(board: self), Coord: Coord(row: 6))
         //        set(moveable: Zombie(board: self), Coord: Coord(row: 4))
         
-        set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
-        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
-        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
+//        set(moveable: King(board: self), Coord: Coord(row: 9, col: 9))
+//        set(moveable: King(board: self), Coord: Coord(row: 8, col: 9))
+//        set(moveable: King(board: self), Coord: Coord(row: 7, col: 9))
         //   set(moveable: Zombie(board: self), Coord: Coord(row: 6, col: 9))
-        var counter = 0; let quota = 20
+        var counter = 0; let quota = 1
         while counter<quota{
             set(moveable: Zombie(board: self), Coord: randomLoc())
             counter+=1
         }
         //        zombieRef = createLists().zombieList
         //        unitCoords = createLists().unitList
-        treeCoords = createCoordList(30)
-        lootCoords = createCoordList(loot: 10)
+        treeCoords = createCoordList(1)
+        lootCoords = createCoordList(loot: 1)
     }
 }
 
@@ -115,7 +114,12 @@ extension Board {
     /**
      future feature : If tap on unit and send to place but still have stamina, that unit will remain selected
      */
-    
+    func increaseMoveCount(row: Int, col: Int) {
+        if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
+            piece.incrementMoveCounter()
+        }
+            
+    }
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
             tappedLoc = Coord(row: row, col: col)
@@ -127,13 +131,14 @@ extension Board {
             if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
                 if piece.getCanMove(){
                     if (!(board[row][col] != nil)){//Checks stamina and if a piece is already there
-                        piece.incrementMoveCounter()
-                        board[row][col] = piece; board[tappedRow][tappedCol] = nil//Erases original copy of player pieces moved.
+                        piece.incrementMoveCounter()//FOR SOME reason this function "piece.incrementMoveCounter()" works here.
+                        board[row][col] = piece; board[tappedRow][tappedCol] = nil//Actual move process.
+                        print("Move \(piece.movementCount)")
                     }
                     if (board[row][col]?.faction == "Z"){
                         board[row][col]?.health-=piece.damage
-                        board[tappedRow][tappedCol]?.movementCount+=1
-                        
+                        board[tappedRow][tappedCol]?.movementCount+=1//but not here.
+                        print("Attack \(piece.movementCount)")
                         if board[row][col]?.health == 0 {board[row][col] = nil}
                     }
                 }
