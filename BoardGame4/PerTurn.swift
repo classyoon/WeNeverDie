@@ -9,6 +9,22 @@ import Foundation
 extension Board {
     // MARK: Not private
 
+    func createLists()-> (zombieList : [Zombie], unitList: [Coord]) {
+        var playerCoordPins = [Coord]()
+        var zombies = [Zombie]()
+        for row in 0..<rowMax {
+            for col in 0..<colMax {
+                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
+                    playerCoordPins.append( Coord(row: row, col: col)); continue
+                }
+                if ((board[row][col]?.faction=="Z")) {
+                    zombies.append(board[row][col] as! Zombie)
+                }
+            }
+        }
+        return (zombies, playerCoordPins)
+    }
+    
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {

@@ -15,10 +15,16 @@ protocol BoardProtocol {
     func getCoord(of moveable: any Moveable) -> Coord?
 }
 
+struct TileType {
+    var name  = "g"
+    var lootCount = 1
 
+}
 class Board : ObservableObject, BoardProtocol {
     @Published var terrainBoard: [[String]] = [["g"]]
-    @Published var ADVterrainBoard: [[(String, Int, Int)]] = [[("g", 0, 1)]]
+//    @Published var terrainBoard2: [[(Terrain : String, Loot : Int)]] = [[("g", 1)]]
+    @Published var terrain = [[TileType]]()
+    @Published var ADVterrainBoard: [[(terrain : String, moveCost: Int, lootable : Int)]] = [[("g", 0, 1)]]
     @Published var SuperADVterrainBoard: [[(String, Int, Int, Double)]] = [[("g", 0, 1, 0.0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord]()
@@ -43,6 +49,7 @@ class Board : ObservableObject, BoardProtocol {
     
     func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[String]]{
         var tempTerrain = Array(repeating: Array(repeating: "g", count: rowMax), count: colMax)
+
         escapeCoord = escapePoint
         tempTerrain[escapePoint.row][escapePoint.col] = "X"
         var counter = 0
@@ -75,21 +82,7 @@ class Board : ObservableObject, BoardProtocol {
         }
         return Coord(row: ranR, col: ranC)
     }
-    func createLists()-> (zombieList : [Zombie], unitList: [Coord]) {
-        var playerCoordPins = [Coord]()
-        var zombies = [Zombie]()
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
-                    playerCoordPins.append( Coord(row: row, col: col)); continue
-                }
-                if ((board[row][col]?.faction=="Z")) {
-                    zombies.append(board[row][col] as! Zombie)
-                }
-            }
-        }
-        return (zombies, playerCoordPins)
-    }
+
     func spawnZombies(_ amount : Int){
         var counter = 0
         while counter<amount{
@@ -100,7 +93,7 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
+//        lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
         terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord(9,9))
         
         set(moveable: King(board: self), Coord: Coord())
