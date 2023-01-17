@@ -26,6 +26,7 @@ extension Board {
                             survivorList.append(board[row][col] as! King)
                             board[row][col] = nil
                             print("Escape!")
+                            selectedUnit?.isSelected = false
                         }
                     }
                     if (board[row][col]?.faction == "Z"){

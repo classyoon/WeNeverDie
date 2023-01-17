@@ -35,24 +35,25 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 4
-    let colMax: Int = 4
- 
+    let rowMax: Int = 10
+    let colMax: Int = 10
+    
     func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[String]]{
         var tempTerrain = Array(repeating: Array(repeating: "g", count: rowMax), count: colMax)
         escapeCoord = escapePoint
         tempTerrain[escapePoint.row][escapePoint.col] = "X"
         var counter = 0
         while ((counter<trees)&&(counter<houses)){
-            let Rrow = randomLoc().row
-            let Rcol = randomLoc().col
+            var Rrow = randomLoc().row
+            var Rcol = randomLoc().col
             if counter<trees {
                 if tempTerrain[Rrow][Rcol] == "g"{
                     tempTerrain[Rrow][Rcol] = "t"
-                    
                 }
             }
-            else if counter<houses {
+          Rrow = randomLoc().row
+        Rcol = randomLoc().col
+            if counter<houses {
                 if tempTerrain[Rrow][Rcol] == "g"{
                     tempTerrain[Rrow][Rcol] = "h"
                     
@@ -61,9 +62,11 @@ class Board : ObservableObject, BoardProtocol {
             counter+=1
             
         }
+        print(tempTerrain)
         return tempTerrain
         
     }
+    
     func createCoordList(_ amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
         
@@ -74,7 +77,6 @@ class Board : ObservableObject, BoardProtocol {
         }
         return coordArray
     }
-    
     func createCoordList(loot amount : Int)->[Coord]{
         var count = 0; var coordArray = [Coord]()
         while count < amount {
@@ -97,7 +99,6 @@ class Board : ObservableObject, BoardProtocol {
         }
         return Coord(row: ranR, col: ranC)
     }
-    
     func createLists()-> (zombieList : [Zombie], unitList: [Coord]) {
         var playerCoordPins = [Coord]()
         var zombies = [Zombie]()
@@ -113,24 +114,26 @@ class Board : ObservableObject, BoardProtocol {
         }
         return (zombies, playerCoordPins)
     }
-    
+    func spawnZombies(_ amount : Int){
+        var counter = 0
+        while counter<amount{
+            set(moveable: Zombie(board: self), Coord: randomLoc())
+            counter+=1
+        }
+    }
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        //terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord())
+        terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord(9,9))
         lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
         set(moveable: King(board: self), Coord: Coord())
         set(moveable: King(board: self), Coord: Coord(row: 1))
         
         escapeCoord = Coord(row: rowMax-1, col: colMax-1)
         
-        var counter = 0; let quota = 1
-        while counter<quota{
-            set(moveable: Zombie(board: self), Coord: randomLoc())
-            counter+=1
-        }
-        treeCoords = createCoordList(1)
-        lootCoords = createCoordList(loot: 1)
+        spawnZombies(1)
+        treeCoords = createCoordList(20)
+        lootCoords = createCoordList(loot: 10)
     }
 }
 
@@ -152,7 +155,7 @@ extension Board {
         }
         return false
     }
- 
+    
     /**
      future feature : If tap on unit and send to place but still have stamina, that unit will remain selected
      */
@@ -164,7 +167,7 @@ extension Board {
     }
     
     // MARK: Private Functions
-     func setPossibleCoords() {
+    func setPossibleCoords() {
         guard let loc = tappedLoc, let piece = board[loc.row][loc.col]
         else {
             possibleLoc = []

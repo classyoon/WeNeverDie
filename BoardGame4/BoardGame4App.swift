@@ -13,7 +13,7 @@ struct BoardGame4App: App {
 
     var body: some Scene {
         WindowGroup {
-            BoardView()
+            BoardView(vm: Board())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

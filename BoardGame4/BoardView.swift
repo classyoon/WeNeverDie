@@ -14,7 +14,7 @@ struct BoardView: View {
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
-    @ObservedObject var vm = Board()
+    @ObservedObject var vm : Board
     
     //    func playSound() {
     //        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
@@ -23,25 +23,15 @@ struct BoardView: View {
     //    }
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
-        let getTileCoor = Coord(row, col)
-//        switch vm.terrainBoard[row][col]{
-//        case "h":
-//            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
-//            print("")
-//        default:
-//            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
-//        }
-        if vm.escapeCoord==getTileCoor{
-            Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//Escape
-        }
-        else if vm.checkForTree(row, col){
-            Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
-        }
-        else if vm.checkForLoot(row, col){
+        switch vm.terrainBoard[row][col]{
+        case "h":
             Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
-        }
-        else{
-            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))//Grass
+        case "t":
+            Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
+        case "X":
+            Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
+        default:
+            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
         }
     }
 
@@ -53,7 +43,6 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                
                                     getTile(row: row, col: col)
                                     if let piece = vm.board[row][col] {
                                         VStack{
