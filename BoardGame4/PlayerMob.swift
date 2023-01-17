@@ -48,7 +48,8 @@ extension Board {
     
     func applyConcealment(_ playerCoordPins : [Coord]){
         for each in 0..<playerCoordPins.count{
-            if checkForTree(playerCoordPins[each].row, playerCoordPins[each].col){
+            var loc = playerCoordPins[each]
+            if terrainBoard[loc.row][loc.col]=="t"{
                 board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"; //print("HIDDEN")
             }
             else{board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"}

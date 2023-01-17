@@ -110,7 +110,7 @@ struct BoardView: View {
             Text(talk ? "" : "Nobody to talk to")
             Group{
                 if let loc = vm.tappedLoc {
-                    Text("Coordinate \(loc.row), \(loc.col)")
+                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.lootBoard[loc.row][loc.col])")
                 }
             }
             Spacer()

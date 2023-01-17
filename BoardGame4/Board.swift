@@ -18,6 +18,8 @@ protocol BoardProtocol {
 
 class Board : ObservableObject, BoardProtocol {
     @Published var terrainBoard: [[String]] = [["g"]]
+    @Published var ADVterrainBoard: [[(String, Int, Int)]] = [[("g", 0, 1)]]
+    @Published var SuperADVterrainBoard: [[(String, Int, Int, Double)]] = [[("g", 0, 1, 0.0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord]()
     @Published var lootCoords = [Coord]()
@@ -37,6 +39,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 10
     let colMax: Int = 10
+    let houseLoot = 4
     
     func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[String]]{
         var tempTerrain = Array(repeating: Array(repeating: "g", count: rowMax), count: colMax)
@@ -51,47 +54,20 @@ class Board : ObservableObject, BoardProtocol {
                     tempTerrain[Rrow][Rcol] = "t"
                 }
             }
-          Rrow = randomLoc().row
+        Rrow = randomLoc().row
         Rcol = randomLoc().col
             if counter<houses {
                 if tempTerrain[Rrow][Rcol] == "g"{
                     tempTerrain[Rrow][Rcol] = "h"
-                    
+                    lootBoard[Rrow][Rcol]+=houseLoot
                 }
             }
             counter+=1
-            
         }
-        print(tempTerrain)
         return tempTerrain
-        
     }
+ 
     
-    func createCoordList(_ amount : Int)->[Coord]{
-        var count = 0; var coordArray = [Coord]()
-        
-        while count < amount {
-            
-            coordArray.append(Coord(row: randomLoc().row, col: randomLoc().col))
-            count+=1
-        }
-        return coordArray
-    }
-    func createCoordList(loot amount : Int)->[Coord]{
-        var count = 0; var coordArray = [Coord]()
-        while count < amount {
-            
-            let Rrow = randomLoc().row
-            let Rcol = randomLoc().col
-            if checkForTree(Rrow, Rcol)==false && !(escapeCoord.row==Rrow&&escapeCoord.col==Rcol){
-                coordArray.append(Coord(row: Rrow, col: Rcol))
-                lootBoard[Rrow][Rcol]+=5
-                count+=1
-            }
-            
-        }
-        return coordArray
-    }
     func randomLoc() -> Coord{
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
         while board[ranR][ranC] != nil {
@@ -124,37 +100,22 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord(9,9))
         lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
+        terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord(9,9))
+        
         set(moveable: King(board: self), Coord: Coord())
         set(moveable: King(board: self), Coord: Coord(row: 1))
         
         escapeCoord = Coord(row: rowMax-1, col: colMax-1)
         
         spawnZombies(1)
-        treeCoords = createCoordList(20)
-        lootCoords = createCoordList(loot: 10)
+      
     }
 }
 
 
 extension Board {
-    func checkForTree(_ r: Int,_ c: Int)->Bool{
-        for treeNum in 0..<treeCoords.count{
-            if treeCoords[treeNum].row == r && treeCoords[treeNum].col == c{
-                return true
-            }
-        }
-        return false
-    }
-    func checkForLoot(_ r: Int,_ c: Int)->Bool{
-        for lootNum in 0..<lootCoords.count{
-            if lootCoords[lootNum].row == r && lootCoords[lootNum].col == c{
-                return true
-            }
-        }
-        return false
-    }
+
     
     /**
      future feature : If tap on unit and send to place but still have stamina, that unit will remain selected
