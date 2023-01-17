@@ -99,6 +99,9 @@ struct BoardView: View {
                         
                     }
                 }
+                else{
+                    print("Can't move")
+                }
             }
         }
     }

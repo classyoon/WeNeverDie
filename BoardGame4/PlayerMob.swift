@@ -7,6 +7,13 @@
 
 import Foundation
 extension Board {
+    
+    func move(_ piece: any Piece, from : Coord, to: Coord){
+        var ref = piece
+        board[to.row][to.col] = piece; board[from.row][from.col] = nil
+        ref.incrementMoveCounter()
+    }
+    
     func handleTap(row: Int, col: Int) {
         if isTapped == false {
             tappedLoc = Coord(row: row, col: col)
@@ -16,7 +23,7 @@ extension Board {
         }
         else{
             
-            if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
+            if let tappedCol = tappedLoc?.col, let tappedRow = tappedLoc?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol],  var pieceData = selectedUnit  {
                 if piece.getCanMove(){
                     if (!(board[row][col] != nil)){//Checks stamina and if a piece is already there
                         piece.incrementMoveCounter()//FOR SOME reason this function "piece.incrementMoveCounter()" works here.
@@ -38,6 +45,7 @@ extension Board {
                 }
                 else{
                     selectedUnit = nil
+                    print("no further")
                 }
             }
             

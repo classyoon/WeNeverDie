@@ -28,11 +28,15 @@ class Board : ObservableObject, BoardProtocol {
     @Published var SuperADVterrainBoard: [[(String, Int, Int, Double)]] = [[("g", 0, 1, 0.0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var treeCoords = [Coord]()
+    
     @Published var lootCoords = [Coord]()
     @Published var isTapped = false
     @Published var lootBoard = [[Int]]()
     @Published var selectedUnit : (any Piece)? = nil
     @Published var selectedUnitLoc :Coord? = nil
+    
+    @Published var hillCoords = [Coord]()
+    @Published var blockerCoords = [Coord]()
     
     @Published var escapeCoord : Coord = Coord()
     @Published var survivorList = [King]()
@@ -93,7 +97,7 @@ class Board : ObservableObject, BoardProtocol {
     //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-//        lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
+        lootBoard = Array(repeating: Array(repeating: 1, count: rowMax), count: colMax)
         terrainBoard = randomGenerateTerrain(trees: 10, houses: 10, Coord(9,9))
         
         set(moveable: King(board: self), Coord: Coord())
