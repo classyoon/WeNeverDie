@@ -54,13 +54,13 @@ struct BoardView: View {
                                     
                                     
                                 }
-                                .onTapGesture {vm.handleTap(row: row, col: col)}
+                                .onTapGesture {vm.handleTap(tapRow: row, tapCol: col)}
                                 .background(
                                     Group{
-                                        if let loc = vm.tappedLoc, loc.col == col && loc.row == row {
+                                        if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
                                         }
-                                        if vm.isPossibleLoc(row: row, col: col) {
+                                        if vm.isPossibleLoc(row: row, col: col) && vm.wasTapped{
                                             RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
                                         }
                                     }
@@ -112,14 +112,14 @@ struct BoardView: View {
             Text(weaponry ? "" : "Axe 5 Damage, Food \(food)")
             Text(talk ? "" : "Nobody to talk to")
             Group{
-                if let loc = vm.tappedLoc {
+                if let loc = vm.wasTappedCoord {
                     Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.lootBoard[loc.row][loc.col])")
                 }
             }
             Spacer()
             HStack(spacing: 30.0){
                 Button {
-                    if vm.isTapped{
+                    if vm.wasTapped{
                         searchLocation()
                     }
                 } label: {

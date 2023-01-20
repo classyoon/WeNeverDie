@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct King: Piece {
+struct King: Piece, Identifiable{
 
     
     var health: Int = 10
