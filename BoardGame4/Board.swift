@@ -34,8 +34,8 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 10
-    let colMax: Int = 10
+    let rowMax: Int = 3
+    let colMax: Int = 3
     let houseLoot = 4
  
     func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[(String, Int)]]{
@@ -85,13 +85,13 @@ init(){
     
     board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
     let bottemRight = Coord(rowMax-1, colMax-1)
-    terrainBoard = randomGenerateTerrain(trees: 30, houses: 4, bottemRight)
+    terrainBoard = randomGenerateTerrain(trees: 0, houses: 0, bottemRight)
     
     set(moveable: King(board: self), Coord: Coord())
     set(moveable: King(board: self), Coord: Coord(row: 1))
     
     
-    spawnZombies(10)
+    spawnZombies(0)
     
 }
 }

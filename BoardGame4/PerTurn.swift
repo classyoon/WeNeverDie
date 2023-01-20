@@ -25,6 +25,7 @@ extension Board {
         return (zombies, playerCoordPins)
     }
     
+    
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
@@ -38,12 +39,22 @@ extension Board {
             }
         }
         
+        
     }
+    func checkEndMission(unitList: [Coord]){
+        if unitList.isEmpty{
+            print("END MISSION")
+            print(survivorList)
+        }
+    }
+    
     func nextTurn(){
         var lists = createLists()
         let zombies = lists.zombieList; let players = lists.unitList
         applyConcealment(players)
         moveZombies(zombies, unitList: players)
         checkHPAndRefreshStamina()
+        checkEndMission(unitList: players)
+        
     }
 }
