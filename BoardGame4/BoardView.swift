@@ -23,7 +23,7 @@ struct BoardView: View {
     //    }
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
-        switch vm.terrainBoard[row][col]{
+        switch vm.terrainBoard[row][col].0{
         case "h":
             Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
         case "t":
@@ -60,7 +60,7 @@ struct BoardView: View {
                                         if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
                                             RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
                                         }
-                                        if vm.isPossibleLoc(row: row, col: col) && vm.wasTapped{
+                                        if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
                                             RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
                                         }
                                     }
@@ -83,9 +83,9 @@ struct BoardView: View {
             if let piece = vm.getCoord(of: selected){ //?? nil
                 
                 if selected.getCanMove(){
-                    if vm.lootBoard[piece.row][piece.col]>0{
+                    if vm.terrainBoard[piece.row][piece.col].1>0{
                         food+=1
-                        vm.lootBoard[piece.row][piece.col]-=1
+                        vm.terrainBoard[piece.row][piece.col].1-=1
                         //                vm.selectedUnit!.movementCount+=1
                         vm.board[piece.row][piece.col]?.movementCount+=1
                         print("Search 1 \(String(describing: vm.selectedUnit?.movementCount))")
@@ -113,13 +113,13 @@ struct BoardView: View {
             Text(talk ? "" : "Nobody to talk to")
             Group{
                 if let loc = vm.wasTappedCoord {
-                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.lootBoard[loc.row][loc.col])")
+                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].1)")
                 }
             }
             Spacer()
             HStack(spacing: 30.0){
                 Button {
-                    if vm.wasTapped{
+                    if vm.unitWasSelected{
                         searchLocation()
                     }
                 } label: {

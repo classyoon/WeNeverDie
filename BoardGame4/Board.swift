@@ -16,23 +16,16 @@ protocol BoardProtocol {
 }
 
 class Board : ObservableObject, BoardProtocol {
-    @Published var terrainBoard: [[String]] = [["g"]]
+    @Published var terrainBoard: [[(String, Int)]] = [[("g",0)]]
     //    @Published var terrainBoard2: [[(Terrain : String, Loot : Int)]] = [[("g", 1)]]
-    @Published var ADVterrainBoard: [[(terrain : String, moveCost: Int, lootable : Int)]] = [[("g", 0, 1)]]
-    @Published var SuperADVterrainBoard: [[(String, Int, Int, Double)]] = [[("g", 0, 1, 0.0)]]
     @Published var board: [[(any Piece)?]] = [[]]
-    @Published var treeCoords = [Coord]()
     
-    @Published var lootCoords = [Coord]()
-    @Published var wasTapped = false
-    @Published var lootBoard = [[Int]]()
+    @Published var unitWasSelected = false
     @Published var selectedUnit : (any Piece)? = nil
-    @Published var selectedUnitLoc :Coord? = nil
+    @Published var selectedLoc :Coord? = nil
     
-    @Published var hillCoords = [Coord]()
-    @Published var blockerCoords = [Coord]()
     
-    @Published var escapeCoord : Coord = Coord()
+    
     @Published var survivorList = [King]()
     @Published var wasTappedCoord : Coord?{
         didSet{
@@ -44,67 +37,63 @@ class Board : ObservableObject, BoardProtocol {
     let rowMax: Int = 10
     let colMax: Int = 10
     let houseLoot = 4
-    
-    func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[String]]{
-        var tempTerrain = Array(repeating: Array(repeating: "g", count: rowMax), count: colMax)
-        var tempTerrain2 = Array(repeating: Array(repeating: ("g", 0), count: rowMax), count: colMax)
-        escapeCoord = escapePoint
-        tempTerrain[escapePoint.row][escapePoint.col] = "X"
-        var counter = 0
-        while ((counter<trees)||(counter<houses)){
-            var Rrow = randomLoc().row
-            var Rcol = randomLoc().col
-            if counter<trees {
-                if tempTerrain[Rrow][Rcol] == "g"{
-                    tempTerrain[Rrow][Rcol] = "t"
-                }
+ 
+    func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[(String, Int)]]{
+    var tempTerrain = Array(repeating: Array(repeating: ("g", 0), count: rowMax), count: colMax)
+    tempTerrain[escapePoint.row][escapePoint.col].0 = "X"
+    var counter = 0
+    while ((counter<trees)||(counter<houses)){
+        var Rrow = randomLoc().row
+        var Rcol = randomLoc().col
+        if counter<trees {
+            if tempTerrain[Rrow][Rcol].0 == "g"{
+                tempTerrain[Rrow][Rcol].0 = "t"
             }
-            Rrow = randomLoc().row
-            Rcol = randomLoc().col
-            if counter<houses {
-                if tempTerrain[Rrow][Rcol] == "g"{
-                    tempTerrain[Rrow][Rcol] = "h"
-                    lootBoard[Rrow][Rcol]+=houseLoot
-                }
+        }
+        Rrow = randomLoc().row
+        Rcol = randomLoc().col
+        if counter<houses {
+            if tempTerrain[Rrow][Rcol].0 == "g"{
+                tempTerrain[Rrow][Rcol].0 = "h"
+                tempTerrain[Rrow][Rcol].1+=houseLoot
             }
-            counter+=1
         }
-        return tempTerrain
+        counter+=1
     }
+    return tempTerrain
+}
+
+
+func randomLoc() -> Coord{
+    var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
+    while board[ranR][ranC] != nil {
+        ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
+    }
+    return Coord(row: ranR, col: ranC)
+}
+
+
+func spawnZombies(_ amount : Int){
+    var counter = 0
+    while counter<amount{
+        set(moveable: Zombie(board: self), Coord: randomLoc())
+        counter+=1
+    }
+}
+//    @Published private(set) var mobs: [(any Piece)?] = []
+init(){
+    
+    board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
+    let bottemRight = Coord(rowMax-1, colMax-1)
+    terrainBoard = randomGenerateTerrain(trees: 30, houses: 4, bottemRight)
+    
+    set(moveable: King(board: self), Coord: Coord())
+    set(moveable: King(board: self), Coord: Coord(row: 1))
     
     
-    func randomLoc() -> Coord{
-        var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
-        while board[ranR][ranC] != nil {
-            ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
-        }
-        return Coord(row: ranR, col: ranC)
-    }
+    spawnZombies(10)
     
-    
-    func spawnZombies(_ amount : Int){
-        var counter = 0
-        while counter<amount{
-            set(moveable: Zombie(board: self), Coord: randomLoc())
-            counter+=1
-        }
-    }
-    //    @Published private(set) var mobs: [(any Piece)?] = []
-    init(){
-        
-        board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        lootBoard = Array(repeating: Array(repeating: 0, count: rowMax), count: colMax)
-        let bottemRight = Coord(rowMax-1, colMax-1)
-        terrainBoard = randomGenerateTerrain(trees: 30, houses: 4, bottemRight)
-        
-        set(moveable: King(board: self), Coord: Coord())
-        set(moveable: King(board: self), Coord: Coord(row: 1))
-        
-        escapeCoord = Coord(row: rowMax-1, col: colMax-1)
-        
-        spawnZombies(10)
-        
-    }
+}
 }
 
 

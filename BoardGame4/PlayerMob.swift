@@ -18,12 +18,12 @@ extension Board {
         
         else{
             selectedUnit = nil
-            wasTapped = false
+            unitWasSelected = false
             wasTappedCoord = nil
         }
         if piece.getCanMove()==false{
             selectedUnit = nil
-            wasTapped = false
+            unitWasSelected = false
             wasTappedCoord = nil
         }
       
@@ -35,15 +35,15 @@ extension Board {
     
     
     func handleTap(tapRow: Int, tapCol: Int) {
-        if wasTapped == false && (board[tapRow][tapCol]?.faction=="S"||board[tapRow][tapCol]?.faction=="E"){
+        if unitWasSelected == false && (board[tapRow][tapCol]?.faction=="S"||board[tapRow][tapCol]?.faction=="E"){
             wasTappedCoord = Coord(row: tapRow, col: tapCol)
             selectedUnit = board[tapRow][tapCol]
 
-            wasTapped = true
+            unitWasSelected = true
         }
         else if let newPiece = board[tapRow][tapCol] {
             if tapRow == wasTappedCoord?.row && tapCol == wasTappedCoord?.col {
-                wasTapped = false
+                unitWasSelected = false
                 selectedUnit = nil
                 wasTappedCoord = nil
             }
@@ -57,14 +57,14 @@ extension Board {
             }
         }
         else if ((board[tapRow][tapCol] == nil && isPossibleLoc(row: tapRow, col: tapCol) == false) || selectedUnit == nil){
-            wasTapped.toggle()
+            unitWasSelected.toggle()
             selectedUnit = nil
-            wasTappedCoord = (wasTapped ? Coord(tapRow, tapCol):nil)
-            print(wasTapped)
+            wasTappedCoord = (unitWasSelected ? Coord(tapRow, tapCol):nil)
+            print(unitWasSelected)
         }
         else{
            
-            print("Is tapped \(wasTapped)")
+            print("Is tapped \(unitWasSelected)")
             print("Saved \(String(describing: wasTappedCoord))")
             print("Tapped \(Coord(tapRow, tapCol))")
             
@@ -74,10 +74,10 @@ extension Board {
                     
                     move(&piece, from: currentLoc, to: Coord(tapRow, tapCol))
                     
-                    if escapeCoord.row == tapRow &&  escapeCoord.col == tapCol {
+                    if terrainBoard[tapRow][tapCol].0 == "X" {
                         survivorList.append(board[tapRow][tapCol] as! King)
                         board[tapRow][tapCol] = nil
-                        wasTapped = false
+                        unitWasSelected = false
                         selectedUnit = nil
                     }
                     
@@ -85,7 +85,7 @@ extension Board {
                         board[tapRow][tapCol]?.health-=piece.damage
                         board[wasTappedRow][wasTappedCol]?.movementCount+=1//but not here.
                         print("Attack \(piece.movementCount)")
-                        wasTapped = false
+                        unitWasSelected = false
                         selectedUnit = nil
                         if board[tapRow][tapCol]?.health == 0 {board[tapRow][tapCol] = nil}
                     }
@@ -93,7 +93,7 @@ extension Board {
                 else{
                     selectedUnit = nil
                     wasTappedCoord = nil
-                    wasTapped = false
+                    unitWasSelected = false
                     print("no further")
                 }
                 
@@ -108,7 +108,7 @@ extension Board {
     func applyConcealment(_ playerCoordPins : [Coord]){
         for each in 0..<playerCoordPins.count{
             var loc = playerCoordPins[each]
-            if terrainBoard[loc.row][loc.col]=="t"{
+            if terrainBoard[loc.row][loc.col].0=="t"{
                 board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"; //print("HIDDEN")
             }
             else{board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"}
