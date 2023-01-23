@@ -51,7 +51,7 @@ extension Board {
     func nextTurn(){
         var lists = createLists()
         let zombies = lists.zombieList; let players = lists.unitList
-        applyConcealment(players)
+        applyTileStatuses(players)
         moveZombies(zombies, unitList: players)
         checkHPAndRefreshStamina()
         checkEndMission(unitList: players)

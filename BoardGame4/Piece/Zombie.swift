@@ -9,6 +9,7 @@ import SwiftUI
 struct Zombie: Piece {
     var health = 10
     var damage = 3
+    var alert = false
     
     var isNPC = true
     var isSelected = false
@@ -40,7 +41,7 @@ struct Zombie: Piece {
     }
     
     func getView() -> AnyView {
-        AnyView(Image("Zombie")
+        AnyView(Image(alert ? "AgroZombie" : "Zombie")
             .resizable()
             .scaledToFit()
                 

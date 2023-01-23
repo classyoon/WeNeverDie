@@ -12,7 +12,9 @@ struct BoardGame4App: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
+        
         WindowGroup {
+            
             BoardView(vm: Board())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

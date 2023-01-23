@@ -11,18 +11,13 @@ extension Board {
     func move(_ piece: inout any Piece, from : Coord, to: Coord){
         
         if board[to.row][to.col]==nil && piece.getCanMove() && to != from{
-            print("from \(from)")
-            print(board[from.row][from.col]?.movementCount)
             
             board[to.row][to.col] = piece
-            board[to.row][to.col]?.movementCount+=1
-            
-            print("to \(to)")
-            print(board[to.row][to.col]?.movementCount)
-            
+            board[to.row][to.col]?.movementCount+=1// This may look redundent, but I have no idea why but these do not work if you get rid of one.
+            piece.movementCount+=1//
             board[from.row][from.col] = nil
             wasTappedCoord = to
-            
+            selectedUnit = piece
             
         }
         else if piece.getCanMove()==false{
@@ -36,14 +31,16 @@ extension Board {
     
     func handleTap(tapRow: Int, tapCol: Int) {
         if unitWasSelected == false {
-            wasTappedCoord = Coord(tapRow, tapCol)
             if board[tapRow][tapCol]?.getCanMove() == true && (board[tapRow][tapCol]?.faction == "S"||board[tapRow][tapCol]?.faction == "E"){
                 selectedUnit = board[tapRow][tapCol]
                 wasTappedCoord =  Coord(tapRow, tapCol)
                 unitWasSelected = true
             }
-            else if wasTappedCoord == Coord(tapRow, tapCol) {//If tap same square twice, deselect
+            else if wasTappedCoord == Coord(tapRow, tapCol)  {//If tap same square twice, deselect
                 wasTappedCoord = nil
+            }
+            else {
+                wasTappedCoord = Coord(tapRow, tapCol)
             }
         }else if var piece = selectedUnit, let startPoint = wasTappedCoord {
             if var second = board[tapRow][tapCol]{//If the tap is on another piece
@@ -55,21 +52,27 @@ extension Board {
                     if board[tapRow][tapCol]!.health <= 0 {board[tapRow][tapCol] = nil}//Erase dead enemy
                     
                 }else if second.getCanMove() && (board[tapRow][tapCol]?.faction == "S"||board[tapRow][tapCol]?.faction == "E") {
-                    wasTappedCoord = Coord(tapRow, tapCol)
-                    selectedUnit = second
-                    print("Switch")
+                    if wasTappedCoord == Coord(tapRow, tapCol) {//If tap same square twice, deselect
+                        unitWasSelected = false
+                        selectedUnit = nil
+                        wasTappedCoord = nil
+                        selectedLoc = nil
+                    }
+                    else {
+                        wasTappedCoord = Coord(tapRow, tapCol)
+                        selectedUnit = second
+                    }
                 }
                 
             }
             else if  isPossibleLoc(row: tapRow, col: tapCol) {
                 move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
-                
             }
             else{
                 selectedUnit = nil
                 wasTappedCoord = nil
                 unitWasSelected = false
-                print("Deselect")
+              
             }
         }
         
@@ -139,13 +142,14 @@ extension Board {
         //        }
     }
     
-    func applyConcealment(_ playerCoordPins : [Coord]){
+    func applyTileStatuses(_ playerCoordPins : [Coord]){
         for each in 0..<playerCoordPins.count{
             var loc = playerCoordPins[each]
             if terrainBoard[loc.row][loc.col].0=="t"{
                 board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "E"; //print("HIDDEN")
             }
             else{board[playerCoordPins[each].row][playerCoordPins[each].col]?.faction = "S"}
+        
             if terrainBoard[loc.row][loc.col].0=="X"{
                 survivorList.append(board[playerCoordPins[each].row][playerCoordPins[each].col] as! King)
                 board[playerCoordPins[each].row][playerCoordPins[each].col]=nil

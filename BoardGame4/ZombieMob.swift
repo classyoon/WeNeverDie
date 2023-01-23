@@ -40,7 +40,7 @@ extension Board {
                 }
             }
         }
-        //Travels toward
+        //Where it goes
         var directionText = ""
         if distance.RowD > 0 {
             returnCoord.row+=1; directionText+="Down "
@@ -54,14 +54,19 @@ extension Board {
         else if distance.ColD > 0 {
             returnCoord.col+=1; directionText+="Right"
         }
+        ///CAN UPDATE FACING BY READING DIRECTION TEXT THROUGH SWITCH CASE
+        ////**
+        ///Use rotation angle facing thingy.
+        ///
+        //Actual moving, where it provides the place where it wants to move to give to the function set()
         
-        //Actual moving
         if (board[returnCoord.row][returnCoord.col]==nil){//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
             //print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
+
             return returnCoord
         }
-        
+        //Wandering
         let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
         let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
         if board[ranRow][ranCol]==nil{//Check if will collide

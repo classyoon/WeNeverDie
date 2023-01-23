@@ -14,6 +14,7 @@ struct BoardView: View {
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
+    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     
     //    func playSound() {
@@ -25,13 +26,22 @@ struct BoardView: View {
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].0{
         case "h":
-            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
+            ZStack{
+                
+                Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
+//                Image("Mountains").resizable()
+            }
         case "t":
             Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
+        case "w":
+            Tile(size: 100, colored: Color.blue, tileLocation: Coord(row, col))//Forest
         case "X":
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
         default:
-            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+            ZStack{
+                Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+//                Image("Grass_Grid_Center").resizable()
+            }
         }
     }
 
@@ -43,18 +53,18 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    getTile(row: row, col: col)
+                                    getTile(row: row, col: col).frame()
                                     if let piece = vm.board[row][col] {
                                         VStack{
-                                            piece.getView()
-                                            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")//.padding()
+                                            piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
+                                            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)//.padding()
                                             Spacer()
-                                        }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
+                                        }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
                                     }
                                     
                                     
                                 }
-                                .onTapGesture {vm.handleTap(tapRow: row, tapCol: col)}
+                                .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
                                 .background(
                                     Group{
                                         if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
@@ -70,6 +80,7 @@ struct BoardView: View {
                         }
                     }
                 }
+                .padding()
             }//.background(in: Color.green)
             //            .padding()
             statusView
@@ -78,39 +89,29 @@ struct BoardView: View {
     }
     
     func searchLocation(){
-        if let selected = vm.selectedUnit {
+        if var selected = vm.selectedUnit {
             
             if let piece = vm.getCoord(of: selected){ //?? nil
                 
                 if selected.getCanMove(){
+                    print(selected.movementCount)
+                    vm.board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
+                    selected.movementCount+=1
                     if vm.terrainBoard[piece.row][piece.col].1>0{
                         food+=1
                         vm.terrainBoard[piece.row][piece.col].1-=1
-                        //                vm.selectedUnit!.movementCount+=1
-                        vm.board[piece.row][piece.col]?.movementCount+=1
-                        print("Search 1 \(String(describing: vm.selectedUnit?.movementCount))")
-                        
-                    }
-                    else{
-                        //                vm.selectedUnit!.movementCount+=1
-                        
-                        vm.board[piece.row][piece.col]?.movementCount+=1
-                        print("Search 2 \(String(describing: vm.board[piece.row][piece.col]?.movementCount))")
-                        
                     }
                 }
-                else{
-                    print("Can't move")
-                }
+                vm.selectedUnit = selected
             }
         }
     }
     var statusView: some View {
         VStack{
-            Text("Objective : We found a group of zombies near our pastures. We can't spare anyone else, go clear them out and then come back to camp. It shouldn't be too difficult.\n\nJournal Log : The cows are all dead. It was an ambush.")
+            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
             //            Text("Is Tapped: \(vm.isTapped.description)")
-            Text(weaponry ? "" : "Axe 5 Damage, Food \(food)")
-            Text(talk ? "" : "Nobody to talk to")
+            Text(weaponry ? "Collected enough food for \(food) people" : "")
+//            Text(talk ? "" : "Nobody to talk to")
             Group{
                 if let loc = vm.wasTappedCoord {
                     Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].1)")
@@ -130,18 +131,18 @@ struct BoardView: View {
                 } label: {
                     Text("Inventory")
                 }
-                Button {
-                    talk.toggle()
-                } label: {
-                    ZStack{
-                        Text("Talk")
-                    }
-                }
+//                Button {
+//                    talk.toggle()
+//                } label: {
+//                    ZStack{
+//                        Text("Talk")
+//                    }
+//                }
             }
             Spacer()
             HStack{
                 Button {
-                    vm.nextTurn()
+                    withAnimation{vm.nextTurn()}
                 } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 20).frame(width: 100, height: 50).foregroundColor(Color.brown)

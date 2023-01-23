@@ -16,7 +16,7 @@ protocol BoardProtocol {
 }
 
 class Board : ObservableObject, BoardProtocol {
-    @Published var terrainBoard: [[(String, Int)]] = [[("g",0)]]
+    @Published var terrainBoard: [[(String, Int, Int)]] = [[("g",0,0)]]
     //    @Published var terrainBoard2: [[(Terrain : String, Loot : Int)]] = [[("g", 1)]]
     @Published var board: [[(any Piece)?]] = [[]]
     
@@ -24,7 +24,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var selectedUnit : (any Piece)? = nil
     @Published var selectedLoc :Coord? = nil
     
-    
+    @Published var enteringSurvivors = [King]()
     
     @Published var survivorList = [King]()
     @Published var wasTappedCoord : Coord?{
@@ -34,66 +34,116 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 3
-    let colMax: Int = 3
-    let houseLoot = 4
- 
-    func randomGenerateTerrain(trees : Int, houses : Int, _ escapePoint : Coord)->[[(String, Int)]]{
-    var tempTerrain = Array(repeating: Array(repeating: ("g", 0), count: rowMax), count: colMax)
-    tempTerrain[escapePoint.row][escapePoint.col].0 = "X"
-    var counter = 0
-    while ((counter<trees)||(counter<houses)){
-        var Rrow = randomLoc().row
-        var Rcol = randomLoc().col
-        if counter<trees {
-            if tempTerrain[Rrow][Rcol].0 == "g"{
-                tempTerrain[Rrow][Rcol].0 = "t"
+    let rowMax: Int = 5
+    let colMax: Int = 5
+    let houseLoot = 2
+    let startSquares = 1
+    var availibleTiles : Int {rowMax*colMax-startSquares-1}
+    
+    func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
+        let minPercent = percent-varience
+        let maxPercent = percent+varience
+       return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
+    }
+    
+    func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[(String, Int, Int)]]{
+       
+        let trees = randomCountFromPercent(trees)
+        let houses = randomCountFromPercent(houses)
+//        let water = 0 //randomCountFromPercent(water)
+
+      
+        var tempTerrain = Array(repeating: Array(repeating: ("g", 0, 0), count: rowMax), count: colMax)
+        tempTerrain[escapePoint.row][escapePoint.col].0 = "X"
+        tempTerrain[0][0].0 = "t"
+        var counter = 0 // Sharing the counter
+        var numberAdded = 0
+        
+        while (((counter<trees-startSquares)||(counter<houses))&&(numberAdded<availibleTiles)){
+            var Random = randomLoc()
+            while (tempTerrain[Random.row][Random.col].0 != "g"){
+                Random = randomLoc()
             }
-        }
-        Rrow = randomLoc().row
-        Rcol = randomLoc().col
-        if counter<houses {
-            if tempTerrain[Rrow][Rcol].0 == "g"{
-                tempTerrain[Rrow][Rcol].0 = "h"
-                tempTerrain[Rrow][Rcol].1+=houseLoot
+            if counter<trees-startSquares {
+                tempTerrain[Random.row][Random.col].0 = "t"
+                numberAdded += 1
             }
+            while (tempTerrain[Random.row][Random.col].0 != "g"){
+                Random = randomLoc()
+            }
+            if counter<houses {
+                tempTerrain[Random.row][Random.col].0 = "h"
+                tempTerrain[Random.row][Random.col].1+=houseLoot
+                numberAdded += 1
+            }
+            counter+=1
         }
-        counter+=1
+        return tempTerrain
     }
-    return tempTerrain
-}
-
-
-func randomLoc() -> Coord{
-    var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
-    while board[ranR][ranC] != nil {
-        ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
+    func randomGenerateTerrain(trees : Int = 0, houses : Int = 0, water : Int = 0, exit escapePoint : Coord)->[[(String, Int, Int)]]{
+        var tempTerrain = Array(repeating: Array(repeating: ("g", 0, 0), count: rowMax), count: colMax)
+        tempTerrain[escapePoint.row][escapePoint.col].0 = "X"
+        tempTerrain[0][0].0 = "t"
+        var counter = 0 // Sharing the counter
+        while (((counter<trees-1)||(counter-(trees-1)<houses))&&(counter<rowMax*colMax-2)){
+            var Random = randomLoc()
+            while (tempTerrain[Random.row][Random.col].0 != "g"){
+                Random = randomLoc()
+            }
+            if counter<trees-1 {
+                tempTerrain[Random.row][Random.col].0 = "t"
+            }
+            else if counter-(trees-1)<houses {
+                tempTerrain[Random.row][Random.col].0 = "h"
+                tempTerrain[Random.row][Random.col].1+=houseLoot
+            }
+            counter+=1
+        }
+        return tempTerrain
     }
-    return Coord(row: ranR, col: ranC)
-}
-
-
-func spawnZombies(_ amount : Int){
-    var counter = 0
-    while counter<amount{
-        set(moveable: Zombie(board: self), Coord: randomLoc())
-        counter+=1
+    
+    //            else if counter-houses-trees<water {
+    ////                Random = randomLoc()
+    //                if tempTerrain[Random.row][Random.col].0 == "g"{
+    //                    tempTerrain[Random.row][Random.col].0 = "w"
+    //                    tempTerrain[Random.row][Random.col].2+=1
+    //                }
+    //            }
+    
+    func randomLoc() -> Coord{
+        var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
+        while board[ranR][ranC] != nil {
+            ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
+        }
+        return Coord(row: ranR, col: ranC)
     }
-}
-//    @Published private(set) var mobs: [(any Piece)?] = []
-init(){
-    
-    board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-    let bottemRight = Coord(rowMax-1, colMax-1)
-    terrainBoard = randomGenerateTerrain(trees: 0, houses: 0, bottemRight)
-    
-    set(moveable: King(board: self), Coord: Coord())
-    set(moveable: King(board: self), Coord: Coord(row: 1))
     
     
-    spawnZombies(0)
-    
-}
+    func spawnZombies(_ amount : Int){
+        var counter = 0
+        while counter<amount{
+            set(moveable: Zombie(board: self), Coord: randomLoc())
+            counter+=1
+        }
+    }
+    //    @Published private(set) var mobs: [(any Piece)?] = []
+    init(){
+        
+        board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
+        let bottemRight = Coord(rowMax-1, colMax-1)
+        
+        terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.1, exit : bottemRight)
+        //        terrainBoard[1][0].0 = "t"
+        //        terrainBoard[0][1].0 = "t"
+        
+        set(moveable: King(board: self), Coord: Coord())
+        //        set(moveable: King(board: self), Coord: Coord(row: 1))
+        //        set(moveable: King(board: self), Coord: Coord(col: 1))
+        
+        
+        spawnZombies(1)
+        
+    }
 }
 
 
