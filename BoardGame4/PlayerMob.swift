@@ -9,24 +9,27 @@ import Foundation
 extension Board {
     
     func move(_ piece: inout any Piece, from : Coord, to: Coord){
-        
-        if board[to.row][to.col]==nil && piece.getCanMove() && to != from{
+        let moveCost = terrainBoard[to.row][to.col].2+1
+        if board[to.row][to.col]==nil &&
+            piece.movementCount+moveCost<=piece.stamina && to != from{
             
             board[to.row][to.col] = piece
-            board[to.row][to.col]?.movementCount+=1// This may look redundent, but I have no idea why but these do not work if you get rid of one.
-            piece.movementCount+=1//
+            board[to.row][to.col]?.movementCount+=moveCost// This may look redundent, but I have no idea why but these do not work if you get rid of one.
+            piece.movementCount+=moveCost//
             board[from.row][from.col] = nil
-            wasTappedCoord = to
-            selectedUnit = piece
+            if (piece.faction == "S"||piece.faction == "E") {
+                wasTappedCoord = to
+                selectedUnit = piece
+            }
             
         }
         else if piece.getCanMove()==false{
-            selectedUnit = nil
-            unitWasSelected = false
-            wasTappedCoord = nil
+            if (piece.faction == "S"||piece.faction == "E") {
+                selectedUnit = nil
+                unitWasSelected = false
+                wasTappedCoord = nil
+            }
         }
-        
-        
     }
     
     func handleTap(tapRow: Int, tapCol: Int) {

@@ -26,11 +26,11 @@ struct BoardView: View {
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].0{
         case "h":
-            ZStack{
+      
                 
                 Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
 //                Image("Mountains").resizable()
-            }
+
         case "t":
             Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
         case "w":
@@ -38,10 +38,10 @@ struct BoardView: View {
         case "X":
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
         default:
-            ZStack{
+ 
                 Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
 //                Image("Grass_Grid_Center").resizable()
-            }
+      
         }
     }
 
@@ -53,7 +53,7 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    getTile(row: row, col: col).frame()
+                                    getTile(row: row, col: col)
                                     if let piece = vm.board[row][col] {
                                         VStack{
                                             piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
@@ -75,7 +75,7 @@ struct BoardView: View {
                                         }
                                     }
                                 )
-                                //.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
+                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
                     }

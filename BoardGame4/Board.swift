@@ -50,6 +50,7 @@ class Board : ObservableObject, BoardProtocol {
        
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
+        let water = randomCountFromPercent(water)
 //        let water = 0 //randomCountFromPercent(water)
 
       
@@ -59,7 +60,7 @@ class Board : ObservableObject, BoardProtocol {
         var counter = 0 // Sharing the counter
         var numberAdded = 0
         
-        while (((counter<trees-startSquares)||(counter<houses))&&(numberAdded<availibleTiles)){
+        while (((counter<trees-startSquares)||(counter<houses)||(counter<water))&&(numberAdded<availibleTiles)){
             var Random = randomLoc()
             while (tempTerrain[Random.row][Random.col].0 != "g"){
                 Random = randomLoc()
@@ -74,6 +75,14 @@ class Board : ObservableObject, BoardProtocol {
             if counter<houses {
                 tempTerrain[Random.row][Random.col].0 = "h"
                 tempTerrain[Random.row][Random.col].1+=houseLoot
+                numberAdded += 1
+            }
+            while (tempTerrain[Random.row][Random.col].0 != "g"){
+                Random = randomLoc()
+            }
+            if counter<water {
+                tempTerrain[Random.row][Random.col].0 = "w"
+                tempTerrain[Random.row][Random.col].2+=1
                 numberAdded += 1
             }
             counter+=1
@@ -96,6 +105,10 @@ class Board : ObservableObject, BoardProtocol {
             else if counter-(trees-1)<houses {
                 tempTerrain[Random.row][Random.col].0 = "h"
                 tempTerrain[Random.row][Random.col].1+=houseLoot
+            }
+            else if counter-(trees-1)-(houses)<water {
+                tempTerrain[Random.row][Random.col].0 = "w"
+                tempTerrain[Random.row][Random.col].2+=1
             }
             counter+=1
         }
@@ -132,7 +145,7 @@ class Board : ObservableObject, BoardProtocol {
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(rowMax-1, colMax-1)
         
-        terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.1, exit : bottemRight)
+        terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.1, water: 0.3, exit : bottemRight)
         //        terrainBoard[1][0].0 = "t"
         //        terrainBoard[0][1].0 = "t"
         

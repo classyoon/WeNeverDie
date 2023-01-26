@@ -7,6 +7,7 @@
 
 import Foundation
 extension Board {
+    
     func findDistance(zombie : Zombie, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
         var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
         var thingSighted = false
@@ -23,7 +24,6 @@ extension Board {
         }
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
-    
     
     
     func approachAndDamage(zombie : Zombie, targetList: [Coord])->Coord{
@@ -59,8 +59,8 @@ extension Board {
         ///Use rotation angle facing thingy.
         ///
         //Actual moving, where it provides the place where it wants to move to give to the function set()
-        
-        if (board[returnCoord.row][returnCoord.col]==nil){//Check if will collide
+        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].2 + 1
+        if (board[returnCoord.row][returnCoord.col]==nil || zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
             //print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
 
@@ -69,7 +69,7 @@ extension Board {
         //Wandering
         let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
         let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
-        if board[ranRow][ranCol]==nil{//Check if will collide
+        if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil //Prevents self duplication
             //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
             return Coord(row: ranRow, col: ranCol)
@@ -84,6 +84,7 @@ extension Board {
         for currentZombie in 0..<zombies.count {
             while zombies[currentZombie].getCanMove(){
                 zombies[currentZombie].movementCount+=1; //print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
+                
                 set(moveable: zombies[currentZombie], Coord:approachAndDamage(zombie: zombies[currentZombie], targetList: unitList))//SeekFor erases the duplicate zombie
             }
         }
