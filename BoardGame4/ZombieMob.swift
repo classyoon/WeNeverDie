@@ -59,8 +59,8 @@ extension Board {
         ///Use rotation angle facing thingy.
         ///
         //Actual moving, where it provides the place where it wants to move to give to the function set()
-        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].2 + 1
-        if (board[returnCoord.row][returnCoord.col]==nil || zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
+        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].2
+        if (board[returnCoord.row][returnCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
             //print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
 
@@ -69,6 +69,7 @@ extension Board {
         //Wandering
         let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
         let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
+        moveCost = terrainBoard[ranRow][ranRow].2
         if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
             board[distance.seekerCoord.row][distance.seekerCoord.col] = nil //Prevents self duplication
             //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
