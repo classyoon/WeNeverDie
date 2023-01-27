@@ -24,13 +24,12 @@ struct BoardView: View {
     //    }
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
-        switch vm.terrainBoard[row][col].0{
+        switch vm.terrainBoard[row][col].name{
         case "h":
-      
-                
-                Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
-//                Image("Mountains").resizable()
-
+            
+            Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
+            //                Image("Mountains").resizable()
+            
         case "t":
             Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
         case "w":
@@ -38,53 +37,55 @@ struct BoardView: View {
         case "X":
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
         default:
- 
-                Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
-//                Image("Grass_Grid_Center").resizable()
-      
+            
+            Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+            //                Image("Grass_Grid_Center").resizable()
+            
         }
     }
-
+    
     var body: some View {
-        VStack{
-            GeometryReader{ geo in
-                VStack(spacing: 0){
-                    ForEach(0..<vm.rowMax, id: \.self) { row in
-                        HStack(spacing: 0){
-                            ForEach(0..<vm.colMax, id: \.self) { col in
-                                ZStack{
-                                    getTile(row: row, col: col)
-                                    if let piece = vm.board[row][col] {
-                                        VStack{
-                                            piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
-                                            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)//.padding()
-                                            Spacer()
-                                        }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
+        NavigationStack {
+            VStack{
+                GeometryReader{ geo in
+                    VStack(spacing: 0){
+                        ForEach(0..<vm.rowMax, id: \.self) { row in
+                            HStack(spacing: 0){
+                                ForEach(0..<vm.colMax, id: \.self) { col in
+                                    ZStack{
+                                        getTile(row: row, col: col)
+                                        if let piece = vm.board[row][col] {
+                                            VStack{
+                                                piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
+                                                Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)//.padding()
+                                                Spacer()
+                                            }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
+                                        }
+                                        
+                                        
                                     }
-                                    
-                                    
+                                    .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
+                                    .background(
+                                        Group{
+                                            if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
+                                                RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
+                                            }
+                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
+                                                RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
+                                            }
+                                        }
+                                    )
+                                    .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                 }
-                                .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
-                                .background(
-                                    Group{
-                                        if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
-                                            RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
-                                        }
-                                        if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
-                                            RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
-                                        }
-                                    }
-                                )
-                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
                     }
-                }
-                .padding()
-            }//.background(in: Color.green)
-            //            .padding()
-            statusView
-                .frame(height: 200)
+                    .padding()
+                }//.background(in: Color.green)
+                //            .padding()
+                statusView
+                    .frame(height: 200)
+            }
         }
     }
     
@@ -97,9 +98,9 @@ struct BoardView: View {
                     print(selected.movementCount)
                     vm.board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
                     selected.movementCount+=1
-                    if vm.terrainBoard[piece.row][piece.col].1>0{
+                    if vm.terrainBoard[piece.row][piece.col].loot>0{
                         food+=1
-                        vm.terrainBoard[piece.row][piece.col].1-=1
+                        vm.terrainBoard[piece.row][piece.col].loot-=1
                     }
                 }
                 vm.selectedUnit = selected
@@ -111,10 +112,10 @@ struct BoardView: View {
             Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
             //            Text("Is Tapped: \(vm.isTapped.description)")
             Text(weaponry ? "Collected enough food for \(food) people" : "")
-//            Text(talk ? "" : "Nobody to talk to")
+            //            Text(talk ? "" : "Nobody to talk to")
             Group{
                 if let loc = vm.wasTappedCoord {
-                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].1)")
+                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot)")
                 }
             }
             Spacer()
@@ -131,13 +132,6 @@ struct BoardView: View {
                 } label: {
                     Text("Inventory")
                 }
-//                Button {
-//                    talk.toggle()
-//                } label: {
-//                    ZStack{
-//                        Text("Talk")
-//                    }
-//                }
             }
             Spacer()
             HStack{

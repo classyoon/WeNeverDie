@@ -9,9 +9,10 @@ import Foundation
 extension Board {
     // MARK: Not private
 
-    func createLists()-> (zombieList : [Zombie], unitList: [Coord]) {
+    func createLists()-> (zombieList : [any Piece], unitList: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
-        var zombies = [Zombie]()
+        var ZomCoordPins = [Coord]()
+        var zombies = [any Piece]()
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
@@ -19,10 +20,11 @@ extension Board {
                 }
                 if ((board[row][col]?.faction=="Z")) {
                     zombies.append(board[row][col] as! Zombie)
+                    ZomCoordPins.append( Coord(row: row, col: col)); continue
                 }
             }
         }
-        return (zombies, playerCoordPins)
+        return (zombies, playerCoordPins, ZomCoordPins)
     }
     
     
@@ -45,14 +47,15 @@ extension Board {
         if unitList.isEmpty{
             print("END MISSION")
             print(survivorList)
+
         }
     }
     
     func nextTurn(){
-        var lists = createLists()
-        let zombies = lists.zombieList; let players = lists.unitList
+        let lists = createLists()
+        var zombies = lists.zombieList; let players = lists.unitList; let zombieLoc = lists.zombieCoord
         applyTileStatuses(players)
-        moveZombies(zombies, unitList: players)
+        moveZombies(zombies, unitList: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         checkEndMission(unitList: players)
         

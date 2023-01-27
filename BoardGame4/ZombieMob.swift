@@ -8,12 +8,13 @@
 import Foundation
 extension Board {
     
-    func findDistance(zombie : Zombie, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
+    func findDistance(zombie : any Piece, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
         var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
         var thingSighted = false
         var DRow : Int = 100; var DCol : Int = 100
         for target in 0..<targetList.count{
             if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.faction == "S" {
+                
                 targetLoc = targetList[target]
                 DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
                 thingSighted = true
@@ -26,7 +27,12 @@ extension Board {
     }
     
     
-    func approachAndDamage(zombie : Zombie, targetList: [Coord])->Coord{
+    func calculateDistance(start : Coord, end : Coord) -> Double{
+        return sqrt(Double(((start.row-end.row)^2) + ((start.col-end.col))^2) )
+    }
+    
+    
+    func chooseLocationAndDamage(zombie : any Piece, targetList: [Coord])->Coord{
         let distance = findDistance(zombie: zombie, targetList: targetList)
         var returnCoord = distance.seekerCoord
         //Attacks Neighbor
@@ -59,19 +65,20 @@ extension Board {
         ///Use rotation angle facing thingy.
         ///
         //Actual moving, where it provides the place where it wants to move to give to the function set()
-        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].2
+        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].movementPenalty
         if (board[returnCoord.row][returnCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
-            board[distance.seekerCoord.row][distance.seekerCoord.col] = nil//Prevents self duplication
-            //print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
-
+            //Prevents self duplication
+            //            print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
             return returnCoord
         }
+        
         //Wandering
         let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
         let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
-        moveCost = terrainBoard[ranRow][ranRow].2
+        moveCost = terrainBoard[ranRow][ranRow].movementPenalty
         if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
-            board[distance.seekerCoord.row][distance.seekerCoord.col] = nil //Prevents self duplication
+            //            print("Wander")
+            //Prevents self duplication
             //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
             return Coord(row: ranRow, col: ranCol)
         }
@@ -80,15 +87,14 @@ extension Board {
             return distance.seekerCoord
         }
     }
-    func moveZombies(_ zombies : [Zombie], unitList: [Coord]){//Collects list of zombie
+    func moveZombies(_ zombies : [any Piece], unitList: [Coord], zombieLoc: [Coord]){//Collects list of zombie
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
-            while zombies[currentZombie].getCanMove(){
-                zombies[currentZombie].movementCount+=1; //print("I zombie number \(currentZombie+1) at stamina \(zombies[currentZombie].stamina-zombies[currentZombie].movementCount)")
-                
-                set(moveable: zombies[currentZombie], Coord:approachAndDamage(zombie: zombies[currentZombie], targetList: unitList))//SeekFor erases the duplicate zombie
-            }
+            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: zombies[currentZombie], targetList: unitList))
+            
         }
     }
+    
+    
     
 }
