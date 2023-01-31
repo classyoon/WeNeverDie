@@ -29,6 +29,7 @@
 		CA48C74C298387E200106B97 /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* Mob.swift */; };
 		CA48C74E2984678500106B97 /* Storyboard4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA48C74D2984678500106B97 /* Storyboard4.storyboard */; };
 		CA7048D2297B78EF00C68F8A /* TestMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7048D1297B78EF00C68F8A /* TestMerge.swift */; };
+		CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE38F972989BD5C008DE574 /* NavFiles.swift */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
@@ -81,6 +82,7 @@
 		CA7048D1297B78EF00C68F8A /* TestMerge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMerge.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
+		CAE38F972989BD5C008DE574 /* NavFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFiles.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieMob.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMob.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				CA48C74B298387E200106B97 /* Mob.swift */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				CAE38F972989BD5C008DE574 /* NavFiles.swift */,
 				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
 				CA48C74D2984678500106B97 /* Storyboard4.storyboard */,
 				CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */,
@@ -367,6 +370,7 @@
 				CA7048D2297B78EF00C68F8A /* TestMerge.swift in Sources */,
 				91355ACA293AF0E600907610 /* King.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
+				CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */,
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */,
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
 				9157BE38294AA939002C6E4F /* Knight.swift in Sources */,

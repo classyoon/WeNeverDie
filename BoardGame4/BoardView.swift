@@ -9,8 +9,8 @@ import SwiftUI
 var soundPlayer: AVAudioPlayer!
 
 
-
 struct BoardView: View {
+    
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
@@ -43,9 +43,9 @@ struct BoardView: View {
             
         }
     }
-    
+    @EnvironmentObject var navManager : NavManager
     var body: some View {
-        NavigationStack {
+        
             VStack{
                 GeometryReader{ geo in
                     VStack(spacing: 0){
@@ -86,7 +86,12 @@ struct BoardView: View {
                 statusView
                     .frame(height: 200)
             }
-        }
+//            Button {
+//                navManager.popUntil(.managerScreen)
+//            } label: {
+//                Text("Test")
+//            }
+        
     }
     
     func searchLocation(){
@@ -132,6 +137,7 @@ struct BoardView: View {
                 } label: {
                     Text("Inventory")
                 }
+                
             }
             Spacer()
             HStack{
