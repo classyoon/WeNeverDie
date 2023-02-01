@@ -45,7 +45,6 @@ struct BoardView: View {
     }
     @EnvironmentObject var navManager : NavManager
     var body: some View {
-        
             VStack{
                 GeometryReader{ geo in
                     VStack(spacing: 0){
@@ -112,6 +111,7 @@ struct BoardView: View {
             }
         }
     }
+
     var statusView: some View {
         VStack{
             Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")

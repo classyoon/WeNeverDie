@@ -26,11 +26,11 @@ struct BoardGame4App: App {
     var body: some Scene {
     
         WindowGroup {
-            ZStack{
+//            ZStack{
 //                TestMerge()
-//                BoardView(vm: Board())
-                    changeScene().environment(\.managedObjectContext, persistenceController.container.viewContext)
-            }
+                BoardView(vm: Board())
+                //    changeScene().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //}
         }
     }
 }
