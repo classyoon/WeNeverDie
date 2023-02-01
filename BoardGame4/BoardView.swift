@@ -26,10 +26,8 @@ struct BoardView: View {
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
         case "h":
-            
             Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))//House
             //                Image("Mountains").resizable()
-            
         case "t":
             Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
         case "w":
@@ -37,12 +35,11 @@ struct BoardView: View {
         case "X":
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
         default:
-            
             Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
             //                Image("Grass_Grid_Center").resizable()
-            
         }
     }
+   
     @EnvironmentObject var navManager : NavManager
     var body: some View {
             VStack{
@@ -54,14 +51,9 @@ struct BoardView: View {
                                     ZStack{
                                         getTile(row: row, col: col)
                                         if let piece = vm.board[row][col] {
-                                            VStack{
-                                                piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
-                                                Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)//.padding()
-                                                Spacer()
-                                            }.frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
+                                            pieceDisplay(piece: piece, nameSpace: nameSpace)
+                                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
                                         }
-                                        
-                                        
                                     }
                                     .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
                                     .background(
@@ -84,6 +76,7 @@ struct BoardView: View {
                 //            .padding()
                 statusView
                     .frame(height: 200)
+                    .padding()
             }
 //            Button {
 //                navManager.popUntil(.managerScreen)
@@ -153,6 +146,7 @@ struct BoardView: View {
         }
     }
 }
+
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
