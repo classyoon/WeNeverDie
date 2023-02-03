@@ -30,6 +30,10 @@
 		CA48C74E2984678500106B97 /* Storyboard4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA48C74D2984678500106B97 /* Storyboard4.storyboard */; };
 		CA7048D2297B78EF00C68F8A /* TestMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7048D1297B78EF00C68F8A /* TestMerge.swift */; };
 		CA89F181298AC70000C42EBF /* TestingGPt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA89F180298AC70000C42EBF /* TestingGPt.swift */; };
+		CACCD56F298C8085005BE6DE /* GameWND.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameWND.swift */; };
+		CACCD571298C8B5A005BE6DE /* CampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* CampView.swift */; };
+		CACCD573298C8B6F005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD572298C8B6F005BE6DE /* Camp.swift */; };
+		CACCD575298C8BB4005BE6DE /* MapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD574298C8BB4005BE6DE /* MapGenerator.swift */; };
 		CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE38F972989BD5C008DE574 /* NavFiles.swift */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */; };
@@ -84,6 +88,10 @@
 		CA89F180298AC70000C42EBF /* TestingGPt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingGPt.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
+		CACCD56E298C8085005BE6DE /* GameWND.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWND.swift; sourceTree = "<group>"; };
+		CACCD570298C8B5A005BE6DE /* CampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampView.swift; sourceTree = "<group>"; };
+		CACCD572298C8B6F005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
+		CACCD574298C8BB4005BE6DE /* MapGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGenerator.swift; sourceTree = "<group>"; };
 		CAE38F972989BD5C008DE574 /* NavFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFiles.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieMob.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMob.swift; sourceTree = "<group>"; };
@@ -144,18 +152,14 @@
 				91355ACB293AF17100907610 /* Piece */,
 				91355ACE293AF33600907610 /* Battle */,
 				91355AD1293AF5FE00907610 /* CoreData */,
-				CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */,
-				CA48C74B298387E200106B97 /* Mob.swift */,
+				CACCD579298C8C10005BE6DE /* Mission Components */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
-				CA89F180298AC70000C42EBF /* TestingGPt.swift */,
-				CAE38F972989BD5C008DE574 /* NavFiles.swift */,
-				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
-				CA48C74D2984678500106B97 /* Storyboard4.storyboard */,
-				CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */,
-				CA7048D1297B78EF00C68F8A /* TestMerge.swift */,
-				CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */,
-				CA8A319E296CF2C500755BCE /* Tiles */,
+				CACCD56E298C8085005BE6DE /* GameWND.swift */,
+				CACCD570298C8B5A005BE6DE /* CampView.swift */,
+				CACCD572298C8B6F005BE6DE /* Camp.swift */,
+				CACCD574298C8BB4005BE6DE /* MapGenerator.swift */,
+				CACCD57A298C8C30005BE6DE /* Testing */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* BoardGame4.entitlements */,
 				91355A95293AEE4700907610 /* BoardGame4.xcdatamodeld */,
@@ -228,12 +232,28 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		CA8A319E296CF2C500755BCE /* Tiles */ = {
+		CACCD579298C8C10005BE6DE /* Mission Components */ = {
 			isa = PBXGroup;
 			children = (
+				CA48C74B298387E200106B97 /* Mob.swift */,
+				CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */,
+				CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */,
+				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
 				CA23AE5A29514D69003DC26D /* Tile.swift */,
 			);
-			path = Tiles;
+			path = "Mission Components";
+			sourceTree = "<group>";
+		};
+		CACCD57A298C8C30005BE6DE /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				CA7048D1297B78EF00C68F8A /* TestMerge.swift */,
+				CA48C74D2984678500106B97 /* Storyboard4.storyboard */,
+				CA89F180298AC70000C42EBF /* TestingGPt.swift */,
+				CAE38F972989BD5C008DE574 /* NavFiles.swift */,
+				CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */,
+			);
+			path = Testing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,10 +389,13 @@
 			files = (
 				91355A92293AEE4700907610 /* BoardGame4App.swift in Sources */,
 				91355A97293AEE4700907610 /* BoardGame4.xcdatamodeld in Sources */,
+				CACCD573298C8B6F005BE6DE /* Camp.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */,
 				CA7048D2297B78EF00C68F8A /* TestMerge.swift in Sources */,
+				CACCD56F298C8085005BE6DE /* GameWND.swift in Sources */,
 				CA89F181298AC70000C42EBF /* TestingGPt.swift in Sources */,
 				91355ACA293AF0E600907610 /* King.swift in Sources */,
+				CACCD575298C8BB4005BE6DE /* MapGenerator.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */,
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */,
@@ -387,6 +410,7 @@
 				91355A99293AEE4700907610 /* ContentView.swift in Sources */,
 				91355AD0293AF34000907610 /* Battle.swift in Sources */,
 				91355AC7293AEE6A00907610 /* Checker.swift in Sources */,
+				CACCD571298C8B5A005BE6DE /* CampView.swift in Sources */,
 				91355A94293AEE4700907610 /* Persistence.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 			);

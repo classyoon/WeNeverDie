@@ -8,7 +8,7 @@
 import Foundation
 extension Board {
     // MARK: Not private
-
+    
     func createLists()-> (zombieList : [any Piece], unitList: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()
@@ -40,14 +40,13 @@ extension Board {
                 
             }
         }
-        
-        
     }
+    
     func checkEndMission(unitList: [Coord]){
         if unitList.isEmpty{
             print("END MISSION")
             print(survivorList)
-
+            game.showBoard = false
         }
     }
     

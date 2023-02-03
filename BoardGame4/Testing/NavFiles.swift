@@ -12,8 +12,7 @@ enum NavigationPathes : CaseIterable {
     case managerScreen
 }
 enum Routes {
-    static let routes: [NavigationPathes: AnyView] = [
-        .managerScreen: AnyView(TestMerge()), .missionBoard: AnyView(BoardView(vm: Board()))]
+    static let routes: [NavigationPathes: AnyView] = [.missionBoard: AnyView(BoardView(vm: Board(), game: GameWND()))]//.managerScreen: AnyView(TestMerge(vm: Board())),
     static func routerReturner(path: NavigationPathes)-> some View {
         let index = Routes.routes.index(forKey: path)!
         return Routes.routes[index].value

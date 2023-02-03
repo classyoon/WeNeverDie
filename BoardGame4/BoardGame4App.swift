@@ -10,25 +10,13 @@ import SwiftUI
 @main
 struct BoardGame4App: App {
     let persistenceController = PersistenceController.shared
-    var showingMission = true
-    @ViewBuilder
-    func changeScene() -> any View {
-        if showingMission{
-            BoardView(vm: Board())
-        }
-        else{
-            TestMerge()
-        }
-//
-//        return
-    }
-    @ViewBuilder
+
     var body: some Scene {
     
         WindowGroup {
 //            ZStack{
 //                TestMerge()
-                BoardView(vm: Board())
+               GameView()
                 //    changeScene().environment(\.managedObjectContext, persistenceController.container.viewContext)
             //}
         }

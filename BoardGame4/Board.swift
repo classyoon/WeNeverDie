@@ -23,7 +23,7 @@ struct TileType {
     mutating func setTileBonuses(){
         switch name {
         case "h":
-            loot = houseLoot
+            loot += houseLoot
         case "w":
             movementPenalty = 1
         default :
@@ -32,11 +32,15 @@ struct TileType {
     }
     
 }
-
+struct TerrainPiece {
+    
+}
 class Board : ObservableObject, BoardProtocol {
+    @Published var showBoard = true
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
-    //    @Published var terrainBoard2: [[(Terrain : String, Loot : Int)]] = [[("g", 1)]]
     @Published var board: [[(any Piece)?]] = [[]]
+    @Published var game : GameWND
+    
     
     @Published var unitWasSelected = false
     @Published var selectedUnit : (any Piece)? = nil

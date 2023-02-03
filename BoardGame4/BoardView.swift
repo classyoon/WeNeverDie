@@ -16,6 +16,7 @@ struct BoardView: View {
     @State var talk = true
     @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
+    @ObservedObject var game : GameWND
     
     //    func playSound() {
     //        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
@@ -36,53 +37,49 @@ struct BoardView: View {
             Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))//exit
         default:
             Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
-            //                Image("Grass_Grid_Center").resizable()
         }
     }
    
     @EnvironmentObject var navManager : NavManager
     var body: some View {
-            VStack{
-                GeometryReader{ geo in
-                    VStack(spacing: 0){
-                        ForEach(0..<vm.rowMax, id: \.self) { row in
-                            HStack(spacing: 0){
-                                ForEach(0..<vm.colMax, id: \.self) { col in
-                                    ZStack{
-                                        getTile(row: row, col: col)
-                                        if let piece = vm.board[row][col] {
-                                            pieceDisplay(piece: piece, nameSpace: nameSpace)
-                                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
+     
+                VStack{
+                    GeometryReader{ geo in
+                        VStack(spacing: 0){
+                            ForEach(0..<vm.rowMax, id: \.self) { row in
+                                HStack(spacing: 0){
+                                    ForEach(0..<vm.colMax, id: \.self) { col in
+                                        ZStack{
+                                            getTile(row: row, col: col)
+                                            if let piece = vm.board[row][col] {
+                                                pieceDisplay(piece: piece, nameSpace: nameSpace)
+                                                    .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
+                                            }
                                         }
+                                        .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
+                                        .background(
+                                            Group{
+                                                if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
+                                                    RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
+                                                }
+                                                if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
+                                                    RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
+                                                }
+                                            }
+                                        )
+                                        .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                     }
-                                    .onTapGesture {withAnimation{vm.handleTap(tapRow: row, tapCol: col)}}
-                                    .background(
-                                        Group{
-                                            if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
-                                                RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
-                                            }
-                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
-                                                RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
-                                            }
-                                        }
-                                    )
-                                    .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                                 }
                             }
                         }
                     }
-                    .padding()
-                }//.background(in: Color.green)
-                //            .padding()
-                statusView
-                    .frame(height: 200)
-                    .padding()
-            }
-//            Button {
-//                navManager.popUntil(.managerScreen)
-//            } label: {
-//                Text("Test")
-//            }
+                    statusView
+                        .frame(height: 200)
+                        .padding()
+                }
+            
+        
+        
         
     }
     
@@ -150,6 +147,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(vm: Board())
+        BoardView(vm: Board(), game: GameWND())
     }
 }
