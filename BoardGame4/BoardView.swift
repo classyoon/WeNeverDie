@@ -16,13 +16,7 @@ struct BoardView: View {
     @State var talk = true
     @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
-    @ObservedObject var game : GameWND
     
-    //    func playSound() {
-    //        let url = Bundle.main.url(forResource: "POW", withExtension: "mp3")
-    //        soundPlayer = try! AVAudioPlayer(contentsOf: Sounds )
-    //        soundPlayer.play()
-    //    }
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -105,9 +99,7 @@ struct BoardView: View {
     var statusView: some View {
         VStack{
             Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
-            //            Text("Is Tapped: \(vm.isTapped.description)")
             Text(weaponry ? "Collected enough food for \(food) people" : "")
-            //            Text(talk ? "" : "Nobody to talk to")
             Group{
                 if let loc = vm.wasTappedCoord {
                     Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot)")
@@ -144,9 +136,8 @@ struct BoardView: View {
     }
 }
 
-
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(vm: Board(), game: GameWND())
+        BoardView(vm: Board())
     }
 }

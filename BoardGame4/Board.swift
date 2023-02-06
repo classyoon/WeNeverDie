@@ -39,8 +39,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var showBoard = true
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
-    @Published var game : GameWND
-    
+    @Published var missionUnderWay = true
     
     @Published var unitWasSelected = false
     @Published var selectedUnit : (any Piece)? = nil
@@ -73,8 +72,6 @@ class Board : ObservableObject, BoardProtocol {
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
-        //        let water = 0 //randomCountFromPercent(water)
-        
         
         var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: rowMax), count: colMax)
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
@@ -114,34 +111,6 @@ class Board : ObservableObject, BoardProtocol {
         }
         return tempTerrain
     }
-//    func randomGenerateTerrain(trees : Int = 0, houses : Int = 0, water : Int = 0, exit escapePoint : Coord)->[[(String, Int, Int)]]{
-//        var tempTerrain = Array(repeating: Array(repeating: ("g", 0, 0), count: rowMax), count: colMax)
-//        tempTerrain[escapePoint.row][escapePoint.col].0 = "X"
-//        tempTerrain[0][0].name = "t"
-//        var counter = 0 // Sharing the counter
-//        while (((counter<trees-1)||(counter-(trees-1)<houses))&&(counter<rowMax*colMax-2)){
-//            var Random = randomLoc()
-//            while (tempTerrain[Random.row][Random.col].0 != "g"){
-//                Random = randomLoc()
-//            }
-//            if counter<trees-1 {
-//                tempTerrain[Random.row][Random.col].0 = "t"
-//            }
-//            else if counter-(trees-1)<houses {
-//                tempTerrain[Random.row][Random.col].0 = "h"
-//                tempTerrain[Random.row][Random.col].1+=houseLoot
-//            }
-//            else if counter-(trees-1)-(houses)<water {
-//                tempTerrain[Random.row][Random.col].0 = "w"
-//                tempTerrain[Random.row][Random.col].2+=1
-//            }
-//            counter+=1
-//        }
-//        return tempTerrain
-//    }
-    
-    
-    
     func randomLoc() -> Coord{
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
         while board[ranR][ranC] != nil {
@@ -158,7 +127,6 @@ class Board : ObservableObject, BoardProtocol {
             counter+=1
         }
     }
-    //    @Published private(set) var mobs: [(any Piece)?] = []
     init(){
         
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
@@ -169,29 +137,16 @@ class Board : ObservableObject, BoardProtocol {
         set(moveable: King(board: self), Coord: Coord())
         
         set(moveable: Zombie(board: self), Coord: Coord(row : 2))
-        //        terrainBoard[2][0].0 = "g"
-        //        terrainBoard[2][0].2 = 0
-        //        terrainBoard[1][0].0 = "g"
-        //        terrainBoard[1][0].2 = 0
-        //        spawnZombies(1)
-        
     }
 }
 
 extension Board {
-    
-    
-    /**
-     future feature : If tap on unit and send to place but still have stamina, that unit will remain selected
-     */
     func increaseMoveCount(row: Int, col: Int) {
         if let tappedCol = wasTappedCoord?.col, let tappedRow = wasTappedCoord?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
             piece.incrementMoveCounter()
         }
         
     }
-    
-    // MARK: Private Functions
     func setPossibleCoords() {
         guard let loc = wasTappedCoord, let piece = board[loc.row][loc.col]
         else {
@@ -249,62 +204,3 @@ extension Board {
         return nil
     }
 }
-/**
- Attempt to optimize checkHPAndRefreshStamina
- //        for zombie in Zombies {
- //            if zombie.health == 0 {
- //                var locZ = getCoord(of: zombie)
- //                board[locZ!.row][locZ!.col]  = nil
- //                zombie.movementCount = 0
- ////                board[getCoord(of: zombie])!.row][getCoord(of: Zombies[zombie])!.col] = nil
- //            }
- //        }
- //        for player in PlayerUnit {
- //            if board[player.row][player.col]?.health == 0 {
- //                board[player.row][player.col] = nil
- //                board[player.row][player.col]?.movementCount = 0
- //            }
- //        }
- 
- 
- for zombie in 0..<zombieRef.count{
- if zombieRef[zombie].health == 0{
- zombieRef.remove(at: zombie)
- }
- else{
- zombieRef[zombie].movementCount = 0
- }
- }
- for player in 0..<unitCoords.count{
- if board[unitCoords[player].row][unitCoords[player].col]?.health == 0{
- board[unitCoords[player].row][unitCoords[player].col] = nil
- unitCoords.remove(at: player)
- }
- else{
- board[unitCoords[player].row][unitCoords[player].col]?.movementCount = 0
- }
- }
- */
-
-//    func checkHP(){
-//        for row in 0..<rowMax {
-//            for col in 0..<colMax {
-//                if (board[row][col]?.health ?? 0 <= 0){
-//                    board[row][col] = nil
-//                }
-//
-//            }
-//        }
-//    }
-//    func refreshStamina(){
-//        for row in 0..<rowMax {
-//            for col in 0..<colMax {
-//                if (board[row][col] != nil) {//If it encounters anything
-//                    board[row][col]?.movementCount = 0//Resets movement counter
-//                }
-//            }
-//        }
-//    }
-
-
-

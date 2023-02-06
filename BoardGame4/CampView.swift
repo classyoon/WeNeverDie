@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CampView: View {
     
+    var vm : Camp
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -16,6 +17,6 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView()
+        CampView(vm: Camp())
     }
 }

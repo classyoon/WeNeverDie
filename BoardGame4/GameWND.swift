@@ -13,41 +13,34 @@ class GameWND : ObservableObject {
     
     var camp : Camp
     var board : Board
-    
-    var showBoard = true
-    
-    init() {
-        self.camp = Camp()
-        self.board = Board()
-    }
-    
-    func toggleMode(){
-        showBoard.toggle()
-    }
+    @Published var showView = true
   
+    init() {
+            self.camp = Camp()
+            self.board = Board()
+        }
+    
 }
 
 struct GameView : View {
-    
-    var vm = GameWND()
+    @ObservedObject var vm = GameWND()
     func getCurrentView()-> AnyView {
-        if vm.showBoard {
-            return AnyView(BoardView(vm: Board(), game: vm))
+        if vm.showView {
+            return AnyView(BoardView(vm: vm.board))
         }
         else {
-            return AnyView(CampView(game: vm))
+            return AnyView(CampView(vm: vm.camp))
         }
     }
     var body: some View {
         ZStack{
-            getCurrentView()
-            
+            VStack{
+                getCurrentView()
+                Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
+                    vm.showView.toggle()
+                }
+            }
         }
     }
 }
 
-struct Game_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
-    }
-}

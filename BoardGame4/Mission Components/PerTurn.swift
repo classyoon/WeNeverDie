@@ -46,7 +46,7 @@ extension Board {
         if unitList.isEmpty{
             print("END MISSION")
             print(survivorList)
-            game.showBoard = false
+            missionUnderWay = false
         }
     }
     
