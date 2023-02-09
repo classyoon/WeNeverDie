@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "aurybelle_comic_book_style_simple_van_roof_with_white_backgroun_9eacb2de-0adc-4968-adae-6297e99c4f57.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

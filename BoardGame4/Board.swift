@@ -40,20 +40,19 @@ class Board : ObservableObject, BoardProtocol {
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var missionUnderWay = true
-    
-    @Published var unitWasSelected = false
+    var unitWasSelected : Bool {
+        selectedUnit != nil
+    }
     @Published var selectedUnit : (any Piece)? = nil
-    @Published var selectedLoc :Coord? = nil
-    
-    @Published var enteringSurvivors = [King]()
-    
-    @Published var survivorList = [King]()
+    @Published var selectedLoc : Coord? = nil
+    @Published var enteringSurvivors = [any Piece]()
+    @Published var survivorList = [any Piece]()
     @Published var wasTappedCoord : Coord?{
         didSet{
             setPossibleCoords()
         }
     }
-    
+    @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 5
     let colMax: Int = 5
@@ -127,16 +126,18 @@ class Board : ObservableObject, BoardProtocol {
             counter+=1
         }
     }
-    init(){
-        
+    func generateBoard(){
+        missionUnderWay = true
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(rowMax-1, colMax-1)
-        
         terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.2, exit : bottemRight)
-        
         set(moveable: King(board: self), Coord: Coord())
-        
+        set(moveable: King(board: self), Coord: Coord(col: 1))
         set(moveable: Zombie(board: self), Coord: Coord(row : 2))
+    }
+    init(){
+
+       generateBoard()
     }
 }
 

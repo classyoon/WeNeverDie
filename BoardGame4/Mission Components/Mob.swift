@@ -30,19 +30,20 @@ extension Board {
         else if piece.getCanMove()==false{
             if (piece.faction == "S"||piece.faction == "E") {
                 selectedUnit = nil
-                unitWasSelected = false
                 wasTappedCoord = nil
             }
         }
     }
 }
 struct pieceDisplay: View{
-    var piece : any Piece
+    @State var piece : any Piece
     var nameSpace : Namespace.ID
     var body: some View {
         VStack{
             piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
-            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)//.padding()
+            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace).padding(1)
+                .background(.white)
+                .cornerRadius(10)
             Spacer()
         }//.padding(0.0)
     }

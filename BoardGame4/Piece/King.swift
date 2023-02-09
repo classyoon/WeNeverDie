@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
-struct King: Piece, Identifiable{
+struct King: Piece, Identifiable, Equatable{
+    
+    static func == (lhs: King, rhs: King) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 
     
     var health: Int = 10
     var damage = 5
     var faction: String = "S"
-    
-    var isNPC = false
     var isSelected = false
     var movementCount = 0
     

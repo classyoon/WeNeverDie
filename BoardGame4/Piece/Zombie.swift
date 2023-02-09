@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
-struct Zombie: Piece {
+struct Zombie: Piece, Equatable {
+    
+    static func == (lhs: Zombie, rhs: Zombie) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     var health = 10
     var damage = 3
     var alert = false
     
-    var isNPC = true
     var isSelected = false
     var movementCount = 0
     var faction = "Z"

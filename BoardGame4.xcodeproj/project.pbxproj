@@ -101,6 +101,7 @@
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMob.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
 		CAE88A522975E9B000AEB5B0 /* DemoOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOptional.swift; sourceTree = "<group>"; };
+		CAE918A02994B13800A94419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +152,7 @@
 		91355A90293AEE4700907610 /* BoardGame4 */ = {
 			isa = PBXGroup;
 			children = (
+				CAE918A02994B13800A94419 /* Info.plist */,
 				CA8A319A296CC03E00755BCE /* Sounds */,
 				91355A91293AEE4700907610 /* BoardGame4App.swift */,
 				91355ACB293AF17100907610 /* Piece */,
@@ -584,6 +586,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BoardGame4/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -627,6 +630,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BoardGame4/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

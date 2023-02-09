@@ -14,19 +14,20 @@ struct GameView : View {
  
     @StateObject var camp  = Camp()
     @StateObject var board  = Board()
-    
-    func getCurrentView()-> AnyView {
-        if board.missionUnderWay {
-            return AnyView(BoardView(vm: board))
-        }
-        else {
-            return AnyView(CampView(vm: camp))
-        }
-    }
+    @State var showBoard = true
     var body: some View {
         ZStack{
             VStack{
-                getCurrentView()
+                if showBoard {
+                    BoardView(showBoard: $showBoard, vm: board)
+                }
+                else {
+                    CampView(showBoard: $showBoard, vm: camp)
+                }
+            }
+        }.onChange(of: showBoard) { newValue in
+            if newValue {
+               board.generateBoard()
             }
         }
     }

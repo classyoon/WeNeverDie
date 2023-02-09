@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "aurybelle_comic_book_style_satelite_image_of_fields_6eef652f-37f0-4d22-a2ae-d490456b315c.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

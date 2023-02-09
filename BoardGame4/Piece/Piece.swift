@@ -33,11 +33,12 @@ struct Coord: Equatable, Hashable {
     }
 }
 
-protocol Piece: Moveable & Displayable {}
+protocol Piece: Moveable & Displayable {
+    var id : UUID {set get}
+}
 
 protocol Moveable: Identifiable  {
     var isSelected: Bool {set get}
-    var isNPC: Bool {get}
     var health: Int {set get}
     var damage: Int {set get}
     var id: UUID { set get }

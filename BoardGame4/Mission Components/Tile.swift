@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct Tile: View {
-    var size : Double//PRobably should be set to something, so that it universally changes all types of tiles
+    var size : Double//Probably should be set to something, so that it universally changes all types of tiles
     var colored : Color
     var difference = 0.5
     @State var isSelected = false
