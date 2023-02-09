@@ -9,36 +9,24 @@ import Foundation
 import SwiftUI
 
 
-class GameWND : ObservableObject {
-    
-    var camp : Camp
-    var board : Board
-    @Published var showView = true
-  
-    init() {
-            self.camp = Camp()
-            self.board = Board()
-        }
-    
-}
 
 struct GameView : View {
-    @ObservedObject var vm = GameWND()
+ 
+    @StateObject var camp  = Camp()
+    @StateObject var board  = Board()
+    
     func getCurrentView()-> AnyView {
-        if vm.showView {
-            return AnyView(BoardView(vm: vm.board))
+        if board.missionUnderWay {
+            return AnyView(BoardView(vm: board))
         }
         else {
-            return AnyView(CampView(vm: vm.camp))
+            return AnyView(CampView(vm: camp))
         }
     }
     var body: some View {
         ZStack{
             VStack{
                 getCurrentView()
-                Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
-                    vm.showView.toggle()
-                }
             }
         }
     }

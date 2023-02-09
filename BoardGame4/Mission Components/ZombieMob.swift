@@ -7,7 +7,6 @@
 
 import Foundation
 extension Board {
-    
     func findDistance(zombie : any Piece, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
         var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
         var thingSighted = false
@@ -25,13 +24,6 @@ extension Board {
         }
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
-    
-    
-    func calculateDistance(start : Coord, end : Coord) -> Double{
-        return sqrt(Double(((start.row-end.row)^2) + ((start.col-end.col))^2) )
-    }
-    
-    
     func chooseLocationAndDamage(zombie : any Piece, targetList: [Coord])->Coord{
         let distance = findDistance(zombie: zombie, targetList: targetList)
         var returnCoord = distance.seekerCoord
@@ -94,7 +86,4 @@ extension Board {
             
         }
     }
-    
-    
-    
 }

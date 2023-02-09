@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Camp {
+class Camp : ObservableObject {
     @Published var SurvivorList : [any Piece] = []
     @Published var foodStored = 0
     init() {
