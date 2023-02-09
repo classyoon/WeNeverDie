@@ -13,7 +13,7 @@ struct King: Piece, Identifiable, Equatable{
     }
     
 
-    
+    var name : String
     var health: Int = 10
     var damage = 5
     var faction: String = "S"
@@ -75,7 +75,7 @@ struct King: Piece, Identifiable, Equatable{
 struct King_Previews: PreviewProvider {
     static var previews: some View {
         let board = Board()
-        let king = King(board: board)
+        let king = King(name: "Steve Jobs", board: board)
         king.getView()
             .previewLayout(.sizeThatFits)
     }

@@ -12,7 +12,7 @@ import SwiftUI
 
 struct GameView : View {
  
-    @StateObject var camp  = Camp()
+    @StateObject var camp  = Camp(field: Board())
     @StateObject var board  = Board()
     @State var showBoard = true
     var body: some View {

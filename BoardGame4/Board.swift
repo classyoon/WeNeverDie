@@ -131,8 +131,8 @@ class Board : ObservableObject, BoardProtocol {
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(rowMax-1, colMax-1)
         terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.2, exit : bottemRight)
-        set(moveable: King(board: self), Coord: Coord())
-        set(moveable: King(board: self), Coord: Coord(col: 1))
+        set(moveable: King(name: "Steve", board: self), Coord: Coord())
+        set(moveable: King(name: "Jobs", board: self), Coord: Coord(col: 1))
         set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(){

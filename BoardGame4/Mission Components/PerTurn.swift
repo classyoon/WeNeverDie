@@ -40,7 +40,9 @@ extension Board {
             }
         }
     }
-    
+    func transferSurvivorsToCamp()->[any Piece]{
+        return survivorList
+    }
     func checkEndMission(unitList: [Coord]? = nil){
         let unitList  = unitList ?? createLists().unitList
         

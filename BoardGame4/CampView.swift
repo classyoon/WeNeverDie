@@ -8,8 +8,13 @@
 import SwiftUI
 class Camp : ObservableObject {
     @Published var SurvivorList : [any Piece] = []
+    let field : Board
+    var SurvivorList2 : [any Piece] {
+        field.transferSurvivorsToCamp()
+    }
     @Published var foodStored = 0
-    init() {
+    init(field : Board) {
+        self.field = field
         self.SurvivorList = []
         self.foodStored = 0
     }
@@ -21,15 +26,20 @@ struct CampView: View {
     @ObservedObject var vm : Camp
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Button("Generate World") {
-            showBoard = true
+        VStack{
+//            Text(vm.SurvivorList2 ?? "")
+            
+            Text("Food Stored \(vm.foodStored)")
+            Button("Generate World") {
+                showBoard = true
+            }
         }
     }
 }
 
+
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), vm: Camp())
+        CampView(showBoard: Binding.constant(false), vm: Camp(field: Board()))
     }
 }

@@ -22,7 +22,7 @@ struct BoardView: View {
         switch vm.terrainBoard[row][col].name{
         case "h":
             Image("building").resizable()
-
+            
         case "t":
             ZStack{
                 Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
@@ -34,11 +34,28 @@ struct BoardView: View {
             ZStack{
                 Image("grass").resizable()
                 Image("escape").resizable()
-               
+                
             }
             
         default:
             Image("grass").resizable()
+        }
+    }
+    func getTileOld(row : Int, col : Int)-> some View{
+        switch vm.terrainBoard[row][col].name{
+        case "h":
+            return Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))
+            
+        case "t":
+            return Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
+            
+        case "w":
+            return Tile(size: 100, colored: Color.blue, tileLocation: Coord(row, col))
+        case "X":
+            return Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))
+            
+        default:
+            return Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
         }
     }
     
@@ -51,7 +68,15 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    getTile(row: row, col: col)
+                                    getTileOld(row: row, col: col)
+                                    Group{
+                                        if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
+                                            RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.3))
+                                        }
+                                        if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
+                                           Circle().fill(Color.white.opacity(0.3))
+                                        }
+                                    }
                                     if let piece = vm.board[row][col] {
                                         pieceDisplay(piece: piece, nameSpace: nameSpace)
                                             .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
@@ -65,16 +90,9 @@ struct BoardView: View {
                                         vm.checkEndMission()
                                     }
                                 }
-                                .background(
-                                    Group{
-                                        if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
-                                            RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.8))
-                                        }
-                                        if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
-                                            RoundedRectangle(cornerRadius: 10).fill(Color.orange.opacity(0.8))
-                                        }
-                                    }
-                                )
+                                
+                                    
+                                
                                 .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
@@ -124,7 +142,7 @@ struct BoardView: View {
                 vm.selectedUnit = selected
             }
         }
-            
+        
     }
     
     var statusView: some View {
