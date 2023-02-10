@@ -18,6 +18,23 @@ class Camp : ObservableObject {
         self.SurvivorList = []
         self.foodStored = 0
     }
+    func passDay(){
+        if foodStored>=0{
+            foodStored-=SurvivorList.count
+        }
+    }
+    func starvationColor()->Color{
+        if foodStored <= 0{
+            return Color.red
+        }
+        return Color.black
+    }
+    func starvationText()->String{
+        if foodStored >= 0{
+            return "\(foodStored) days of food left"
+        }
+        return "We are starving"
+    }
     
     
 }
@@ -27,8 +44,11 @@ struct CampView: View {
     
     var body: some View {
         VStack{
-//            Text(vm.SurvivorList2 ?? "")
-            
+//            Text(vm.SurvivorList2[0].function?.name)
+            Text(vm.starvationText()).foregroundColor(vm.starvationColor())
+            //Text("People : \($vm.survivorList.count) survivors")
+          
+
             Text("Food Stored \(vm.foodStored)")
             Button("Generate World") {
                 showBoard = true

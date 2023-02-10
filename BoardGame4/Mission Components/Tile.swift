@@ -9,28 +9,38 @@ import SwiftUI
 
 
 struct Tile: View {
-    var size : Double//Probably should be set to something, so that it universally changes all types of tiles
     var colored : Color
-    var difference = 0.5
-    @State var isSelected = false
+    var difference = 7.0
     var tileLocation : Coord
     @ViewBuilder
     var body: some View {
         ZStack{
+            Rectangle().fill(colored)
+                .padding(difference)
+                .background(
+                    Rectangle()
+                )
             
-            VStack{
-                Rectangle().fill(colored)
-                    .padding(5)
-                    .overlay(
-                        Rectangle()
-                            .strokeBorder()
-                            .foregroundColor(isSelected ? Color.red : Color.black)
-                    )
-            }
         }
     }
 }
-
+struct Tile2: View {
+    var image : String
+    var difference = 7.0
+    var tileLocation : Coord
+    @ViewBuilder
+    var body: some View {
+        ZStack{
+            Image(image)
+                .resizable()
+                .padding(difference)
+                .background(
+                    Rectangle()
+                )
+            
+        }
+    }
+}
 struct Tile_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
@@ -38,7 +48,7 @@ struct Tile_Previews: PreviewProvider {
                 ForEach(0..<3, id: \.self) { row in
                     HStack{
                         ForEach(0..<3, id: \.self) { col in
-                            Tile(size: 100.0, colored: Color.green, tileLocation: Coord()).frame(width: 150.0, height: 150.0)
+                            Tile(colored: Color.green, tileLocation: Coord()).frame(width: 150.0, height: 150.0)
                         }
                     }
                 }
@@ -47,7 +57,7 @@ struct Tile_Previews: PreviewProvider {
                 ForEach(0..<3, id: \.self) { row in
                     HStack{
                         ForEach(0..<3, id: \.self) { col in
-                            FixedTile(tileLocation: Coord())
+                            Tile2(image: "building", tileLocation: Coord()).frame(width: 100.0, height: 100.0).padding(0)
                         }
                     }
                 }

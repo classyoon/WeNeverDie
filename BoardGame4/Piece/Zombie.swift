@@ -13,7 +13,7 @@ struct Zombie: Piece, Equatable {
     }
     
     var health = 10
-    var damage = 3
+    var damage = 0
     var alert = false
     
     var isSelected = false

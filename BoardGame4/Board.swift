@@ -54,8 +54,8 @@ class Board : ObservableObject, BoardProtocol {
     }
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 5
-    let colMax: Int = 5
+    let rowMax: Int = 3
+    let colMax: Int = 3
    
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
@@ -131,8 +131,8 @@ class Board : ObservableObject, BoardProtocol {
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(rowMax-1, colMax-1)
         terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.2, exit : bottemRight)
-        set(moveable: King(name: "Steve", board: self), Coord: Coord())
-        set(moveable: King(name: "Jobs", board: self), Coord: Coord(col: 1))
+        set(moveable: playerUnit(name: "Steve", board: self), Coord: Coord())
+        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(){

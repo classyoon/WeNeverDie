@@ -1,14 +1,14 @@
 //
-//  King.swift
+//  playerUnit.swift
 //  BoardGame4
 //
 //  Created by Tim Yoon on 12/2/22.
 //
 
 import SwiftUI
-struct King: Piece, Identifiable, Equatable{
+struct playerUnit: Piece, Identifiable, Equatable{
     
-    static func == (lhs: King, rhs: King) -> Bool {
+    static func == (lhs: playerUnit, rhs: playerUnit) -> Bool {
         lhs.id == rhs.id
     }
     
@@ -72,11 +72,11 @@ struct King: Piece, Identifiable, Equatable{
     }
 }
 
-struct King_Previews: PreviewProvider {
+struct playerUnit_Previews: PreviewProvider {
     static var previews: some View {
         let board = Board()
-        let king = King(name: "Steve Jobs", board: board)
-        king.getView()
+        let playerUnit = playerUnit(name: "Steve Jobs", board: board)
+        playerUnit.getView()
             .previewLayout(.sizeThatFits)
     }
 }

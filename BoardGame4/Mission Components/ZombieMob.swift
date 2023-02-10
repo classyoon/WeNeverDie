@@ -53,16 +53,14 @@ extension Board {
             returnCoord.col+=1; directionText+="Right"
         }
         ///CAN UPDATE FACING BY READING DIRECTION TEXT THROUGH SWITCH CASE
-        ////**
+        ///**
         ///Use rotation angle facing thingy.
         ///
-        //Actual moving, where it provides the place where it wants to move to give to the function set()
+        ///
         var moveCost = terrainBoard[returnCoord.row][returnCoord.col].movementPenalty
         if (board[returnCoord.row][returnCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
-            //Prevents self duplication
-            //            print("I go \(directionText). From \(distance.seekerCoord) I go to \(returnCoord)")
             return returnCoord
-        }
+        } 
         
         //Wandering
         let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))

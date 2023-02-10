@@ -29,6 +29,7 @@ extension Board {
                     board[tapRow][tapCol]?.health-=piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     selectedUnit = nil
+                    turn = UUID()//Temporary Patch, Will not visually update stamina after attack otherwise.
                     
                     if board[tapRow][tapCol]!.health <= 0 {board[tapRow][tapCol] = nil}//Erase dead enemy
                     

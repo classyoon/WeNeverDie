@@ -21,41 +21,40 @@ struct BoardView: View {
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
         case "h":
-            Image("building").resizable()
-            
+            Tile2(image: "building", tileLocation: Coord(row, col))
         case "t":
             ZStack{
-                Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
+                Tile(colored: Color.brown, tileLocation: Coord(row, col))//Forest
                 Image("forest").resizable()
             }
         case "w":
-            Image("water").resizable()
+            Tile2(image: "water", tileLocation: Coord(row, col))
         case "X":
             ZStack{
-                Image("grass").resizable()
+                Tile2(image: "grass", tileLocation: Coord(row, col))
                 Image("escape").resizable()
                 
             }
             
         default:
-            Image("grass").resizable()
+            Tile2(image: "grass", tileLocation: Coord(row, col))
         }
     }
     func getTileOld(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
         case "h":
-            return Tile(size: 100, colored: Color.red, tileLocation: Coord(row, col))
+            return Tile(colored: Color.red, tileLocation: Coord(row, col))
             
         case "t":
-            return Tile(size: 100, colored: Color.brown, tileLocation: Coord(row, col))//Forest
+            return Tile(colored: Color.brown, tileLocation: Coord(row, col))//Forest
             
         case "w":
-            return Tile(size: 100, colored: Color.blue, tileLocation: Coord(row, col))
+            return Tile(colored: Color.blue, tileLocation: Coord(row, col))
         case "X":
-            return Tile(size: 100, colored: Color.purple, tileLocation: Coord(row, col))
+            return Tile(colored: Color.purple, tileLocation: Coord(row, col))
             
         default:
-            return Tile(size: 100, colored: Color.green, tileLocation: Coord(row, col))
+            return Tile(colored: Color.green, tileLocation: Coord(row, col))
         }
     }
     
@@ -68,18 +67,17 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    getTileOld(row: row, col: col)
+                                    getTile(row: row, col: col)
                                     Group{
                                         if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
-                                            RoundedRectangle(cornerRadius: 10).fill(Color.blue.opacity(0.3))
+                                            RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
                                         }
                                         if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
-                                           Circle().fill(Color.white.opacity(0.3))
+                                            Circle().fill(Color.white.opacity(0.3)).padding()
                                         }
                                     }
                                     if let piece = vm.board[row][col] {
                                         pieceDisplay(piece: piece, nameSpace: nameSpace)
-                                            .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))//
                                     }
                                 }
                                 .onTapGesture {
@@ -90,10 +88,6 @@ struct BoardView: View {
                                         vm.checkEndMission()
                                     }
                                 }
-                                
-                                    
-                                
-                                .frame(width: geo.size.width/Double(vm.colMax), height: geo.size.height/Double(vm.rowMax))
                             }
                         }
                     }
@@ -147,7 +141,7 @@ struct BoardView: View {
     
     var statusView: some View {
         VStack{
-            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
+//            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
             Text(weaponry ? "Collected enough food for \(food) people" : "")
             Group{
                 if let loc = vm.wasTappedCoord {
