@@ -27,6 +27,7 @@
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CA48C74C298387E200106B97 /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* Mob.swift */; };
+		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE38F972989BD5C008DE574 /* NavFiles.swift */; };
@@ -79,6 +80,7 @@
 		CA48C74B298387E200106B97 /* Mob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
+		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAE38F972989BD5C008DE574 /* NavFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFiles.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				CACCD579298C8C10005BE6DE /* Mission Components */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
 				CACCD57A298C8C30005BE6DE /* Testing */,
@@ -381,6 +384,7 @@
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
 				9157BE38294AA939002C6E4F /* Knight.swift in Sources */,
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
+				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,

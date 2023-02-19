@@ -18,14 +18,15 @@ struct TileType {
     var name = "g"
     var loot = 0
     var movementPenalty = 0
-    var houseLoot = 2
+    var houseLoot = 10
+    var waterPenalty = 1
     
     mutating func setTileBonuses(){
         switch name {
         case "h":
             loot += houseLoot
         case "w":
-            movementPenalty = 1
+            movementPenalty += waterPenalty
         default :
             _ = 0
         }
@@ -33,7 +34,7 @@ struct TileType {
     
 }
 struct TerrainPiece {
-    
+   
 }
 class Board : ObservableObject, BoardProtocol {
     @Published var showBoard = true
@@ -43,6 +44,7 @@ class Board : ObservableObject, BoardProtocol {
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
+    
     @Published var selectedUnit : (any Piece)? = nil
     @Published var selectedLoc : Coord? = nil
     @Published var enteringSurvivors = [any Piece]()
@@ -52,6 +54,7 @@ class Board : ObservableObject, BoardProtocol {
             setPossibleCoords()
         }
     }
+    
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 3
@@ -126,6 +129,9 @@ class Board : ObservableObject, BoardProtocol {
             counter+=1
         }
     }
+//    var survivorList = [playerUnit(name: "Steve", board: self),  playerUnit(name: "Jobs", board: self)]
+    
+   
     func generateBoard(){
         missionUnderWay = true
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)

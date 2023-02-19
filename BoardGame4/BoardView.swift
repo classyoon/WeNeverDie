@@ -10,13 +10,15 @@ var soundPlayer: AVAudioPlayer!
 
 
 struct BoardView: View {
+    
     @Binding var showBoard : Bool
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
     @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
-    
+    @ObservedObject var GameData : ResourcePool
+    @State var people = 2
     @ViewBuilder
     func getTile(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -100,6 +102,8 @@ struct BoardView: View {
                         .font(.title)
                     Button {
                         showBoard = false
+                        GameData.foodResource += food
+                        GameData.passDay()
                     } label: {
                         Text("Back to Camp")
                     }.buttonStyle(.borderedProminent)
@@ -184,6 +188,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(showBoard: Binding.constant(true), vm: Board())
+        BoardView(showBoard: Binding.constant(true), vm: Board(), GameData: ResourcePool())
     }
 }

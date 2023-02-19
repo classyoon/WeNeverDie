@@ -21,7 +21,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var movementCount = 0
     
     var facing: Direction = .down
-    let stamina = 3
+    let stamina = 10
     
     var id = UUID()
     
