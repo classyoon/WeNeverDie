@@ -15,12 +15,14 @@ extension Board {
         var zombies = [any Piece]()
         for row in 0..<rowMax {
             for col in 0..<colMax {
-                if ((board[row][col]?.faction=="S"||board[row][col]?.faction=="E")) {
-                    playerCoordPins.append( Coord(row: row, col: col)); continue
-                }
-                if ((board[row][col]?.faction=="Z")) {
-                    zombies.append(board[row][col] as! Zombie)
-                    ZomCoordPins.append( Coord(row: row, col: col)); continue
+                if let piece = board[row][col] {
+                    if piece.isPlayerUnit {
+                        playerCoordPins.append( Coord(row: row, col: col)); continue
+                    }
+                    if piece.faction=="Z" {
+                        zombies.append(piece as! Zombie)
+                        ZomCoordPins.append( Coord(row: row, col: col)); continue
+                    }
                 }
             }
         }
@@ -30,10 +32,16 @@ extension Board {
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
-                if (board[row][col]?.health ?? 0 <= 0){
-                    board[row][col] = nil; continue
-                }
-                if (board[row][col] != nil) {//If it encounters anything
+                
+                if let piece = board[row][col] {
+                    if piece.health <= 0 {
+                        if piece.isPlayerUnit{
+                            UnitsDied+=1
+                            checkEndMission()
+                            print("Units died \(UnitsDied)")
+                        }
+                        board[row][col] = nil
+                    }
                     board[row][col]?.movementCount = 0//Resets movement counter
                 }
                 
@@ -47,8 +55,8 @@ extension Board {
         let unitList  = unitList ?? createLists().unitList
         
         if unitList.isEmpty{
-            print("END MISSION")
-            print(survivorList)
+//            print("END MISSION")
+//            print(survivorList)
             missionUnderWay = false
             return
         }
@@ -62,8 +70,8 @@ extension Board {
                         selectedUnit = nil
                     }
                 }
-                print("END MISSION")
-                print(survivorList)
+//                print("END MISSION")
+//                print(survivorList)
                 missionUnderWay = false
             }
         }
@@ -82,36 +90,12 @@ extension Board {
         }
     }
     
-//    func checkEndMission(unitList: [Coord]? = nil){
-//        let unitList  = unitList ?? createLists().unitList
-//
-//        if unitList.isEmpty{
-//            print("END MISSION")
-//            print(survivorList)
-//            missionUnderWay = false
-//        }
-//        else if unitList.count == 1{
-//            let lastSurvivor = unitList[0]
-//            if terrainBoard[lastSurvivor.row][lastSurvivor.col].name=="X"{//Exit
-//                if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
-//                    survivorList.append(survivorOnCoord)
-//                    board[lastSurvivor.row][lastSurvivor.col]=nil
-//                    if survivorOnCoord.id  == selectedUnit?.id {
-//                        selectedUnit = nil
-//                    }
-//                }
-//                print("END MISSION")
-//                print(survivorList)
-//                missionUnderWay = false
-//            }
-//        }
-//    }
-    
     func nextTurn(){
         let lists = createLists()
         let zombies = lists.zombieList; let players = lists.unitList; let zombieLoc = lists.zombieCoord
         applyTileStatuses(players)
         moveZombies(zombies, unitList: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
+        deselectUnit()
     }
 }

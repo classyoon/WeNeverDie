@@ -12,14 +12,15 @@ struct playerUnit: Piece, Identifiable, Equatable{
         lhs.id == rhs.id
     }
     
-
+var isPlayerUnit = true
     var name : String
     var health: Int = 10
     var damage = 5
     var faction: String = "S"
+    var isHidden = false
     var isSelected = false
     var movementCount = 0
-    
+    var alert = false
     var facing: Direction = .down
     let stamina = 10
     
@@ -74,7 +75,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
 
 struct playerUnit_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board()
+        let board = Board(players: 1)
         let playerUnit = playerUnit(name: "Steve Jobs", board: board)
         playerUnit.getView()
             .previewLayout(.sizeThatFits)

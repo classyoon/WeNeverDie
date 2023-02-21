@@ -10,7 +10,7 @@ var soundPlayer: AVAudioPlayer!
 
 
 struct BoardView: View {
-    
+    @State var selectedStats = ""
     @Binding var showBoard : Bool
     @State var food = 0
     @State var weaponry = true
@@ -20,7 +20,7 @@ struct BoardView: View {
     @ObservedObject var GameData : ResourcePool
     @State var people = 2
     @ViewBuilder
-    func getTile(row : Int, col : Int)-> some View{
+    func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
         case "h":
             Tile2(image: "building", tileLocation: Coord(row, col))
@@ -69,9 +69,9 @@ struct BoardView: View {
                         HStack(spacing: 0){
                             ForEach(0..<vm.colMax, id: \.self) { col in
                                 ZStack{
-                                    getTile(row: row, col: col)
+                                    getTileAppearance(row: row, col: col)
                                     Group{
-                                        if let loc = vm.wasTappedCoord, loc.col == col && loc.row == row {
+                                        if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
                                             RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
                                         }
                                         if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
@@ -98,12 +98,15 @@ struct BoardView: View {
             }.overlay{
                 !vm.missionUnderWay ?
                 VStack{
-                    Text("End Mission")
+                    Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource-GameData.survivorNumber+food)")
                         .font(.title)
                     Button {
                         showBoard = false
                         GameData.foodResource += food
                         GameData.passDay()
+                        print(GameData.survivorNumber)
+                        GameData.survivorNumber -= vm.UnitsDied
+                        print(GameData.survivorNumber)
                     } label: {
                         Text("Back to Camp")
                     }.buttonStyle(.borderedProminent)
@@ -148,8 +151,8 @@ struct BoardView: View {
 //            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
             Text(weaponry ? "Collected enough food for \(food) people" : "")
             Group{
-                if let loc = vm.wasTappedCoord {
-                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot)")
+                if let loc = vm.highlightSquare {
+                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot) \n \(selectedStats)")
                 }
             }
             Spacer()
@@ -188,6 +191,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(showBoard: Binding.constant(true), vm: Board(), GameData: ResourcePool())
+        BoardView(showBoard: Binding.constant(true), vm: Board(players: 3), GameData: ResourcePool(surviors: 3, food: 10))
     }
 }

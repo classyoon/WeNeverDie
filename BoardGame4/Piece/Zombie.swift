@@ -11,10 +11,11 @@ struct Zombie: Piece, Equatable {
     static func == (lhs: Zombie, rhs: Zombie) -> Bool {
         lhs.id == rhs.id
     }
-    
+    var isPlayerUnit = false
+    var isHidden = false
     var health = 10
-    var damage = 0
-    var alert = false
+    var damage = 10
+    @State var alert = false
     
     var isSelected = false
     var movementCount = 0
@@ -45,7 +46,7 @@ struct Zombie: Piece, Equatable {
     }
     
     func getView() -> AnyView {
-        AnyView(Image(alert ? "AgroZombie" : "Zombie")
+        return AnyView(Image(alert ? "AgroZombie" : "Zombie")
             .resizable()
             .scaledToFit()
                 
@@ -60,7 +61,7 @@ struct Zombie: Piece, Equatable {
 
 struct Zombie_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board()
+        let board = Board(players: 3)
         let zombie = Zombie(board: board)
         zombie.getView()
             .previewLayout(.sizeThatFits)

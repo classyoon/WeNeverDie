@@ -37,6 +37,7 @@ struct TerrainPiece {
    
 }
 class Board : ObservableObject, BoardProtocol {
+    @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
     @Published var showBoard = true
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
@@ -44,12 +45,11 @@ class Board : ObservableObject, BoardProtocol {
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
-    
+    @Published var UnitsDied = 0
     @Published var selectedUnit : (any Piece)? = nil
-    @Published var selectedLoc : Coord? = nil
     @Published var enteringSurvivors = [any Piece]()
     @Published var survivorList = [any Piece]()
-    @Published var wasTappedCoord : Coord?{
+    @Published var highlightSquare : Coord?{
         didSet{
             setPossibleCoords()
         }
@@ -57,11 +57,12 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 3
-    let colMax: Int = 3
+    let rowMax: Int = 4
+    let colMax: Int = 4
    
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
+
     
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
@@ -113,6 +114,7 @@ class Board : ObservableObject, BoardProtocol {
         }
         return tempTerrain
     }
+ 
     func randomLoc() -> Coord{
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
         while board[ranR][ranC] != nil {
@@ -131,31 +133,62 @@ class Board : ObservableObject, BoardProtocol {
     }
 //    var survivorList = [playerUnit(name: "Steve", board: self),  playerUnit(name: "Jobs", board: self)]
     
+    func spawnPlayers(_ amount: Int) {
+        var counter = 0
+        var r = 0
+        var c = 0
+        
+        while counter < amount {
+//            if counter <= amount {
+//                break
+//            }
+            while r < safeNum(r: 3) {
+                while c < safeNum(c: 3) {
+                    
+                    if counter >= amount {
+                        break
+                    }
+                    set(moveable: playerUnit(name: namesSurvivors[counter], board: self), Coord: Coord(r, c))
+                    
+//                    print("\(r), \(c) spawn : \(counter)")
+                    counter += 1
+                    c += 1
+                }
+                
+                // Reset the value of c to 0 after each row
+                
+                c = 0
+                r += 1
+            }
+        }
+    }
    
-    func generateBoard(){
+    func generateBoard(_ players : Int){
         missionUnderWay = true
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(rowMax-1, colMax-1)
-        terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.2, exit : bottemRight)
-        set(moveable: playerUnit(name: "Steve", board: self), Coord: Coord())
-        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
-        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
+        terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.0, exit : bottemRight)
+        spawnPlayers(players)
+//        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
+       spawnZombies(3)
+//        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
-    init(){
+    init(players : Int){
 
-       generateBoard()
+       generateBoard(players)
+       // spawnPlayers(3)
     }
 }
 
 extension Board {
     func increaseMoveCount(row: Int, col: Int) {
-        if let tappedCol = wasTappedCoord?.col, let tappedRow = wasTappedCoord?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
+        if let tappedCol = highlightSquare?.col, let tappedRow = highlightSquare?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
             piece.incrementMoveCounter()
         }
         
     }
     func setPossibleCoords() {
-        guard let loc = wasTappedCoord, let piece = board[loc.row][loc.col]
+        guard let loc = highlightSquare, let piece = board[loc.row][loc.col]
         else {
             possibleLoc = []
             return
