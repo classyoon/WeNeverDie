@@ -38,6 +38,9 @@ protocol Piece: Moveable & Displayable {
 }
 
 protocol Moveable: Identifiable  {
+    var isPlayerUnit : Bool {get}
+    var isHidden : Bool {set get}
+    var alert : Bool {set get}
     var isSelected: Bool {set get}
     var health: Int {set get}
     var damage: Int {set get}
