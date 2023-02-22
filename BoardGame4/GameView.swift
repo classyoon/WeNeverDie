@@ -14,6 +14,7 @@ struct GameView : View {
     @State var gameData = ResourcePool(surviors: 3, food: 0)
     @StateObject var camp  = Camp(field: Board(players: 3))
     @StateObject var board  = Board(players: 3)
+
     @State var showBoard = false
     @State var playerNumber = 3
     
