@@ -15,6 +15,7 @@ struct BoardView: View {
     @State var food = 0
     @State var weaponry = true
     @State var talk = true
+   
     @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @ObservedObject var GameData : ResourcePool
@@ -25,38 +26,16 @@ struct BoardView: View {
         case "h":
             Tile2(image: "building", tileLocation: Coord(row, col))
         case "t":
-            ZStack{
-                Tile(colored: Color.brown, tileLocation: Coord(row, col))//Forest
-                Image("forest").resizable()
-            }
+            Tile2(image: "forest", tileLocation: Coord(row, col), optionalColor: Color.brown)
         case "w":
             Tile2(image: "water", tileLocation: Coord(row, col))
         case "X":
             ZStack{
                 Tile2(image: "grass", tileLocation: Coord(row, col))
                 Image("escape").resizable()
-                
             }
-            
         default:
             Tile2(image: "grass", tileLocation: Coord(row, col))
-        }
-    }
-    func getTileOld(row : Int, col : Int)-> some View{
-        switch vm.terrainBoard[row][col].name{
-        case "h":
-            return Tile(colored: Color.red, tileLocation: Coord(row, col))
-            
-        case "t":
-            return Tile(colored: Color.brown, tileLocation: Coord(row, col))//Forest
-            
-        case "w":
-            return Tile(colored: Color.blue, tileLocation: Coord(row, col))
-        case "X":
-            return Tile(colored: Color.purple, tileLocation: Coord(row, col))
-            
-        default:
-            return Tile(colored: Color.green, tileLocation: Coord(row, col))
         }
     }
     
@@ -86,7 +65,7 @@ struct BoardView: View {
                                     withAnimation{
                                         vm.handleTap(tapRow: row, tapCol: col)
                                     }
-                                    withAnimation(.easeOut.delay(0.75)){
+                                    withAnimation(.easeOut.delay(1)){
                                         vm.checkEndMission()
                                     }
                                 }

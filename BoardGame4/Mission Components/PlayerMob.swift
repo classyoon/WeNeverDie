@@ -37,8 +37,9 @@ extension Board {
                     board[tapRow][tapCol]?.health -= piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     deselectUnit()
-        
+                    
                     turn = UUID()
+                    
                     if board[tapRow][tapCol]!.health <= 0 {
                         board[tapRow][tapCol] = nil
                     }
@@ -50,8 +51,7 @@ extension Board {
                     }
                     else {
                         // If another player unit is tapped, switch the selected unit to the new unit
-                        highlightSquare = Coord(tapRow, tapCol)
-                        selectedUnit = second
+                        SelectUnitOn(tapRow, tapCol)
                     }
                 }
                 
@@ -62,10 +62,11 @@ extension Board {
             }
             else {
                 // If the tapped tile is not a possible location for the selected unit to move, deselect the unit
-               deselectUnit()
+                deselectUnit()
             }
         }
     }
+    
     func SelectUnitOn(_ tapRow: Int, _ tapCol: Int){
         selectedUnit = board[tapRow][tapCol]
         highlightSquare = Coord(tapRow, tapCol)

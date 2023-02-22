@@ -33,9 +33,14 @@ struct TileType {
     }
     
 }
-struct TerrainPiece {
-   
-}
+import AVFoundation
+
+// Load the music file
+let musicUrl = Bundle.main.url(forResource: "myMusic", withExtension: "mp3")
+let musicPlayer = try? AVAudioPlayer(contentsOf: musicUrl!)
+
+// Start playing the music
+
 class Board : ObservableObject, BoardProtocol {
     @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
     @Published var showBoard = true

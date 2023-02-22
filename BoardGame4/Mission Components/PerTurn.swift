@@ -51,6 +51,12 @@ extension Board {
     func transferSurvivorsToCamp()->[any Piece]{
         return survivorList
     }
+    func checkEndMission2(){
+//        if numOfUnits == UnitsDied {
+//            missionUnderWay = false
+//            
+//        }
+    }
     func checkEndMission(unitList: [Coord]? = nil){
         let unitList  = unitList ?? createLists().unitList
         

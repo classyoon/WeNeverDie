@@ -9,15 +9,13 @@ import SwiftUI
 class Camp : ObservableObject {
     @Published var SurvivorList : [any Piece] = []
     let field : Board
-    var SurvivorList2 : [any Piece] {
-        field.transferSurvivorsToCamp()
-    }
+    
     init(field : Board) {
         self.field = field
         self.SurvivorList = []
     }
     
-
+    
     
     
     
@@ -29,7 +27,7 @@ struct CampView: View {
     @ObservedObject var GameData : ResourcePool
     @ObservedObject var vm : Camp
     @State var ResetGame = false
-
+    @State var surivorsSentOnMission : Int
     func starvationText()->String{
         if GameData.starving{
             return "We are starving"
@@ -44,27 +42,34 @@ struct CampView: View {
         }
         return Color.black
     }
+    func shouldShowMap() -> Bool{
+        if surivorsSentOnMission > 0{
+            return true
+        }
+        return false
+    }
     
     var body: some View {
         VStack{
-//            Text(vm.SurvivorList2[0].function?.name)
-            
+            //            Text(vm.SurvivorList2[0].function?.name)
+            Text("Cure Progress (Keep survivors at home to progress)")
+            ProgressView(value: Double(GameData.WinProgress), total: Double(GameData.WinCondition)).padding()
             Text("Survive. Get food from outside. Don't die. Make it back to camp.")
             Text(starvationText()).foregroundColor(starvationColor())
-            //Text("People : \($vm.survivorList.count) survivors")
-          
-//            Stepper(value: GameData.survivorNumber, in: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Range@*/1...10/*@END_MENU_TOKEN@*/) {
-//                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Stepper")/*@END_MENU_TOKEN@*/
-//            }
-           
+            
+            Stepper(value: $surivorsSentOnMission, in: 0...GameData.survivorNumber) {
+                Text("People to send \(surivorsSentOnMission)")
+            }
             Text("Number of people \(GameData.survivorNumber)")
- 
+            
             HStack{
                 Button("Pass Day") {
                     GameData.passDay()
+                    GameData.survivorSent = surivorsSentOnMission
                 }
                 Button("Generate World") {
-                    showBoard = true
+                    showBoard = shouldShowMap()
+                    GameData.survivorSent = surivorsSentOnMission
                 }
             }
         }.overlay{
@@ -81,12 +86,33 @@ struct CampView: View {
                 .shadow(radius: 10)
             : nil
         }
+        .overlay{
+            GameData.victory ?
+            VStack{
+                Text("You Win!!!")
+                    .font(.title)
+                Text(" You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.").font(.body)
+                Spacer()
+                HStack{
+                    Button("Reset (Does Absolutely Nothing)"){
+                        ResetGame = true
+                    }
+                    Button("Continue (Also Does Nothing)"){
+                        
+                    }
+                }
+            }.padding()
+                .background(.white)
+                .cornerRadius(20)
+                .shadow(radius: 10)
+            : nil
+        }
     }
 }
 
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), vm: Camp(field: Board(players: 3)))
+        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), vm: Camp(field: Board(players: 3)), surivorsSentOnMission:  0)
     }
 }

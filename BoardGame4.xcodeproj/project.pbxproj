@@ -26,6 +26,7 @@
 		9157BE38294AA939002C6E4F /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157BE37294AA939002C6E4F /* Knight.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
+		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* Mob.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
@@ -77,6 +78,7 @@
 		9157BE37294AA939002C6E4F /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* Mob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		CA8A319A296CC03E00755BCE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
 				CA8A319C296CC12A00755BCE /* POW.m4a */,
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
 			);
@@ -347,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
 			);

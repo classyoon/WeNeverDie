@@ -31,6 +31,7 @@ extension Board {
         else if piece.getCanMove()==false{
             if piece.isPlayerUnit {
                 deselectUnit()
+                highlightSquare = nil
             }
         }
     }
