@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91355A92293AEE4700907610 /* BoardGame4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A91293AEE4700907610 /* BoardGame4App.swift */; };
+		91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A91293AEE4700907610 /* WeNeverDieApp.swift */; };
 		91355A94293AEE4700907610 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A93293AEE4700907610 /* Persistence.swift */; };
 		91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91355A95293AEE4700907610 /* WeNeverDie.xcdatamodeld */; };
 		91355A99293AEE4700907610 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A98293AEE4700907610 /* ContentView.swift */; };
@@ -56,7 +56,7 @@
 
 /* Begin PBXFileReference section */
 		91355A8E293AEE4700907610 /* WeNeverDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeNeverDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		91355A91293AEE4700907610 /* BoardGame4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGame4App.swift; sourceTree = "<group>"; };
+		91355A91293AEE4700907610 /* WeNeverDieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeNeverDieApp.swift; sourceTree = "<group>"; };
 		91355A93293AEE4700907610 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		91355A96293AEE4700907610 /* BoardGame4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardGame4.xcdatamodel; sourceTree = "<group>"; };
 		91355A98293AEE4700907610 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			children = (
 				CAE918A02994B13800A94419 /* Info.plist */,
 				CA8A319A296CC03E00755BCE /* Sounds */,
-				91355A91293AEE4700907610 /* BoardGame4App.swift */,
+				91355A91293AEE4700907610 /* WeNeverDieApp.swift */,
 				91355ACB293AF17100907610 /* Piece */,
 				91355ACE293AF33600907610 /* Battle */,
 				91355AD1293AF5FE00907610 /* CoreData */,
@@ -377,7 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91355A92293AEE4700907610 /* BoardGame4App.swift in Sources */,
+				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
@@ -703,7 +703,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BoardGame4;
+				TEST_TARGET_NAME = WeNeverDie;
 			};
 			name = Debug;
 		};
@@ -726,7 +726,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BoardGame4;
+				TEST_TARGET_NAME = WeNeverDie;
 			};
 			name = Release;
 		};
