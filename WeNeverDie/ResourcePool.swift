@@ -9,8 +9,19 @@ import Foundation
 
 class ResourcePool : ObservableObject {
     @Published var foodResource : Int
-    @Published var survivorSent : Int = 0
+    //@Published var survivorSent : Int = 0
     @Published var survivorNumber : Int
+    
+    @Published var survivorSent : Int = 0 {
+          didSet {
+              if survivorSent > 0 {
+                  sent = true
+              } else {
+                  sent = false
+              }
+          }
+      }
+    @Published var sent = false
     @Published var deathRequirement : Int = 1 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var starving = false
@@ -18,7 +29,6 @@ class ResourcePool : ObservableObject {
     @Published var WinCondition = 10
     @Published var victory = false
     @Published var WinProgress = 0
-    @Published var sent = false
     @Published var days = 0
     let starvationAmount = 0
     init(surviors : Int, food : Int) {
@@ -58,12 +68,18 @@ class ResourcePool : ObservableObject {
     }
     
     func passDay(){
-        foodResource-=survivorNumber
-        
+       print("Food \(foodResource)")
+        days+=1
+        print("Survivors sent \(survivorSent)")
         if survivorSent > 0 {
             sent = true
+            print("Perform mission first")
+        }else {
+            print("Perform calc first")
+            print("New Food \(foodResource)")
+            foodResource-=survivorNumber
+            checkForDefeat()
+            calcWinProgress()
         }
-        checkForDefeat()
-        calcWinProgress()
     }
 }

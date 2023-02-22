@@ -18,7 +18,7 @@ struct BoardView: View {
    
     @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
-    @ObservedObject var GameData : ResourcePool
+    @Binding var GameData : ResourcePool
     @State var people = 2
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
@@ -42,7 +42,8 @@ struct BoardView: View {
     //    @EnvironmentObject var navManager : NavManager
     var body: some View {
         VStack(alignment: .center){
-            HStack{ Spacer()
+            HStack{
+                Spacer()
                 GeometryReader{ geo in
                     VStack(spacing: 0){
                         ForEach(0..<vm.rowMax, id: \.self) { row in
@@ -84,10 +85,13 @@ struct BoardView: View {
                         Button {
                             showBoard = false
                             GameData.foodResource += food
-                            GameData.passDay()
-                            print(GameData.survivorNumber)
+                            
+                            GameData.foodResource -= GameData.survivorNumber
+                            GameData.WinProgress+=(GameData.survivorNumber-GameData.survivorSent)
+                            
+                            GameData.survivorSent = 0
                             GameData.survivorNumber -= vm.UnitsDied
-                            print(GameData.survivorNumber)
+//                            GameData.passDay()
                         } label: {
                             Text("Back to Camp")
                         }.buttonStyle(.borderedProminent)
@@ -173,9 +177,9 @@ struct BoardView: View {
             }
         }
         .padding()
-        .background(ZStack{Color.black
+        .background(ZStack{Color.orange
             Color.secondary
-                .opacity(0.5)
+                .opacity(0.3)
         })
         .cornerRadius(20)
     }
@@ -183,6 +187,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(showBoard: Binding.constant(true), vm: Board(players: 3), GameData: ResourcePool(surviors: 3, food: 10))
+        BoardView(showBoard: Binding.constant(true), vm: Board(players: 3), GameData: Binding.constant(ResourcePool(surviors: 3, food: 10)))
     }
 }

@@ -52,6 +52,7 @@ struct CampView: View {
     var body: some View {
         VStack{
             //            Text(vm.SurvivorList2[0].function?.name)
+            Text("\(GameData.days) day(s) since beginning")
             Text("Cure Progress (Keep survivors at home to progress)")
             ProgressView(value: Double(GameData.WinProgress), total: Double(GameData.WinCondition)).padding()
             Text("Survive. Get food from outside. Don't die. Make it back to camp.")
@@ -63,13 +64,19 @@ struct CampView: View {
             Text("Number of people \(GameData.survivorNumber)")
             
             HStack{
-                Button("Pass Day") {
+//                Button("Pass Day") {
+//                    GameData.passDay()
+//                    GameData.survivorSent = surivorsSentOnMission
+//                }
+                Button("Proceed") {
                     GameData.passDay()
-                    GameData.survivorSent = surivorsSentOnMission
-                }
-                Button("Generate World") {
                     showBoard = shouldShowMap()
+                    print(showBoard)
+                    print("Sending \(GameData.survivorSent)")
+                    print("Sent \(surivorsSentOnMission)")
                     GameData.survivorSent = surivorsSentOnMission
+                    print(surivorsSentOnMission)
+                    print("Sending \(GameData.survivorSent)")
                 }
             }
         }.overlay{
