@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "aurybelle_comic_book_style_overhead_of_red_roofed_warehouse_in__57463ed6-ffb3-4035-8f6b-9ad220b6790d.jpeg",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -41,16 +42,19 @@
       "size" : "256x256"
     },
     {
+      "filename" : "My project-2 1.jpeg",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
+      "filename" : "My project-2.jpeg",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "aurybelle_comic_book_style_overhead_of_red_roofed_warehouse_in__57463ed6-ffb3-4035-8f6b-9ad220b6790d 1.jpeg",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

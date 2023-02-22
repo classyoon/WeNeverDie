@@ -41,62 +41,67 @@ struct BoardView: View {
     
     //    @EnvironmentObject var navManager : NavManager
     var body: some View {
-        VStack{
-            GeometryReader{ geo in
-                VStack(spacing: 0){
-                    ForEach(0..<vm.rowMax, id: \.self) { row in
-                        HStack(spacing: 0){
-                            ForEach(0..<vm.colMax, id: \.self) { col in
-                                ZStack{
-                                    getTileAppearance(row: row, col: col)
-                                    Group{
-                                        if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
-                                            RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
+        VStack(alignment: .center){
+            HStack{ Spacer()
+                GeometryReader{ geo in
+                    VStack(spacing: 0){
+                        ForEach(0..<vm.rowMax, id: \.self) { row in
+                            HStack(spacing: 0){
+                                ForEach(0..<vm.colMax, id: \.self) { col in
+                                    ZStack{
+                                        getTileAppearance(row: row, col: col)
+                                        Group{
+                                            if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
+                                                RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
+                                            }
+                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
+                                                Circle().fill(Color.white.opacity(0.3)).padding()
+                                            }
                                         }
-                                        if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected{
-                                            Circle().fill(Color.white.opacity(0.3)).padding()
+                                        if let piece = vm.board[row][col] {
+                                            pieceDisplay(piece: piece, nameSpace: nameSpace)
                                         }
                                     }
-                                    if let piece = vm.board[row][col] {
-                                        pieceDisplay(piece: piece, nameSpace: nameSpace)
-                                    }
-                                }
-                                .onTapGesture {
-                                    withAnimation{
-                                        vm.handleTap(tapRow: row, tapCol: col)
-                                    }
-                                    withAnimation(.easeOut.delay(1)){
-                                        vm.checkEndMission()
+                                    .aspectRatio(1, contentMode : .fit)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            vm.handleTap(tapRow: row, tapCol: col)
+                                        }
+                                        withAnimation(.easeOut.delay(1)){
+                                            vm.checkEndMission()
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
-                .id(vm.turn)
-            }.overlay{
-                !vm.missionUnderWay ?
-                VStack{
-                    Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource-GameData.survivorNumber+food)")
-                        .font(.title)
-                    Button {
-                        showBoard = false
-                        GameData.foodResource += food
-                        GameData.passDay()
-                        print(GameData.survivorNumber)
-                        GameData.survivorNumber -= vm.UnitsDied
-                        print(GameData.survivorNumber)
-                    } label: {
-                        Text("Back to Camp")
-                    }.buttonStyle(.borderedProminent)
+                    .id(vm.turn)
+                }.overlay{
+                    !vm.missionUnderWay ?
+                    VStack{
+                        Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource-GameData.survivorNumber+food)")
+                            .font(.title)
+                        Button {
+                            showBoard = false
+                            GameData.foodResource += food
+                            GameData.passDay()
+                            print(GameData.survivorNumber)
+                            GameData.survivorNumber -= vm.UnitsDied
+                            print(GameData.survivorNumber)
+                        } label: {
+                            Text("Back to Camp")
+                        }.buttonStyle(.borderedProminent)
+                        
+                    }.padding()
+                        .background(.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                    : nil
                     
                 }.padding()
-                    .background(.white)
-                    .cornerRadius(20)
-                    .shadow(radius: 10)
-                : nil
-                
-            }.padding()
+                Spacer()
+            }
+        
             statusView
                 .frame(height: 200)
                 .padding()
@@ -157,14 +162,22 @@ struct BoardView: View {
                     withAnimation{vm.nextTurn()}
                     vm.turn = UUID()
                 } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 20).frame(width: 100, height: 50).foregroundColor(Color.brown)
+                   
                         Text("Next Turn").foregroundColor(Color.white)
-                    }.padding()
+                    .padding()
+                    .background(.brown)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 20))
                 }
+                .buttonStyle(.plain)
             }
         }
-        .background(Color.yellow)
+        .padding()
+        .background(ZStack{Color.black
+            Color.secondary
+                .opacity(0.5)
+        })
+        .cornerRadius(20)
     }
 }
 

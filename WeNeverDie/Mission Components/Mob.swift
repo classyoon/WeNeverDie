@@ -44,6 +44,7 @@ struct pieceDisplay: View, Identifiable{
         VStack{
             piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace).padding(1)
+                .foregroundColor(.black)
                 .background(.white)
                 .cornerRadius(10)
             Spacer()
