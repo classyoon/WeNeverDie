@@ -703,7 +703,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BoardGame4;
+				TEST_TARGET_NAME = WeNeverDie;
 			};
 			name = Debug;
 		};
@@ -726,7 +726,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BoardGame4;
+				TEST_TARGET_NAME = WeNeverDie;
 			};
 			name = Release;
 		};
