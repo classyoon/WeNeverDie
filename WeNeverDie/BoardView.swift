@@ -80,13 +80,13 @@ struct BoardView: View {
                 }.overlay{
                     !vm.missionUnderWay ?
                     VStack{
-                        Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource-GameData.survivorNumber+food)")
+                        Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource+food)")
                             .font(.title)
                         Button {
                             showBoard = false
                             GameData.foodResource += food
                             
-                            GameData.foodResource -= GameData.survivorNumber
+                            //GameData.foodResource -= GameData.survivorNumber
                             GameData.WinProgress+=(GameData.survivorNumber-GameData.survivorSent)
                             
                             GameData.survivorSent = 0
@@ -138,11 +138,11 @@ struct BoardView: View {
         VStack{
 //            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
             Text(weaponry ? "Collected enough food for \(food) people" : "")
-            Group{
-                if let loc = vm.highlightSquare {
-                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot) \n \(selectedStats)")
-                }
-            }
+//            Group{
+//                if let loc = vm.highlightSquare {
+//                    Text("Coordinate \(loc.row), \(loc.col) Loot \(vm.terrainBoard[loc.row][loc.col].loot) \n \(selectedStats)")
+//                }
+//            }
             Spacer()
             HStack(spacing: 30.0){
                 Button {
