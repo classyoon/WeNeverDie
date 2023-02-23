@@ -18,7 +18,7 @@ struct TileType {
     var name = "g"
     var loot = 0
     var movementPenalty = 0
-    var houseLoot = 10
+    var houseLoot = 2
     var waterPenalty = 1
     
     mutating func setTileBonuses(){
@@ -46,7 +46,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var showBoard = true
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
-    @Published var missionUnderWay = false
+    @Published var missionUnderWay = true
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
@@ -62,8 +62,8 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 4
-    let colMax: Int = 4
+    let rowMax: Int = 10
+    let colMax: Int = 5
    
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
@@ -82,7 +82,7 @@ class Board : ObservableObject, BoardProtocol {
         let water = randomCountFromPercent(water)
         
         var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: rowMax), count: colMax)
-        tempTerrain[escapePoint.row][escapePoint.col].name = "X"
+        tempTerrain[escapePoint.col][escapePoint.row].name = "X"
         tempTerrain[0][0].name = "t"
         var counter = 0 // Sharing the counter
         var numberAdded = 0

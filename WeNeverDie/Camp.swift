@@ -40,7 +40,7 @@ struct CampView: View {
         if GameData.foodResource <= 0{
             return Color.red
         }
-        return Color.black
+        return Color.green
     }
     func shouldShowMap() -> Bool{
         if surivorsSentOnMission > 0{

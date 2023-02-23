@@ -12,7 +12,7 @@ extension Board {
         var thingSighted = false
         var DRow : Int = 100; var DCol : Int = 100
         for target in 0..<targetList.count{
-            if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.faction == "S" {
+            if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.isHidden == false {
 
                 targetLoc = targetList[target]
                 DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
