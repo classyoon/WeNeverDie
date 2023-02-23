@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 protocol BoardProtocol {
     var rowMax: Int { get }
     var colMax: Int { get }
@@ -20,6 +18,7 @@ struct TileType {
     var movementPenalty = 0
     var houseLoot = 2
     var waterPenalty = 1
+    
     
     mutating func setTileBonuses(){
         switch name {
@@ -62,8 +61,8 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 5
-    let colMax: Int = 5
+    let rowMax: Int = 3
+    let colMax: Int = 2
    
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
@@ -76,15 +75,18 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
-        
+        print(board)
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
         
-        var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: rowMax), count: colMax)
+        var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: colMax), count: rowMax)
+        print(tempTerrain)
         print("\(rowMax), \(colMax)")
-        print(escapePoint)
+        print("\(escapePoint)")
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
+        
+        print(tempTerrain)
         tempTerrain[0][0].name = "t"
         var counter = 0 // Sharing the counter
         var numberAdded = 0
@@ -119,14 +121,14 @@ class Board : ObservableObject, BoardProtocol {
             
             counter+=1
         }
+        print(tempTerrain)
         return tempTerrain
     }
  
     func randomLoc() -> Coord{
  
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
-        print(ranR)
-        print(ranC)
+        print("checking \(ranR), \(ranC)")
         while board[ranR][ranC] != nil {
             ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
         }
@@ -176,10 +178,12 @@ class Board : ObservableObject, BoardProtocol {
     func generateBoard(_ players : Int){
         missionUnderWay = true
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
-        let bottemRight = Coord(rowMax-1, colMax-1)
+        let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.0, exit : bottemRight)
+        print("Terrain generated, generating players")
         spawnPlayers(players)
 //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
+        print("Players generated, generating zombies")
        spawnZombies(3)
 //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
@@ -187,70 +191,5 @@ class Board : ObservableObject, BoardProtocol {
 
        generateBoard(players)
        // spawnPlayers(3)
-    }
-}
-
-extension Board {
-    func increaseMoveCount(row: Int, col: Int) {
-        if let tappedCol = highlightSquare?.col, let tappedRow = highlightSquare?.row, isPossibleLoc(row: row, col: col), var piece = board[tappedRow][tappedCol]  {
-            piece.incrementMoveCounter()
-        }
-        
-    }
-    func setPossibleCoords() {
-        guard let loc = highlightSquare, let piece = board[loc.row][loc.col]
-        else {
-            possibleLoc = []
-            return
-        }
-        //        print("\(piece.getMoves())")
-        possibleLoc = piece.getMoves()
-    }
-    func CoordIsValid(Coord: Coord) -> Bool {
-        Coord.row >= 0 && Coord.row < rowMax && Coord.col >= 0 && Coord.col < colMax
-    }
-    func safeNum(c : Int)->Int{
-        if c>colMax-1{
-            return colMax-1
-        }
-        else if c<0 {
-            return 0
-        }
-        return c
-    }
-    func safeNum(r : Int)->Int{
-        if r>rowMax-1{
-            return rowMax-1
-        }
-        else if r<0 {
-            return 0
-        }
-        return r
-    }
-    func isPossibleLoc(row: Int, col: Int) -> Bool {
-        for loc in possibleLoc {
-            if loc.row == row && loc.col == col {
-                return true
-            }
-        }
-        return false
-    }
-    func set(moveable: any Piece, Coord: Coord) {
-        guard CoordIsValid(Coord: Coord) else { return }
-        board[Coord.row][Coord.col] = moveable
-        //findInRange()
-    }
-    func getCoord(of moveable: any Moveable) -> Coord? {
-        
-        for row in 0..<rowMax {
-            for col in 0..<colMax {
-                if board[row][col]?.id == moveable.id {
-                    //                    print(Coord(row: row, col: col))
-                    return Coord(row: row, col: col)
-                }
-            }
-        }
-        
-        return nil
     }
 }
