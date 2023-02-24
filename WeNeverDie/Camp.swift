@@ -93,6 +93,7 @@ struct CampView: View {
                         GameData.survivorSent = surivorsSentOnMission
                         print(surivorsSentOnMission)
                         print("Sending \(GameData.survivorSent)")
+                        GameData.victory
                     }
                 }
             } .navigationTitle("Your Camp")
