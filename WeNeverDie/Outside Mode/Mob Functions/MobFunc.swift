@@ -36,18 +36,32 @@ extension Board {
         }
     }
 }
-struct pieceDisplay: View, Identifiable{
-    @State var piece : any Piece
-    @State var id = UUID()
-    var nameSpace : Namespace.ID
-    var body: some View {
-        VStack{
-            piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
-            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace).padding(1)
-                .foregroundColor(.black)
-                .background(.white)
-                .cornerRadius(10)
-            Spacer()
-        }//.padding(0.0)
-    }
-}
+
+//struct pieceDisplay: View, Identifiable {
+//    @State var piece: any Piece
+//    @State var id = UUID()
+//    var nameSpace: Namespace.ID
+//
+//    let paddingRatio: CGFloat = 0.02
+//    let fontRatio: CGFloat = 0.04
+//    let sizeRatio: CGFloat = 0.1
+//
+//    var body: some View {
+//        GeometryReader { geo in
+//            VStack {
+//                piece.getView()
+//                    .matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
+//
+//                Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")
+//                    .matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace)
+//                    .font(.system(size: geo.size.width * fontRatio))
+//                    .padding(geo.size.width * paddingRatio)
+//                    .foregroundColor(.black)
+//                    .background(.white)
+//                    .cornerRadius(geo.size.width * paddingRatio * 5)
+//            }
+//            .frame(width: geo.size.width * sizeRatio, height: geo.size.width * sizeRatio)
+//        }
+//    }
+//}
+

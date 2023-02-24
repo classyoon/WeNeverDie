@@ -24,10 +24,11 @@
 		91355ACD293AF19A00907610 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355ACC293AF19A00907610 /* Pawn.swift */; };
 		91355AD0293AF34000907610 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355ACF293AF34000907610 /* Battle.swift */; };
 		9157BE38294AA939002C6E4F /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157BE37294AA939002C6E4F /* Knight.swift */; };
+		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
-		CA48C74C298387E200106B97 /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* Mob.swift */; };
+		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
@@ -40,8 +41,8 @@
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE38F972989BD5C008DE574 /* NavFiles.swift */; };
-		CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */; };
-		CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */; };
+		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
+		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,10 +85,11 @@
 		91355ACC293AF19A00907610 /* Pawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
 		91355ACF293AF34000907610 /* Battle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
 		9157BE37294AA939002C6E4F /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
+		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
-		CA48C74B298387E200106B97 /* Mob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
+		CA48C74B298387E200106B97 /* MobFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobFunc.swift; sourceTree = "<group>"; };
 		CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardFunctions.swift; sourceTree = "<group>"; };
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
@@ -102,8 +104,8 @@
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAE38F972989BD5C008DE574 /* NavFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFiles.swift; sourceTree = "<group>"; };
-		CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieMob.swift; sourceTree = "<group>"; };
-		CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMob.swift; sourceTree = "<group>"; };
+		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
+		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
 		CAE918A02994B13800A94419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,25 +159,15 @@
 			isa = PBXGroup;
 			children = (
 				CAE918A02994B13800A94419 /* Info.plist */,
-				CA8A319A296CC03E00755BCE /* Sounds */,
 				91355A91293AEE4700907610 /* WeNeverDieApp.swift */,
-				91355ACB293AF17100907610 /* Piece */,
-				91355ACE293AF33600907610 /* Battle */,
 				91355AD1293AF5FE00907610 /* CoreData */,
-				CACCD579298C8C10005BE6DE /* Mission Components */,
-				91355AC1293AEE5C00907610 /* Board.swift */,
-				CA744D3029A83D5B00F40B4F /* Settings.swift */,
-				CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */,
-				91355AC3293AEE6A00907610 /* BoardView.swift */,
-				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
-				CACCD56E298C8085005BE6DE /* GameView.swift */,
-				CACCD570298C8B5A005BE6DE /* Camp.swift */,
-				CA744D2C29A8113E00F40B4F /* TutorialView.swift */,
-				CA744D2E29A82C6300F40B4F /* tileExplainView.swift */,
-				CACCD57A298C8C30005BE6DE /* Testing */,
+				CACCD579298C8C10005BE6DE /* Outside Mode */,
+				CA17474129A9446B00B81EF8 /* Camp Mode */,
+				CA8A319A296CC03E00755BCE /* Sounds */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* WeNeverDie.entitlements */,
 				91355A95293AEE4700907610 /* WeNeverDie.xcdatamodeld */,
+				CA17474329A944F200B81EF8 /* Legacy */,
 				91355A9D293AEE4800907610 /* Preview Content */,
 			);
 			path = WeNeverDie;
@@ -206,17 +198,14 @@
 			path = WeNeverDieUITests;
 			sourceTree = "<group>";
 		};
-		91355ACB293AF17100907610 /* Piece */ = {
+		91355ACB293AF17100907610 /* Mob Data */ = {
 			isa = PBXGroup;
 			children = (
 				91355AC5293AEE6A00907610 /* Piece.swift */,
 				91355AC9293AF0E600907610 /* playerUnit.swift */,
 				CA23AE5C29523977003DC26D /* Zombie.swift */,
-				91355AC4293AEE6A00907610 /* Checker.swift */,
-				9157BE37294AA939002C6E4F /* Knight.swift */,
-				91355ACC293AF19A00907610 /* Pawn.swift */,
 			);
-			path = Piece;
+			path = "Mob Data";
 			sourceTree = "<group>";
 		};
 		91355ACE293AF33600907610 /* Battle */ = {
@@ -232,34 +221,112 @@
 			children = (
 				91355A98293AEE4700907610 /* ContentView.swift */,
 				91355A93293AEE4700907610 /* Persistence.swift */,
+				CACCD56E298C8085005BE6DE /* GameView.swift */,
+				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CA17474129A9446B00B81EF8 /* Camp Mode */ = {
+			isa = PBXGroup;
+			children = (
+				CA744D3029A83D5B00F40B4F /* Settings.swift */,
+				CACCD570298C8B5A005BE6DE /* Camp.swift */,
+				CA17474729A9457900B81EF8 /* Tutorial */,
+			);
+			path = "Camp Mode";
+			sourceTree = "<group>";
+		};
+		CA17474229A944AB00B81EF8 /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+				CA8A319C296CC12A00755BCE /* POW.m4a */,
+			);
+			path = "Sound Effects";
+			sourceTree = "<group>";
+		};
+		CA17474329A944F200B81EF8 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				CACCD57A298C8C30005BE6DE /* Testing */,
+				91355ACE293AF33600907610 /* Battle */,
+				91355ACC293AF19A00907610 /* Pawn.swift */,
+				9157BE37294AA939002C6E4F /* Knight.swift */,
+				91355AC4293AEE6A00907610 /* Checker.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		CA17474429A9451500B81EF8 /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
+			);
+			path = Display;
+			sourceTree = "<group>";
+		};
+		CA17474529A9453600B81EF8 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				CA23AE5A29514D69003DC26D /* Tile.swift */,
+				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
+				91355AC1293AEE5C00907610 /* Board.swift */,
+				CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		CA17474629A9456000B81EF8 /* Mob Functions */ = {
+			isa = PBXGroup;
+			children = (
+				CA48C74B298387E200106B97 /* MobFunc.swift */,
+				CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */,
+				CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */,
+			);
+			path = "Mob Functions";
+			sourceTree = "<group>";
+		};
+		CA17474729A9457900B81EF8 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				CA744D2E29A82C6300F40B4F /* tileExplainView.swift */,
+				CA744D2C29A8113E00F40B4F /* TutorialView.swift */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		CA17474829A945BE00B81EF8 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
+				CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */,
+				CA744D3229A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 */,
+				CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */,
+				CA744D3429A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		CA8A319A296CC03E00755BCE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
-				CA8A319C296CC12A00755BCE /* POW.m4a */,
-				CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */,
-				CA744D3229A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 */,
-				CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */,
-				CA744D3429A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 */,
-				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+				CA17474229A944AB00B81EF8 /* Sound Effects */,
+				CA17474829A945BE00B81EF8 /* Music */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		CACCD579298C8C10005BE6DE /* Mission Components */ = {
+		CACCD579298C8C10005BE6DE /* Outside Mode */ = {
 			isa = PBXGroup;
 			children = (
-				CA48C74B298387E200106B97 /* Mob.swift */,
-				CAE88A4C2975E4DC00AEB5B0 /* PlayerMob.swift */,
-				CAE88A4A2975E43000AEB5B0 /* ZombieMob.swift */,
-				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
-				CA23AE5A29514D69003DC26D /* Tile.swift */,
+				91355ACB293AF17100907610 /* Mob Data */,
+				CA17474629A9456000B81EF8 /* Mob Functions */,
+				CA17474529A9453600B81EF8 /* World */,
+				CA17474429A9451500B81EF8 /* Display */,
 			);
-			path = "Mission Components";
+			path = "Outside Mode";
 			sourceTree = "<group>";
 		};
 		CACCD57A298C8C30005BE6DE /* Testing */ = {
@@ -408,22 +475,23 @@
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
-				CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */,
+				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,
 				CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */,
-				CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */,
+				CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */,
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
 				9157BE38294AA939002C6E4F /* Knight.swift in Sources */,
 				CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */,
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
+				CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */,
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
-				CA48C74C298387E200106B97 /* Mob.swift in Sources */,
+				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
 				91355A99293AEE4700907610 /* ContentView.swift in Sources */,
 				91355AD0293AF34000907610 /* Battle.swift in Sources */,
 				91355AC7293AEE6A00907610 /* Checker.swift in Sources */,
@@ -607,7 +675,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
@@ -653,7 +721,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";

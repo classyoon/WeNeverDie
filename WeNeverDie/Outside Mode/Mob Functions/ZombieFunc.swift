@@ -56,7 +56,8 @@ extension Board {
             for c in safeNum(c: returnCoord.col-1)...safeNum(c: returnCoord.col+1) {
                 if let nearbyPiece = board[r][c]{
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
-                        board[r][c]?.health -= zombie.damage; //print("I am in range to attack.")
+                        board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
+                        //zomSound?.prepareToPlay()
                         return returnCoord
                     }
                 }

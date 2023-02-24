@@ -24,7 +24,9 @@ let dismalSong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other
 let shadowSong = Bundle.main.url(forResource: "Anno Domini Beats | Shadows", withExtension: "mp3")
 
 let musicPlayer = try? AVAudioPlayer(contentsOf: kurtSong!)
-//var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
+var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
+
+
 
 //let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
@@ -50,18 +52,26 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 4
-    let colMax: Int = 4
+    let rowMax: Int = 5
+    let colMax: Int = 5
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
-
- 
+    
+    
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
         let maxPercent = percent+varience
         return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
     }
-    
+    //    func loadSoundEffect() {
+    //        let soundURL = Bundle.main.url(forResource: "zombie_attack", withExtension: "m4a")!
+    //        do {
+    //            zombieAttackSound = try AVAudioPlayer(contentsOf: soundURL)
+    //        } catch {
+    //            print("Failed to load sound effect: \(error)")
+    //        }
+    //    }
+    //    
     func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
         print(board)
         let trees = randomCountFromPercent(trees)
@@ -105,16 +115,16 @@ class Board : ObservableObject, BoardProtocol {
                 numberAdded += 1
                 tempTerrain[Random.row][Random.col].setTileBonuses()
             }
-           
+            
             
             counter+=1
         }
         print(tempTerrain)
         return tempTerrain
     }
- 
+    
     func randomLoc() -> Coord{
- 
+        
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
         print("checking \(ranR), \(ranC)")
         while board[ranR][ranC] != nil {
@@ -131,7 +141,7 @@ class Board : ObservableObject, BoardProtocol {
             counter+=1
         }
     }
-//    var survivorList = [playerUnit(name: "Steve", board: self),  playerUnit(name: "Jobs", board: self)]
+    //    var survivorList = [playerUnit(name: "Steve", board: self),  playerUnit(name: "Jobs", board: self)]
     
     func spawnPlayers(_ amount: Int) {
         var counter = 0
@@ -139,9 +149,9 @@ class Board : ObservableObject, BoardProtocol {
         var c = 0
         
         while counter < amount {
-//            if counter <= amount {
-//                break
-//            }
+            //            if counter <= amount {
+            //                break
+            //            }
             while r < safeNum(r: 3) {
                 while c < safeNum(c: 3) {
                     
@@ -150,7 +160,7 @@ class Board : ObservableObject, BoardProtocol {
                     }
                     set(moveable: playerUnit(name: namesSurvivors[counter], board: self), Coord: Coord(r, c))
                     
-//                    print("\(r), \(c) spawn : \(counter)")
+                    //                    print("\(r), \(c) spawn : \(counter)")
                     counter += 1
                     c += 1
                 }
@@ -162,24 +172,24 @@ class Board : ObservableObject, BoardProtocol {
             }
         }
     }
-   
+    
     func generateBoard(_ players : Int){
         missionUnderWay = true
-    
+        
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.2, water: 0.1, exit : bottemRight)
         print("Terrain generated, generating players")
         spawnPlayers(players)
-//        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
+        //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         print("Players generated, generating zombies")
-       spawnZombies(3)
-//        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
+        spawnZombies(3)
+        //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(players : Int){
-
-       generateBoard(players)
-       // spawnPlayers(3)
-//
+        
+        generateBoard(players)
+        // spawnPlayers(3)
+        //
     }
 }
