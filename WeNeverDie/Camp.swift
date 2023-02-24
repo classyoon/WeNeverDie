@@ -6,27 +6,26 @@
 //
 
 import SwiftUI
-class Camp : ObservableObject {
-    @Published var SurvivorList : [any Piece] = []
-    let field : Board
-    
-    init(field : Board) {
-        self.field = field
-        self.SurvivorList = []
-    }
-    
-    
-    
-    
-    
-}
+//class Camp : ObservableObject {
+//    @Published var SurvivorList : [any Piece] = []
+//    let field : Board
+//
+//    init(field : Board) {
+//        self.field = field
+//        self.SurvivorList = []
+//    }
+//
+//
+//
+//
+//
+//}
 
 struct CampView: View {
     
     
     @Binding var showBoard : Bool
     @ObservedObject var GameData : ResourcePool
-    @ObservedObject var vm : Camp
     @State var ResetGame = false
     @State var surivorsSentOnMission : Int
     func starvationText()->String{
@@ -101,12 +100,14 @@ struct CampView: View {
                 GameData.death ?
                 VStack{
                     Text("Dead")
-                        .font(.title)
-                    Button("Reset (Does Absolutely Nothing)"){
-                        ResetGame = true
-                    }
+                        .font(.title).foregroundColor(Color.black)
+                        .colorScheme(.dark)
+                    Button("Reset (Does Absolutely Nothing, exit to reset)"){
+                        GameData.ResetGame = true
+                       
+                                            }
                 }.padding()
-                    .background(.white)
+                        .background(Color.white)
                     .cornerRadius(20)
                     .shadow(radius: 10)
                 : nil
@@ -117,16 +118,19 @@ struct CampView: View {
                     Text("You Win!!!")
                         .font(.title)
                     Text(" You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! ").font(.body)
-                    Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
+                    //Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
                     HStack{
-                        Button("Reset"){
+                        Button("Reset <-(Still broken)"){
+                            print("Before reset \(GameData.foodResource)")
                             GameData.ResetGame = true
+                            print("Attempted reset \(GameData.foodResource)")
                         }
                         Button("Continue"){
                             GameData.victory = false
                         }
                     }
-                }.padding()
+                }.foregroundColor(Color.black)
+                    .colorScheme(.dark).padding()
                     .background(.white)
                     .cornerRadius(20)
                     .shadow(radius: 10)
@@ -139,6 +143,6 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), vm: Camp(field: Board(players: 3)), surivorsSentOnMission:  0)
+        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission:  0)
     }
 }

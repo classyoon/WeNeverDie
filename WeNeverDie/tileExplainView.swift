@@ -26,6 +26,30 @@ struct enemyView : View {
         }
     }
 }
+struct waterExplainView: View {
+  
+    var body: some View {
+        ScrollView{
+            VStack{
+                Image("water").resizable().frame(width: 300, height: 300).padding()
+                 Text("This is water/any kind of difficult terrain. This terrain will take 2 stamina than one to traverse. It should be rare to see this as the zombie path finding isn't advanced enough to deal with it.")
+                Text("That is all survivor. Good luck out there to you and your friends. Here is a cool tune to listen to.")
+                Button {
+                    if musicPlayer?.isPlaying == true {
+                        musicPlayer?.pause()
+                    } else {
+                        musicPlayer?.play()
+                    }
+                } label: {
+                    Text(musicPlayer?.isPlaying == true ? "Pause" : "Play Song")
+                }
+
+
+            }
+        }
+    }
+    
+}
 struct tileExplainView: View {
     var body: some View {
         ScrollView{
@@ -42,6 +66,8 @@ struct tileExplainView: View {
                     Image("escape").resizable()
                 }.frame(width: 300, height: 300).padding()
                 Text("This is your means of returning to camp. Get your survivors to it once you are satisfied with your haul, or if things get too dicy. If all of the survivors you sent outside were killed, you (should because this is beta) get nothing.")
+                waterExplainView()
+           
             }.padding()
         }
     }

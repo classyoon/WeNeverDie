@@ -12,7 +12,6 @@ import SwiftUI
 
 struct GameView : View {
     @State var gameData = ResourcePool(surviors: 3, food: 10)
-    @StateObject var camp  = Camp(field: Board(players: 3))
     @StateObject var board  = Board(players: 0)
 
     @State var showBoard = false
@@ -28,7 +27,13 @@ struct GameView : View {
                     
                 }
                 else {
-                    CampView(showBoard: $showBoard, GameData: gameData, vm: camp, surivorsSentOnMission: gameData.survivorSent)
+                    CampView(showBoard: $showBoard, GameData: gameData, surivorsSentOnMission: gameData.survivorSent).onChange(of: gameData.ResetGame) { newValue in
+                        if newValue {
+                            gameData = ResourcePool(surviors: 3, food: 10)
+                            print("Zuwardo")
+
+                        }
+                    }
                 }
             }
         }.onChange(of: showBoard) { newValue in
@@ -37,12 +42,7 @@ struct GameView : View {
                 
             }
         }
-        .onChange(of: gameData.ResetGame) { newValue in
-            if newValue {
-                gameData = ResourcePool(surviors: 3, food: 10)
-
-            }
-        }
+        
         
     }
 }

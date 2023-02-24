@@ -82,11 +82,11 @@ struct BoardView: View {
                     !vm.missionUnderWay ?
                     VStack{
                         Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource+food)")
-                            .font(.title)
+                            .font(.title).foregroundColor(Color.black)
                         Button {
                             showBoard = false
                             GameData.foodResource += food
-                            musicPlayer?.stop()
+                            //musicPlayer?.stop()
                             
                             
                             //GameData.foodResource -= GameData.survivorNumber
@@ -191,6 +191,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(showBoard: Binding.constant(true), vm: Board(players: 3), GameData: Binding.constant(ResourcePool(surviors: 3, food: 10)))
+        BoardView(showBoard: Binding.constant(false), vm: Board(players: 3), GameData: Binding.constant(ResourcePool(surviors: 3, food: 10)))
     }
 }
