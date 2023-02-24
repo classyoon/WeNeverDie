@@ -83,7 +83,35 @@ struct BoardView: View {
                         }
                     }
                     .id(vm.turn)
-                }
+                }.overlay{
+                    !vm.missionUnderWay ?
+                    VStack{
+                        Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource+food)")
+                            .font(.title).foregroundColor(Color.black)
+                        Button {
+                            showBoard = false
+                            GameData.foodResource += food
+                            //musicPlayer?.stop()
+                            
+                            
+                            //GameData.foodResource -= GameData.survivorNumber
+                            GameData.WinProgress+=(GameData.survivorNumber-GameData.survivorSent)
+                            
+                            GameData.survivorSent = 0
+                            GameData.survivorNumber -= vm.UnitsDied
+//                            GameData.passDay()
+                        } label: {
+                            Text("Back to Camp")
+                        }.buttonStyle(.borderedProminent)
+                        
+                    }.padding()
+                        .background(.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                    : nil
+                    
+                }.padding()
+                Spacer()
             }
             .frame(maxHeight: .infinity)
                   .padding(.horizontal)
