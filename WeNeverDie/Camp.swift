@@ -58,6 +58,15 @@ struct CampView: View {
                     Text("Tutorial")
                 }
                
+                Button {
+                    if musicPlayer?.isPlaying == true {
+                        musicPlayer?.pause()
+                    } else {
+                        musicPlayer?.play()
+                    }
+                } label: {
+                    Text(musicPlayer?.isPlaying == true ? "Pause" : "Play Song")
+                }
 
                //                "Music"
                     
@@ -103,7 +112,7 @@ struct CampView: View {
                     Text("Dead")
                         .font(.title).foregroundColor(Color.black)
                         .colorScheme(.dark)
-                    Button("Reset (Does Absolutely Nothing, exit to reset)"){
+                    Button("Exit to reset"){
                         GameData.ResetGame = true
                        
                                             }
@@ -114,19 +123,19 @@ struct CampView: View {
                 : nil
             }
             .overlay{
-                GameData.victory ?
+                (GameData.victory && GameData.AlreadyWon) ?
                 VStack{
-                    Text("You Win!!!")
+                    Text("You have won the demo")
                         .font(.title)
-                    Text(" You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! ").font(.body)
+                    Text("You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! Tell me about the bugs if you encountered any..").font(.body)
                     //Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
                     HStack{
-                        Button("Reset <-(Still broken)"){
-                            print("Before reset \(GameData.foodResource)")
-                            GameData.ResetGame = true
-                            print("Attempted reset \(GameData.foodResource)")
-                        }
-                        Button("Continue"){
+//                        Button("Reset <-(Still broken)"){
+//                            print("Before reset \(GameData.foodResource)")
+//                            GameData.ResetGame = true
+//                            print("Attempted reset \(GameData.foodResource)")
+//                        }
+                        Button("Continue (If you would like)"){
                             GameData.victory = false
                         }
                     }

@@ -61,7 +61,7 @@ var isPlayerUnit = true
     }
     
     func getView() -> AnyView {
-        AnyView(Image("SurvivorW")
+        AnyView(Image("SurvivorY")
             .resizable()
             .scaledToFit()
                 

@@ -22,15 +22,15 @@ class ResourcePool : ObservableObject {
               }
           }
       }
-    
+    @Published var AlreadyWon = false
     @Published var ResetGame = false
     @Published var sent = false
     @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var starving = false
-    @Published var death = true
+    @Published var death = false
     @Published var WinCondition = 30
-    @Published var victory = true
+    @Published var victory = false
     @Published var WinProgress = 0
     @Published var days = 0
     let starvationAmount = 0
@@ -49,6 +49,7 @@ class ResourcePool : ObservableObject {
                 progressToDeath -= 1
             }
         } else {
+            foodResource = starvationAmount //
             starving = true
             print("starving")
             progressToDeath += 1
@@ -65,7 +66,7 @@ class ResourcePool : ObservableObject {
 //        else{
 //            WinProgress-=1
 //        }
-        if WinProgress >= WinCondition {
+        if WinProgress >= WinCondition && AlreadyWon == false {
             victory = true
         }
     }
@@ -81,8 +82,8 @@ class ResourcePool : ObservableObject {
             print("Perform calc first")
             print("New Food \(foodResource)")
             foodResource-=survivorNumber
-            checkForDefeat()
             calcWinProgress()
+            checkForDefeat()
         }
     }
 }

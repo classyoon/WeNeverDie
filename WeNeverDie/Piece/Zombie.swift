@@ -14,7 +14,7 @@ struct Zombie: Piece, Equatable {
     var isPlayerUnit = false
     var isHidden = false
     var health = 10
-    var damage = 0
+    var damage = 3
     @State var alert = false
     
     var isSelected = false
@@ -46,7 +46,7 @@ struct Zombie: Piece, Equatable {
     }
     
     func getView() -> AnyView {
-        return AnyView(Image(alert ? "AgroZombie" : "Zombie")
+        return AnyView(Image(alert ? "AgroZombie" : "SZombie")
             .resizable()
             .scaledToFit()
                 
