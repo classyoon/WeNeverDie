@@ -7,6 +7,26 @@
 
 import SwiftUI
 
+struct TileType {
+    var name = "g"
+    var loot = 0
+    var movementPenalty = 0
+    var houseLoot = 2
+    var waterPenalty = 1
+    
+    
+    mutating func setTileBonuses(){
+        switch name {
+        case "h":
+            loot += houseLoot
+        case "w":
+            movementPenalty += waterPenalty
+        default :
+            _ = 0
+        }
+    }
+    
+}
 
 struct Tile2: View {
     var image: String

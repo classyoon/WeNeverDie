@@ -16,17 +16,20 @@ class ResourcePool : ObservableObject {
           didSet {
               if survivorSent > 0 {
                   sent = true
+                  //musicPlayer?.play()
               } else {
                   sent = false
               }
           }
       }
+    
+    @Published var ResetGame = false
     @Published var sent = false
     @Published var deathRequirement : Int = 1 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var starving = false
     @Published var death = false
-    @Published var WinCondition = 10
+    @Published var WinCondition = 30
     @Published var victory = false
     @Published var WinProgress = 0
     @Published var days = 0

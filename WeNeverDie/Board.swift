@@ -12,32 +12,16 @@ protocol BoardProtocol {
     var colMax: Int { get }
     func getCoord(of moveable: any Moveable) -> Coord?
 }
-struct TileType {
-    var name = "g"
-    var loot = 0
-    var movementPenalty = 0
-    var houseLoot = 2
-    var waterPenalty = 1
-    
-    
-    mutating func setTileBonuses(){
-        switch name {
-        case "h":
-            loot += houseLoot
-        case "w":
-            movementPenalty += waterPenalty
-        default :
-            _ = 0
-        }
-    }
-    
-}
+
 import AVFoundation
 
-// Load the music file
-let musicUrl = Bundle.main.url(forResource: "myMusic", withExtension: "mp3")
-let musicPlayer = try? AVAudioPlayer(contentsOf: musicUrl!)
 
+// Load the music file
+let musicUrl = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")
+let musicPlayer = try? AVAudioPlayer(contentsOf: musicUrl!)
+var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
+
+//let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
 
 class Board : ObservableObject, BoardProtocol {
@@ -45,7 +29,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var showBoard = true
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
-    @Published var missionUnderWay = true
+    @Published var missionUnderWay = false
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
@@ -61,13 +45,12 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 3
-    let colMax: Int = 2
-   
+    let rowMax: Int = 5
+    let colMax: Int = 5
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
 
-    
+ 
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
         let maxPercent = percent+varience
@@ -177,6 +160,7 @@ class Board : ObservableObject, BoardProtocol {
    
     func generateBoard(_ players : Int){
         missionUnderWay = true
+    
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.0, exit : bottemRight)
@@ -184,12 +168,13 @@ class Board : ObservableObject, BoardProtocol {
         spawnPlayers(players)
 //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         print("Players generated, generating zombies")
-       spawnZombies(3)
+       spawnZombies(1)
 //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(players : Int){
 
        generateBoard(players)
        // spawnPlayers(3)
+//
     }
 }

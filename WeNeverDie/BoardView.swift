@@ -70,6 +70,7 @@ struct BoardView: View {
                                         }
                                         withAnimation(.easeOut.delay(1)){
                                             vm.checkEndMission()
+                                        
                                         }
                                     }
                                 }
@@ -85,6 +86,8 @@ struct BoardView: View {
                         Button {
                             showBoard = false
                             GameData.foodResource += food
+                            musicPlayer?.stop()
+                            
                             
                             //GameData.foodResource -= GameData.survivorNumber
                             GameData.WinProgress+=(GameData.survivorNumber-GameData.survivorSent)
@@ -165,6 +168,7 @@ struct BoardView: View {
                 Button {
                     withAnimation{vm.nextTurn()}
                     vm.turn = UUID()
+                    
                 } label: {
                    
                         Text("Next Turn").foregroundColor(Color.white)

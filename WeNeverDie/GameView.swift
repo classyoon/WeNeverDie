@@ -17,7 +17,7 @@ struct GameView : View {
 
     @State var showBoard = false
     @State var playerNumber = 3
-    
+
     
     
     var body: some View {
@@ -34,8 +34,16 @@ struct GameView : View {
         }.onChange(of: showBoard) { newValue in
             if newValue {
                 board.generateBoard(gameData.survivorNumber)
+                
             }
         }
+        .onChange(of: gameData.ResetGame) { newValue in
+            if newValue {
+                gameData = ResourcePool(surviors: 3, food: 10)
+
+            }
+        }
+        
     }
 }
 

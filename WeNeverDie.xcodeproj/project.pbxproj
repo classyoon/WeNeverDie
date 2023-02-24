@@ -29,6 +29,9 @@
 		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* Mob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* Mob.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
+		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
+		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
+		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -82,6 +85,9 @@
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* Mob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mob.swift; sourceTree = "<group>"; };
 		CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardFunctions.swift; sourceTree = "<group>"; };
+		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
+		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
@@ -150,11 +156,14 @@
 				91355AD1293AF5FE00907610 /* CoreData */,
 				CACCD579298C8C10005BE6DE /* Mission Components */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
+				CA744D3029A83D5B00F40B4F /* Settings.swift */,
 				CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */,
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
+				CA744D2C29A8113E00F40B4F /* TutorialView.swift */,
+				CA744D2E29A82C6300F40B4F /* tileExplainView.swift */,
 				CACCD57A298C8C30005BE6DE /* Testing */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* WeNeverDie.entitlements */,
@@ -382,6 +391,7 @@
 			files = (
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
+				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieMob.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
@@ -391,6 +401,7 @@
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerMob.swift in Sources */,
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
 				9157BE38294AA939002C6E4F /* Knight.swift in Sources */,
+				CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */,
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
@@ -400,6 +411,7 @@
 				91355A99293AEE4700907610 /* ContentView.swift in Sources */,
 				91355AD0293AF34000907610 /* Battle.swift in Sources */,
 				91355AC7293AEE6A00907610 /* Checker.swift in Sources */,
+				CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */,
 				CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */,
 				91355A94293AEE4700907610 /* Persistence.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
