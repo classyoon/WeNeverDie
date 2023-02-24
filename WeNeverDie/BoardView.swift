@@ -86,7 +86,7 @@ struct BoardView: View {
                         Button {
                             showBoard = false
                             GameData.foodResource += food
-                            musicPlayer?.stop()
+                            //musicPlayer?.stop()
                             
                             
                             //GameData.foodResource -= GameData.survivorNumber

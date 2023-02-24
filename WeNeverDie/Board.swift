@@ -19,7 +19,7 @@ import AVFoundation
 // Load the music file
 let musicUrl = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")
 let musicPlayer = try? AVAudioPlayer(contentsOf: musicUrl!)
-var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
+//var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
 
 //let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
@@ -45,8 +45,8 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 5
-    let colMax: Int = 5
+    let rowMax: Int = 4
+    let colMax: Int = 4
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
 
@@ -163,12 +163,12 @@ class Board : ObservableObject, BoardProtocol {
     
         board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
         let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.2, water: 0.0, exit : bottemRight)
+        terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.2, water: 0.1, exit : bottemRight)
         print("Terrain generated, generating players")
         spawnPlayers(players)
 //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         print("Players generated, generating zombies")
-       spawnZombies(1)
+       spawnZombies(3)
 //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(players : Int){
