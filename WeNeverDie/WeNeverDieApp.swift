@@ -14,11 +14,9 @@ struct WeNeverDieApp: App {
     var body: some Scene {
     
         WindowGroup {
-//            ZStack{
-//                TestMerge()
+
                GameView()
-                //    changeScene().environment(\.managedObjectContext, persistenceController.container.viewContext)
-            //}
+            //DeviceRotationViewTest()
         }
     }
 }

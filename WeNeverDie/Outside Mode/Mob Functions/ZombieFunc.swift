@@ -21,8 +21,8 @@ extension Board {
 
             }
         }
-        if thingSighted==false {
-            targetLoc=seekerLoc
+        if thingSighted == false {
+            targetLoc = seekerLoc
         }
 
         print("Target sighted = \(zombie.alert)")
@@ -58,7 +58,9 @@ extension Board {
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
                         board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
                         //zomSound?.prepareToPlay()
+                        
                         return returnCoord
+                        
                     }
                 }
             }
@@ -89,6 +91,7 @@ extension Board {
         moveCost = terrainBoard[ranRow][ranRow].movementPenalty
         if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
             //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
+            zombie.alert = false
             return Coord(row: ranRow, col: ranCol)
         }
         else{

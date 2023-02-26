@@ -10,6 +10,7 @@ var soundPlayer: AVAudioPlayer!
 
 
 struct BoardView: View {
+    @State private var orientation = UIDeviceOrientation.unknown
     @State var selectedStats = ""
     @Binding var showBoard : Bool
     @State var food = 0
@@ -42,7 +43,21 @@ struct BoardView: View {
     //    @EnvironmentObject var navManager : NavManager
     var body: some View {
         
-        HStack(spacing: 0) {
+        Group {
+            if orientation.isPortrait {
+                portraitBoard
+            } else if orientation.isLandscape {
+                landscapeBoard
+            } else {
+                landscapeBoard
+            }
+        }
+        .onRotate { newOrientation in
+            orientation = newOrientation
+        }
+    }
+    var portraitBoard: some View {
+        VStack(spacing: 0) {
             
             Spacer()
             GeometryReader { geo in
@@ -50,35 +65,35 @@ struct BoardView: View {
                     VStack(spacing: 0) {
                         ForEach(0..<vm.rowMax, id: \.self) { row in
                             //ScrollView{
-                                HStack(spacing: 0) {
-                                    ForEach(0..<vm.colMax, id: \.self) { col in
-                                        ZStack {
-                                            getTileAppearance(row: row, col: col)
-                                            Group {
-                                                if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
-                                                    RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
-                                                }
-                                                if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
-                                                    Circle().fill(Color.white.opacity(0.3)).padding()
-                                                }
+                            HStack(spacing: 0) {
+                                ForEach(0..<vm.colMax, id: \.self) { col in
+                                    ZStack {
+                                        getTileAppearance(row: row, col: col)
+                                        Group {
+                                            if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
+                                                RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
                                             }
-                                            if let piece = vm.board[row][col] {
-                                                pieceDisplay(piece: piece, nameSpace: nameSpace)
+                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
+                                                Circle().fill(Color.white.opacity(0.3)).padding()
                                             }
                                         }
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                vm.handleTap(tapRow: row, tapCol: col)
-                                            }
-                                            withAnimation(.easeOut.delay(1)) {
-                                                vm.checkEndMission()
-                                            }
+                                        if let piece = vm.board[row][col] {
+                                            pieceDisplay(piece: piece, nameSpace: nameSpace)
+                                        }
+                                    }
+                                    .aspectRatio(1, contentMode: .fit)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            vm.handleTap(tapRow: row, tapCol: col)
+                                        }
+                                        withAnimation(.easeOut.delay(1)) {
+                                            vm.checkEndMission()
                                         }
                                     }
                                 }
-                                .frame(maxHeight: .infinity)
-                                .padding(.horizontal)
+                            }
+                            .frame(maxHeight: .infinity)
+                            .padding(.horizontal)
                             //}
                         }
                     }
@@ -99,7 +114,7 @@ struct BoardView: View {
                             
                             GameData.survivorSent = 0
                             GameData.survivorNumber -= vm.UnitsDied
-//                            GameData.passDay()
+                            //                            GameData.passDay()
                         } label: {
                             Text("Back to Camp")
                         }.buttonStyle(.borderedProminent)
@@ -114,20 +129,104 @@ struct BoardView: View {
                 Spacer()
             }
             .frame(maxHeight: .infinity)
-                  .padding(.horizontal)
-                  .background(Color.white)
-                  .shadow(radius: 10)
-//                  .overlay(
-//                      statusView
-//                          .frame(width: 500, height: 100)
-//                          .padding(),
-//                      alignment: .bottom
-//                  )
+            .padding(.horizontal)
+            .background(Color.white)
+            .shadow(radius: 10)
+            //                  .overlay(
+            //                      statusView
+            //                          .frame(width: 500, height: 100)
+            //                          .padding(),
+            //                      alignment: .bottom
+            //                  )
+            statusView.frame(width: 200)
+        }
+        .background(Color.gray)    }
+    var landscapeBoard: some View {
+        HStack(spacing: 0) {
+            
+            Spacer()
+            GeometryReader { geo in
+                ScrollView{
+                    VStack(spacing: 0) {
+                        ForEach(0..<vm.rowMax, id: \.self) { row in
+                            //ScrollView{
+                            HStack(spacing: 0) {
+                                ForEach(0..<vm.colMax, id: \.self) { col in
+                                    ZStack {
+                                        getTileAppearance(row: row, col: col)
+                                        Group {
+                                            if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
+                                                RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
+                                            }
+                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
+                                                Circle().fill(Color.white.opacity(0.3)).padding()
+                                            }
+                                        }
+                                        if let piece = vm.board[row][col] {
+                                            pieceDisplay(piece: piece, nameSpace: nameSpace)
+                                        }
+                                    }
+                                    .aspectRatio(1, contentMode: .fit)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            vm.handleTap(tapRow: row, tapCol: col)
+                                        }
+                                        withAnimation(.easeOut.delay(1)) {
+                                            vm.checkEndMission()
+                                        }
+                                    }
+                                }
+                            }
+                            .frame(maxHeight: .infinity)
+                            .padding(.horizontal)
+                            //}
+                        }
+                    }
+                    .id(vm.turn)
+                }.overlay{
+                    !vm.missionUnderWay ?
+                    VStack{
+                        Text("End Mission : Gathered \(food) rations, total food for the day should be \(GameData.foodResource+food)")
+                            .font(.title).foregroundColor(Color.black)
+                        Button {
+                            showBoard = false
+                            GameData.foodResource += food
+                            //musicPlayer?.stop()
+                            
+                            
+                            //GameData.foodResource -= GameData.survivorNumber
+                            GameData.WinProgress+=(GameData.survivorNumber-GameData.survivorSent)
+                            
+                            GameData.survivorSent = 0
+                            GameData.survivorNumber -= vm.UnitsDied
+                            //                            GameData.passDay()
+                        } label: {
+                            Text("Back to Camp")
+                        }.buttonStyle(.borderedProminent)
+                        
+                    }.padding()
+                        .background(.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                    : nil
+                    
+                }.padding()
+                Spacer()
+            }
+            .frame(maxHeight: .infinity)
+            .padding(.horizontal)
+            .background(Color.white)
+            .shadow(radius: 10)
+            //                  .overlay(
+            //                      statusView
+            //                          .frame(width: 500, height: 100)
+            //                          .padding(),
+            //                      alignment: .bottom
+            //                  )
             statusView.frame(width: 200)
         }
         .background(Color.gray)
     }
-    
     
     func searchLocation(){
         if var selected = vm.selectedUnit {
@@ -152,7 +251,7 @@ struct BoardView: View {
     var statusView: some View {
         VStack{
             //            Text("Objective : We're running low on food today in the apocalypse. We are still working on the farms. You should grab enough food to feed yourselves. If you see any red roof houses, you should search them. Hide in the brown if you get overwhelmed by the undead.")
-//            Text(weaponry ? "Collected enough food for \(food) people" : "")
+            //            Text(weaponry ? "Collected enough food for \(food) people" : "")
             Text("Food collected : \(food)")
             //            Group{
             //                if let loc = vm.highlightSquare {
@@ -170,11 +269,11 @@ struct BoardView: View {
                 } label: {
                     Text("Search")
                 }
-//                Button {
-//                    weaponry.toggle()
-//                } label: {
-//                    Text("Inventory")
-//                }
+                //                Button {
+                //                    weaponry.toggle()
+                //                } label: {
+                //                    Text("Inventory")
+                //                }
                 
             }
             //Spacer()

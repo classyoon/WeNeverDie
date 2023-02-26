@@ -15,7 +15,7 @@ struct Zombie: Piece, Equatable {
     var isHidden = false
     var health = 10
     var damage = 3
-    @State var alert = false
+    var alert = false
     
     var isSelected = false
     var movementCount = 0
