@@ -26,6 +26,7 @@ struct BoardView: View {
     var body: some View {
         landscapeBoard
     }
+
     
     var landscapeBoard: some View {
         HStack(spacing: 0) {
