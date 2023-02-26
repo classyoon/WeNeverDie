@@ -60,13 +60,9 @@ var isPlayerUnit = true
         movementCount < stamina ? true : false
     }
     
-    func getView() -> AnyView {
-        AnyView(Image("SurvivorY")
-            .resizable()
-            .scaledToFit()
-                
-        )
-        
+    func getView() -> Image {
+        Image("SurvivorY")
+           
     }
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")

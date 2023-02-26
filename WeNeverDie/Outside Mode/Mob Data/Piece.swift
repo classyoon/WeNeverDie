@@ -96,7 +96,7 @@ extension Moveable {
 }
 
 protocol Displayable {
-    func getView()-> AnyView
+    func getView()-> Image
 }
 
 typealias Vector = Coord

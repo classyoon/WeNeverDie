@@ -38,6 +38,7 @@
 		CA744D3729A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */; };
 		CA744D3929A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */; };
 		CA90F82229AAF03D00AD34E9 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82129AAF03D00AD34E9 /* DeviceRotationViewModifier.swift */; };
+		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -102,6 +103,7 @@
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 		CA90F82129AAF03D00AD34E9 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
+		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */,
 				CA90F82129AAF03D00AD34E9 /* DeviceRotationViewModifier.swift */,
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
 			);
@@ -493,6 +496,7 @@
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
+				CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
 				91355A99293AEE4700907610 /* ContentView.swift in Sources */,

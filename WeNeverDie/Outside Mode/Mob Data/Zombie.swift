@@ -45,13 +45,8 @@ struct Zombie: Piece, Equatable {
         
     }
     
-    func getView() -> AnyView {
-        return AnyView(Image(alert ? "AgroZombie" : "SZombie")
-            .resizable()
-            .scaledToFit()
-                
-        )
-        
+    func getView() -> Image {
+        Image(alert ? "AgroZombie" : "SZombie")
     }
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")

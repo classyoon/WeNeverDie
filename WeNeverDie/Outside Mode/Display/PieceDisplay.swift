@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct pieceDisplay: View {
+struct PieceDisplay: View {
     @State var piece : any Piece
     @State var id = UUID()
     var nameSpace : Namespace.ID
     var body: some View {
         VStack{
-            piece.getView().matchedGeometryEffect(id: "\(piece.id) view", in: nameSpace)
+            piece.getView()
+                .resizable()
+                .scaledToFit()
             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)").matchedGeometryEffect(id:"\(piece.id) text", in: nameSpace).padding(1)
                 .foregroundColor(.black)
                 .background(.white)
