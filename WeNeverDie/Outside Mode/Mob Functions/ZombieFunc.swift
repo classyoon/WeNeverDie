@@ -23,6 +23,8 @@ extension Board {
         }
         if thingSighted == false {
             targetLoc = seekerLoc
+            zombie.alert = false
+
         }
 
         print("Target sighted = \(zombie.alert)")
@@ -58,7 +60,8 @@ extension Board {
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
                         board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
                         //zomSound?.prepareToPlay()
-                        
+                        zombie.alert = true
+
                         return returnCoord
                         
                     }
@@ -69,15 +72,20 @@ extension Board {
         var directionText = "" //Allows for debugging printing
         if distance.RowD > 0 {
             returnCoord.row+=1; directionText+="Down "
+            zombie.alert = true
+
         }
         else if distance.RowD < 0 {
             returnCoord.row-=1; directionText+="Up "
+            zombie.alert = true
         }
         if distance.ColD < 0 {
             returnCoord.col-=1; directionText+="Left"
+            zombie.alert = true
         }
         else if distance.ColD > 0 {
             returnCoord.col+=1; directionText+="Right"
+            zombie.alert = true
         }
 
         var moveCost = terrainBoard[returnCoord.row][returnCoord.col].movementPenalty
@@ -96,6 +104,7 @@ extension Board {
         }
         else{
             //print("I remain at \(distance.seekerCoord)")
+            zombie.alert = false
             return distance.seekerCoord
         }
     }
