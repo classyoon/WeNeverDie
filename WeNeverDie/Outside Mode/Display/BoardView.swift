@@ -17,18 +17,25 @@ struct BoardView: View {
     @State var weaponry = true
     @State var talk = true
     
-//    @Namespace var nameSpace : Namespace.ID
+    //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @Binding var GameData : ResourcePool
     @State var people = 2
-
-
-    var body: some View {
-        landscapeBoard
-    }
-
     
-    var landscapeBoard: some View {
+    
+    var body: some View {
+        boardView
+            .overlay{
+                !vm.missionUnderWay ?
+                ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied)
+                : nil
+                
+            }.padding()
+
+    }
+    
+    
+    var boardView: some View {
         HStack(spacing: 0) {
             
             Spacer()
@@ -36,7 +43,6 @@ struct BoardView: View {
                 ScrollView{
                     VStack(spacing: 0) {
                         ForEach(0..<vm.rowMax, id: \.self) { row in
-                           
                             HStack(spacing: 0) {
                                 ForEach(0..<vm.colMax, id: \.self) { col in
                                     TilePieceDisplay(row: row, col: col, vm: vm)
@@ -44,28 +50,13 @@ struct BoardView: View {
                             }
                             .frame(maxHeight: .infinity)
                             .padding(.horizontal)
-                  
                         }
                     }
                     .id(vm.turn)
-                }.overlay{
-                    !vm.missionUnderWay ?
-                    ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied)
-                    : nil
-                    
-                }.padding()
-                Spacer()
+                }
             }
             .frame(maxHeight: .infinity)
             .padding(.horizontal)
-            .background(Color.white)
-            .shadow(radius: 10)
-            //                  .overlay(
-            //                      statusView
-            //                          .frame(width: 500, height: 100)
-            //                          .padding(),
-            //                      alignment: .bottom
-            //                  )
             statusView.frame(width: 200)
         }
         .background(Color.gray)

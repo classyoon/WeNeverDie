@@ -22,7 +22,7 @@ var isPlayerUnit = true
     var movementCount = 0
     var alert = false
     var facing: Direction = .down
-    let stamina = 2
+    let stamina = 10
     
     var id = UUID()
     

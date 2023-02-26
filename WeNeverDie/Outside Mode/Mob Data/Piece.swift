@@ -86,6 +86,8 @@ extension Moveable {
             col = -col
         case .right:
             break
+        default:
+            break
         }
         return Vector(row: row, col: col) + Coord
     }
@@ -100,9 +102,7 @@ protocol Displayable {
 }
 
 typealias Vector = Coord
-enum Direction {
-    case up, down, left, right
-}
+
 func +(lhs: Coord, rhs: Coord) -> Coord {
     let r = lhs.row + rhs.row
     let c = lhs.col + rhs.col

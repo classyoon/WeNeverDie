@@ -40,6 +40,7 @@
 		CA90F82229AAF03D00AD34E9 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82129AAF03D00AD34E9 /* DeviceRotationViewModifier.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
+		CA90F82829ABB60400AD34E9 /* PieceRotationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -106,6 +107,7 @@
 		CA90F82129AAF03D00AD34E9 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
+		CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				91355AC5293AEE6A00907610 /* Piece.swift */,
 				91355AC9293AF0E600907610 /* playerUnit.swift */,
+				CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */,
 				CA23AE5C29523977003DC26D /* Zombie.swift */,
 			);
 			path = "Mob Data";
@@ -499,6 +502,7 @@
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
+				CA90F82829ABB60400AD34E9 /* PieceRotationTest.swift in Sources */,
 				CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,

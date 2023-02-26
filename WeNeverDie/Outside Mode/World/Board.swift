@@ -52,8 +52,8 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 5
-    let colMax: Int = 5
+    let rowMax: Int = 3
+    let colMax: Int = 4
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
@@ -63,15 +63,7 @@ class Board : ObservableObject, BoardProtocol {
         let maxPercent = percent+varience
         return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
     }
-    //    func loadSoundEffect() {
-    //        let soundURL = Bundle.main.url(forResource: "zombie_attack", withExtension: "m4a")!
-    //        do {
-    //            zombieAttackSound = try AVAudioPlayer(contentsOf: soundURL)
-    //        } catch {
-    //            print("Failed to load sound effect: \(error)")
-    //        }
-    //    }
-    //    
+
     func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
         print(board)
         let trees = randomCountFromPercent(trees)
@@ -176,7 +168,7 @@ class Board : ObservableObject, BoardProtocol {
     func generateBoard(_ players : Int){
         missionUnderWay = true
         
-        board = Array(repeating: Array(repeating: nil, count: rowMax), count: colMax)
+        board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.2, water: 0.1, exit : bottemRight)
         print("Terrain generated, generating players")
@@ -189,7 +181,5 @@ class Board : ObservableObject, BoardProtocol {
     init(players : Int){
         
         generateBoard(players)
-        // spawnPlayers(3)
-        //
     }
 }
