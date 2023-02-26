@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DefeatView : View {
-    @State var GameData : ResourcePool
+    @ObservedObject var gameData : ResourcePool
     var body: some View {
         
         VStack{
             Text("Dead")
                 .font(.title).foregroundColor(Color.black)
                 .colorScheme(.dark)
-            Button("Exit to reset"){
-                GameData.reset()
+            Button("Reset"){
+                gameData.reset()
                 
             }
         }.padding()
@@ -29,6 +29,6 @@ struct DefeatView : View {
 
 struct DefeatView_Previews: PreviewProvider {
     static var previews: some View {
-        DefeatView(GameData: ResourcePool(surviors: 0, food: 0))
+        DefeatView(gameData: ResourcePool(surviors: 0, food: 0))
     }
 }

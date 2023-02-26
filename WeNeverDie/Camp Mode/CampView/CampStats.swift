@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CampStats : View {
-    @ObservedObject var GameData : ResourcePool
+    @ObservedObject var gameData : ResourcePool
     @Binding var ResetGame : Bool
     @State var surivorsSentOnMission : Int
     @Binding var showBoard : Bool
@@ -19,42 +19,42 @@ struct CampStats : View {
         return false
     }
     func campPassDay(){
-        GameData.passDay()
+        gameData.passDay()
         showBoard = shouldShowMap()
         print(showBoard)
-        print("Sending \(GameData.survivorSent)")
+        print("Sending \(gameData.survivorSent)")
         print("Sent \(surivorsSentOnMission)")
-        GameData.survivorSent = surivorsSentOnMission
+        gameData.survivorSent = surivorsSentOnMission
         print(surivorsSentOnMission)
-        print("Sending \(GameData.survivorSent)")
+        print("Sending \(gameData.survivorSent)")
     }
     func starvationColor()->Color{
-        if GameData.foodResource <= 0{
+        if gameData.foodResource <= 0{
             return Color.red
         }
         return Color.green
     }
     func starvationText()->String{
-        if GameData.starving{
+        if gameData.starving{
             return "We are starving"
         }
         else{
-            return "Estimated left over food for \(GameData.foodResource/GameData.survivorNumber) days, (rations \(GameData.foodResource))"
+            return "Estimated left over food for \(gameData.foodResource/gameData.survivorNumber) days, (rations \(gameData.foodResource))"
         }
     }
     var body: some View {
         VStack{
             
-            Text("\(GameData.days) day(s) since the Beginning")
+            Text("\(gameData.days) day(s) since the Beginning")
             Text("Cure Progress (Keep survivors at home to progress faster.)")
-            ProgressView(value: Double(GameData.WinProgress), total: Double(GameData.WinCondition)).padding()
+            ProgressView(value: Double(gameData.WinProgress), total: Double(gameData.WinCondition)).padding()
             Text("Survive. Get food. Don't die. Make it back to camp.")
             Text(starvationText()).foregroundColor(starvationColor())
             
-            Stepper(value: $surivorsSentOnMission, in: 0...GameData.survivorNumber) {
+            Stepper(value: $surivorsSentOnMission, in: 0...gameData.survivorNumber) {
                 Text("People to send \(surivorsSentOnMission)").padding()
             }
-            Text("Number of people \(GameData.survivorNumber)")
+            Text("Number of people \(gameData.survivorNumber)")
             Button("Pass Day") {
                 campPassDay()
             }
@@ -65,6 +65,6 @@ struct CampStats : View {
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(GameData: ResourcePool(surviors: 2, food: 10), ResetGame: Binding.constant(false), surivorsSentOnMission: 0, showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(surviors: 2, food: 10), ResetGame: Binding.constant(false), surivorsSentOnMission: 0, showBoard: Binding.constant(false))
     }
 }

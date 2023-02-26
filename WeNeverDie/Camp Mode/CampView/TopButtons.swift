@@ -10,11 +10,7 @@ import SwiftUI
 struct TopButtons : View {
     //                "Music"
     
-    //                NavigationLink {
-    //                    Settings()
-    //                } label: {
-    //                    Text("Settings")
-    //                }
+    @ObservedObject var gameData : ResourcePool
     
     //            Text(vm.SurvivorList2[0].function?.name)
     var body: some View {
@@ -24,7 +20,11 @@ struct TopButtons : View {
             } label: {
                 Text("Tutorial")
             }
-            
+            NavigationLink {
+                Settings(gameData: gameData)
+            } label: {
+                Text("Settings")
+            }
             Button {
                 if musicPlayer?.isPlaying == true {
                     musicPlayer?.pause()
@@ -40,6 +40,6 @@ struct TopButtons : View {
 
 struct TopButtons_Previews: PreviewProvider {
     static var previews: some View {
-        TopButtons()
+        TopButtons(gameData: ResourcePool(surviors: 2, food: 10))
     }
 }
