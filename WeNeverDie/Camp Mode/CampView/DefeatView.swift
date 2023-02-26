@@ -16,7 +16,7 @@ struct DefeatView : View {
                 .font(.title).foregroundColor(Color.black)
                 .colorScheme(.dark)
             Button("Exit to reset"){
-                GameData.ResetGame = true
+                GameData.reset()
                 
             }
         }.padding()

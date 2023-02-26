@@ -9,9 +9,7 @@ import Foundation
 
 class ResourcePool : ObservableObject {
     @Published var foodResource : Int
-    //@Published var survivorSent : Int = 0
-    @Published var survivorNumber : Int
-    
+    @Published var survivorNumber : Int    
     @Published var survivorSent : Int = 0 {
           didSet {
               if survivorSent > 0 {
@@ -37,6 +35,19 @@ class ResourcePool : ObservableObject {
     init(surviors : Int, food : Int) {
         foodResource = food
         survivorNumber = surviors
+    }
+    func reset() {
+        WinProgress = 0
+        days = 0
+        survivorSent = 0
+        foodResource = 10
+        survivorNumber = 3
+        progressToDeath = 0
+        death = false
+        starving = false
+        victory = false
+        AlreadyWon = false
+        ResetGame = false
     }
     func generateMap() -> Board{
        return Board(players: survivorSent)

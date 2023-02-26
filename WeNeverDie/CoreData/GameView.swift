@@ -13,25 +13,19 @@ import SwiftUI
 struct GameView : View {
     @State var gameData = ResourcePool(surviors: 3, food: 10)
     @StateObject var board  = Board(players: 0)
-
     @State var showBoard = false
     @State var playerNumber = 3
 
-    
-    
     var body: some View {
         ZStack{
             VStack{
                 if showBoard {
                     BoardView(showBoard: $showBoard, vm: gameData.generateMap(), GameData: $gameData)
-                    
                 }
                 else {
                     CampView(showBoard: $showBoard, GameData: gameData, surivorsSentOnMission: gameData.survivorSent).onChange(of: gameData.ResetGame) { newValue in
                         if newValue {
                             gameData = ResourcePool(surviors: 3, food: 10)
-                            print("Zuwardo")
-
                         }
                     }
                 }
