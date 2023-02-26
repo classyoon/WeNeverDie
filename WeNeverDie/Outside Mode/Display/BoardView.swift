@@ -17,30 +17,12 @@ struct BoardView: View {
     @State var weaponry = true
     @State var talk = true
     
-    @Namespace var nameSpace : Namespace.ID
+//    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @Binding var GameData : ResourcePool
     @State var people = 2
-    @ViewBuilder
-    func getTileAppearance(row : Int, col : Int)-> some View{
-        switch vm.terrainBoard[row][col].name{
-        case "h":
-            Tile2(image: "building", tileLocation: Coord(row, col))
-        case "t":
-            Tile2(image: "forest", tileLocation: Coord(row, col), optionalColor: Color.brown)
-        case "w":
-            Tile2(image: "water", tileLocation: Coord(row, col))
-        case "X":
-            ZStack{
-                Tile2(image: "grass", tileLocation: Coord(row, col))
-                Image("escape").resizable()
-            }
-        default:
-            Tile2(image: "grass", tileLocation: Coord(row, col))
-        }
-    }
-    
-    //    @EnvironmentObject var navManager : NavManager
+
+
     var body: some View {
         landscapeBoard
     }
@@ -53,37 +35,15 @@ struct BoardView: View {
                 ScrollView{
                     VStack(spacing: 0) {
                         ForEach(0..<vm.rowMax, id: \.self) { row in
-                            //ScrollView{
+                           
                             HStack(spacing: 0) {
                                 ForEach(0..<vm.colMax, id: \.self) { col in
-                                    ZStack {
-                                        getTileAppearance(row: row, col: col)
-                                        Group {
-                                            if let loc = vm.highlightSquare, loc.col == col && loc.row == row {
-                                                RoundedRectangle(cornerRadius: 30).fill(Color.blue.opacity(0.3)).padding()
-                                            }
-                                            if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
-                                                Circle().fill(Color.white.opacity(0.3)).padding()
-                                            }
-                                        }
-                                        if let piece = vm.board[row][col] {
-                                            PieceDisplay(piece: piece, nameSpace: nameSpace)
-                                        }
-                                    }
-                                    .aspectRatio(1, contentMode: .fit)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            vm.handleTap(tapRow: row, tapCol: col)
-                                        }
-                                        withAnimation(.easeOut.delay(1)) {
-                                            vm.checkEndMission()
-                                        }
-                                    }
+                                    TilePieceDisplay(row: row, col: col, vm: vm)
                                 }
                             }
                             .frame(maxHeight: .infinity)
                             .padding(.horizontal)
-                            //}
+                  
                         }
                     }
                     .id(vm.turn)
