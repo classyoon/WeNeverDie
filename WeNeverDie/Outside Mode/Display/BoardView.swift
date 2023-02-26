@@ -17,10 +17,15 @@ struct BoardView: View {
     @State var weaponry = true
     @State var talk = true
     
-    @Namespace var nameSpace : Namespace.ID
+//    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @Binding var GameData : ResourcePool
     @State var people = 2
+
+
+    var body: some View {
+        landscapeBoard
+    }
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -38,11 +43,6 @@ struct BoardView: View {
         default:
             Tile2(image: "grass", tileLocation: Coord(row, col))
         }
-    }
-    
-    //    @EnvironmentObject var navManager : NavManager
-    var body: some View {
-        landscapeBoard
     }
     
     var landscapeBoard: some View {
@@ -67,7 +67,7 @@ struct BoardView: View {
                                             }
                                         }
                                         if let piece = vm.board[row][col] {
-                                            PieceDisplay(piece: piece, nameSpace: nameSpace)
+                                            PieceDisplay(piece: piece)
                                         }
                                     }
                                     .aspectRatio(1, contentMode: .fit)
