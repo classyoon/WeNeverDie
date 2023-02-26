@@ -26,6 +26,24 @@ struct BoardView: View {
     var body: some View {
         landscapeBoard
     }
+    @ViewBuilder
+    func getTileAppearance(row : Int, col : Int)-> some View{
+        switch vm.terrainBoard[row][col].name{
+        case "h":
+            Tile2(image: "building", tileLocation: Coord(row, col))
+        case "t":
+            Tile2(image: "forest", tileLocation: Coord(row, col), optionalColor: Color.brown)
+        case "w":
+            Tile2(image: "water", tileLocation: Coord(row, col))
+        case "X":
+            ZStack{
+                Tile2(image: "grass", tileLocation: Coord(row, col))
+                Image("escape").resizable()
+            }
+        default:
+            Tile2(image: "grass", tileLocation: Coord(row, col))
+        }
+    }
     
     var landscapeBoard: some View {
         HStack(spacing: 0) {
