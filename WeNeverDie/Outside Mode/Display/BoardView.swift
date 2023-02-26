@@ -30,7 +30,7 @@ struct BoardView: View {
                 ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied)
                 : nil
                 
-            }.padding()
+            }
 
     }
     
@@ -48,18 +48,16 @@ struct BoardView: View {
                                     TilePieceDisplay(row: row, col: col, vm: vm)
                                 }
                             }
-                            .frame(maxHeight: .infinity)
-                            .padding(.horizontal)
                         }
                     }
                     .id(vm.turn)
                 }
             }
-            .frame(maxHeight: .infinity)
-            .padding(.horizontal)
             statusView.frame(width: 200)
         }
-        .background(Color.gray)
+        .background(Color.black)
+        
+        
     }
     
     func searchLocation(){

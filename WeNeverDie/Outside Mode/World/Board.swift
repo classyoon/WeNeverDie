@@ -52,8 +52,8 @@ class Board : ObservableObject, BoardProtocol {
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 3
-    let colMax: Int = 4
+    let rowMax: Int = 4
+    let colMax: Int = 5
     let startSquares = 1
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
@@ -169,8 +169,8 @@ class Board : ObservableObject, BoardProtocol {
         missionUnderWay = true
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
-        let bottemRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(trees: 0.1, houses: 0.2, water: 0.1, exit : bottemRight)
+        let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
+        terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.15, water: 0.1, exit : bottomRight)
         print("Terrain generated, generating players")
         spawnPlayers(players)
         //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))

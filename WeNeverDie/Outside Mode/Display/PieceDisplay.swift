@@ -16,6 +16,7 @@ struct PieceDisplay: View {
             piece.getView()
                 .resizable()
                 .scaledToFit()
+                .padding()
             Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")
                 .padding(1)
                 .foregroundColor(.black)
