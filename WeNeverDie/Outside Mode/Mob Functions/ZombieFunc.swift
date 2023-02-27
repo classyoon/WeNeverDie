@@ -27,7 +27,7 @@ extension Board {
 
         }
 
-        print("Target sighted = \(zombie.alert)")
+       // print("Target sighted = \(zombie.alert)")
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
 

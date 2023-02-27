@@ -49,12 +49,13 @@ class Board : ObservableObject, BoardProtocol {
             setPossibleCoords()
         }
     }
+    @Published var canAnyoneMove = true
     
     @Published var turn = UUID()
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 4
     let colMax: Int = 5
-    let startSquares = 1
+    let startSquares = 4
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
     
@@ -78,6 +79,9 @@ class Board : ObservableObject, BoardProtocol {
         
         print(tempTerrain)
         tempTerrain[0][0].name = "t"
+        tempTerrain[0][1].name = "t"
+        tempTerrain[0][2].name = "t"
+        tempTerrain[1][0].name = "t"
         var counter = 0 // Sharing the counter
         var numberAdded = 0
         
@@ -170,12 +174,12 @@ class Board : ObservableObject, BoardProtocol {
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(trees: 0.2, houses: 0.15, water: 0.1, exit : bottomRight)
-        print("Terrain generated, generating players")
+        terrainBoard = randomGenerateTerrain(trees: 0.25, houses: 0.2, water: 0.1, exit : bottomRight)
+      //print("Terrain generated, generating players")
         spawnPlayers(players)
         //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
-        print("Players generated, generating zombies")
-        spawnZombies(3)
+        //print("Players generated, generating zombies")
+        spawnZombies(4)
         //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(players : Int){

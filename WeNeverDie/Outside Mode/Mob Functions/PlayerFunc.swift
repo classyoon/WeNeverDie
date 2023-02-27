@@ -75,6 +75,19 @@ extension Board {
     func deselectUnit(){
         selectedUnit = nil
         highlightSquare = nil
+        canAnyoneMove = isAnyoneStillActive()
+       
+    }
+    func isAnyoneStillActive()->Bool{
+        let playerList = createLists().unitList
+        for coord in playerList {
+            if let piece = board[coord.row][coord.col] {
+                if piece.getCanMove() {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     ///
