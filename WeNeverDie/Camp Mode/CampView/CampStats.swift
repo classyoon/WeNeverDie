@@ -39,7 +39,7 @@ struct CampStats : View {
             return "We are starving"
         }
         else{
-            return "Estimated left over food for \(gameData.foodResource/gameData.survivorNumber) days, (rations \(gameData.foodResource))"
+            return "Estimated food left: \(gameData.foodResource/gameData.survivorNumber) days (\(gameData.foodResource) units of food - \(gameData.survivorNumber) per day)"
         }
     }
     var body: some View {
@@ -48,14 +48,14 @@ struct CampStats : View {
             Text("\(gameData.days) day(s) since the Beginning")
             Text("Cure Progress (Keep survivors at home to progress faster.)")
             ProgressView(value: Double(gameData.WinProgress), total: Double(gameData.WinCondition)).padding()
-            Text("Survive. Get food. Don't die. Make it back to camp.")
+            Text("Survive! Get food! Don't die! Make it back to camp!")
             Text(starvationText()).foregroundColor(starvationColor())
             
             Stepper(value: $surivorsSentOnMission, in: 0...gameData.survivorNumber) {
-                Text("People to send \(surivorsSentOnMission)").padding()
+                Text("People to send on next day : \(surivorsSentOnMission)").padding()
             }
-            Text("Number of people \(gameData.survivorNumber)")
-            Button("Pass Day") {
+            Text("Number of people in your group : \(gameData.survivorNumber)")
+            Button("Next Day") {
                 campPassDay()
             }
         }

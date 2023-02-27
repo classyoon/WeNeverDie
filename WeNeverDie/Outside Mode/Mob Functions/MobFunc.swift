@@ -22,9 +22,15 @@ extension Board {
             board[from.row][from.col] = nil
             
             //Follows player unit
-            if (piece.isPlayerUnit) {
+            if (piece.isPlayerUnit) && piece.getCanMove(){
                 highlightSquare = to
                 selectedUnit = piece
+                
+            }
+            else if (piece.isPlayerUnit) {
+                canAnyoneMove = isAnyoneStillActive()
+                print("exhaust")
+                deselectUnit()
             }
         }
         

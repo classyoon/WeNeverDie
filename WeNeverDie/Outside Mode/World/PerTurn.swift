@@ -28,6 +28,7 @@ extension Board {
         }
         return (zombies, playerCoordPins, ZomCoordPins)
     }
+
     
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
@@ -103,5 +104,6 @@ extension Board {
         moveZombies(zombies, unitList: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
+        
     }
 }

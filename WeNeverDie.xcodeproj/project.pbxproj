@@ -17,7 +17,7 @@
 		91355AB3293AEE4800907610 /* WeNeverDieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AB2293AEE4800907610 /* WeNeverDieUITests.swift */; };
 		91355AB5293AEE4800907610 /* WeNeverDieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AB4293AEE4800907610 /* WeNeverDieUITestsLaunchTests.swift */; };
 		91355AC2293AEE5C00907610 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC1293AEE5C00907610 /* Board.swift */; };
-		91355AC6293AEE6A00907610 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC3293AEE6A00907610 /* BoardView.swift */; };
+		91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC3293AEE6A00907610 /* OutsideView.swift */; };
 		91355AC7293AEE6A00907610 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC4293AEE6A00907610 /* Checker.swift */; };
 		91355AC8293AEE6B00907610 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC5293AEE6A00907610 /* Piece.swift */; };
 		91355ACA293AF0E600907610 /* playerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AC9293AF0E600907610 /* playerUnit.swift */; };
@@ -47,6 +47,8 @@
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
+		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
+		CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8729AD15000037C6F6 /* BoardView.swift */; };
 		CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE38F972989BD5C008DE574 /* NavFiles.swift */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
@@ -85,7 +87,7 @@
 		91355AB2293AEE4800907610 /* WeNeverDieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeNeverDieUITests.swift; sourceTree = "<group>"; };
 		91355AB4293AEE4800907610 /* WeNeverDieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeNeverDieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		91355AC1293AEE5C00907610 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		91355AC3293AEE6A00907610 /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		91355AC3293AEE6A00907610 /* OutsideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutsideView.swift; sourceTree = "<group>"; };
 		91355AC4293AEE6A00907610 /* Checker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		91355AC5293AEE6A00907610 /* Piece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		91355AC9293AF0E600907610 /* playerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerUnit.swift; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
+		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
+		CAD25F8729AD15000037C6F6 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		CAE38F972989BD5C008DE574 /* NavFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFiles.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
@@ -276,7 +280,9 @@
 		CA17474429A9451500B81EF8 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				91355AC3293AEE6A00907610 /* BoardView.swift */,
+				91355AC3293AEE6A00907610 /* OutsideView.swift */,
+				CAD25F8729AD15000037C6F6 /* BoardView.swift */,
+				CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */,
 				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
 				CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */,
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
@@ -507,6 +513,7 @@
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
+				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,
 				CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */,
@@ -517,7 +524,7 @@
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
 				CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */,
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
-				91355AC6293AEE6A00907610 /* BoardView.swift in Sources */,
+				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F82829ABB60400AD34E9 /* PieceRotationTest.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
@@ -533,6 +540,7 @@
 				CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */,
 				CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */,
 				CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */,
+				CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */,
 				91355A94293AEE4700907610 /* Persistence.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 			);
@@ -713,7 +721,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -759,7 +767,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;

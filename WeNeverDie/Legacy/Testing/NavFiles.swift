@@ -12,7 +12,7 @@
 //    case managerScreen
 //}
 //enum Routes {
-//    static let routes: [NavigationPathes: AnyView] = [.missionBoard: AnyView(BoardView(showBoard: vm: Board()))]//.managerScreen: AnyView(TestMerge(vm: Board())),
+//    static let routes: [NavigationPathes: AnyView] = [.missionBoard: AnyView(OutsideView(showBoard: vm: Board()))]//.managerScreen: AnyView(TestMerge(vm: Board())),
 //    static func routerReturner(path: NavigationPathes)-> some View {
 //        let index = Routes.routes.index(forKey: path)!
 //        return Routes.routes[index].value
