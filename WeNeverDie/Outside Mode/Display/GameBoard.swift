@@ -1,0 +1,32 @@
+//
+//  GameBoard.swift
+//  WeNeverDie
+//
+//  Created by Conner Yoon on 2/27/23.
+//
+
+import SwiftUI
+
+struct GameBoard: View {
+    @ObservedObject var vm : Board
+    var body: some View {
+        ScrollView{
+            VStack(spacing: 0) {
+                ForEach(0..<vm.rowMax, id: \.self) { row in
+                    HStack(spacing: 0) {
+                        ForEach(0..<vm.colMax, id: \.self) { col in
+                            TilePieceDisplay(row: row, col: col, vm: vm)
+                        }
+                    }
+                }
+            }
+            .id(vm.turn)
+        }
+    }
+}
+
+struct GameBoard_Previews: PreviewProvider {
+    static var previews: some View {
+        GameBoard(vm: Board(players: 1))
+    }
+}
