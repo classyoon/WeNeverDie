@@ -11,7 +11,7 @@ struct CampView: View {
     @ObservedObject var GameData: ResourcePool
     @State var ResetGame = false
     @State var showCureHelp = false
-    @State var surivorsSentOnMission: Int
+    @Binding var surivorsSentOnMission: Int
     var canSendMission: Bool {
         surivorsSentOnMission != 0
     }
@@ -147,6 +147,6 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission: 0)
+        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission: Binding.constant(0))
     }
 }
