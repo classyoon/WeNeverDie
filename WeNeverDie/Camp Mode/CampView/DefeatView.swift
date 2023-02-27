@@ -7,24 +7,54 @@
 
 import SwiftUI
 
-struct DefeatView : View {
-    @State var GameData : ResourcePool
+struct DefeatView: View {
+    @State var GameData: ResourcePool
     var body: some View {
-        
-        VStack{
-            Text("Dead")
-                .font(.title).foregroundColor(Color.black)
-                .colorScheme(.dark)
-            Button("Exit to reset"){
-                GameData.ResetGame = true
-                
+        ZStack(alignment: .bottom) {
+            Image("Death\(Int.random(in: 1 ... 4))")
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
+                .cornerRadius(20)
+                .shadow(radius: 10)
+            VStack {
+                Spacer()
+                Text("R.I.P.")
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(Color(.label))
+                    .colorScheme(.dark)
+                    .padding(50)
+                    .background(
+                        Rectangle()
+                            .fill(Color(.systemBackground))
+                            .aspectRatio(0.8, contentMode: .fit)
+                            .cornerRadius(40, corners: [.topLeft, .topRight])
+                            .opacity(0.5)
+                    ).shadow(radius: 5, x: -5, y: -5)
+                Spacer()
             }
-        }.padding()
-            .background(Color.white)
-            .cornerRadius(20)
-            .shadow(radius: 10)
+            VStack {
+                Spacer()
+                Button {
+                    GameData.ResetGame = true
+                } label: {
+                    Text("WE NEVER DIE")
+                        .font(.largeTitle)
+                        .bold()
+                        .shadow(color: .red, radius: 5, x: -5, y: 5)
+                        .padding()
+                        .foregroundColor(.red)
+                        .background(
+                            Color(.systemBackground)
+                                .opacity(0.3)
+                                .shadow(color: Color(.systemBackground), radius: 10)
+                        )
+                }
+            }
+            .padding()
+            .aspectRatio(1, contentMode: .fit)
+        }
     }
-    
 }
 
 struct DefeatView_Previews: PreviewProvider {
