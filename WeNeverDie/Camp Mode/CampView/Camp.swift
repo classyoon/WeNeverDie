@@ -10,7 +10,13 @@ struct CampView: View {
     @Binding var showBoard: Bool
     @ObservedObject var GameData: ResourcePool
     @State var ResetGame = false
+    @State var showCureHelp = false
     @State var surivorsSentOnMission: Int
+    var canSendMission: Bool {
+        surivorsSentOnMission != 0
+    }
+
+    @State var degrees: Double = 0
 
     func campPassDay() {
         GameData.passDay()
@@ -30,48 +36,111 @@ struct CampView: View {
         return false
     }
 
-    var body: some View {
-        NavigationStack {
-            VStack {
-                TopButtons()
-                    .padding()
-                    .frame(maxHeight: 70)
-                Spacer()
-                CampStats(GameData: GameData, ResetGame: ResetGame, surivorsSentOnMission: surivorsSentOnMission)
-                Spacer()
-                Button {
-                    campPassDay()
-                } label: {
-                    VStack {
-                        Image(systemName: "bed.double.circle.fill")
+    var cureProgress: some View {
+        GeometryReader { progressDim in
+            HStack {
+                HStack {
+                    ProgressView(value: Double(GameData.WinProgress), total: Double(GameData.WinCondition))
+                        .padding()
+                        .animation(.easeInOut(duration: 3), value: GameData.WinProgress)
+                    Button {
+                        showCureHelp = true
+                    } label: {
+                        Image(systemName: GameData.victory ? "syringe.fill" : "syringe")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
-                            .foregroundColor(.white)
-                        Text("I should try to Sleep. Tomorrow's zombies can wait.")
+                            .frame(maxHeight: 70)
                     }
-                }.padding()
-                    .frame(maxHeight: 100)
-            }.padding()
-                .background(
-                    Image("Campground")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .opacity(GameData.death || GameData.victory ? 0.5 : 1)
-                ).ignoresSafeArea()
+                    .frame(width: progressDim.size.width * 0.1)
 
-                .blur(radius: GameData.death || GameData.victory ? 10 : 0)
-                .overlay {
-                    GameData.death ?
-                        DefeatView(GameData: GameData)
-                        .padding()
-                        : nil
+                }.alert("Cure Progress \(String(format: " %.0f%%", GameData.WinProgress / GameData.WinCondition * 100))", isPresented: $showCureHelp) {
+                    Button("Understood", role: .cancel) {}
+                } message: {
+                    Text("Keep survivors at home to make progress faster.")
                 }
-                .overlay {
-                    (GameData.victory && GameData.AlreadyWon) ?
-                        VictoryView(GameData: GameData)
+                Spacer()
+            }
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            ZStack(alignment: .bottomTrailing) {
+                HStack {
+                    cureProgress
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(maxWidth: min(UIScreen.screenHeight, UIScreen.screenWidth) - 70, maxHeight: min(UIScreen.screenHeight, UIScreen.screenWidth) - 70)
+                        .rotationEffect(Angle(degrees: -90))
+                        .foregroundColor(.blue)
+                    Spacer()
+                    TopButtons()
+                        .frame(maxWidth: 70)
                         .padding()
-                        : nil
+
+                }.padding()
+                    .frame(maxHeight: UIScreen.screenHeight)
+                VStack {
+                    Spacer()
+                    CampStats(GameData: GameData, ResetGame: ResetGame, surivorsSentOnMission: $surivorsSentOnMission)
+                    Spacer()
+                    Button {
+                        campPassDay()
+                    } label: {
+                        VStack {
+                            Image(systemName: "bed.double.circle.fill")
+                                .resizable()
+                                .aspectRatio(1, contentMode: .fit)
+                                .foregroundColor(.white)
+                            Text("We should try to Sleep. Zombies can wait.")
+                        }
+                    }.padding()
+                        .frame(maxHeight: 100)
                 }
+
+                Button {
+                    withAnimation {
+                        degrees = degrees == 0 ? 180 : 0
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        // Code you want to be delayed
+                        showBoard = true
+                    }
+                } label: {
+                    VStack {
+                        Image("Bus")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .shadow(color: .white, radius: canSendMission ? 5 : 0)
+                            .rotation3DEffect(.degrees(degrees), axis: (x: 0, y: 1, z: 0))
+                        Text("Start Mission")
+                            .foregroundColor(.white)
+                            .bold()
+                    }
+                }.disabled(!canSendMission)
+                    .opacity(canSendMission ? 1 : 0.6)
+                    .padding()
+                    .frame(maxHeight: UIScreen.screenHeight * 0.4)
+            }
+            .background(
+                Image("Campground")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .opacity(GameData.death || GameData.victory ? 0.5 : 1)
+            ).ignoresSafeArea()
+
+            .blur(radius: GameData.death || GameData.victory ? 10 : 0)
+            .overlay {
+                GameData.death ?
+                    DefeatView(GameData: GameData)
+                    .padding()
+                    : nil
+            }
+            .overlay {
+                (GameData.victory && GameData.AlreadyWon) ?
+                    VictoryView(GameData: GameData)
+                    .padding()
+                    : nil
+            }
         }.foregroundColor(.white)
     }
 }

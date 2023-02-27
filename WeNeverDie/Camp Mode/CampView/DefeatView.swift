@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DefeatView: View {
-    @State var GameData: ResourcePool
+    @ObservedObject var GameData: ResourcePool
+
     var body: some View {
         ZStack(alignment: .bottom) {
             Image("Death\(Int.random(in: 1 ... 4))")

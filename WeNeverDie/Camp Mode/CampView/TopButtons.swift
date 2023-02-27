@@ -19,19 +19,7 @@ struct TopButtons: View {
 
     //            Text(vm.SurvivorList2[0].function?.name)
     var body: some View {
-        HStack {
-            NavigationLink {
-                TutorialView()
-                    .foregroundColor(Color(.label))
-            } label: {
-                Image(systemName: "questionmark")
-                    .resizable()
-                    .aspectRatio(0.8, contentMode: .fit)
-                    .foregroundColor(Color(.white))
-            }
-
-            Spacer()
-
+        VStack {
             Button {
                 if musicIsPlaying {
                     guard (musicPlayer?.pause()) != nil else {
@@ -48,7 +36,8 @@ struct TopButtons: View {
                 Image(systemName: musicIsPlaying ? "speaker.wave.2.circle.fill" : "speaker.slash.circle")
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                    .foregroundColor(musicIsPlaying ? Color(.white) : Color(.white).opacity(0.3))
+                    .foregroundColor(musicIsPlaying ? Color(.white) : Color(.white).opacity(0.5))
+                    .shadow(radius: 5)
             }.onAppear {
                 if !musicIsPlaying {
                     guard (musicPlayer?.play()) != nil else {
@@ -56,7 +45,18 @@ struct TopButtons: View {
                     }
                     musicIsPlaying = true
                 }
-            }
+            }.frame(maxHeight: 50)
+            NavigationLink {
+                TutorialView()
+                    .foregroundColor(Color(.label))
+            } label: {
+                Image(systemName: "questionmark")
+                    .resizable()
+                    .aspectRatio(0.6, contentMode: .fit)
+                    .foregroundColor(Color(.white))
+                    .shadow(radius: 5)
+            }.frame(maxHeight: 50)
+            Spacer()
         }
     }
 }
