@@ -10,22 +10,9 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var vm : Board
     
-    
+    @Namespace var nameSpace : Namespace.ID
     var body: some View {
-<<<<<<< HEAD
-        HStack{
-            GameBoard(vm: vm)
-                .overlay{
-                    !vm.missionUnderWay ?
-                    ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied)
-                    : nil
-                    
-                }
-            StatusViewBar(food: $food, vm: vm)
-        }.background(Color.black)
-=======
-      
-            
+
           
             GeometryReader { geo in
                 ScrollView{
@@ -42,8 +29,6 @@ struct BoardView: View {
                 }
             }
             
-       
->>>>>>> SAVE
     }
     
 }

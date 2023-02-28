@@ -17,7 +17,7 @@ struct OutsideView: View {
     @State var weaponry = true
     @State var talk = true
     
-    //    @Namespace var nameSpace : Namespace.ID
+//        @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @Binding var GameData : ResourcePool
     @State var people = 2
@@ -37,30 +37,7 @@ struct OutsideView: View {
     }
     
     
-    var boardView: some View {
-        HStack(spacing: 0) {
-            
-            Spacer()
-            GeometryReader { geo in
-                ScrollView{
-                    VStack(spacing: 0) {
-                        ForEach(0..<vm.rowMax, id: \.self) { row in
-                            HStack(spacing: 0) {
-                                ForEach(0..<vm.colMax, id: \.self) { col in
-                                    TilePieceDisplay(row: row, col: col, vm: vm)
-                                }
-                            }
-                        }
-                    }
-                    .id(vm.turn)
-                }
-            }
-            StatusViewBar(food : $food, vm : vm).frame(width: 200)
-        }
-        .background(Color.black)
-        
-        
-    }
+   
 }
 
 struct OutsideView_Previews: PreviewProvider {

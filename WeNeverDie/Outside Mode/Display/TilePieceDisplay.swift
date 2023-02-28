@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TilePieceDisplay: View {
+    
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
