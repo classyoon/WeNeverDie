@@ -7,49 +7,30 @@
 
 import Foundation
 extension Board {
-    func findDistance(zombie : inout any Piece, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
-        var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
-        var thingSighted = false
-        var DRow : Int = 100; var DCol : Int = 100
-        for target in 0..<targetList.count{
-            if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.isHidden == false {
-
-                targetLoc = targetList[target]
-                DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
-                thingSighted = true
-                zombie.alert = true
-
+    func findDiffWithDesiredCoord(zombie : inout any Piece, targetList: [Coord])->(rowDifference  : Int, colDifference  : Int, selfLocation : Coord){//This properly locates the targets.
+        var designatedTargetLocation = Coord(); let selfLocation = getCoord(of: zombie) ?? Coord()
+        var rowDistance : Int = 100; var colDistance : Int = 100
+        if targetList.isEmpty{
+            designatedTargetLocation = selfLocation
+            zombie.alert = false
+        }
+        else{
+            for candidateLocation in 0..<targetList.count{
+                if abs(targetList[candidateLocation].row-selfLocation.row) <= rowDistance && abs(targetList[candidateLocation].col-selfLocation.col) <= colDistance {
+                    designatedTargetLocation = targetList[candidateLocation]
+                    rowDistance = abs(targetList[candidateLocation].row-selfLocation.row); colDistance = abs(targetList[candidateLocation].col-selfLocation.col)
+                    zombie.alert = true
+                    
+                }
             }
         }
-        if thingSighted == false {
-            targetLoc = seekerLoc
-            zombie.alert = false
-
-        }
-
         print("Target sighted = \(zombie.alert)")
-        return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
+        return (designatedTargetLocation.row-selfLocation.row, designatedTargetLocation.col-selfLocation.col, selfLocation)//returns the distance
     }
-
-//        func findDistance(zombie: inout any Piece, targetList: [Coord]) -> (RowD: Int, ColD: Int, seekerCoord: Coord) {
-//            let seekerCoord = getCoord(of: zombie) ?? Coord()
-//            let distanceList = targetList.map { targetCoord in
-//                (abs(targetCoord.row - seekerCoord.row), abs(targetCoord.col - seekerCoord.col))
-//            }
-//            if let (minRowD, minColD) = distanceList.min(by: { $0.0 + $0.1 < $1.0 + $1.1 }) {
-//                let targetIndex = distanceList.firstIndex(where: { $0.0 + $0.1 == minRowD + minColD })!
-//                let targetCoord = targetList[targetIndex]
-//                zombie.alert = true
-//                return (targetCoord.row - seekerCoord.row, targetCoord.col - seekerCoord.col, seekerCoord)
-//            } else {
-//                zombie.alert = false
-//                return (0, 0, seekerCoord)
-//            }
-//        }
-
+  
     func chooseLocationAndDamage(zombie : inout any Piece, targetList: [Coord])->Coord{
-        let distance = findDistance(zombie: &zombie, targetList: targetList)
-        var returnCoord = distance.seekerCoord
+        let selfLocAndTargetCoordDifference = findDiffWithDesiredCoord(zombie: &zombie, targetList: targetList)
+        var returnCoord = selfLocAndTargetCoordDifference.selfLocation
         //Attacks Neighbor
         //        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
         //        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
@@ -70,20 +51,20 @@ extension Board {
         }
         //Where it goes
         var directionText = "" //Allows for debugging printing
-        if distance.RowD > 0 {
+        if selfLocAndTargetCoordDifference.rowDifference  > 0 {
             returnCoord.row+=1; directionText+="Down "
             zombie.alert = true
 
         }
-        else if distance.RowD < 0 {
+        else if selfLocAndTargetCoordDifference.rowDifference  < 0 {
             returnCoord.row-=1; directionText+="Up "
             zombie.alert = true
         }
-        if distance.ColD < 0 {
+        if selfLocAndTargetCoordDifference.colDifference  < 0 {
             returnCoord.col-=1; directionText+="Left"
             zombie.alert = true
         }
-        else if distance.ColD > 0 {
+        else if selfLocAndTargetCoordDifference.colDifference  > 0 {
             returnCoord.col+=1; directionText+="Right"
             zombie.alert = true
         }
@@ -94,24 +75,55 @@ extension Board {
         } 
         
         //Wandering
-        let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
-        let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
+        let ranRow = safeNum(r: selfLocAndTargetCoordDifference.selfLocation.row+Int.random(in: -1...1))
+        let ranCol = safeNum(c: selfLocAndTargetCoordDifference.selfLocation.col+Int.random(in: -1...1))
         moveCost = terrainBoard[ranRow][ranRow].movementPenalty
         if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
-            //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
+            //print("wander from \(distance.selfLocation) to (\(ranRow), \(ranCol))")
             zombie.alert = false
             return Coord(row: ranRow, col: ranCol)
         }
         else{
-            //print("I remain at \(distance.seekerCoord)")
+            //print("I remain at \(distance.selfLocation)")
             zombie.alert = false
-            return distance.seekerCoord
+            return selfLocAndTargetCoordDifference.selfLocation
         }
     }
+    func checkVisible(_ unitList: [Coord]) -> [Coord] {
+        var local = [Coord]()
+        for current in unitList {
+            if board[current.row][current.col]?.isHidden == false {
+                local.append(current)
+            }
+        }
+        return local
+    }
+    func attack(_ zombieLoc : Coord, _ zombie : any Piece){
+        for r in safeNum(r: zombieLoc.row-1)...safeNum(r: zombieLoc.row+1) {//Checks if can attack
+            for c in safeNum(c: zombieLoc.col-1)...safeNum(c: zombieLoc.col+1) {
+                if let nearbyPiece = board[r][c]{
+                    if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false {
+                        board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
+                        //zomSound?.prepareToPlay()
+                    }
+                }
+            }
+        }
+    }
+    func chase(_ zombie : any Piece, _ zombieLoc : Coord, _ targetLocList : [Coord]){
+    
+    }
+    
+    func executeBehavior(_ zombie : any Piece, _ zombieLoc : Coord, _ targetLocList : [Coord]){
+        
+    }
     func moveZombies(_ zombies : [any Piece], unitList: [Coord], zombieLoc: [Coord]){//Collects list of zombie
+        var validTargetList = checkVisible(unitList)
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
-            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: &zombies[currentZombie], targetList: unitList))//We're basically asking it to move itself.  Then it decides how to move.
+            executeBehavior(zombies[currentZombie], zombieLoc[currentZombie], validTargetList)
+            
+            //move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: &zombies[currentZombie], targetList: validTargetList))//We're basically asking it to move itself.  Then it decides how to move.
             
         }
     }
@@ -121,18 +133,18 @@ extension Board {
 /**PROGRAMMED BY CHATGPT3
  This version maps the targetList to an array of tuples containing the row and column distances between each target and the current zombie. It then uses the min function to find the minimum total distance (rowD + colD) between the zombie and any of the targets. Finally, it returns the distance between the current zombie and the closest target, along with the current zombie's coordinates. If there are no targets in the targetList, it returns a distance of 0 and the current zombie's coordinates.
  */
-//    func findDistance(zombie: inout any Piece, targetList: [Coord]) -> (RowD: Int, ColD: Int, seekerCoord: Coord) {
-//        let seekerCoord = getCoord(of: zombie) ?? Coord()
+//    func findDistance(zombie: inout any Piece, targetList: [Coord]) -> (rowDifference : Int, colDifference : Int, selfLocation: Coord) {
+//        let selfLocation = getCoord(of: zombie) ?? Coord()
 //        let distanceList = targetList.map { targetCoord in
-//            (abs(targetCoord.row - seekerCoord.row), abs(targetCoord.col - seekerCoord.col))
+//            (abs(targetCoord.row - selfLocation.row), abs(targetCoord.col - selfLocation.col))
 //        }
 //        if let (minRowD, minColD) = distanceList.min(by: { $0.0 + $0.1 < $1.0 + $1.1 }) {
 //            let targetIndex = distanceList.firstIndex(where: { $0.0 + $0.1 == minRowD + minColD })!
 //            let targetCoord = targetList[targetIndex]
 //            zombie.alert = true
-//            return (targetCoord.row - seekerCoord.row, targetCoord.col - seekerCoord.col, seekerCoord)
+//            return (targetCoord.row - selfLocation.row, targetCoord.col - selfLocation.col, selfLocation)
 //        } else {
 //            zombie.alert = false
-//            return (0, 0, seekerCoord)
+//            return (0, 0, selfLocation)
 //        }
 //    }

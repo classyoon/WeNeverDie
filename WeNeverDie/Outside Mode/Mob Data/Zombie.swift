@@ -19,7 +19,6 @@ struct Zombie: Piece, Equatable {
     
     var isSelected = false
     var movementCount = 0
-    var faction = "Z"
     
     var facing: Direction = .up
     let stamina = 1

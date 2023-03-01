@@ -50,7 +50,6 @@ protocol Moveable: Identifiable  {
     var facing: Direction { set get }
     var stamina: Int { get }
     var movementCount: Int { set get }
-    var faction: String {set get}
     mutating func incrementMoveCounter()
     func getMoves()->[Coord]
     func getCanMove()->Bool

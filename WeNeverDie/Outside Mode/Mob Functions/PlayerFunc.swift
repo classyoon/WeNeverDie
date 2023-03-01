@@ -32,7 +32,7 @@ extension Board {
              If the second tap is on on a second piece
              */
             if let second = board[tapRow][tapCol]{
-                if second.faction == "Z" && isPossibleLoc(row: tapRow, col: tapCol) {
+                if second.isPlayerUnit == false && isPossibleLoc(row: tapRow, col: tapCol) {
                     // If the tapped tile contains an enemy unit and the selected unit can attack it, attack the enemy unit
                     board[tapRow][tapCol]?.health -= piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()

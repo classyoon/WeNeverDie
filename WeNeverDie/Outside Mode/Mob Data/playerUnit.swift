@@ -16,7 +16,6 @@ var isPlayerUnit = true
     var name : String
     var health: Int = 10
     var damage = 5
-    var faction: String = "S"
     var isHidden = false
     var isSelected = false
     var movementCount = 0

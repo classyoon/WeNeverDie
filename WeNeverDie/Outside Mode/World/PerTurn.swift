@@ -19,7 +19,7 @@ extension Board {
                     if piece.isPlayerUnit {
                         playerCoordPins.append( Coord(row: row, col: col)); continue
                     }
-                    if piece.faction=="Z" {
+                    if piece.isPlayerUnit == false {
                         zombies.append(piece as! Zombie)
                         ZomCoordPins.append( Coord(row: row, col: col)); continue
                     }
