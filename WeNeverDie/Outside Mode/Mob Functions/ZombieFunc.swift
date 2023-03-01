@@ -31,21 +31,7 @@ extension Board {
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
 
-//        func findDistance(zombie: inout any Piece, targetList: [Coord]) -> (RowD: Int, ColD: Int, seekerCoord: Coord) {
-//            let seekerCoord = getCoord(of: zombie) ?? Coord()
-//            let distanceList = targetList.map { targetCoord in
-//                (abs(targetCoord.row - seekerCoord.row), abs(targetCoord.col - seekerCoord.col))
-//            }
-//            if let (minRowD, minColD) = distanceList.min(by: { $0.0 + $0.1 < $1.0 + $1.1 }) {
-//                let targetIndex = distanceList.firstIndex(where: { $0.0 + $0.1 == minRowD + minColD })!
-//                let targetCoord = targetList[targetIndex]
-//                zombie.alert = true
-//                return (targetCoord.row - seekerCoord.row, targetCoord.col - seekerCoord.col, seekerCoord)
-//            } else {
-//                zombie.alert = false
-//                return (0, 0, seekerCoord)
-//            }
-//        }
+
 
     func chooseLocationAndDamage(zombie : inout any Piece, targetList: [Coord])->Coord{
         let distance = findDistance(zombie: &zombie, targetList: targetList)
