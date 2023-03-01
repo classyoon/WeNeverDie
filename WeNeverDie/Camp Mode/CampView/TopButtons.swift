@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TopButtons: View {
-    @ObservedObject var gameData : ResourcePool
+    @ObservedObject var gameData: ResourcePool
     @State var musicIsPlaying = musicPlayer?.isPlaying == true
-    var initialLoad = true
-    
+    @State var initialLoad = true
+
     var body: some View {
         VStack {
             Button {
@@ -33,7 +33,7 @@ struct TopButtons: View {
                     .foregroundColor(musicIsPlaying ? Color(.white) : Color(.white).opacity(0.5))
                     .shadow(radius: 5)
             }.onAppear {
-                if initialLoad{
+                if initialLoad {
                     if !musicIsPlaying {
                         guard (musicPlayer?.play()) != nil else {
                             fatalError("Unable to start music")

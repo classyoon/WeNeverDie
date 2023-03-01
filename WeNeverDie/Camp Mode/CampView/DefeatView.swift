@@ -60,10 +60,6 @@ struct DefeatView: View {
 
 struct DefeatView_Previews: PreviewProvider {
     static var previews: some View {
-<<<<<<< HEAD
         DefeatView(gameData: ResourcePool(surviors: 0, food: 0))
-=======
-        DefeatView(GameData: ResourcePool(surviors: 0, food: 0))
->>>>>>> master
     }
 }

@@ -21,7 +21,7 @@ struct GameView: View {
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), GameData: $gameData)
                 }
                 else {
-                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: gameData.survivorSent).onChange(of: gameData.ResetGame) { newValue in
+                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent).onChange(of: gameData.ResetGame) { newValue in
                         if newValue {
                             gameData = ResourcePool(surviors: 3, food: 10)
                         }

@@ -8,7 +8,7 @@
 import SwiftUI
 struct CampView: View {
     @Binding var showBoard: Bool
-    @ObservedObject var GameData: ResourcePool
+    @ObservedObject var gameData: ResourcePool
     @State var ResetGame = false
     @State var showCureHelp = false
     @Binding var surivorsSentOnMission: Int
@@ -19,14 +19,14 @@ struct CampView: View {
     @State var degrees: Double = 0
 
     func campPassDay() {
-        GameData.passDay()
+        gameData.passDay()
         showBoard = shouldShowMap()
         print(showBoard)
-        print("Sending \(GameData.survivorSent)")
+        print("Sending \(gameData.survivorSent)")
         print("Sent \(surivorsSentOnMission)")
-        GameData.survivorSent = surivorsSentOnMission
+        gameData.survivorSent = surivorsSentOnMission
         print(surivorsSentOnMission)
-        print("Sending \(GameData.survivorSent)")
+        print("Sending \(gameData.survivorSent)")
     }
 
     func shouldShowMap() -> Bool {
@@ -40,20 +40,20 @@ struct CampView: View {
         GeometryReader { progressDim in
             HStack {
                 HStack {
-                    ProgressView(value: Double(GameData.WinProgress), total: Double(GameData.WinCondition))
+                    ProgressView(value: Double(gameData.WinProgress), total: Double(gameData.WinCondition))
                         .padding()
-                        .animation(.easeInOut(duration: 3), value: GameData.WinProgress)
+                        .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
                     Button {
                         showCureHelp = true
                     } label: {
-                        Image(systemName: GameData.victory ? "syringe.fill" : "syringe")
+                        Image(systemName: gameData.victory ? "syringe.fill" : "syringe")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .frame(maxHeight: 70)
                     }
                     .frame(width: progressDim.size.width * 0.1)
 
-                }.alert("Cure Progress \(String(format: " %.0f%%", GameData.WinProgress / GameData.WinCondition * 100))", isPresented: $showCureHelp) {
+                }.alert("Cure Progress \(String(format: " %.0f%%", gameData.WinProgress / gameData.WinCondition * 100))", isPresented: $showCureHelp) {
                     Button("Understood", role: .cancel) {}
                 } message: {
                     Text("Keep survivors at home to make progress faster.")
@@ -73,7 +73,7 @@ struct CampView: View {
                         .rotationEffect(Angle(degrees: -90))
                         .foregroundColor(.blue)
                     Spacer()
-                    TopButtons()
+                    TopButtons(gameData: gameData)
                         .frame(maxWidth: 70)
                         .padding()
 
@@ -81,7 +81,7 @@ struct CampView: View {
                     .frame(maxHeight: UIScreen.screenHeight)
                 VStack {
                     Spacer()
-                    CampStats(GameData: GameData, ResetGame: ResetGame, surivorsSentOnMission: $surivorsSentOnMission)
+                    CampStats(gameData: gameData, ResetGame: $ResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
                     Spacer()
                     Button {
                         campPassDay()
@@ -125,19 +125,19 @@ struct CampView: View {
                 Image("Campground")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .opacity(GameData.death || GameData.victory ? 0.5 : 1)
+                    .opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
 
-            .blur(radius: GameData.death || GameData.victory ? 10 : 0)
+            .blur(radius: gameData.death || gameData.victory ? 10 : 0)
             .overlay {
-                GameData.death ?
-                    DefeatView(GameData: GameData)
+                gameData.death ?
+                    DefeatView(gameData: gameData)
                     .padding()
                     : nil
             }
             .overlay {
-                (GameData.victory && GameData.AlreadyWon) ?
-                    VictoryView(GameData: GameData)
+                (gameData.victory && gameData.AlreadyWon) ?
+                    VictoryView(gameData: gameData)
                     .padding()
                     : nil
             }
@@ -147,6 +147,6 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), GameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission: Binding.constant(0))
+        CampView(showBoard: Binding.constant(false), gameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission: Binding.constant(0))
     }
 }
