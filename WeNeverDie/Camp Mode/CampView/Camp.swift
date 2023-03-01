@@ -63,6 +63,9 @@ struct CampView: View {
         }
     }
 
+    // TODO: remove Timer from production. for testing purposes only
+//    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -128,7 +131,7 @@ struct CampView: View {
                     .opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
 
-            .blur(radius: gameData.death || gameData.victory ? 10 : 0)
+            .blur(radius: gameData.death || (gameData.victory && !gameData.AlreadyWon) ? 10 : 0)
             .overlay {
                 gameData.death ?
                     DefeatView(gameData: gameData)
@@ -136,11 +139,24 @@ struct CampView: View {
                     : nil
             }
             .overlay {
-                (gameData.victory && gameData.AlreadyWon) ?
-                    VictoryView(gameData: gameData)
-                    .padding()
+                (gameData.victory && !gameData.AlreadyWon) ?
+                    HStack {
+                        Spacer()
+                        VictoryView(gameData: gameData)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(20)
+                        Spacer()
+                    }
                     : nil
             }
+            // TODO: remove .onReceive from production. for testing purposes only
+//            .onReceive(timer) { _ in
+//                if gameData.victory {
+//                    gameData.victory = false
+//                } else {
+//                    gameData.victory = true
+//                }
+//            }
         }.foregroundColor(.white)
     }
 }

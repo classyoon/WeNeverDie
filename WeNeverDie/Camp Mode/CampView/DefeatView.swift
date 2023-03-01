@@ -37,7 +37,7 @@ struct DefeatView: View {
             VStack {
                 Spacer()
                 Button {
-                    gameData.ResetGame = true
+                    gameData.reset()
                 } label: {
                     Text("WE NEVER DIE")
                         .font(.largeTitle)
