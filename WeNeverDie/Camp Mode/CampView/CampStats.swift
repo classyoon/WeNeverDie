@@ -10,8 +10,11 @@ import SwiftUI
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
     @Binding var ResetGame : Bool
-    @State var surivorsSentOnMission : Int
+    @Binding var surivorsSentOnMission: Int
     @Binding var showBoard : Bool
+
+    @State var survivorsArr: [Int] = []
+
     func shouldShowMap() -> Bool{
         if surivorsSentOnMission > 0{
             return true
@@ -29,7 +32,7 @@ struct CampStats : View {
         print("Sending \(gameData.survivorSent)")
     }
     func starvationColor()->Color{
-        if gameData.foodResource <= 0{
+        if gameData.foodResource <= 0 {
             return Color.red
         }
         return Color.green
@@ -39,32 +42,67 @@ struct CampStats : View {
             return "We are starving"
         }
         else{
-            return "Estimated food left: \(gameData.foodResource/gameData.survivorNumber) days (\(gameData.foodResource) units of food - \(gameData.survivorNumber) per day)"
+            return "We have food for \(gameData.foodResource / gameData.survivorNumber) days, (\(gameData.foodResource) rations)."
         }
     }
-    var body: some View {
-        VStack{
-            
-            Text("\(gameData.days) day(s) since the Beginning")
-            Text("Cure Progress (Keep survivors at home to progress faster.)")
-            ProgressView(value: Double(gameData.WinProgress), total: Double(gameData.WinCondition)).padding()
-            Text("Survive! Get food! Don't die! Make it back to camp!")
-            Text(starvationText()).foregroundColor(starvationColor())
-            
-            Stepper(value: $surivorsSentOnMission, in: 0...gameData.survivorNumber) {
-                Text("People to send on next day : \(surivorsSentOnMission)").padding()
+
+    var survivorStepper: some View {
+        VStack(alignment: .trailing) {
+            Text("People to send scavenging: \(surivorsSentOnMission)")
+                .font(.footnote)
+            Stepper(value: $surivorsSentOnMission, in: 0 ... gameData.survivorNumber) {
+                HStack {
+                    ForEach(survivorsArr, id: \.self) { index in
+                        Image(systemName: index < surivorsSentOnMission ? "person.fill" : "person")
+                            .resizable()
+                            .aspectRatio(1, contentMode: .fit)
+                    }
+                }.frame(maxHeight: 50)
             }
-            Text("Number of people in your group : \(gameData.survivorNumber)")
-            Button("Next Day") {
-                campPassDay()
+        }.padding()
+            .background(.black.opacity(0.7))
+    }
+    
+   var instructions: some View {
+        VStack {
+            Text("Survive. Get food. Don't die. Make it back to camp.")
+                .font(.headline)
+                .shadow(color: .black, radius: 5)
+            Text(starvationText())
+                .font(.subheadline)
+                .foregroundColor(starvationColor())
+                .shadow(color: .black, radius: 5)
+        }.background {
+            Color(.black).opacity(0.7)
+        }
+    }
+
+    var body: some View {
+        VStack {
+            Text(gameData.days == 0 ? "The Beginning" : "Day \(gameData.days)")
+                .font(.largeTitle)
+                .shadow(color: .black, radius: 5)
+                .padding()
+            ZStack(alignment: .topLeading) {
+                VStack {
+                    instructions
+                    Spacer()
+                    survivorStepper
+                    Spacer()
+                }.padding(.horizontal, 100)
+                    .frame(width: UIScreen.screenWidth)
             }
         }
-        
+        .onAppear {
+            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
+        }.onChange(of: gameData.survivorNumber) { _ in
+            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
+        }
     }
 }
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(surviors: 2, food: 10), ResetGame: Binding.constant(false), surivorsSentOnMission: 0, showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(surviors: 2, food: 10), ResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
     }
 }

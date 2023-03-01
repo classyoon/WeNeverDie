@@ -53,6 +53,7 @@
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
+		E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE11A629AD28ED0095416B /* ViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
 		CAE918A02994B13800A94419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E5DE11A629AD28ED0095416B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		91355A90293AEE4700907610 /* WeNeverDie */ = {
 			isa = PBXGroup;
 			children = (
+				E5DE11A529AD28E10095416B /* Style */,
 				CAE918A02994B13800A94419 /* Info.plist */,
 				91355A91293AEE4700907610 /* WeNeverDieApp.swift */,
 				91355AD1293AF5FE00907610 /* CoreData */,
@@ -372,6 +375,14 @@
 			path = Testing;
 			sourceTree = "<group>";
 		};
+		E5DE11A529AD28E10095416B /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				E5DE11A629AD28ED0095416B /* ViewExtensions.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -516,6 +527,7 @@
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,
+				E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */,
 				CAE38F982989BD5C008DE574 /* NavFiles.swift in Sources */,
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */,
 				91355ACD293AF19A00907610 /* Pawn.swift in Sources */,
@@ -702,7 +714,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"WeNeverDie/Preview Content\"";
-				DEVELOPMENT_TEAM = 83Z22V6XMU;
+				DEVELOPMENT_TEAM = MAU6Q4228H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -748,7 +760,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"WeNeverDie/Preview Content\"";
-				DEVELOPMENT_TEAM = 83Z22V6XMU;
+				DEVELOPMENT_TEAM = MAU6Q4228H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
