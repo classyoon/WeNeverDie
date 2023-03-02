@@ -13,6 +13,9 @@ struct Settings: View {
 
     var body: some View {
         VStack {
+            Button(devMode ? "Game Developer Mode on":"Game Developer Mode off") {
+                devMode.toggle()
+            }
             Button {
                 if musicIsPlaying {
                     guard (musicPlayer?.pause()) != nil else {
@@ -50,6 +53,8 @@ struct Settings: View {
         }.onAppear {
             musicIsPlaying = musicPlayer?.isPlaying == true
         }
+        
+        
     }
 }
 

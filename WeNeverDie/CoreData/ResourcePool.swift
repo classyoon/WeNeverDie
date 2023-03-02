@@ -31,6 +31,7 @@ class ResourcePool : ObservableObject {
     @Published var victory = false
     @Published var WinProgress = 0
     @Published var days = 0
+    @Published var roster = [any Piece]()
     let starvationAmount = 0
     init(surviors : Int, food : Int) {
         foodResource = food
@@ -48,12 +49,17 @@ class ResourcePool : ObservableObject {
         victory = false
         AlreadyWon = false
         ResetGame = false
+        generateSurvivors(survivorNumber)
     }
-    func generateSurvivors(_ number : Int)->[any Piece]{
-        
-        
-        
-        return []
+    func generateSurvivors(_ number : Int){
+        let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
+        let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
+        for _ in 0..<number {
+                let randomFirstName = firstNames.randomElement()!
+                let randomLastName = lastNames.randomElement()!
+                let fullName = "\(randomFirstName) \(randomLastName)"
+                roster.append(playerUnit(name: fullName, board: Board(players: number)))
+        }
     }
     func generateMap() -> Board{
        return Board(players: survivorSent)
@@ -80,9 +86,6 @@ class ResourcePool : ObservableObject {
         if survivorSent != survivorNumber {
             WinProgress+=(survivorNumber-survivorSent)
         }
-//        else{
-//            WinProgress-=1
-//        }
         if WinProgress >= WinCondition && AlreadyWon == false {
             victory = true
         }
