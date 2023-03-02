@@ -49,6 +49,12 @@ class ResourcePool : ObservableObject {
         AlreadyWon = false
         ResetGame = false
     }
+    func generateSurvivors(_ number : Int)->[any Piece]{
+        
+        
+        
+        return []
+    }
     func generateMap() -> Board{
        return Board(players: survivorSent)
     }
