@@ -10,16 +10,7 @@ import Foundation
 class ResourcePool : ObservableObject {
     @Published var foodResource : Int
     @Published var survivorNumber : Int    
-    @Published var survivorSent : Int = 0 {
-          didSet {
-              if survivorSent > 0 {
-                  sent = true
-                  //musicPlayer?.play()
-              } else {
-                  sent = false
-              }
-          }
-      }
+    @Published var survivorSent : Int = 0 
     @Published var AlreadyWon = false
     @Published var ResetGame = false
     @Published var sent = false
@@ -95,15 +86,7 @@ class ResourcePool : ObservableObject {
        print("Food \(foodResource)")
         days+=1
         print("Survivors sent \(survivorSent)")
-        if survivorSent > 0 {
-            sent = true
-            print("Perform mission first")
-        }else {
-            print("Perform calc first")
-            print("New Food \(foodResource)")
-            foodResource-=survivorNumber
-            calcWinProgress()
-            checkForDefeat()
-        }
+        foodResource-=survivorNumber
+        calcWinProgress()
     }
 }

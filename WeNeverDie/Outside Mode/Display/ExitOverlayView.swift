@@ -19,11 +19,14 @@ struct ExitOverlayView: View {
             Button {
                 showBoard = false
                 gameData.foodResource += food
+                gameData.foodResource-=gameData.survivorNumber
+                gameData.calcWinProgress()
+                gameData.checkForDefeat()
+                
                 //musicPlayer?.stop()
                 
                 
                 //gameData.foodResource -= gameData.survivorNumber
-                gameData.WinProgress+=(gameData.survivorNumber-gameData.survivorSent)
                 
                 gameData.survivorSent = 0
                 gameData.survivorNumber -= unitsDied

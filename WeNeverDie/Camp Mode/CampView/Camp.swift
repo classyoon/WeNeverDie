@@ -19,8 +19,9 @@ struct CampView: View {
     @State var degrees: Double = 0
 
     func campPassDay() {
-        gameData.passDay()
         showBoard = shouldShowMap()
+        gameData.passDay()
+        
         print(showBoard)
         print("Sending \(gameData.survivorSent)")
         print("Sent \(surivorsSentOnMission)")
