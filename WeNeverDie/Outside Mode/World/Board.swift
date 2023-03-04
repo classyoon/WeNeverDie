@@ -32,7 +32,10 @@ var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtens
 // Start playing the music
 
 class Board : ObservableObject, BoardProtocol {
+    @Published var UnitsDied = 0
+    
     @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
+   
     @Published var showBoard = false
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
@@ -40,7 +43,7 @@ class Board : ObservableObject, BoardProtocol {
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
-    @Published var UnitsDied = 0
+ 
     @Published var selectedUnit : (any Piece)? = nil
     @Published var enteringSurvivors = [any Piece]()
     @Published var survivorList = [any Piece]()
@@ -52,6 +55,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var canAnyoneMove = true
     
     @Published var turn = UUID()
+    
     @Published var possibleLoc: [Coord] = []
     let rowMax: Int = 4
     let colMax: Int = 5
@@ -64,7 +68,7 @@ class Board : ObservableObject, BoardProtocol {
         let maxPercent = percent+varience
         return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
     }
-
+    
     func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
         print(board)
         let trees = randomCountFromPercent(trees)
@@ -145,9 +149,6 @@ class Board : ObservableObject, BoardProtocol {
         var c = 0
         
         while counter < amount {
-            //            if counter <= amount {
-            //                break
-            //            }
             while r < safeNum(r: 3) {
                 while c < safeNum(c: 3) {
                     
@@ -156,13 +157,10 @@ class Board : ObservableObject, BoardProtocol {
                     }
                     set(moveable: playerUnit(name: namesSurvivors[counter], board: self), Coord: Coord(r, c))
                     
-                    //                    print("\(r), \(c) spawn : \(counter)")
                     counter += 1
                     c += 1
                 }
-                
                 // Reset the value of c to 0 after each row
-                
                 c = 0
                 r += 1
             }
@@ -175,7 +173,7 @@ class Board : ObservableObject, BoardProtocol {
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.25, houses: 0.2, water: 0.1, exit : bottomRight)
-      //print("Terrain generated, generating players")
+        //print("Terrain generated, generating players")
         spawnPlayers(players)
         //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         //print("Players generated, generating zombies")
