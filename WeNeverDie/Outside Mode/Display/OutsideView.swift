@@ -28,7 +28,7 @@ struct OutsideView: View {
             BoardView(vm: vm)
                 .overlay{
                     !vm.missionUnderWay ?
-                    ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied)
+                    ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                     : nil
                     
                 }

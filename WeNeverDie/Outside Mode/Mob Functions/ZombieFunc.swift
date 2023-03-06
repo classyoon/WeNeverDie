@@ -7,6 +7,11 @@
 
 import Foundation
 extension Board {
+    /// Runs through a list of valid targets for a piece and returns the distances from the closet one. Also returns self location.
+    /// - Parameters:
+    ///   - zombie: Seeker. Is an inout because alert is triggered here
+    ///   - targetList: List of valid targets
+    /// - Returns: The distance in row and column, and the location of the seeker
     func findDistance(zombie : inout any Piece, targetList: [Coord])->(RowD : Int, ColD : Int, seekerCoord : Coord){//This properly locates the targets.
         var targetLoc = Coord(); let seekerLoc = getCoord(of: zombie) ?? Coord()
         var thingSighted = false

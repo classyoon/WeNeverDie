@@ -12,6 +12,7 @@ struct ExitOverlayView: View {
     var gameData : ResourcePool
     @Binding var showBoard : Bool
     var unitsDied : Int
+    var unitsRecruited : Int
     var body: some View {
         VStack{
             Text("End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)")
@@ -23,6 +24,7 @@ struct ExitOverlayView: View {
                 gameData.foodResource-=gameData.survivorNumber
                 gameData.calcWinProgress()
                 gameData.checkForDefeat()
+                gameData.survivorNumber+=unitsRecruited
                 
                 //musicPlayer?.stop()
                 
@@ -46,6 +48,6 @@ struct ExitOverlayView: View {
 
 struct ExitOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitOverlayView(food: 20, gameData: ResourcePool(surviors: 10, food: 10), showBoard: .constant(false), unitsDied: 2)
+        ExitOverlayView(food: 20, gameData: ResourcePool(surviors: 10, food: 10), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
     }
 }

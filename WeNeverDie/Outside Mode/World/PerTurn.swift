@@ -7,8 +7,7 @@
 
 import Foundation
 extension Board {
-    // MARK: Not private
-    
+ 
     func createLists()-> (zombieList : [any Piece], unitList: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()

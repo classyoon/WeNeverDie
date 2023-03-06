@@ -31,8 +31,8 @@ extension Board {
             /**
              If the second tap is on on a second piece
              */
-            if let second = board[tapRow][tapCol]{
-                if second.isAttackable && isPossibleLoc(row: tapRow, col: tapCol) {
+            if let secondPiece = board[tapRow][tapCol]{
+                if secondPiece.isAttackable && isPossibleLoc(row: tapRow, col: tapCol) {
                     board[tapRow][tapCol]?.health -= piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     deselectUnit()
@@ -42,15 +42,18 @@ extension Board {
                         board[tapRow][tapCol] = nil
                     }
                 }
-                else if second.isRecruitable {
+                else if secondPiece.isRecruitable {
                     board[tapRow][tapCol]?.trust+=piece.damage
                     deselectUnit()
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
-                    if second.trust >= 5 {
+                    if secondPiece.trust >= 5 {
                         set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
+                        UnitsRecruited+=1
+                        turn = UUID()
+                   
                     }
                 }
-                else if second.getCanMove() && second.isPlayerUnit {
+                else if secondPiece.getCanMove() && secondPiece.isPlayerUnit {
                     if highlightSquare == Coord(tapRow, tapCol) {
                         // If the same tile is tapped twice, deselect the unit
                         deselectUnit()

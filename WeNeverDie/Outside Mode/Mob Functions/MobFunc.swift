@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 extension Board {
-    ///This moves pieces.
+    /// This moves pieces.
+    /// - Parameters:
+    ///   - piece: Piece that will be moved.
+    ///   - from: original spot the piece was at.
+    ///   - to: new spot piece will be at.
     func move(_ piece: inout any Piece, from : Coord, to: Coord){
         let moveCost = terrainBoard[to.row][to.col].movementPenalty+1
         

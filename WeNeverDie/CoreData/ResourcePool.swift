@@ -38,6 +38,8 @@ class ResourcePool : ObservableObject {
         survivorNumber = surviors
         print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
+    
+    /// Resets game
     func reset() {
         foodResource = 10
         survivorNumber = 3
