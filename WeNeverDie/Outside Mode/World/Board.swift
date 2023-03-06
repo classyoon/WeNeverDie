@@ -76,12 +76,12 @@ class Board : ObservableObject, BoardProtocol {
         let water = randomCountFromPercent(water)
         
         var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: colMax), count: rowMax)
-        print(tempTerrain)
-        print("\(rowMax), \(colMax)")
-        print("\(escapePoint)")
+//        print(tempTerrain)
+//        print("\(rowMax), \(colMax)")
+//        print("\(escapePoint)")
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
         
-        print(tempTerrain)
+        //print(tempTerrain)
         tempTerrain[0][0].name = "t"
         tempTerrain[0][1].name = "t"
         tempTerrain[0][2].name = "t"
@@ -119,14 +119,14 @@ class Board : ObservableObject, BoardProtocol {
             
             counter+=1
         }
-        print(tempTerrain)
+       // print(tempTerrain)
         return tempTerrain
     }
     
     func randomLoc() -> Coord{
         
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
-        print("checking \(ranR), \(ranC)")
+       // print("checking \(ranR), \(ranC)")
         while board[ranR][ranC] != nil {
             ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
         }

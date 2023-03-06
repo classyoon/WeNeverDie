@@ -29,7 +29,7 @@ extension Board {
             }
             else if (piece.isPlayerUnit) {
                 canAnyoneMove = isAnyoneStillActive()
-                print("exhaust")
+                //print("exhaust")
                 deselectUnit()
             }
         }

@@ -10,10 +10,11 @@ import SwiftUI
 struct Settings: View {
     @ObservedObject var gameData: ResourcePool
     @State var musicIsPlaying = false
+    @State var gameDevButtonText = devMode ? "Game Developer Mode on":"Game Developer Mode off"
 
     var body: some View {
         VStack {
-            Button(devMode ? "Game Developer Mode on":"Game Developer Mode off") {
+            Button(gameDevButtonText) {
                 devMode.toggle()
             }
             Button {
