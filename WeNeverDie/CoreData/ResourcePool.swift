@@ -36,6 +36,7 @@ class ResourcePool : ObservableObject {
     init(surviors : Int, food : Int) {
         foodResource = food
         survivorNumber = surviors
+        print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
     func reset() {
         foodResource = 10
@@ -72,28 +73,36 @@ class ResourcePool : ObservableObject {
     }
     
     func checkForDefeat() {
+        print("Calc Defeat")
         if foodResource > starvationAmount {
             starving = false
             if progressToDeath > 0 {
+                print("Regen")
                 progressToDeath -= 1
+                print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
             }
         } else {
             foodResource = starvationAmount //
             starving = true
             print("starving")
             progressToDeath += 1
+            print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
         if progressToDeath > deathRequirement {
             death = true
             print("Death")
+            print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
     }
     func calcWinProgress(){
+        print("Making cure with \(survivorNumber-survivorSent) survivors")
         if survivorSent != survivorNumber {
             WinProgress+=(survivorNumber-survivorSent)
+            print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
             victory = true
+            print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
     }
     
@@ -103,5 +112,6 @@ class ResourcePool : ObservableObject {
         print("Survivors sent \(survivorSent)")
         foodResource-=survivorNumber
         calcWinProgress()
+        print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
 }

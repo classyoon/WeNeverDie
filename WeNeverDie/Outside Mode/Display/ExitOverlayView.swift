@@ -14,9 +14,10 @@ struct ExitOverlayView: View {
     var unitsDied : Int
     var body: some View {
         VStack{
-            Text("End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource + food)")
+            Text("End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)")
                 .font(.title).foregroundColor(Color.black)
             Button {
+                print("Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 showBoard = false
                 gameData.foodResource += food
                 gameData.foodResource-=gameData.survivorNumber
@@ -30,6 +31,7 @@ struct ExitOverlayView: View {
                 
                 gameData.survivorSent = 0
                 gameData.survivorNumber -= unitsDied
+                print("Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 //                            gameData.passDay()
             } label: {
                 Text("Back to Camp")
