@@ -39,18 +39,26 @@ protocol Piece: Moveable & Displayable {
 
 protocol Moveable: Identifiable  {
     var isPlayerUnit : Bool {get}
+    var isRecruitable : Bool {get}
+    var isAttackable : Bool {get}
     var isHidden : Bool {set get}
+    var id: UUID { set get }
+    var faction: String {set get}
+    
     var alert : Bool {set get}
     var isSelected: Bool {set get}
+    
     var health: Int {set get}
     var damage: Int {set get}
-    var id: UUID { set get }
+    var stamina: Int { get }
+    var movementCount: Int { set get }
+    var trust: Int {set get}
+    
     var board: BoardProtocol { set get }
     var vectors: [Vector] { set get }
     var facing: Direction { set get }
-    var stamina: Int { get }
-    var movementCount: Int { set get }
-    var faction: String {set get}
+
+   
     mutating func incrementMoveCounter()
     func getMoves()->[Coord]
     func getCanMove()->Bool

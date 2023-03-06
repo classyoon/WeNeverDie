@@ -44,6 +44,7 @@
 		CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */; };
 		CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */; };
 		CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F83029ABDE9900AD34E9 /* TopButtons.swift */; };
+		CA9A027F29B64A4400ED390B /* recruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A027E29B64A4400ED390B /* recruit.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -117,6 +118,7 @@
 		CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefeatView.swift; sourceTree = "<group>"; };
 		CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryView.swift; sourceTree = "<group>"; };
 		CA90F83029ABDE9900AD34E9 /* TopButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtons.swift; sourceTree = "<group>"; };
+		CA9A027E29B64A4400ED390B /* recruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recruit.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				91355AC5293AEE6A00907610 /* Piece.swift */,
 				91355AC9293AF0E600907610 /* playerUnit.swift */,
+				CA9A027E29B64A4400ED390B /* recruit.swift */,
 				CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */,
 				CA23AE5C29523977003DC26D /* Zombie.swift */,
 			);
@@ -518,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,

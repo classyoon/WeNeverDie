@@ -174,6 +174,7 @@ class Board : ObservableObject, BoardProtocol {
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
         terrainBoard = randomGenerateTerrain(trees: 0.25, houses: 0.2, water: 0.1, exit : bottomRight)
         //print("Terrain generated, generating players")
+        set(moveable: recruit(board: self), Coord: Coord(1, 1))
         spawnPlayers(players)
         //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
         //print("Players generated, generating zombies")

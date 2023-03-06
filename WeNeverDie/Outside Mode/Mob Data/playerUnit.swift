@@ -11,18 +11,24 @@ struct playerUnit: Piece, Identifiable, Equatable{
     static func == (lhs: playerUnit, rhs: playerUnit) -> Bool {
         lhs.id == rhs.id
     }
+    var isRecruitable: Bool = false
+    var isPlayerUnit = true
+    var isAttackable: Bool = false
+    var faction: String = "S"
+    var isHidden = false
     
-var isPlayerUnit = true
     var name : String
     var health: Int = 10
     var damage = 5
-    var faction: String = "S"
-    var isHidden = false
-    var isSelected = false
+    var trust = 0
     var movementCount = 0
+    let stamina = (devMode ? 10 : 3)
+    
+    var isSelected = false
     var alert = false
     var facing: Direction = .down
-    let stamina = (devMode ? 10 : 3)
+
+    
     
     var id = UUID()
     

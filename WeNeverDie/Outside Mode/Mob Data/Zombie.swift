@@ -11,18 +11,22 @@ struct Zombie: Piece, Equatable {
     static func == (lhs: Zombie, rhs: Zombie) -> Bool {
         lhs.id == rhs.id
     }
+    var isRecruitable: Bool = false
+    var isAttackable: Bool = true
     var isPlayerUnit = false
     var isHidden = false
+    var faction = "Z"
+    
     var health = 10
     var damage = (devMode ? 0 : 3)
     var alert = false
+    let stamina = 1
+    var movementCount = 0
+    var trust = 0
     
     var isSelected = false
-    var movementCount = 0
-    var faction = "Z"
-    
     var facing: Direction = .up
-    let stamina = 1
+   
     
     var id = UUID()
     

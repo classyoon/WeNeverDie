@@ -32,16 +32,22 @@ extension Board {
              If the second tap is on on a second piece
              */
             if let second = board[tapRow][tapCol]{
-                if second.faction == "Z" && isPossibleLoc(row: tapRow, col: tapCol) {
-                    // If the tapped tile contains an enemy unit and the selected unit can attack it, attack the enemy unit
+                if second.isAttackable && isPossibleLoc(row: tapRow, col: tapCol) {
                     board[tapRow][tapCol]?.health -= piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     deselectUnit()
-                    
                     turn = UUID()
                     
                     if board[tapRow][tapCol]!.health <= 0 {
                         board[tapRow][tapCol] = nil
+                    }
+                }
+                else if second.isRecruitable {
+                    board[tapRow][tapCol]?.trust+=piece.damage
+                    deselectUnit()
+                    board[startPoint.row][startPoint.col]?.incrementMoveCounter()
+                    if second.trust >= 5 {
+                        set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
                     }
                 }
                 else if second.getCanMove() && second.isPlayerUnit {
