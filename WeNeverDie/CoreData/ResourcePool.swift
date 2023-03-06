@@ -12,7 +12,7 @@ class ResourcePool : ObservableObject {
     @Published var foodResource : Int
     @Published var survivorNumber : Int
     @Published var starving = false
-    @Published var roster = [any Piece]()
+    @Published var roster = [any Piece]()//unused
     //Sent Variables
     @Published var survivorSent : Int = 0
     //Game Condition
@@ -21,10 +21,12 @@ class ResourcePool : ObservableObject {
     @Published var death = false
     @Published var victory = false
     //Victory Conditions
-    @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY ARE STARVING, BEFORE THEY DIE
+    @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
+    @Published var WinCondition = 30
+    //ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var WinProgress = 0
-    @Published var WinCondition = 30
+
     
     let starvationAmount = 0
  
