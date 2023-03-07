@@ -11,6 +11,7 @@ struct recruit: Piece, Identifiable, Equatable {
     var isPlayerUnit: Bool = false
     var isRecruitable: Bool = true
     var isAttackable : Bool  = false
+    let isZombie : Bool = false
     
     static func == (lhs: recruit, rhs: recruit) -> Bool {
         lhs.id == rhs.id
@@ -46,7 +47,7 @@ struct recruit: Piece, Identifiable, Equatable {
     
     var movementCount: Int = 0
     
-    var faction: String = "R"
+   
     
     func getCanMove()->Bool {
         movementCount < stamina ? true : false

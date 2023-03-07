@@ -36,8 +36,7 @@ extension Board {
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
 
-
-
+ 
     func chooseLocationAndDamage(zombie : inout any Piece, targetList: [Coord])->Coord{
         let distance = findDistance(zombie: &zombie, targetList: targetList)
         var returnCoord = distance.seekerCoord

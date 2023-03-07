@@ -15,7 +15,7 @@ struct Zombie: Piece, Equatable {
     var isAttackable: Bool = true
     var isPlayerUnit = false
     var isHidden = false
-    var faction = "Z"
+    var isZombie: Bool = true
     
     var health = 10
     var damage = (devMode ? 0 : 3)
@@ -55,6 +55,7 @@ struct Zombie: Piece, Equatable {
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")
     }
+    
     
 }
 

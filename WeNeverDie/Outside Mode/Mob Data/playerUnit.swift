@@ -14,7 +14,8 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var isRecruitable: Bool = false
     var isPlayerUnit = true
     var isAttackable: Bool = false
-    var faction: String = "S"
+    let isZombie : Bool = false
+   
     var isHidden = false
     
     var name : String
