@@ -345,8 +345,7 @@
 			children = (
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
 				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
-				CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */,
-				CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */,
+				CA9A029929B6E26500ED390B /* Events */,
 				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
 			);
 			path = CampView;
@@ -372,6 +371,15 @@
 				CA9A029429B6E00200ED390B /* HowToMove.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		CA9A029929B6E26500ED390B /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */,
+				CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		CACCD579298C8C10005BE6DE /* Outside Mode */ = {
