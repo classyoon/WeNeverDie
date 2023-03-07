@@ -29,7 +29,7 @@ struct HowToAttack : View {
             Text("Select your unit and tap to attack.")
             Text("How to recruit").font(.title2)
             Image("SurvivorW")
-            Text("You may see these people in blue shirts. You can recruit them. Select you unit and tap on them.")
+            Text("You may see these people in blue shirts. You can recruit them. Select you unit and tap on them. You will need to try two times.")
         }
     }
 }

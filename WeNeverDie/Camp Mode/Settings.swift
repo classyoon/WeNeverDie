@@ -10,13 +10,13 @@ import SwiftUI
 struct Settings: View {
     @ObservedObject var gameData: ResourcePool
     @State var musicIsPlaying = false
-    @State var gameDevButtonText = devMode ? "Game Developer Mode on":"Game Developer Mode off"
-
     var body: some View {
         VStack {
-            Button(gameDevButtonText) {
+            Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
+            Button("Developer Mode Toggle") {
                 devMode.toggle()
-            }
+                print("devMode \(devMode)")
+            }.buttonStyle(.bordered)
             Button {
                 if musicIsPlaying {
                     guard (musicPlayer?.pause()) != nil else {
@@ -33,7 +33,7 @@ struct Settings: View {
                 Image(systemName: musicIsPlaying ? "speaker.wave.2.circle.fill" : "speaker.slash.circle")
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                    .foregroundColor(musicIsPlaying ? Color(.white) : Color(.white).opacity(0.5))
+                    .foregroundColor(musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5))
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
             Button {

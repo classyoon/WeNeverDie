@@ -103,6 +103,6 @@ extension Board {
         moveZombies(zombies, unitList: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
-        
+        checkEndMission()
     }
 }

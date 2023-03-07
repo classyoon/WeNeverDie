@@ -21,9 +21,7 @@ struct ExitOverlayView: View {
                 print("Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 showBoard = false
                 gameData.foodResource += food
-                gameData.foodResource-=gameData.survivorNumber
-                gameData.calcWinProgress()
-                gameData.checkForDefeat()
+                gameData.passDay()
                 gameData.survivorNumber+=unitsRecruited
                 
                 //musicPlayer?.stop()

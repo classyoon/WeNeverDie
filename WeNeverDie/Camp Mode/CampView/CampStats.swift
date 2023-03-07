@@ -41,6 +41,9 @@ struct CampStats : View {
         if gameData.starving{
             return "We are starving. Days till death \(gameData.deathRequirement-gameData.progressToDeath)"
         }
+        if gameData.survivorNumber <= 0{
+            return "If you see this then it is a bug. You shouldn't see this."
+        }
         else{
             return "We have food for \(gameData.foodResource / gameData.survivorNumber) days, (\(gameData.foodResource) rations)."
         }

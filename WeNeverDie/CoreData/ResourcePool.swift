@@ -90,7 +90,7 @@ class ResourcePool : ObservableObject {
             progressToDeath += 1
             print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
-        if progressToDeath > deathRequirement {
+        if progressToDeath > deathRequirement || survivorNumber<=0{
             death = true
             print("Death")
             print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
@@ -115,5 +115,6 @@ class ResourcePool : ObservableObject {
         foodResource-=survivorNumber
         calcWinProgress()
         print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+        checkForDefeat()
     }
 }
