@@ -11,7 +11,7 @@ struct TileType {
     var name = "g"
     var loot = 0
     var movementPenalty = 0
-    var houseLoot = 2
+    var houseLoot = 4
     var waterPenalty = 1
     
     
