@@ -103,9 +103,6 @@ extension Moveable {
     func getStats() -> any View {
         return Text("H : \(health), S: \(stamina-movementCount)")
     }
-    func  fly(){
-        
-    }
 
 }
 
