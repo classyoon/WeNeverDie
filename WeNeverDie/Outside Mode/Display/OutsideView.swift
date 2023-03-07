@@ -19,7 +19,7 @@ struct OutsideView: View {
     
     //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
-    @Binding var GameData : ResourcePool
+    @ObservedObject var gameData : ResourcePool
     @State var people = 2
     
     
@@ -28,7 +28,7 @@ struct OutsideView: View {
             BoardView(vm: vm)
                 .overlay{
                     !vm.missionUnderWay ?
-                    ExitOverlayView(food: food, gameData: GameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
+                    ExitOverlayView(food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                     : nil
                     
                 }
@@ -40,6 +40,6 @@ struct OutsideView: View {
 
 struct OutsideView_Previews: PreviewProvider {
     static var previews: some View {
-        OutsideView(showBoard: Binding.constant(false), vm: Board(players: 3), GameData: Binding.constant(ResourcePool(surviors: 3, food: 10)))
+        OutsideView(showBoard: Binding.constant(false), vm: Board(players: 3), gameData: ResourcePool(surviors: 3, food: 10))
     }
 }

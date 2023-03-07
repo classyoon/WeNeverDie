@@ -9,10 +9,10 @@ import Foundation
 
 class ResourcePool : ObservableObject {
     //Resources
-    @Published var foodResource : Int
-    @Published var survivorNumber : Int
+    @Published var foodResource : Int = 10
+    @Published var survivorNumber : Int = 3
     @Published var starving = false
-    @Published var roster = [any Piece]()//unused
+//    @Published var roster = [any Piece]()//unused
     //Sent Variables
     @Published var survivorSent : Int = 0
     //Game Condition
@@ -44,7 +44,7 @@ class ResourcePool : ObservableObject {
         foodResource = 10
         survivorNumber = 3
         starving = false
-        roster = generateSurvivors(survivorNumber)
+//        roster = generateSurvivors(survivorNumber)
         
         survivorSent = 0
         

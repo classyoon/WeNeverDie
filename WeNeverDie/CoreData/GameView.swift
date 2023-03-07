@@ -8,9 +8,16 @@
 import Foundation
 import SwiftUI
 var devMode = false
+
+//struct MainView: View {
+//
+//    var body: some View {
+//        GameView(gameData: ResourcePool(surviors: 3, food: 10)
+//    }
+//}
 struct GameView: View {
-    @State var gameData = ResourcePool(surviors: 3, food: 10)
-    @StateObject var board = Board(players: 0)
+    @ObservedObject var gameData: ResourcePool
+    @ObservedObject var board: Board
     @State var showBoard = false
     @State var playerNumber = 3
 
@@ -19,12 +26,12 @@ struct GameView: View {
         ZStack {
             VStack {
                 if showBoard {
-                    OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), GameData: $gameData)
+                    OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData)
                 }
                 else {
                     CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent).onChange(of: gameData.ResetGame) { newValue in
                         if newValue {
-                            gameData = ResourcePool(surviors: 3, food: 10)
+                            gameData.reset()
                         }
                     }
                 }
