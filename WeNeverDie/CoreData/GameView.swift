@@ -15,13 +15,14 @@ var devMode = false
 //        GameView(gameData: ResourcePool(surviors: 3, food: 10)
 //    }
 //}
+let key = "game data"
 struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
     @State var showBoard = false
     @State var playerNumber = 3
 
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -29,11 +30,13 @@ struct GameView: View {
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData)
                 }
                 else {
-                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent).onChange(of: gameData.shouldResetGame) { newValue in
-                        if newValue {
-                            gameData.reset()
+                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent)
+                        .onChange(of: gameData.shouldResetGame) { newValue in
+                            if newValue {
+                                gameData.reset()
+                            }
                         }
-                    }
+  
                 }
             }
         }.onChange(of: showBoard) { newValue in

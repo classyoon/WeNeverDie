@@ -32,7 +32,7 @@ struct ExitOverlayView: View {
                 gameData.survivorSent = 0
                 gameData.survivorNumber -= unitsDied
                 print("Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
-                //                            gameData.passDay()
+                save(items: ResourcePoolData(resourcePool: gameData), key: key)
             } label: {
                 Text("Back to Camp")
             }.buttonStyle(.borderedProminent)

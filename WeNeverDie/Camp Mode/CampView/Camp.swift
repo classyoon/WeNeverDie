@@ -87,12 +87,6 @@ struct CampView: View {
                     Spacer()
                     CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
                     Spacer()
-                    Menu(/*@START_MENU_TOKEN@*/"Menu"/*@END_MENU_TOKEN@*/) {
-                        Text("Menu Item 1")
-                        /*@START_MENU_TOKEN@*/Text("Menu Item 2")/*@END_MENU_TOKEN@*/
-                        /*@START_MENU_TOKEN@*/Text("Menu Item 3")/*@END_MENU_TOKEN@*/
-                    }
-                    Spacer()
                     Button {
                         campPassDay()
                     } label: {

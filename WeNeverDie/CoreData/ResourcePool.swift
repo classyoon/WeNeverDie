@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct ResourcePoolData : Codable {
+struct ResourcePoolData : Codable & Identifiable {
+    var id = UUID()
     //Resources
      var foodResource : Int = 10
      var survivorNumber : Int = 3
@@ -38,6 +39,9 @@ struct ResourcePoolData : Codable {
         self.progressToDeath = resourcePool.progressToDeath
         self.WinProgress = resourcePool.WinProgress
         self.days = resourcePool.days
+    }
+    init(){
+        
     }
     init(foodResource: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
         self.foodResource = foodResource
@@ -88,7 +92,7 @@ class ResourcePool : ObservableObject {
         survivorNumber = surviors
         print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
-    init(resourcePoolData: ResourcePoolData){
+    func setValue(resourcePoolData: ResourcePoolData){
         self.foodResource = resourcePoolData.foodResource
         self.survivorNumber = resourcePoolData.survivorNumber
         self.starving = resourcePoolData.starving
