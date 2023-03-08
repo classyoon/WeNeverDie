@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
-    @Binding var ResetGame : Bool
+    @Binding var shouldResetGame : Bool
     @Binding var surivorsSentOnMission: Int
     @Binding var showBoard : Bool
 
@@ -106,6 +106,6 @@ struct CampStats : View {
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(surviors: 2, food: 10), ResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(surviors: 2, food: 10), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
     }
 }

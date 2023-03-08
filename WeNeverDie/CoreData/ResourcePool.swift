@@ -6,6 +6,56 @@
 //
 
 import Foundation
+struct ResourcePoolData : Codable {
+    //Resources
+     var foodResource : Int = 10
+     var survivorNumber : Int = 3
+     var starving = false
+    
+    //Sent Variables
+     var survivorSent : Int = 0
+    //Game Condition
+     var AlreadyWon = false
+     var shouldResetGame = false
+     var death = false
+     var victory = false
+    //Victory Conditions
+     var WinCondition = 30
+    
+    var progressToDeath : Int = 0
+     var WinProgress = 0
+     var days = 0
+    init(resourcePool : ResourcePool){
+        self.foodResource = resourcePool.foodResource
+        self.survivorNumber = resourcePool.survivorNumber
+        self.starving = resourcePool.starving
+        self.survivorSent = resourcePool.survivorSent
+        self.AlreadyWon = resourcePool.AlreadyWon
+        self.shouldResetGame = resourcePool.shouldResetGame
+        self.death = resourcePool.death
+        self.victory = resourcePool.victory
+        self.WinCondition = resourcePool.WinCondition
+        self.progressToDeath = resourcePool.progressToDeath
+        self.WinProgress = resourcePool.WinProgress
+        self.days = resourcePool.days
+    }
+    init(foodResource: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
+        self.foodResource = foodResource
+        self.survivorNumber = survivorNumber
+        self.starving = starving
+        self.survivorSent = survivorSent
+        self.AlreadyWon = AlreadyWon
+        self.shouldResetGame = shouldResetGame
+        self.death = death
+        self.victory = victory
+        self.WinCondition = WinCondition
+        self.progressToDeath = progressToDeath
+        self.WinProgress = WinProgress
+        self.days = days
+    }
+
+}
+
 
 class ResourcePool : ObservableObject {
     //Resources
@@ -17,7 +67,7 @@ class ResourcePool : ObservableObject {
     @Published var survivorSent : Int = 0
     //Game Condition
     @Published var AlreadyWon = false
-    @Published var ResetGame = false
+    @Published var shouldResetGame = false
     @Published var death = false
     @Published var victory = false
     //Victory Conditions
@@ -38,6 +88,20 @@ class ResourcePool : ObservableObject {
         survivorNumber = surviors
         print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
+    init(resourcePoolData: ResourcePoolData){
+        self.foodResource = resourcePoolData.foodResource
+        self.survivorNumber = resourcePoolData.survivorNumber
+        self.starving = resourcePoolData.starving
+        self.survivorSent = resourcePoolData.survivorSent
+        self.AlreadyWon = resourcePoolData.AlreadyWon
+        self.shouldResetGame = resourcePoolData.shouldResetGame
+        self.death = resourcePoolData.death
+        self.victory = resourcePoolData.victory
+        self.WinCondition = resourcePoolData.WinCondition
+        self.progressToDeath = resourcePoolData.progressToDeath
+        self.WinProgress = resourcePoolData.WinProgress
+        self.days = resourcePoolData.days
+    }
     
     /// Resets game
     func reset() {
@@ -51,7 +115,7 @@ class ResourcePool : ObservableObject {
         death = false
         victory = false
         AlreadyWon = false
-        ResetGame = false
+        shouldResetGame = false
         
         WinProgress = 0
         progressToDeath = 0

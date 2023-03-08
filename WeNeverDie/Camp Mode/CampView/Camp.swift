@@ -9,7 +9,7 @@ import SwiftUI
 struct CampView: View {
     @Binding var showBoard: Bool
     @ObservedObject var gameData: ResourcePool
-    @State var ResetGame = false
+    @State var shouldResetGame = false
     @State var showCureHelp = false
     @Binding var surivorsSentOnMission: Int
     var canSendMission: Bool {
@@ -85,7 +85,13 @@ struct CampView: View {
                     .frame(maxHeight: UIScreen.screenHeight)
                 VStack {
                     Spacer()
-                    CampStats(gameData: gameData, ResetGame: $ResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
+                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
+                    Spacer()
+                    Menu(/*@START_MENU_TOKEN@*/"Menu"/*@END_MENU_TOKEN@*/) {
+                        Text("Menu Item 1")
+                        /*@START_MENU_TOKEN@*/Text("Menu Item 2")/*@END_MENU_TOKEN@*/
+                        /*@START_MENU_TOKEN@*/Text("Menu Item 3")/*@END_MENU_TOKEN@*/
+                    }
                     Spacer()
                     Button {
                         campPassDay()
@@ -100,6 +106,7 @@ struct CampView: View {
                     }.padding()
                         .frame(maxHeight: 100)
                 }
+            
 
                 Button {
                     withAnimation {
