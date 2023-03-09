@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A91293AEE4700907610 /* WeNeverDieApp.swift */; };
 		91355A94293AEE4700907610 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A93293AEE4700907610 /* Persistence.swift */; };
-		91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91355A95293AEE4700907610 /* WeNeverDie.xcdatamodeld */; };
 		91355A99293AEE4700907610 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A98293AEE4700907610 /* ContentView.swift */; };
 		91355A9B293AEE4800907610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91355A9A293AEE4800907610 /* Assets.xcassets */; };
 		91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91355A9E293AEE4800907610 /* Preview Assets.xcassets */; };
@@ -89,7 +88,6 @@
 		91355A8E293AEE4700907610 /* WeNeverDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeNeverDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91355A91293AEE4700907610 /* WeNeverDieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeNeverDieApp.swift; sourceTree = "<group>"; };
 		91355A93293AEE4700907610 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		91355A96293AEE4700907610 /* BoardGame4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardGame4.xcdatamodel; sourceTree = "<group>"; };
 		91355A98293AEE4700907610 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		91355A9A293AEE4800907610 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91355A9C293AEE4800907610 /* WeNeverDie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeNeverDie.entitlements; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			children = (
 				91355A98293AEE4700907610 /* ContentView.swift */,
 				91355A93293AEE4700907610 /* Persistence.swift */,
-				91355A95293AEE4700907610 /* WeNeverDie.xcdatamodeld */,
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */,
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
@@ -557,7 +554,6 @@
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
-				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
@@ -976,19 +972,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		91355A95293AEE4700907610 /* WeNeverDie.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				91355A96293AEE4700907610 /* BoardGame4.xcdatamodel */,
-			);
-			currentVersion = 91355A96293AEE4700907610 /* BoardGame4.xcdatamodel */;
-			path = WeNeverDie.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 91355A86293AEE4700907610 /* Project object */;
 }
