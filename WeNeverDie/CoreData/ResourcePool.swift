@@ -172,6 +172,7 @@ class ResourcePool : ObservableObject {
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
             victory = true
+            AlreadyWon = true
             print("Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
     }

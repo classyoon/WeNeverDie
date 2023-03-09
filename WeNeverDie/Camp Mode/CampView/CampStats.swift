@@ -63,7 +63,7 @@ struct CampStats : View {
                 }.frame(maxHeight: 50)
             }
         }.padding()
-            .background(.black.opacity(0.7))
+            .background(.brown.opacity(0.7))
     }
     
    var instructions: some View {
