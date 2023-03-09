@@ -56,6 +56,7 @@
 		CA9A02A629B94B2700ED390B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A529B94B2700ED390B /* DataService.swift */; };
 		CA9A02A829B94B9100ED390B /* SaveTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A729B94B9100ED390B /* SaveTestView.swift */; };
 		CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B329B970EB00ED390B /* CureProgressView.swift */; };
+		CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B529B972F300ED390B /* PieceRotationTest.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -140,6 +141,7 @@
 		CA9A02A529B94B2700ED390B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CA9A02A729B94B9100ED390B /* SaveTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTestView.swift; sourceTree = "<group>"; };
 		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CureProgressView.swift; path = ../../../CureProgressView.swift; sourceTree = "<group>"; };
+		CA9A02B529B972F300ED390B /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		91355A85293AEE4700907610 = {
 			isa = PBXGroup;
 			children = (
+				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
 				91355A90293AEE4700907610 /* WeNeverDie */,
 				91355AA7293AEE4800907610 /* WeNeverDieTests */,
 				91355AB1293AEE4800907610 /* WeNeverDieUITests */,
@@ -553,6 +556,7 @@
 			files = (
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
+				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				91355A97293AEE4700907610 /* WeNeverDie.xcdatamodeld in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
