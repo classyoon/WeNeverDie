@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct WeNeverDieApp: App {
-    let persistenceController = PersistenceController.shared
     @StateObject var gameData = ResourcePool(surviors: 3, food: 10)
     @StateObject var board = Board(players: 0)
     @State var returnedData = ResourcePoolData()

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A91293AEE4700907610 /* WeNeverDieApp.swift */; };
-		91355A94293AEE4700907610 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A93293AEE4700907610 /* Persistence.swift */; };
-		91355A99293AEE4700907610 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355A98293AEE4700907610 /* ContentView.swift */; };
 		91355A9B293AEE4800907610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91355A9A293AEE4800907610 /* Assets.xcassets */; };
 		91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91355A9E293AEE4800907610 /* Preview Assets.xcassets */; };
 		91355AA9293AEE4800907610 /* WeNeverDieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91355AA8293AEE4800907610 /* WeNeverDieTests.swift */; };
@@ -53,7 +51,6 @@
 		CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */; };
 		CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */; };
 		CA9A02A629B94B2700ED390B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A529B94B2700ED390B /* DataService.swift */; };
-		CA9A02A829B94B9100ED390B /* SaveTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A729B94B9100ED390B /* SaveTestView.swift */; };
 		CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B329B970EB00ED390B /* CureProgressView.swift */; };
 		CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B529B972F300ED390B /* PieceRotationTest.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
@@ -87,8 +84,6 @@
 /* Begin PBXFileReference section */
 		91355A8E293AEE4700907610 /* WeNeverDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeNeverDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91355A91293AEE4700907610 /* WeNeverDieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeNeverDieApp.swift; sourceTree = "<group>"; };
-		91355A93293AEE4700907610 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		91355A98293AEE4700907610 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		91355A9A293AEE4800907610 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91355A9C293AEE4800907610 /* WeNeverDie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeNeverDie.entitlements; sourceTree = "<group>"; };
 		91355A9E293AEE4800907610 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -115,7 +110,6 @@
 		CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rollin Through Osaka - MK2.mp3"; sourceTree = "<group>"; };
 		CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Dismal Hand - The Whole Other.mp3"; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
-		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
 		CA90F82A29ABDDC600AD34E9 /* CampStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStats.swift; sourceTree = "<group>"; };
@@ -137,7 +131,6 @@
 		CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPersistance.swift; sourceTree = "<group>"; };
 		CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePoolDataView.swift; sourceTree = "<group>"; };
 		CA9A02A529B94B2700ED390B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		CA9A02A729B94B9100ED390B /* SaveTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTestView.swift; sourceTree = "<group>"; };
 		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CureProgressView.swift; path = ../../../CureProgressView.swift; sourceTree = "<group>"; };
 		CA9A02B529B972F300ED390B /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
@@ -148,7 +141,6 @@
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
-		CAE918A02994B13800A94419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5DE11A629AD28ED0095416B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				E5DE11A529AD28E10095416B /* Style */,
-				CAE918A02994B13800A94419 /* Info.plist */,
 				91355A91293AEE4700907610 /* WeNeverDieApp.swift */,
 				91355AD1293AF5FE00907610 /* CoreData */,
 				CACCD579298C8C10005BE6DE /* Outside Mode */,
@@ -254,12 +245,9 @@
 		91355AD1293AF5FE00907610 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				91355A98293AEE4700907610 /* ContentView.swift */,
-				91355A93293AEE4700907610 /* Persistence.swift */,
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */,
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
-				CA9A02A729B94B9100ED390B /* SaveTestView.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 			);
@@ -281,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
-				CA8A319C296CC12A00755BCE /* POW.m4a */,
 			);
 			path = "Sound Effects";
 			sourceTree = "<group>";
@@ -583,20 +570,17 @@
 				CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
-				91355A99293AEE4700907610 /* ContentView.swift in Sources */,
 				CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */,
 				CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */,
 				CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */,
 				CA9A029529B6E00200ED390B /* HowToMove.swift in Sources */,
 				CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */,
 				CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */,
-				CA9A02A829B94B9100ED390B /* SaveTestView.swift in Sources */,
 				CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */,
 				CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */,
 				CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */,
 				CA9A029129B6DFCF00ED390B /* introText.swift in Sources */,
 				CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */,
-				91355A94293AEE4700907610 /* Persistence.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 				CA9A028F29B6DFAB00ED390B /* forestExplainView.swift in Sources */,
 			);
