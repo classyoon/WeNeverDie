@@ -28,6 +28,7 @@ struct CampView: View {
         gameData.survivorSent = surivorsSentOnMission
         print(surivorsSentOnMission)
         print("Sending \(gameData.survivorSent)")
+        save(items: ResourcePoolData(resourcePool: gameData), key: key)
     }
 
     func shouldShowMap() -> Bool {
