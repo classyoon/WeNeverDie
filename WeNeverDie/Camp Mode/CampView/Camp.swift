@@ -38,33 +38,6 @@ struct CampView: View {
         return false
     }
 
-    var cureProgress: some View {
-        GeometryReader { progressDim in
-            HStack {
-                HStack {
-                    ProgressView(value: Double(gameData.WinProgress), total: Double(gameData.WinCondition))
-                        .padding()
-                        .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
-                    Button {
-                        showCureHelp = true
-                    } label: {
-                        Image(systemName: gameData.victory ? "syringe.fill" : "syringe")
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fit)
-                            .frame(maxHeight: 70)
-                    }
-                    .frame(width: progressDim.size.width * 0.1)
-
-                }.alert("Cure Progress \(String(format: " %.0f%%", gameData.WinProgress / gameData.WinCondition * 100))", isPresented: $showCureHelp) {
-                    Button("Understood", role: .cancel) {}
-                } message: {
-                    Text("Keep survivors at home to make progress faster.")
-                }
-                Spacer()
-            }
-        }
-    }
-
     // TODO: remove Timer from production. for testing purposes only
 //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
 
@@ -72,11 +45,7 @@ struct CampView: View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 HStack {
-                    cureProgress
-                        .aspectRatio(1, contentMode: .fit)
-                        .frame(maxWidth: min(UIScreen.screenHeight, UIScreen.screenWidth) - 70, maxHeight: min(UIScreen.screenHeight, UIScreen.screenWidth) - 70)
-                        .rotationEffect(Angle(degrees: -90))
-                        .foregroundColor(.blue)
+                    CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
                     Spacer()
                     TopButtons(gameData: gameData)
                         .frame(maxWidth: 70)

@@ -35,7 +35,6 @@
 		CA744D3929A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
-		CA90F82829ABB60400AD34E9 /* PieceRotationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
 		CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */; };
 		CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */; };
@@ -56,6 +55,7 @@
 		CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */; };
 		CA9A02A629B94B2700ED390B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A529B94B2700ED390B /* DataService.swift */; };
 		CA9A02A829B94B9100ED390B /* SaveTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A729B94B9100ED390B /* SaveTestView.swift */; };
+		CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B329B970EB00ED390B /* CureProgressView.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -119,7 +119,6 @@
 		CA8A319C296CC12A00755BCE /* POW.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = POW.m4a; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
-		CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
 		CA90F82A29ABDDC600AD34E9 /* CampStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStats.swift; sourceTree = "<group>"; };
 		CA90F82C29ABDE0C00AD34E9 /* DefeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefeatView.swift; sourceTree = "<group>"; };
 		CA90F82E29ABDE2A00AD34E9 /* VictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryView.swift; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePoolDataView.swift; sourceTree = "<group>"; };
 		CA9A02A529B94B2700ED390B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CA9A02A729B94B9100ED390B /* SaveTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTestView.swift; sourceTree = "<group>"; };
+		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CureProgressView.swift; path = ../../../CureProgressView.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -245,7 +245,6 @@
 				91355AC5293AEE6A00907610 /* Piece.swift */,
 				91355AC9293AF0E600907610 /* playerUnit.swift */,
 				CA9A027E29B64A4400ED390B /* recruit.swift */,
-				CA90F82729ABB60400AD34E9 /* PieceRotationTest.swift */,
 				CA23AE5C29523977003DC26D /* Zombie.swift */,
 			);
 			path = "Mob Data";
@@ -362,6 +361,7 @@
 				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
 				CA9A029929B6E26500ED390B /* Events */,
 				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
+				CA9A02B329B970EB00ED390B /* CureProgressView.swift */,
 			);
 			path = CampView;
 			sourceTree = "<group>";
@@ -558,6 +558,7 @@
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
 				CA9A028B29B6DF8000ED390B /* escapeExplainView.swift in Sources */,
+				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
@@ -575,7 +576,6 @@
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
-				CA90F82829ABB60400AD34E9 /* PieceRotationTest.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
 				CA9A029329B6DFEC00ED390B /* enemyView.swift in Sources */,
 				CA9A029D29B9363700ED390B /* building.swift in Sources */,
