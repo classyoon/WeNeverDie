@@ -33,7 +33,7 @@ struct StatusViewBar: View {
     var body: some View {
         
             VStack{
-                Text(vm.changeToNight ? "\(vm.turnsOfDaylight) hours left before dawn" : "\(vm.turnsOfDaylight) hours left before nightfall").foregroundColor(vm.changeToNight ? Color.red : nil)
+                Text(vm.changeToNight ? "\(vm.lengthOfPlay-vm.turnsSinceStart) hrs til dawn" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
                 Text("Food collected : \(food)")
                 VStack(spacing: 30.0){
                     Button {
@@ -75,7 +75,7 @@ struct StatusViewBar: View {
                     .opacity(0.3)
             })
             .cornerRadius(20)
-        
+            
     }
 }
 
