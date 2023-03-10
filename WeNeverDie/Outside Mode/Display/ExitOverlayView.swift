@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExitOverlayView: View {
+    var vm : Board
     let food : Int
     var gameData : ResourcePool
     @Binding var showBoard : Bool
@@ -15,12 +16,13 @@ struct ExitOverlayView: View {
     var unitsRecruited : Int
     var body: some View {
         VStack{
-            Text("End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)")
+            Text(vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We survived the night, but lost some food")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 print("Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 showBoard = false
-                gameData.foodResource += food
+                
+                gameData.foodResource += (vm.changeToNight ? food : food/2)
                 gameData.passDay()
                 gameData.survivorNumber+=unitsRecruited
                 
@@ -46,6 +48,6 @@ struct ExitOverlayView: View {
 
 struct ExitOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitOverlayView(food: 20, gameData: ResourcePool(surviors: 10, food: 10), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
+        ExitOverlayView(vm: Board(players: 1), food: 20, gameData: ResourcePool(surviors: 10, food: 10), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
     }
 }

@@ -47,7 +47,7 @@ class Board : ObservableObject, BoardProtocol {
  @Published var turnsSinceStart = 0
     @Published var lengthOfPlay = 0
     @Published var changeToNight = false
-    @Published var turnsOfDaylight = 12
+    @Published var turnsOfDaylight = 8
     @Published var turnsOfNight = 12
     @Published var selectedUnit : (any Piece)? = nil
     @Published var enteringSurvivors = [any Piece]()
@@ -74,7 +74,7 @@ class Board : ObservableObject, BoardProtocol {
         return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
     }
     
-    func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
+    func randomGenerateTerrain(players : Int, trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
       //  print(board)
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
@@ -87,7 +87,14 @@ class Board : ObservableObject, BoardProtocol {
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
         
         //print(tempTerrain)
-        tempTerrain[0][0].name = "t"
+        var playercounter = 0
+        var rowCounter = 0
+        while playercounter < players{
+            if playercounter%3{
+                rowCounter += 1
+            }
+            tempTerrain[rowCounter][playercounter].name = "t"
+        }
         tempTerrain[0][1].name = "t"
         tempTerrain[0][2].name = "t"
         tempTerrain[1][0].name = "t"
@@ -179,7 +186,7 @@ class Board : ObservableObject, BoardProtocol {
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(trees: 0.25, houses: 0.2, water: 0.1, exit : bottomRight)
+        terrainBoard = randomGenerateTerrain(players : players, trees: 0.4, houses: 0.2, water: 0.1, exit : bottomRight)
         //print("Terrain generated, generating players")
      
         spawnPlayers(players)

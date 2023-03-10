@@ -31,9 +31,9 @@ struct StatusViewBar: View {
         
     }
     var body: some View {
-        
+        //     Text(vm.changeToNight ? "\(vm.lengthOfPlay-vm.turnsSinceStart) hrs til dawn" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
             VStack{
-                Text(vm.changeToNight ? "\(vm.lengthOfPlay-vm.turnsSinceStart) hrs til dawn" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
+                Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
                 Text("Food collected : \(food)")
                 VStack(spacing: 30.0){
                     Button {
