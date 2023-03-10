@@ -8,15 +8,17 @@
 import Foundation
 extension Board {
  
-    func createLists()-> (zombieList : [any Piece], unitList: [Coord], zombieCoord : [Coord]) {
+    func createLists()-> (zombieList : [any Piece], playerCoords: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()
         var zombies = [any Piece]()
+        var playerPieces = [any Piece]()
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if let piece = board[row][col] {
                     if piece.isPlayerUnit {
-                        playerCoordPins.append( Coord(row: row, col: col)); continue
+                        playerCoordPins.append( Coord(row: row, col: col))
+                        playerPieces.append(piece)
                     }
                     if piece.isZombie {
                         zombies.append(piece as! Zombie)
@@ -57,17 +59,17 @@ extension Board {
 //            
 //        }
     }
-    func checkEndMission(unitList: [Coord]? = nil){
-        let unitList  = unitList ?? createLists().unitList
+    func checkEndMission(playerCoords: [Coord]? = nil){
+        let playerCoords  = playerCoords ?? createLists().playerCoords
         
-        if unitList.isEmpty{
+        if playerCoords.isEmpty{
 //            print("END MISSION")
 //            print(survivorList)
             missionUnderWay = false
             return
         }
-        else if unitList.count == 1{
-            let lastSurvivor = unitList[0]
+        else if playerCoords.count == 1{
+            let lastSurvivor = playerCoords[0]
             if terrainBoard[lastSurvivor.row][lastSurvivor.col].name=="X"{//Exit
                 if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
                     survivorList.append(survivorOnCoord)
@@ -76,13 +78,13 @@ extension Board {
                         selectedUnit = nil
                     }
                 }
-//                print("END MISSION")
+                print("END MISSION")
 //                print(survivorList)
                 missionUnderWay = false
             }
         }
         else{
-            for survivor in unitList {
+            for survivor in playerCoords {
                 if terrainBoard[survivor.row][survivor.col].name=="X"{//Exit
                     if let survivorOnCoord = board[survivor.row][survivor.col] {
                         survivorList.append(survivorOnCoord)
@@ -95,12 +97,24 @@ extension Board {
             }
         }
     }
-    
+    func updateDayLightStatus(_ zombieNumber : Int){
+        if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
+            changeToNight = true
+            if zombieNumber < 10 {
+                spawnZombies(1)
+            }
+        } else if turnsSinceStart > lengthOfPlay {
+            missionUnderWay = false
+        }
+    }
     func nextTurn(){
+ 
+        turnsSinceStart += 1
         let lists = createLists()
-        let zombies = lists.zombieList; let players = lists.unitList; let zombieLoc = lists.zombieCoord
+        let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
+        updateDayLightStatus(zombies.count)
         applyTileStatuses(players)
-        moveZombies(zombies, unitList: players, zombieLoc: zombieLoc)
+        moveZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
         checkEndMission()

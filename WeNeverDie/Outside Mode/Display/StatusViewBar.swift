@@ -33,7 +33,7 @@ struct StatusViewBar: View {
     var body: some View {
         
             VStack{
-                
+                Text(vm.changeToNight ? "\(vm.turnsOfDaylight) hours left before dawn" : "\(vm.turnsOfDaylight) hours left before nightfall").foregroundColor(vm.changeToNight ? Color.red : nil)
                 Text("Food collected : \(food)")
                 VStack(spacing: 30.0){
                     Button {
@@ -45,10 +45,12 @@ struct StatusViewBar: View {
                     } label: {
                         Text("Search")
                     }
+                    .foregroundColor(vm.canAnyoneMove ? .white : .red)
+                    .buttonStyle(.borderedProminent)
+                    
                     
                 }
                 HStack{
-                    Rectangle().fill(vm.canAnyoneMove ? Color.red : Color.green ).frame(width: 10, height: 10)
                     Button {
                         withAnimation{vm.nextTurn()}
                         vm.turn = UUID()
@@ -56,12 +58,15 @@ struct StatusViewBar: View {
                     } label: {
                         
                         Text("Next Turn").foregroundColor(Color.white)
+                        
                             .padding()
-                            .background(.brown)
+                            .background(vm.canAnyoneMove ? .gray : .green)
+                            
                             .clipShape(
                                 RoundedRectangle(cornerRadius: 20))
                     }
                     .buttonStyle(.plain)
+                    .shadow(color: vm.canAnyoneMove ? .clear : .green, radius: 5)
                 }
             }
             .padding()

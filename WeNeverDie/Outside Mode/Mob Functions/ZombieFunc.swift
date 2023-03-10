@@ -98,10 +98,10 @@ extension Board {
             return distance.seekerCoord
         }
     }
-    func moveZombies(_ zombies : [any Piece], unitList: [Coord], zombieLoc: [Coord]){//Collects list of zombie
+    func moveZombies(_ zombies : [any Piece], playerCoords: [Coord], zombieLoc: [Coord]){//Collects list of zombie
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
-            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: &zombies[currentZombie], targetList: unitList))//We're basically asking it to move itself.  Then it decides how to move.
+            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: &zombies[currentZombie], targetList: playerCoords))//We're basically asking it to move itself.  Then it decides how to move.
             
         }
     }

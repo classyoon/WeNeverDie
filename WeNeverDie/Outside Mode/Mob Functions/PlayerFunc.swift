@@ -88,7 +88,7 @@ extension Board {
        
     }
     func isAnyoneStillActive()->Bool{
-        let playerList = createLists().unitList
+        let playerList = createLists().playerCoords
         for coord in playerList {
             if let piece = board[coord.row][coord.col] {
                 if piece.getCanMove() {

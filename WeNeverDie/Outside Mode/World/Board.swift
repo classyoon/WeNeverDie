@@ -18,10 +18,10 @@ import AVFoundation
 
 // Load the music file
 let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")
-let rollinSong = Bundle.main.url(forResource: "Rollin Through Osaka - MK2", withExtension: "mp3")
-let weSong = Bundle.main.url(forResource: "For We Are Many - Cooper Cannell", withExtension: "mp3")
-let dismalSong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
-let shadowSong = Bundle.main.url(forResource: "Anno Domini Beats | Shadows", withExtension: "mp3")
+//let rollinSong = Bundle.main.url(forResource: "Rollin Through Osaka - MK2", withExtension: "mp3")
+//let weSong = Bundle.main.url(forResource: "For We Are Many - Cooper Cannell", withExtension: "mp3")
+//let dismalSong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
+//let shadowSong = Bundle.main.url(forResource: "Anno Domini Beats | Shadows", withExtension: "mp3")
 
 let musicPlayer = try? AVAudioPlayer(contentsOf: kurtSong!)
 var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
@@ -44,7 +44,11 @@ class Board : ObservableObject, BoardProtocol {
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
- 
+ @Published var turnsSinceStart = 0
+    @Published var lengthOfPlay = 0
+    @Published var changeToNight = false
+    @Published var turnsOfDaylight = 12
+    @Published var turnsOfNight = 12
     @Published var selectedUnit : (any Piece)? = nil
     @Published var enteringSurvivors = [any Piece]()
     @Published var survivorList = [any Piece]()
@@ -71,7 +75,7 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     func randomGenerateTerrain(trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
-        print(board)
+      //  print(board)
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
@@ -170,6 +174,8 @@ class Board : ObservableObject, BoardProtocol {
     
     func generateBoard(_ players : Int){
         missionUnderWay = true
+        turnsSinceStart = 0
+        lengthOfPlay = turnsOfDaylight + turnsOfNight
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
@@ -177,11 +183,8 @@ class Board : ObservableObject, BoardProtocol {
         //print("Terrain generated, generating players")
      
         spawnPlayers(players)
-        //        set(moveable: playerUnit(name: "Jobs", board: self), Coord: Coord(col: 1))
-        //print("Players generated, generating zombies")
         spawnZombies(4)
         set(moveable: recruit(board: self), Coord: randomLoc())
-        //        set(moveable: Zombie(board: self), Coord: Coord(row : 2))
     }
     init(players : Int){
         

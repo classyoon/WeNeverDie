@@ -26,10 +26,6 @@
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
-		CA744D3329A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3229A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 */; };
-		CA744D3529A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3429A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 */; };
-		CA744D3729A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */; };
-		CA744D3929A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
@@ -105,10 +101,6 @@
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		CA744D3229A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "For We Are Many - Cooper Cannell.mp3"; sourceTree = "<group>"; };
-		CA744D3429A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shadows - Anno Domini Beats.mp3"; sourceTree = "<group>"; };
-		CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rollin Through Osaka - MK2.mp3"; sourceTree = "<group>"; };
-		CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Dismal Hand - The Whole Other.mp3"; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
@@ -324,10 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
-				CA744D3629A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 */,
-				CA744D3229A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 */,
-				CA744D3829A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 */,
-				CA744D3429A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -507,12 +495,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA744D3329A86A3A00F40B4F /* For We Are Many - Cooper Cannell.mp3 in Resources */,
-				CA744D3729A86A4B00F40B4F /* Rollin Through Osaka - MK2.mp3 in Resources */,
-				CA744D3529A86A4500F40B4F /* Shadows - Anno Domini Beats.mp3 in Resources */,
 				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
-				CA744D3929A86A5500F40B4F /* The Dismal Hand - The Whole Other.mp3 in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
