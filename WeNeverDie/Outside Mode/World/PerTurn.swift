@@ -79,6 +79,7 @@ extension Board {
                     }
                 }
                 print("END MISSION")
+             
 //                print(survivorList)
                 missionUnderWay = false
             }
@@ -117,7 +118,7 @@ extension Board {
         moveZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
-        checkEndMission()
+        //checkEndMission()
         
     }
 }

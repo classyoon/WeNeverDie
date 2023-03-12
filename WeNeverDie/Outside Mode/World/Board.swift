@@ -90,14 +90,13 @@ class Board : ObservableObject, BoardProtocol {
         var playercounter = 0
         var rowCounter = 0
         while playercounter < players{
-            if playercounter%3{
+            if ((playercounter%3) != 0){
                 rowCounter += 1
             }
             tempTerrain[rowCounter][playercounter].name = "t"
+            playercounter+=1
         }
-        tempTerrain[0][1].name = "t"
-        tempTerrain[0][2].name = "t"
-        tempTerrain[1][0].name = "t"
+        
         var counter = 0 // Sharing the counter
         var numberAdded = 0
         
@@ -139,7 +138,7 @@ class Board : ObservableObject, BoardProtocol {
         
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
        // print("checking \(ranR), \(ranC)")
-        while board[ranR][ranC] != nil {
+        while board[ranR][ranC] != nil || (ranR == rowMax-1 && ranC == colMax-1) {
             ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
         }
         return Coord(row: ranR, col: ranC)
@@ -178,7 +177,7 @@ class Board : ObservableObject, BoardProtocol {
             }
         }
     }
-    
+
     func generateBoard(_ players : Int){
         missionUnderWay = true
         turnsSinceStart = 0
@@ -196,5 +195,8 @@ class Board : ObservableObject, BoardProtocol {
     init(players : Int){
         
         generateBoard(players)
+    }
+    init(){
+        generateBoard(1)
     }
 }

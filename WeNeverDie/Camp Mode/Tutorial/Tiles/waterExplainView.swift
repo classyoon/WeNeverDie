@@ -11,7 +11,7 @@ struct waterExplainView: View {
     var body: some View {
         VStack{
             Image("water").resizable().frame(width: 300, height: 300).padding()
-            Text("Difficult Terrain : \nThis is water or any kind of difficult terrain. This terrain will take 2 stamina points rather than 1 to traverse.\n")
+            Text("This is water or any kind of difficult terrain. This terrain will take two stamina points rather than one to traverse.\n")
         }
         
     }

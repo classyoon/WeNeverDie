@@ -9,24 +9,23 @@ import Foundation
 import SwiftUI
 var devMode = false
 
-//struct MainView: View {
-//
-//    var body: some View {
-//        GameView(gameData: ResourcePool(surviors: 3, food: 10)
-//    }
-//}
+
 let key = "game data"
 struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
     @State var showBoard = false
-    @State var playerNumber = 3
-
     
     var body: some View {
         ZStack {
             VStack {
-                if showBoard {
+                
+                if !gameData.hasViewedTutorial {
+                    TutorialView(gameData: gameData)
+                    
+                }
+                else if  showBoard {
+                    // Show the tutorial
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData)
                 }
                 else {

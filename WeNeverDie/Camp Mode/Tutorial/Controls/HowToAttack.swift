@@ -10,11 +10,12 @@ import SwiftUI
 struct HowToAttack : View {
     var body: some View {
         VStack{
-            Text("How to attack").font(.title2)
-            Text("Select your unit and tap to attack.")
-            Text("How to recruit").font(.title2)
+            Text("Defending Yourself").font(.title2)
+            Text("Select your survivor by tapping on them. If your survivor has a stamina point you may attack your enemy at the cost of one stamina point. While your survivor is selected, you may attack by tapping on the enemy. You must be right next to an enemy to attack.")
+           
             Image("SurvivorW")
-            Text("You may see these people in blue shirts. You can recruit them. Select you unit and tap on them. You will need to try two times.")
+            Text("Growing Your Numbers").font(.title2)
+            Text("This is another survivor, who is not part of your group. You may encounter them outside your camp. You can recruit them by having your survivor approach and talk to them. You do this in same fashion you command your survivors to attack.")
         }
     }
 }

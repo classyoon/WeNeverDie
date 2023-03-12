@@ -40,6 +40,6 @@ struct OutsideView: View {
 
 struct OutsideView_Previews: PreviewProvider {
     static var previews: some View {
-        OutsideView(showBoard: Binding.constant(false), vm: Board(players: 3), gameData: ResourcePool(surviors: 3, food: 10))
+        OutsideView(showBoard: Binding.constant(false), vm: Board(), gameData: ResourcePool())
     }
 }

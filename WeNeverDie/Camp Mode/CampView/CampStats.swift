@@ -106,6 +106,6 @@ struct CampStats : View {
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(surviors: 2, food: 10), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
     }
 }

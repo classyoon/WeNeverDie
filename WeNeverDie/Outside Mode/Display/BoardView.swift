@@ -27,6 +27,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(vm: Board(players: 1))
+        BoardView(vm: Board())
     }
 }

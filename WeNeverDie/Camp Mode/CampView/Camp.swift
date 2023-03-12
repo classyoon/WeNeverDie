@@ -22,7 +22,7 @@ struct CampView: View {
         showBoard = shouldShowMap()
         gameData.passDay()
         
-        print(showBoard)
+        print("Showing board = \(showBoard)")
         print("Sending \(gameData.survivorSent)")
         print("Sent \(surivorsSentOnMission)")
         gameData.survivorSent = surivorsSentOnMission
@@ -135,6 +135,6 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), gameData: ResourcePool(surviors: 3, food: 10), surivorsSentOnMission: Binding.constant(0))
+        CampView(showBoard: Binding.constant(false), gameData: ResourcePool(), surivorsSentOnMission: Binding.constant(0))
     }
 }

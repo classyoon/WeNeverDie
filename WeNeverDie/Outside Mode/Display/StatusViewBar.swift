@@ -17,7 +17,6 @@ struct StatusViewBar: View {
             if let piece = vm.getCoord(of: selected){ //?? nil
                 
                 if selected.getCanMove(){
-                    print(selected.movementCount)
                     vm.board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
                     selected.movementCount+=1
                     if vm.terrainBoard[piece.row][piece.col].loot>0{
@@ -40,6 +39,7 @@ struct StatusViewBar: View {
                         
                         if vm.unitWasSelected{
                             searchLocation()
+                            vm.canAnyoneMove = vm.isAnyoneStillActive()
                             vm.turn = UUID()
                         }
                     } label: {
@@ -81,6 +81,6 @@ struct StatusViewBar: View {
 
 struct StatusViewBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusViewBar(food: .constant(10), vm: Board(players: 1))
+        StatusViewBar(food: .constant(10), vm: Board())
     }
 }

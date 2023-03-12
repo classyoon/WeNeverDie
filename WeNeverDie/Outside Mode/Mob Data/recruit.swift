@@ -64,7 +64,7 @@ struct recruit: Piece, Identifiable, Equatable {
 
 struct recruit_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board(players: 1)
+        let board = Board()
         let recruitUnit = recruit(board: board)
         recruitUnit.getView()
             .previewLayout(.sizeThatFits)

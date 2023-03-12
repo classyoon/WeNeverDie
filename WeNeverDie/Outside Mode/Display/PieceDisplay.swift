@@ -29,6 +29,6 @@ struct PieceDisplay: View {
 
 struct PieceDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        PieceDisplay(piece: Zombie(board: Board(players: 0)))
+        PieceDisplay(piece: Zombie(board: Board()))
     }
 }

@@ -14,7 +14,7 @@ struct TopButtons: View {
     var body: some View {
         VStack(spacing: 15) {
             NavigationLink {
-                TutorialView()
+                TutorialView(gameData: gameData)
                     .foregroundColor(Color(.label))
             } label: {
                 Image(systemName: "questionmark")
@@ -48,6 +48,6 @@ struct TopButtons: View {
 
 struct TopButtons_Previews: PreviewProvider {
     static var previews: some View {
-        TopButtons(gameData: ResourcePool(surviors: 2, food: 10))
+        TopButtons(gameData: ResourcePool())
     }
 }

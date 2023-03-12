@@ -43,6 +43,6 @@ struct CureProgressView: View {
 
 struct CureProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CureProgressView(gameData: ResourcePool(surviors: 3, food: 10), showCureHelp: .constant(true))
+        CureProgressView(gameData: ResourcePool(), showCureHelp: .constant(true))
     }
 }

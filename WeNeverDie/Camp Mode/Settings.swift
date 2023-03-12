@@ -61,6 +61,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings(gameData: ResourcePool(surviors: 1, food: 10))
+        Settings(gameData: ResourcePool())
     }
 }

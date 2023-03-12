@@ -56,6 +56,6 @@ struct VictoryView: View {
 
 struct VictoryView_Previews: PreviewProvider {
     static var previews: some View {
-        VictoryView(gameData: ResourcePool(surviors: 2, food: 20))
+        VictoryView(gameData: ResourcePool())
     }
 }

@@ -78,7 +78,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
 
 struct playerUnit_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board(players: 1)
+        let board = Board()
         let playerUnit = playerUnit(name: "Steve Jobs", board: board)
         playerUnit.getView()
             .previewLayout(.sizeThatFits)

@@ -61,7 +61,7 @@ struct Zombie: Piece, Equatable {
 
 struct Zombie_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board(players: 3)
+        let board = Board()
         let zombie = Zombie(board: board)
         zombie.getView()
             .previewLayout(.sizeThatFits)

@@ -58,6 +58,6 @@ struct TilePieceDisplay: View {
 
 struct TilePieceDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        TilePieceDisplay(row: 10, col: 10, vm: Board(players: 1))
+        TilePieceDisplay(row: 10, col: 10, vm: Board())
     }
 }
