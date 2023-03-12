@@ -44,15 +44,7 @@ struct CampView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                HStack {
-                    CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
-                    Spacer()
-                    TopButtons(gameData: gameData)
-                        .frame(maxWidth: 70)
-                        .padding()
-
-                }.padding()
-                    .frame(maxHeight: UIScreen.screenHeight)
+               
                 VStack {
                     Spacer()
                     CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
@@ -95,6 +87,16 @@ struct CampView: View {
                     .opacity(canSendMission ? 1 : 0.6)
                     .padding()
                     .frame(maxHeight: UIScreen.screenHeight * 0.4)
+                HStack {
+                    CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
+                        .foregroundColor(.primary)
+                    Spacer()
+                    TopButtons(gameData: gameData)
+                        .frame(maxWidth: 70)
+                        .padding()
+
+                }.padding()
+                    .frame(maxHeight: UIScreen.screenHeight)
             }
             .background(
                 Image("Campground")
