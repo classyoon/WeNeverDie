@@ -15,14 +15,13 @@ struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
     @State var showBoard = false
-    
+    @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
         ZStack {
             VStack {
                 
-                if !gameData.hasViewedTutorial {
+                if !didViewTutorial {
                     TutorialView(gameData: gameData)
-                    
                 }
                 else if  showBoard {
                     // Show the tutorial

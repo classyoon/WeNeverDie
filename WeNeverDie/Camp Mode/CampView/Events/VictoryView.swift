@@ -14,14 +14,15 @@ struct VictoryView: View {
             Text("You have won the demo")
                 .font(.title)
                 .bold()
-            Text("You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! Tell me about the bugs if you encountered any..")
+            Text("You proved them all wrong. You survived and you cured the zombie virus. Hope prevails! As you can see, this is a demo. If you would be intrested in me  adding more to this game email me.")
                 .font(.body)
-                .lineLimit(3)
+                .lineLimit(nil)
                 .padding()
             // Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
             HStack(alignment: .top) {
                 Button {
                     gameData.victory = false
+                    gameData.AlreadyWon = true
                 } label: {
                     Text("Endless")
                         .font(.headline)

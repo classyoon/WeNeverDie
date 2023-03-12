@@ -27,6 +27,7 @@ extension Board {
                 }
             }
         }
+        numberOfZombies = zombies.count
         return (zombies, playerCoordPins, ZomCoordPins)
     }
 
@@ -109,7 +110,6 @@ extension Board {
         }
     }
     func nextTurn(){
- 
         turnsSinceStart += 1
         let lists = createLists()
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord

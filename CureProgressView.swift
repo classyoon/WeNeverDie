@@ -26,7 +26,7 @@ struct CureProgressView: View {
                         
                     }.padding(.top)
                     
-                    VerticalProgressBar(progress: $gameData.WinProgress, max: $gameData.WinCondition)
+                    VerticalProgressBar(progress: gameData.WinProgress, max: gameData.WinCondition)
                         .padding()
                         .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
                 }

@@ -52,7 +52,10 @@
 		CA9A032C29BD7F7B00ED390B /* firstTutorialSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A032B29BD7F7B00ED390B /* firstTutorialSetup.swift */; };
 		CA9A032E29BE36AA00ED390B /* firstTutorialExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */; };
 		CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033329BE4D6700ED390B /* CureProgressInfoView.swift */; };
-		CA9A033629BE5BD700ED390B /* VerticalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033529BE5BD700ED390B /* VerticalProgressBar.swift */; };
+		CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */; };
+		CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033A29BE954700ED390B /* NightExitView.swift */; };
+		CA9A033E29BE9C0D00ED390B /* UnusedDefaultExitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033D29BE9C0D00ED390B /* UnusedDefaultExitView.swift */; };
+		CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -132,7 +135,10 @@
 		CA9A032B29BD7F7B00ED390B /* firstTutorialSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstTutorialSetup.swift; sourceTree = "<group>"; };
 		CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstTutorialExit.swift; sourceTree = "<group>"; };
 		CA9A033329BE4D6700ED390B /* CureProgressInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CureProgressInfoView.swift; sourceTree = "<group>"; };
-		CA9A033529BE5BD700ED390B /* VerticalProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressBar.swift; sourceTree = "<group>"; };
+		CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalProgressBar.swift; sourceTree = "<group>"; };
+		CA9A033A29BE954700ED390B /* NightExitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightExitView.swift; sourceTree = "<group>"; };
+		CA9A033D29BE9C0D00ED390B /* UnusedDefaultExitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedDefaultExitView.swift; sourceTree = "<group>"; };
+		CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDecisionView.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -277,11 +283,11 @@
 		CA17474429A9451500B81EF8 /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				CA9A033C29BE9BE200ED390B /* ExitOverlays */,
 				91355AC3293AEE6A00907610 /* OutsideView.swift */,
 				CAD25F8729AD15000037C6F6 /* BoardView.swift */,
 				CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */,
 				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
-				CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */,
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
 			);
 			path = Display;
@@ -387,9 +393,28 @@
 		CA9A033729BE5E9700ED390B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				CA9A033529BE5BD700ED390B /* VerticalProgressBar.swift */,
+				CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CA9A033C29BE9BE200ED390B /* ExitOverlays */ = {
+			isa = PBXGroup;
+			children = (
+				CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */,
+				CA9A034129BE9E7500ED390B /* Night Decision */,
+			);
+			path = ExitOverlays;
+			sourceTree = "<group>";
+		};
+		CA9A034129BE9E7500ED390B /* Night Decision */ = {
+			isa = PBXGroup;
+			children = (
+				CA9A033A29BE954700ED390B /* NightExitView.swift */,
+				CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */,
+				CA9A033D29BE9C0D00ED390B /* UnusedDefaultExitView.swift */,
+			);
+			path = "Night Decision";
 			sourceTree = "<group>";
 		};
 		CACCD579298C8C10005BE6DE /* Outside Mode */ = {
@@ -545,10 +570,12 @@
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
+				CA9A033E29BE9C0D00ED390B /* UnusedDefaultExitView.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
 				CA9A032E29BE36AA00ED390B /* firstTutorialExit.swift in Sources */,
+				CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */,
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
 				CA9A028B29B6DF8000ED390B /* escapeExplainView.swift in Sources */,
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
@@ -557,14 +584,15 @@
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
 				CA9A032C29BD7F7B00ED390B /* firstTutorialSetup.swift in Sources */,
+				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
+				CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,
 				E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */,
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */,
 				CA9A028729B6DF4400ED390B /* sendOff.swift in Sources */,
 				CA9A028929B6DF6400ED390B /* grassTutorial.swift in Sources */,
-				CA9A033629BE5BD700ED390B /* VerticalProgressBar.swift in Sources */,
 				CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */,
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
 				CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */,

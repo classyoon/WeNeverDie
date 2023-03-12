@@ -12,11 +12,11 @@ struct Settings: View {
     @State var musicIsPlaying = false
     var body: some View {
         VStack {
-            Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
-            Button("Developer Mode Toggle") {
-                devMode.toggle()
-                print("devMode \(devMode)")
-            }.buttonStyle(.bordered)
+//            Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
+//            Button("Developer Mode Toggle") {
+//                devMode.toggle()
+//                print("devMode \(devMode)")
+//            }.buttonStyle(.bordered)
             Button {
                 if musicIsPlaying {
                     guard (musicPlayer?.pause()) != nil else {
@@ -40,6 +40,23 @@ struct Settings: View {
                 gameData.reset()
             } label: {
                 Text("RESET GAME")
+                    .font(.headline)
+                    .bold()
+                    .padding()
+                    .foregroundColor(.red)
+                    .background(
+                        Color.white
+                    ).overlay(
+                        RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color.red, lineWidth: 5)
+                    ).clipShape(RoundedRectangle(cornerRadius: 50))
+            }.shadow(color: .red, radius: 5)
+            Button {
+                gameData.reset()
+                gameData.survivorNumber = 1
+                gameData.foodResource = 0
+            } label: {
+                Text("Want more of challenge? This button will start you with one person and no food.")
                     .font(.headline)
                     .bold()
                     .padding()

@@ -52,6 +52,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var selectedUnit : (any Piece)? = nil
     @Published var enteringSurvivors = [any Piece]()
     @Published var survivorList = [any Piece]()
+    @Published var numberOfZombies : Int = 0
     @Published var highlightSquare : Coord?{
         didSet{
             setPossibleCoords()
@@ -143,8 +144,7 @@ class Board : ObservableObject, BoardProtocol {
         }
         return Coord(row: ranR, col: ranC)
     }
-    
-    
+ 
     func spawnZombies(_ amount : Int){
         var counter = 0
         while counter<amount{

@@ -66,8 +66,8 @@ struct ResourcePoolData : Codable & Identifiable {
 class ResourcePool : ObservableObject {
     //Resources
     @Published var foodResource : Int = 10
-    @Published var survivorNumber : Int = 1
-    @Published var survivorDefaultNumber : Int = 1
+    @Published var survivorNumber : Int = 3
+    @Published var survivorDefaultNumber : Int = 3
     @Published var starving = false
 //    @Published var roster = [any Piece]()//unused
     //Sent Variables
