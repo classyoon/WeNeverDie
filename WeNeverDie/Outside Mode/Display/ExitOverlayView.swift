@@ -16,7 +16,7 @@ struct ExitOverlayView: View {
     var unitsRecruited : Int
     var body: some View {
         VStack{
-            Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We survived the night, but lost some food")
+            Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We survived the night. Let's not do that again.")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 
