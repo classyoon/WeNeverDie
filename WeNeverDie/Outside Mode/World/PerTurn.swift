@@ -112,6 +112,7 @@ extension Board {
     func nextTurn(){
         turnsSinceStart += 1
         let lists = createLists()
+       
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
         updateDayLightStatus(zombies.count)
         applyTileStatuses(players)
@@ -119,6 +120,9 @@ extension Board {
         checkHPAndRefreshStamina()
         deselectUnit()
         //checkEndMission()
+        if createLists().playerCoords.count <= 0 {
+            missionUnderWay = false
+        }
         
     }
 }

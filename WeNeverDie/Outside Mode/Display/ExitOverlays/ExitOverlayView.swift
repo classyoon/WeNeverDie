@@ -14,25 +14,38 @@ struct ExitOverlayView: View {
     @Binding var showBoard : Bool
     var unitsDied : Int
     var unitsRecruited : Int
+    func transferResourcesToResourcePool(){
+        print("Adding -> Food : \(gameData.foodResource)")
+        gameData.foodResource += food
+        print("Result -> Food : \(gameData.foodResource)")
+        
+        gameData.survivorNumber+=unitsRecruited
+        
+        gameData.survivorSent = 0
+        
+        
+        print("Subtracting Deaths -> Survivors : \(gameData.survivorNumber)")
+        gameData.survivorNumber-=vm.UnitsDied
+        print("Result -> Survivors : \(gameData.survivorNumber)")
+        
+        print("Saving Data -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
+        save(items: ResourcePoolData(resourcePool: gameData), key: key)
+    }
     var body: some View {
         VStack{
             Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We survived the night. Let's not do that again.")
                 .font(.title).foregroundColor(Color.black)
             Button {
-
+                
                 showBoard = false
-
+                
+               
+                
+               
+                transferResourcesToResourcePool()
                 print("Pre Pass Day Function -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 gameData.passDay()
                 print("Post Pass Day Function -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
-                gameData.foodResource += food
-                gameData.survivorNumber+=unitsRecruited
-                print("Adding -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
-                gameData.survivorSent = 0
-                //gameData.survivorNumber -= unitsDied
-                print("Subtracting Deaths -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
-                save(items: ResourcePoolData(resourcePool: gameData), key: key)
-                print("Saving Data -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
             } label: {
                 Text("Back to Camp")
             }.buttonStyle(.borderedProminent)
