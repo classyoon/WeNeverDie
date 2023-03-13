@@ -11,17 +11,18 @@ import SwiftUI
 
 struct TutorialView: View {
     @ObservedObject var gameData : ResourcePool
+    @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
         ScrollView {
             VStack{
-                (!gameData.hasViewedTutorial ? firstTutorialSetup(gameData: gameData) : nil)
+                (!didViewTutorial ? firstTutorialSetup(gameData: gameData) : nil)
                 introText()
                 HowToMove()
                 HowToAttack()
                 enemyView()
                 tileExplainView()
                 sendOff()
-                (!gameData.hasViewedTutorial ? firstTutorialExit(gameData: gameData) : nil)
+                (!didViewTutorial ? firstTutorialExit(gameData: gameData) : nil)
             }.padding().navigationTitle("Tutorial")
         }
     }
