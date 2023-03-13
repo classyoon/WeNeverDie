@@ -46,6 +46,7 @@ extension Board {
                     board[tapRow][tapCol]?.trust+=piece.damage
                     deselectUnit()
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
+                    turn = UUID()
                     if secondPiece.trust >= 5 {
                         set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
                         UnitsRecruited+=1

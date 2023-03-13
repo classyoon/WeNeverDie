@@ -30,52 +30,54 @@ struct StatusViewBar: View {
         
     }
     var body: some View {
-        //     Text(vm.changeToNight ? "\(vm.lengthOfPlay-vm.turnsSinceStart) hrs til dawn" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
-            VStack{
-                Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
-                Text("Food collected : \(food)")
-                VStack(spacing: 30.0){
-                    Button {
-                        
-                        if vm.unitWasSelected{
-                            searchLocation()
-                            vm.canAnyoneMove = vm.isAnyoneStillActive()
-                            vm.turn = UUID()
-                        }
-                    } label: {
-                        Text("Search")
-                    }
-                    .foregroundColor(vm.canAnyoneMove ? .white : .red)
-                    .buttonStyle(.borderedProminent)
+        VStack{
+            Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
+            Text("Food collected : \(food)")
+                .foregroundColor(vm.changeToNight ? .white : .black)
+            VStack(spacing: 30.0){
+                Button {
                     
-                    
-                }
-                HStack{
-                    Button {
-                        withAnimation{vm.nextTurn()}
+                    if vm.unitWasSelected{
+                        searchLocation()
+                        vm.canAnyoneMove = vm.isAnyoneStillActive()
                         vm.turn = UUID()
-                        
-                    } label: {
-                        
-                        Text("Next Turn").foregroundColor(Color.white)
-                        
-                            .padding()
-                            .background(vm.canAnyoneMove ? .gray : .green)
-                            
-                            .clipShape(
-                                RoundedRectangle(cornerRadius: 20))
                     }
-                    .buttonStyle(.plain)
-                    .shadow(color: vm.canAnyoneMove ? .clear : .green, radius: 5)
+                } label: {
+                    Text("Search")
                 }
+                .foregroundColor(vm.canAnyoneMove ? .white : .red)
+                .buttonStyle(.borderedProminent)
+                
+                
+                
             }
-            .padding()
-            .background(ZStack{Color.orange
-                Color.secondary
-                    .opacity(0.3)
-            })
-            .cornerRadius(20)
-            
+            HStack{
+                Button {
+                    withAnimation{vm.nextTurn()}
+                    vm.turn = UUID()
+                    
+                } label: {
+                    
+                    Text("Next Turn").foregroundColor(Color.white)
+                    
+                        .padding()
+                        .background(vm.canAnyoneMove ? .gray : .green)
+                    
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 20))
+                }
+                .buttonStyle(.plain)
+                .shadow(color: vm.canAnyoneMove ? .clear : .green, radius: 5)
+            }
+        }
+        .padding()
+        .background(ZStack{Color.orange
+            Color.secondary
+                .opacity(!vm.changeToNight ? 0.1 : 2)
+        })
+        .cornerRadius(20)
+        
+        
     }
 }
 
