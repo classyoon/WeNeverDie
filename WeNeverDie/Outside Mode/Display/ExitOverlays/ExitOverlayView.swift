@@ -36,7 +36,7 @@ struct ExitOverlayView: View {
             Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We made it back, or we survived till dawn. Let's not do that again. Feature coming soon.")
                 .font(.title).foregroundColor(Color.black)
             Button {
-                
+                vm.showEscapeOption = false
                 showBoard = false
                 
                 leavingSoundPlayer?.stop()

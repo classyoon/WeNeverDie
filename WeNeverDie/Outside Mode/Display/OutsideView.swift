@@ -27,11 +27,43 @@ struct OutsideView: View {
             HStack{
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
-                        !vm.missionUnderWay ?
+                        vm.showEscapeOption ?
                         ExitOverlayView(vm: vm, food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                         : nil
                         
                     }
+                    .overlay{
+                        !vm.missionUnderWay ?
+                        Group{
+                                VStack{
+                                    Text("Message to the user:")
+                                    HStack{
+                                        Button(action: {
+                                            
+                                            vm.showEscapeOption = true
+                                            vm.missionUnderWay = false
+                                        }, label: {
+                                            Text("Drop food")
+                                        })
+                                        .buttonStyle(.bordered)
+                                        Button(action: {
+                                            vm.showEscapeOption = true
+                                            vm.missionUnderWay = false
+                                        }, label: {
+                                            Text("Run")
+                                        })
+                                        .buttonStyle(.bordered)
+                                    }
+                                }
+                                .frame(width: 300, height: 300)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(.thickMaterial)
+                                )
+                        }
+                        : nil
+                    }
+                
                 StatusViewBar(food: $food, vm: vm, gameData: gameData)
             }.background(Color.black)
         }

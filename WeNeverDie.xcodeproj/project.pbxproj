@@ -71,6 +71,7 @@
 		CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */; };
 		CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */; };
 		CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036929C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 */; };
+		CA9A036C29C0EED600ED390B /* AlertExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A036B29C0EED600ED390B /* AlertExample.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -168,6 +169,7 @@
 		CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Van DoorSFX.mp3"; sourceTree = "<group>"; };
 		CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LeavingSFX.mp3; sourceTree = "<group>"; };
 		CA9A036929C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shadows - Anno Domini Beats.mp3"; sourceTree = "<group>"; };
+		CA9A036B29C0EED600ED390B /* AlertExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExample.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
+				CA9A036B29C0EED600ED390B /* AlertExample.swift */,
 				91355A90293AEE4700907610 /* WeNeverDie */,
 				91355AA7293AEE4800907610 /* WeNeverDieTests */,
 				91355AB1293AEE4800907610 /* WeNeverDieUITests */,
@@ -655,6 +658,7 @@
 				91355AC2293AEE5C00907610 /* Board.swift in Sources */,
 				CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */,
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
+				CA9A036C29C0EED600ED390B /* AlertExample.swift in Sources */,
 				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
