@@ -51,6 +51,10 @@ struct CampView: View {
                     Spacer()
                     Button {
                         campPassDay()
+                        if canSendMission {
+                            leavingSoundPlayer?.prepareToPlay()
+                            leavingSoundPlayer?.play()
+                        }
                     } label: {
                         VStack {
                             Image(systemName: "bed.double.circle.fill")
@@ -71,6 +75,8 @@ struct CampView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         // Code you want to be delayed
                         showBoard = true
+                        leavingSoundPlayer?.prepareToPlay()
+                        leavingSoundPlayer?.play()
                     }
                 } label: {
                     VStack {
