@@ -6,7 +6,6 @@
 //
 import AVFoundation
 import SwiftUI
-var soundPlayer: AVAudioPlayer!
 
 
 struct OutsideView: View {

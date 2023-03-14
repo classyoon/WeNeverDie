@@ -11,6 +11,7 @@ struct VictoryView: View {
     @ObservedObject var gameData: ResourcePool
     var body: some View {
         VStack {
+            
             Text("You have won the demo")
                 .font(.title)
                 .bold()

@@ -39,7 +39,7 @@ struct ExitOverlayView: View {
                 
                 showBoard = false
                 
-               
+                leavingSoundPlayer?.stop()
                 
                
                 transferResourcesToResourcePool()

@@ -36,7 +36,10 @@ extension Board {
                     board[tapRow][tapCol]?.health -= piece.damage
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     deselectUnit()
+                    playerSoundPlayer?.prepareToPlay()
+                    playerSoundPlayer?.play()
                     turn = UUID()
+                    
                     
                     if board[tapRow][tapCol]!.health <= 0 {
                         board[tapRow][tapCol] = nil
@@ -44,6 +47,7 @@ extension Board {
                 }
                 else if secondPiece.isRecruitable {
                     board[tapRow][tapCol]?.trust+=piece.damage
+                    
                     deselectUnit()
                     board[startPoint.row][startPoint.col]?.incrementMoveCounter()
                     turn = UUID()

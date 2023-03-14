@@ -13,21 +13,6 @@ protocol BoardProtocol {
     func getCoord(of moveable: any Moveable) -> Coord?
 }
 
-import AVFoundation
-
-
-// Load the music file
-let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")
-//let rollinSong = Bundle.main.url(forResource: "Rollin Through Osaka - MK2", withExtension: "mp3")
-//let weSong = Bundle.main.url(forResource: "For We Are Many - Cooper Cannell", withExtension: "mp3")
-//let dismalSong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
-//let shadowSong = Bundle.main.url(forResource: "Anno Domini Beats | Shadows", withExtension: "mp3")
-
-let musicPlayer = try? AVAudioPlayer(contentsOf: kurtSong!)
-var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtension: "m4a")
-
-
-
 //let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
 

@@ -50,6 +50,7 @@ extension Board {
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
                         board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
                         //zomSound?.prepareToPlay()
+                        soundPlayer?.play()
                         zombie.alert = true
 
                         return returnCoord

@@ -16,11 +16,14 @@ struct WeNeverDieApp: App {
     var body: some Scene {
         
         WindowGroup {
-            
+            //SoundTests()
             GameView(gameData: gameData, board: board)
                 .onAppear{
                     returnedData = load(key: key) ?? ResourcePoolData()
                     gameData.setValue(resourcePoolData: returnedData)
+                    musicPlayer?.prepareToPlay()
+                    musicPlayer?.volume = 0.1
+                    soundPlayer?.volume = 1.5
                 }
             //DeviceRotationViewTest()
         }

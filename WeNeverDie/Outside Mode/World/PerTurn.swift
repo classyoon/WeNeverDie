@@ -79,6 +79,8 @@ extension Board {
                         selectedUnit = nil
                     }
                 }
+                leavingSoundPlayer?.prepareToPlay()
+                leavingSoundPlayer?.play()
                 print("END MISSION")
              
 //                print(survivorList)
@@ -104,6 +106,8 @@ extension Board {
             changeToNight = true
             if zombieNumber < 10 {
                 spawnZombies(1)
+                monsterSpawnSFXPlayer?.prepareToPlay()
+                monsterSpawnSFXPlayer?.play()
             }
         } else if turnsSinceStart > lengthOfPlay {
             missionUnderWay = false
@@ -122,6 +126,8 @@ extension Board {
         //checkEndMission()
         if createLists().playerCoords.count <= 0 {
             missionUnderWay = false
+//            leavingSoundPlayer?.prepareToPlay()
+//            leavingSoundPlayer?.play()
         }
         
     }

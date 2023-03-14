@@ -58,6 +58,14 @@
 		CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */; };
 		CA9A034329BF7A0200ED390B /* NightResultsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034229BF7A0200ED390B /* NightResultsCalculator.swift */; };
 		CA9A034529BF7ABE00ED390B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034429BF7ABE00ED390B /* MessageView.swift */; };
+		CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034629BFCE9D00ED390B /* SoundTests.swift */; };
+		CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA8A319B296CC04C00755BCE /* Monster Noises.m4a */; };
+		CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034929BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 */; };
+		CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */; };
+		CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034D29BFD57000ED390B /* Nom.m4a */; };
+		CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */; };
+		CA9A035229BFF58A00ED390B /* driving away SFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */; };
+		CA9A035429BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -143,6 +151,13 @@
 		CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDecisionView.swift; sourceTree = "<group>"; };
 		CA9A034229BF7A0200ED390B /* NightResultsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightResultsCalculator.swift; sourceTree = "<group>"; };
 		CA9A034429BF7ABE00ED390B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		CA9A034629BFCE9D00ED390B /* SoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTests.swift; sourceTree = "<group>"; };
+		CA9A034929BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Dismal Hand - The Whole Other.mp3"; sourceTree = "<group>"; };
+		CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Long Growl.m4a"; sourceTree = "<group>"; };
+		CA9A034D29BFD57000ED390B /* Nom.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nom.m4a; sourceTree = "<group>"; };
+		CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = knifestabsfx.mp3; sourceTree = "<group>"; };
+		CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "driving away SFX.mp3"; sourceTree = "<group>"; };
+		CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Van Side Door OpeningClosing Sound Effect.mp3"; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -280,6 +295,11 @@
 			isa = PBXGroup;
 			children = (
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+				CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */,
+				CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */,
+				CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */,
+				CA9A034D29BFD57000ED390B /* Nom.m4a */,
+				CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */,
 			);
 			path = "Sound Effects";
 			sourceTree = "<group>";
@@ -336,6 +356,7 @@
 		CA17474829A945BE00B81EF8 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				CA9A034929BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 */,
 				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
 			);
 			path = Music;
@@ -398,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */,
+				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -547,8 +569,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
+				CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */,
+				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
+				CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */,
+				CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */,
+				CA9A035229BFF58A00ED390B /* driving away SFX.mp3 in Resources */,
+				CA9A035429BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 in Resources */,
+				CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +622,7 @@
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
 				CA9A032C29BD7F7B00ED390B /* firstTutorialSetup.swift in Sources */,
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
+				CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
 				CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
