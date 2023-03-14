@@ -77,6 +77,7 @@ extension Board {
                     board[lastSurvivor.row][lastSurvivor.col]=nil
                     if survivorOnCoord.id  == selectedUnit?.id {
                         selectedUnit = nil
+                     
                     }
                 }
                 leavingSoundPlayer?.prepareToPlay()
@@ -93,8 +94,10 @@ extension Board {
                     if let survivorOnCoord = board[survivor.row][survivor.col] {
                         survivorList.append(survivorOnCoord)
                         board[survivor.row][survivor.col]=nil
+                        
                         if survivorOnCoord.id  == selectedUnit?.id {
                             selectedUnit = nil
+                            
                         }
                     }
                 }

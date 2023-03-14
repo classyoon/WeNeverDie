@@ -22,6 +22,12 @@ struct StatusViewBar: View {
                     if vm.terrainBoard[piece.row][piece.col].loot>0{
                         food+=1
                         vm.terrainBoard[piece.row][piece.col].loot-=1
+                        grabSoundPlayer?.prepareToPlay()
+                        grabSoundPlayer?.play()
+                    }
+                    else {
+                        emptySoundPlayer?.prepareToPlay()
+                        emptySoundPlayer?.play()
                     }
                 }
                 vm.selectedUnit = selected

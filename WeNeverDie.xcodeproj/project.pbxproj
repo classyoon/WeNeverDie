@@ -64,8 +64,12 @@
 		CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */; };
 		CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034D29BFD57000ED390B /* Nom.m4a */; };
 		CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */; };
-		CA9A035229BFF58A00ED390B /* driving away SFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */; };
-		CA9A035429BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */; };
+		CA9A035629C0AE7A00ED390B /* Footsteps.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */; };
+		CA9A035C29C0D56C00ED390B /* Grabbing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */; };
+		CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */; };
+		CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */; };
+		CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */; };
+		CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -156,8 +160,12 @@
 		CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Long Growl.m4a"; sourceTree = "<group>"; };
 		CA9A034D29BFD57000ED390B /* Nom.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nom.m4a; sourceTree = "<group>"; };
 		CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = knifestabsfx.mp3; sourceTree = "<group>"; };
-		CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "driving away SFX.mp3"; sourceTree = "<group>"; };
-		CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Van Side Door OpeningClosing Sound Effect.mp3"; sourceTree = "<group>"; };
+		CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Footsteps.mp3; sourceTree = "<group>"; };
+		CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Grabbing.mp3; sourceTree = "<group>"; };
+		CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "car startingSFX.mp3"; sourceTree = "<group>"; };
+		CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EmptySearch.mp3; sourceTree = "<group>"; };
+		CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Van DoorSFX.mp3"; sourceTree = "<group>"; };
+		CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LeavingSFX.mp3; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -294,11 +302,15 @@
 		CA17474229A944AB00B81EF8 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */,
+				CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */,
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
-				CA9A035129BFF58A00ED390B /* driving away SFX.mp3 */,
-				CA9A035329BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 */,
+				CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */,
+				CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */,
+				CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */,
 				CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */,
 				CA9A034D29BFD57000ED390B /* Nom.m4a */,
+				CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */,
 				CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */,
 			);
 			path = "Sound Effects";
@@ -569,15 +581,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
+				CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */,
+				CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */,
 				CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */,
 				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
+				CA9A035C29C0D56C00ED390B /* Grabbing.mp3 in Resources */,
+				CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
 				CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */,
+				CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */,
 				CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */,
-				CA9A035229BFF58A00ED390B /* driving away SFX.mp3 in Resources */,
-				CA9A035429BFF59C00ED390B /* Van Side Door OpeningClosing Sound Effect.mp3 in Resources */,
 				CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */,
+				CA9A035629C0AE7A00ED390B /* Footsteps.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

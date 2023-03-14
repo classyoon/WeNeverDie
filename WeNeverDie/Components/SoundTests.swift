@@ -18,12 +18,25 @@ var monsterNoisesURL = Bundle.main.url(forResource: "Monster Noises", withExtens
 var secondMonsterNoise = Bundle.main.url(forResource: "Long Growl", withExtension: "m4a")
 var monsterAttack = Bundle.main.url(forResource: "Nom", withExtension: "m4a")
 var knifeStabSFX = Bundle.main.url(forResource: "knifestabsfx", withExtension: "mp3")
-var leavingSFX = Bundle.main.url(forResource: "driving away SFX", withExtension: "mp3")
+var leavingSFX = Bundle.main.url(forResource: "LeavingSFX", withExtension: "mp3")
+var walkingSFX = Bundle.main.url(forResource: "Footsteps", withExtension: "mp3")
+var grabSFX = Bundle.main.url(forResource: "Grabbing", withExtension: "mp3")
+var emptySFX = Bundle.main.url(forResource: "EmptySearch", withExtension: "mp3")
+var vanSFX = Bundle.main.url(forResource: "Van DoorSFX", withExtension: "mp3")
+var drivingSFX = Bundle.main.url(forResource: "car startingSFX", withExtension: "mp3")
+
 var musicPlayer = try? AVAudioPlayer(contentsOf: (kurtSong!))
 var soundPlayer = try? AVAudioPlayer(contentsOf: (monsterNoisesURL!))
 var monsterSpawnSFXPlayer = try? AVAudioPlayer(contentsOf: (secondMonsterNoise!))
 var playerSoundPlayer = try? AVAudioPlayer(contentsOf: (knifeStabSFX!))
 var leavingSoundPlayer = try? AVAudioPlayer(contentsOf: (leavingSFX!))
+var playerwalkSoundPlayer = try? AVAudioPlayer(contentsOf: (walkingSFX!))
+var grabSoundPlayer = try? AVAudioPlayer(contentsOf: (grabSFX!))
+var emptySoundPlayer = try? AVAudioPlayer(contentsOf: (emptySFX!))
+var VanDoorSoundPlayer = try? AVAudioPlayer(contentsOf: (vanSFX!))
+var StartingSoundPlayer = try? AVAudioPlayer(contentsOf: (drivingSFX!))
+
+
 
 import AVFoundation
 

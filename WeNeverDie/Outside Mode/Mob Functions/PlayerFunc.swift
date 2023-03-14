@@ -72,7 +72,9 @@ extension Board {
             }
             else if isPossibleLoc(row: tapRow, col: tapCol) {
                 // If an empty tile is tapped and it is a possible location for the selected unit to move, move the unit to the new tile
+                playerwalkSoundPlayer?.prepareToPlay()
                 move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
+                playerwalkSoundPlayer?.play()
             }
             else {
                 // If the tapped tile is not a possible location for the selected unit to move, deselect the unit

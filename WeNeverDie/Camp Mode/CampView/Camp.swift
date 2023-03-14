@@ -75,8 +75,8 @@ struct CampView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         // Code you want to be delayed
                         showBoard = true
-                        leavingSoundPlayer?.prepareToPlay()
-                        leavingSoundPlayer?.play()
+                        StartingSoundPlayer?.prepareToPlay()
+                        StartingSoundPlayer?.play()
                     }
                 } label: {
                     VStack {
