@@ -56,7 +56,7 @@ struct Settings: View {
                 gameData.survivorNumber = 1
                 gameData.foodResource = 0
             } label: {
-                Text("Want more of challenge? This button will start you with one person and no food.")
+                Text("Want more of a challenge? This button will start you with one person and no food.")
                     .font(.headline)
                     .bold()
                     .padding()

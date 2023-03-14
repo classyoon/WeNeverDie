@@ -33,7 +33,7 @@ struct StatusViewBar: View {
         VStack{
             Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
             Text("Food collected : \(food)")
-                .foregroundColor(!vm.changeToNight ? .white : .black)
+                .foregroundColor(vm.changeToNight ? .white : .black)
             VStack(spacing: 30.0){
                 Button {
                     
@@ -41,6 +41,9 @@ struct StatusViewBar: View {
                         searchLocation()
                         vm.canAnyoneMove = vm.isAnyoneStillActive()
                         vm.turn = UUID()
+                        if !(vm.selectedUnit?.getCanMove() ?? true) {
+                            vm.deselectUnit()
+                        }
                     }
                 } label: {
                     Text("Search")
