@@ -128,10 +128,11 @@ class ResourcePool : ObservableObject {
         victory = false
         AlreadyWon = false
         shouldResetGame = false
-        
+
         WinProgress = 0
         progressToDeath = 0
-       
+        victoryPlayer?.stop()
+        defeatPlayer?.stop()
         days = 0
     }
     func generateSurvivors(_ number : Int)->[any Piece] {
@@ -170,6 +171,7 @@ class ResourcePool : ObservableObject {
             death = true
             print("Death")
             print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+            defeatPlayer?.play()
         }
     }
     func calcWinProgress(){
@@ -179,6 +181,7 @@ class ResourcePool : ObservableObject {
             print("Checking for Cure Results -> Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
+            victoryPlayer?.play()
             victory = true
             AlreadyWon = true
             print("No longer making cure : Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
