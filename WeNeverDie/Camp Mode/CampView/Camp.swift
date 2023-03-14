@@ -100,6 +100,7 @@ struct CampView: View {
                     TopButtons(gameData: gameData)
                         .frame(maxWidth: 70)
                         .padding()
+                    Spacer()
 
                 }.padding()
                     .frame(maxHeight: UIScreen.screenHeight)

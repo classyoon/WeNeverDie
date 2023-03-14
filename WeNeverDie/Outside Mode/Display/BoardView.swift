@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BoardView: View {
+    @ObservedObject var gameData : ResourcePool
     @ObservedObject var vm : Board
     var body: some View {
         ScrollView{
@@ -27,6 +28,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(vm: Board())
+        BoardView(gameData: ResourcePool(), vm: Board())
     }
 }

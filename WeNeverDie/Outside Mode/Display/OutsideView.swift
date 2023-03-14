@@ -23,18 +23,19 @@ struct OutsideView: View {
     
     
     var body: some View {
-        HStack{
-            BoardView(vm: vm)
-                .overlay{
-                    !vm.missionUnderWay ?
-                    ExitOverlayView(vm: vm, food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
-                    : nil
-                    
-                }
-            StatusViewBar(food: $food, vm: vm)
-        }.background(Color.black)
+        NavigationStack {
+            HStack{
+                BoardView(gameData : gameData, vm: vm)
+                    .overlay{
+                        !vm.missionUnderWay ?
+                        ExitOverlayView(vm: vm, food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
+                        : nil
+                        
+                    }
+                StatusViewBar(food: $food, vm: vm, gameData: gameData)
+            }.background(Color.black)
+        }
     }
-    
 }
 
 struct OutsideView_Previews: PreviewProvider {

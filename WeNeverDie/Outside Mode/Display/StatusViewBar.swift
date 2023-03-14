@@ -10,6 +10,7 @@ import SwiftUI
 struct StatusViewBar: View {
     @Binding var food : Int
     @ObservedObject var vm : Board
+    @ObservedObject var gameData : ResourcePool
     
     func searchLocation(){
         if var selected = vm.selectedUnit {
@@ -37,6 +38,9 @@ struct StatusViewBar: View {
     }
     var body: some View {
         VStack{
+            TopButtons(gameData: gameData)
+                .frame(maxWidth: 70)
+                .padding()
             Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? Color.red : nil)
             Text("Food collected : \(food)")
                 .foregroundColor(vm.changeToNight ? .white : .black)
@@ -92,6 +96,6 @@ struct StatusViewBar: View {
 
 struct StatusViewBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusViewBar(food: .constant(10), vm: Board())
+        StatusViewBar(food: .constant(10), vm: Board(), gameData: ResourcePool())
     }
 }

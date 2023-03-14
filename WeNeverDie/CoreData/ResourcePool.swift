@@ -128,7 +128,6 @@ class ResourcePool : ObservableObject {
         victory = false
         AlreadyWon = false
         shouldResetGame = false
-
         WinProgress = 0
         progressToDeath = 0
         victoryPlayer?.stop()

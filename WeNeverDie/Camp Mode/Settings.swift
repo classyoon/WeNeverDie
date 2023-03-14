@@ -37,9 +37,11 @@ struct Settings: View {
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
             Button {
-                gameData.reset()
+                if gameData.survivorSent == 0 {
+                    gameData.reset()
+                }
             } label: {
-                Text("RESET GAME")
+                Text("RESET GAME (Will not work while a mission is underway)3")
                     .font(.headline)
                     .bold()
                     .padding()
@@ -52,11 +54,13 @@ struct Settings: View {
                     ).clipShape(RoundedRectangle(cornerRadius: 50))
             }.shadow(color: .red, radius: 5)
             Button {
-                gameData.reset()
-                gameData.survivorNumber = 1
-                gameData.foodResource = 0
+                if gameData.survivorSent == 0 {
+                    gameData.reset()
+                    gameData.survivorNumber = 1
+                    gameData.foodResource = 0
+                }
             } label: {
-                Text("Want more of a challenge? This button will start you with one person and no food.")
+                Text("Want more of a challenge? This button will start you with one person and no food. (Will not work while a mission is underway)")
                     .font(.headline)
                     .bold()
                     .padding()

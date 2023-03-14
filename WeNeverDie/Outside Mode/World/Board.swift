@@ -17,6 +17,7 @@ protocol BoardProtocol {
 // Start playing the music
 
 class Board : ObservableObject, BoardProtocol {
+    
     @Published var UnitsDied = 0
     @Published var UnitsRecruited = 0
     

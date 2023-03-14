@@ -34,7 +34,7 @@ struct TopButtons: View {
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
                 .shadow(color: .black, radius: 5)
-            Spacer()
+//            Spacer()
         }.onAppear {
             if initialLoad {
                 guard (musicPlayer?.play()) != nil else {
