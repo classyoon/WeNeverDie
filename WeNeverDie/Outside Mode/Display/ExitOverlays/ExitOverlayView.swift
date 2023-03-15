@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// TODO: Move this to resource pool
 struct ExitOverlayView: View {
     var vm : Board
     let food : Int

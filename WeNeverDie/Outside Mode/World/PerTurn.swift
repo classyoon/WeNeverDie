@@ -7,7 +7,7 @@
 
 import Foundation
 extension Board {
- 
+//MARK: Runs through whole Board
     func createLists()-> (zombieList : [any Piece], playerCoords: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()
@@ -31,7 +31,6 @@ extension Board {
         return (zombies, playerCoordPins, ZomCoordPins)
     }
 
-    
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
@@ -51,6 +50,7 @@ extension Board {
             }
         }
     }
+    //MARK: Unused Transfer Survivors
     func transferSurvivorsToCamp()->[any Piece]{
         return survivorList
     }
@@ -60,6 +60,7 @@ extension Board {
 //            
 //        }
     }
+    //MARK: Check Endmission? Maybe not used?
     func checkEndMission(playerCoords: [Coord]? = nil){
         let playerCoords  = playerCoords ?? createLists().playerCoords
         
@@ -104,6 +105,7 @@ extension Board {
             }
         }
     }
+    //MARK: Daylight
     func updateDayLightStatus(_ zombieNumber : Int){
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
@@ -116,6 +118,7 @@ extension Board {
             missionUnderWay = false
         }
     }
+    //MARK: Next Turn
     func nextTurn(){
         turnsSinceStart += 1
         let lists = createLists()

@@ -209,8 +209,6 @@
 		91355A85293AEE4700907610 = {
 			isa = PBXGroup;
 			children = (
-				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
-				CA9A036B29C0EED600ED390B /* AlertExample.swift */,
 				91355A90293AEE4700907610 /* WeNeverDie */,
 				91355AA7293AEE4800907610 /* WeNeverDieTests */,
 				91355AB1293AEE4800907610 /* WeNeverDieUITests */,
@@ -361,10 +359,10 @@
 			children = (
 				CA744D2C29A8113E00F40B4F /* TutorialView.swift */,
 				CA9A032B29BD7F7B00ED390B /* firstTutorialSetup.swift */,
-				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
 				CA9A029029B6DFCF00ED390B /* introText.swift */,
 				CA9A029829B6E03F00ED390B /* Controls */,
 				CA9A029229B6DFEC00ED390B /* enemyView.swift */,
+				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
 				CA9A028329B6DD8000ED390B /* Tiles */,
 				CA9A028629B6DF4400ED390B /* sendOff.swift */,
 			);
@@ -438,6 +436,8 @@
 			children = (
 				CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */,
 				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
+				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
+				CA9A036B29C0EED600ED390B /* AlertExample.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
