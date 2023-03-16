@@ -15,8 +15,9 @@ struct tileExplainView: View {
                 grassTutorial()
                 forestExplainView()
                 buildingAndScavengeExplained()
-                escapeExplainView()
                 waterExplainView()
+                escapeExplainView()
+                
                 
             }.padding()
         }

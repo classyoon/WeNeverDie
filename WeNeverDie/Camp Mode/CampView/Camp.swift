@@ -15,9 +15,9 @@ struct CampView: View {
     var canSendMission: Bool {
         surivorsSentOnMission != 0
     }
-
+    
     @State var degrees: Double = 0
-
+    
     func campPassDay() {
         showBoard = shouldShowMap()
         gameData.passDay()
@@ -30,23 +30,24 @@ struct CampView: View {
         print("Sending \(gameData.survivorSent)")
         save(items: ResourcePoolData(resourcePool: gameData), key: key)
     }
-
+    
     func shouldShowMap() -> Bool {
         if surivorsSentOnMission > 0 {
             return true
         }
         return false
     }
-
+    
     // TODO: remove Timer from production. for testing purposes only
-//    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
-
+    //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-               
+                
                 VStack {
                     Spacer()
+                    //MARK: Stats
                     CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
                     Spacer()
                     Button {
@@ -66,8 +67,8 @@ struct CampView: View {
                     }.padding()
                         .frame(maxHeight: 100)
                 }
-            
-
+                
+                
                 Button {
                     withAnimation {
                         degrees = degrees == 0 ? 180 : 0
@@ -80,6 +81,7 @@ struct CampView: View {
                     }
                 } label: {
                     VStack {
+                        //MARK: Mission Start
                         Image("Bus")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -94,6 +96,7 @@ struct CampView: View {
                     .padding()
                     .frame(maxHeight: UIScreen.screenHeight * 0.4)
                 HStack {
+                    //MARK: Cure
                     CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
                         .foregroundColor(.primary)
                     Spacer()
@@ -101,26 +104,29 @@ struct CampView: View {
                         .frame(maxWidth: 70)
                         .padding()
                     Spacer()
-
+                    
                 }.padding()
                     .frame(maxHeight: UIScreen.screenHeight)
             }
+            //MARK: Background
             .background(
                 Image("Campground")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
-
-            .blur(radius: gameData.death || (gameData.victory && !gameData.AlreadyWon) ? 10 : 0)
-            .overlay {
-                gameData.death ?
+            
+                .blur(radius: gameData.death || (gameData.victory && !gameData.AlreadyWon) ? 10 : 0)
+            //MARK: Death
+                .overlay {
+                    gameData.death ?
                     DefeatView(gameData: gameData)
-                    .padding()
+                        .padding()
                     : nil
-            }
-            .overlay {
-                (gameData.victory && !gameData.AlreadyWon) ?
+                }.foregroundColor(.white)
+            //MARK: Victory
+                .overlay {
+                    (gameData.victory && !gameData.AlreadyWon) ?
                     HStack {
                         Spacer()
                         VictoryView(gameData: gameData)
@@ -129,16 +135,16 @@ struct CampView: View {
                         Spacer()
                     }
                     : nil
-            }
+                }
             // TODO: remove .onReceive from production. for testing purposes only
-//            .onReceive(timer) { _ in
-//                if gameData.victory {
-//                    gameData.victory = false
-//                } else {
-//                    gameData.victory = true
-//                }
-//            }
-        }.foregroundColor(.white)
+            //            .onReceive(timer) { _ in
+            //                if gameData.victory {
+            //                    gameData.victory = false
+            //                } else {
+            //                    gameData.victory = true
+            //                }
+            //            }
+        }
     }
 }
 

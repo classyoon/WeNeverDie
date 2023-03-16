@@ -9,24 +9,24 @@ import Foundation
 struct ResourcePoolData : Codable & Identifiable {
     var id = UUID()
     //Resources
-     var foodResource : Int = 10
-     var survivorNumber : Int = 3
-     var starving = false
+    var foodResource : Int = 10
+    var survivorNumber : Int = 3
+    var starving = false
     
     //Sent Variables
-     var survivorSent : Int = 0
+    var survivorSent : Int = 0
     //Game Condition
     var hasViewedTutorial = false
-     var AlreadyWon = false
-     var shouldResetGame = false
-     var death = false
-     var victory = false
+    var AlreadyWon = false
+    var shouldResetGame = false
+    var death = false
+    var victory = false
     //Victory Conditions
-     var WinCondition = 30
+    var WinCondition = 6
     
     var progressToDeath : Int = 0
-     var WinProgress = 0
-     var days = 0
+    var WinProgress = 0
+    var days = 0
     init(resourcePool : ResourcePool){
         self.foodResource = resourcePool.foodResource
         self.survivorNumber = resourcePool.survivorNumber
@@ -59,7 +59,7 @@ struct ResourcePoolData : Codable & Identifiable {
         self.WinProgress = WinProgress
         self.days = days
     }
-
+    
 }
 
 
@@ -69,7 +69,7 @@ class ResourcePool : ObservableObject {
     @Published var survivorNumber : Int = 3
     @Published var survivorDefaultNumber : Int = 3
     @Published var starving = false
-//    @Published var roster = [any Piece]()//unused
+    //    @Published var roster = [any Piece]()//unused
     //Sent Variables
     @Published var survivorSent : Int = 0
     //Game Condition
@@ -77,24 +77,24 @@ class ResourcePool : ObservableObject {
     @Published var shouldResetGame = false
     @Published var hasViewedTutorial = false
     @Published var death = false
-    @Published var victory = false
+    @Published var victory = true
     //Victory Conditions
     @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
     @Published var WinCondition = 30
     //ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var WinProgress = 0
-
+    
     
     let starvationAmount = 0
- 
+    
     @Published var days = 0
     init() {
         foodResource = 10
         survivorNumber = survivorDefaultNumber
         print("Intializing Preview (Shouldn't see this) : Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
-
+    
     init(surviors : Int, food : Int) {
         foodResource = food
         survivorNumber = surviors
@@ -120,7 +120,7 @@ class ResourcePool : ObservableObject {
         foodResource = 10
         survivorNumber = survivorDefaultNumber
         starving = false
-//        roster = generateSurvivors(survivorNumber)
+        //        roster = generateSurvivors(survivorNumber)
         
         survivorSent = 0
         
@@ -139,15 +139,15 @@ class ResourcePool : ObservableObject {
         let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
         var generatedRoster = [any Piece]()
         for _ in 0..<number {
-                let randomFirstName = firstNames.randomElement()!
-                let randomLastName = lastNames.randomElement()!
-                let fullName = "\(randomFirstName) \(randomLastName)"
+            let randomFirstName = firstNames.randomElement()!
+            let randomLastName = lastNames.randomElement()!
+            let fullName = "\(randomFirstName) \(randomLastName)"
             generatedRoster.append(playerUnit(name: fullName, board: Board(players: number)))
         }
         return generatedRoster
     }
     func generateMap() -> Board{
-       return Board(players: survivorSent)
+        return Board(players: survivorSent)
     }
     
     func checkForDefeat() {
@@ -188,7 +188,7 @@ class ResourcePool : ObservableObject {
     }
     
     func passDay(){
-       print("Food \(foodResource)")
+        print("Food \(foodResource)")
         days+=1
         print("Survivors sent \(survivorSent)")
         foodResource-=survivorNumber

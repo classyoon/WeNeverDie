@@ -11,7 +11,7 @@ struct HowToMove: View {
     var body: some View {
   
             VStack{
-                Text("Navigation In The Outside").font(.title2)
+                Text("Navigating the Outside").font(.title2)
                 Text("\n This is one of your people. Color may vary.")
                 Image("SurvivorY").resizable().frame(width: 350, height: 200)
                 Text("You tap to select them. The white circles will indicate where they can go. The instant you tap on one of these circles your person will advance to that tile at the cost of one stamina point.")

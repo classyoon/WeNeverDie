@@ -41,7 +41,7 @@ struct Settings: View {
                     gameData.reset()
                 }
             } label: {
-                Text("RESET GAME (Will not work while a mission is underway)3")
+                Text("RESET GAME (Will not work while a mission is underway)")
                     .font(.headline)
                     .bold()
                     .padding()

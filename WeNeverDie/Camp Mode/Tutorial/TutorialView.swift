@@ -17,6 +17,7 @@ struct TutorialView: View {
                 (!gameData.hasViewedTutorial ? firstTutorialSetup(gameData: gameData) : nil)
                 introText()
                 HowToMove()
+                Spacer()
                 HowToAttack()
                 enemyView()
                 tileExplainView()

@@ -45,6 +45,7 @@ extension Board {
                 highlightSquare = nil
             }
         }
+        canAnyoneMove = isAnyoneStillActive()
     }
 }
 

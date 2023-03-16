@@ -12,7 +12,7 @@ struct grassTutorial: View {
         VStack{
             Text("Land & Scavenging").font(.title2)
             Image("grass").resizable().frame(width: 300, height: 300).padding()
-            Text("This is a grass field. It is nothing special.")//try to fix
+            Text("This is a grass field.")//try to fix
         }
     }
 }

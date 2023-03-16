@@ -19,6 +19,7 @@ struct VictoryView: View {
                 .font(.body)
                 .lineLimit(nil)
                 .padding()
+                //.font
             // Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
             HStack(alignment: .top) {
                 Button {
@@ -52,7 +53,7 @@ struct VictoryView: View {
             }.padding(.horizontal, 30)
         }
         .padding()
-        .aspectRatio(3, contentMode: .fit)
+        //.aspectRatio(3, contentMode: .fit)
     }
 }
 
