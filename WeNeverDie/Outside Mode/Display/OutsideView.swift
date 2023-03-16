@@ -19,7 +19,6 @@ struct OutsideView: View {
     //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
-    @State var people = 2
     
     
     var body: some View {

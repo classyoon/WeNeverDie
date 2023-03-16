@@ -177,12 +177,12 @@ class Board : ObservableObject, BoardProtocol {
         //print("Terrain generated, generating players")
      
         spawnPlayers(players)
-        spawnZombies(4)
+        spawnZombies(2)
         set(moveable: recruit(board: self), Coord: randomLoc())
     }
     init(players : Int){
         
-        generateBoard(players)
+        generateBoard(outsideTesting && devMode ? 1 : players)
     }
     init(){
         generateBoard(1)

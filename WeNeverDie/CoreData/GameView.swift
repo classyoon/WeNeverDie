@@ -7,14 +7,12 @@
 
 import Foundation
 import SwiftUI
-var devMode = false
-
 
 let key = "game data"
 struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
-    @State var showBoard = false
+    @State var showBoard = outsideTesting && devMode ? true : false
     @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
         ZStack {

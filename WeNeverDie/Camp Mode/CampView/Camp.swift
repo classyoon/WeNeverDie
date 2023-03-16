@@ -113,7 +113,7 @@ struct CampView: View {
                 Image("Campground")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .opacity(gameData.death || gameData.victory ? 0.5 : 1)
+                    //.opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
             
                 .blur(radius: gameData.death || (gameData.victory && !gameData.AlreadyWon) ? 10 : 0)

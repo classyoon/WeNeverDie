@@ -6,6 +6,10 @@
 //
 
 import Foundation
+var devMode = true
+var outsideTesting = false
+var printZombieThoughts = false
+//var campStats = true
 struct ResourcePoolData : Codable & Identifiable {
     var id = UUID()
     //Resources
@@ -22,7 +26,7 @@ struct ResourcePoolData : Codable & Identifiable {
     var death = false
     var victory = false
     //Victory Conditions
-    var WinCondition = 6
+    var WinCondition = devMode ? 6 : 30
     
     var progressToDeath : Int = 0
     var WinProgress = 0
@@ -77,7 +81,7 @@ class ResourcePool : ObservableObject {
     @Published var shouldResetGame = false
     @Published var hasViewedTutorial = false
     @Published var death = false
-    @Published var victory = true
+    @Published var victory = false
     //Victory Conditions
     @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
     @Published var WinCondition = 30

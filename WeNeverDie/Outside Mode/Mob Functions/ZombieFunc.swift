@@ -7,7 +7,8 @@
 
 import Foundation
 extension Board {
-    /// Runs through a list of valid targets for a piece and returns the distances from the closet one. Also returns self location.
+    ///
+    /// This function locates the targets by checking the distances between the zombie and a list of possible targets. It returns the distance in terms of rows and columns along with the coordinates of the zombie.
     /// - Parameters:
     ///   - zombie: Seeker. Is an inout because alert is triggered here
     ///   - targetList: List of valid targets
@@ -18,95 +19,144 @@ extension Board {
         var DRow : Int = 100; var DCol : Int = 100
         for target in 0..<targetList.count{
             if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.isHidden == false {
-
+                
                 targetLoc = targetList[target]
                 DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
                 thingSighted = true
                 zombie.alert = true
-
+                printZombieThoughts ? print("I see") : nil
             }
         }
         if thingSighted == false {
             targetLoc = seekerLoc
             zombie.alert = false
-
+            printZombieThoughts ? print("I don't see") : nil
+            
         }
-
-       // print("Target sighted = \(zombie.alert)")
+        
+        // print("Target sighted = \(zombie.alert)")
         return (targetLoc.row-seekerLoc.row, targetLoc.col-seekerLoc.col, seekerLoc)//returns the distance
     }
-
- 
-    func chooseLocationAndDamage(zombie : inout any Piece, targetList: [Coord])->Coord{
-        let distance = findDistance(zombie: &zombie, targetList: targetList)
-        var returnCoord = distance.seekerCoord
-        //Attacks Neighbor
-        //        print("I scan from row \(safeNum(returnCoord.row-1)) \(safeNum(returnCoord.row+1))")
-        //        print("I scan from col \(safeNum(returnCoord.col-1)) \(safeNum(returnCoord.col+1))")
-        
-        for r in safeNum(r: returnCoord.row-1)...safeNum(r: returnCoord.row+1) {//Checks if can attack
-            for c in safeNum(c: returnCoord.col-1)...safeNum(c: returnCoord.col+1) {
+    
+    /// This is the function that dictates whether the zombie attacks or not
+    /// - Parameters:
+    ///   - selfPiece: This is the piece, allowing us to modify whether the piece is alert or not.
+    ///   - selfLoc: This is the piece's location on the board.
+    /// - Returns: it returns whether it has attacked or not
+    func attemptToAttack(selfPiece : inout any Piece, selfLoc : Coord) ->Bool{
+        for r in safeNum(r: selfLoc.row-1)...safeNum(r: selfLoc.row+1) {//Checks if can attack
+            for c in safeNum(c: selfLoc.col-1)...safeNum(c: selfLoc.col+1) {
                 if let nearbyPiece = board[r][c]{
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
-                        board[r][c]?.health -= zombie.damage //print("I am in range to attack.")
+                        board[r][c]?.health -= selfPiece.damage //print("I am in range to attack.")
                         //zomSound?.prepareToPlay()
                         soundPlayer?.play()
-                        zombie.alert = true
-
-                        return returnCoord
-                        
+                        printZombieThoughts ? print(selfPiece.alert) : nil
+                        selfPiece.alert = true
+                        printZombieThoughts ? print("While attacking I see") : nil
+                        printZombieThoughts ? print(selfPiece.alert) : nil
+                        return true
                     }
                 }
             }
         }
-        //Where it goes
+        return false
+    }
+    
+    /// This behavior dictates the chase behavior
+    /// - Parameters:
+    ///   - RowD: Row distance from target
+    ///   - ColD: Col distance from target
+    ///   - selfLoc: This is the piece's location on the board.
+    ///   - zombie: This is the piece, allowing us to modify whether the piece is alert or not
+    /// - Returns: This returns a coord for the piece to possibly go to and it returns whether the piece is chasing or not.
+    func returnChaseDirection(_ RowD : Int, _ ColD : Int, selfLoc : Coord, zombie : inout any Piece) -> (target : Coord, isChasing: Bool){
         var directionText = "" //Allows for debugging printing
-        if distance.RowD > 0 {
-            returnCoord.row+=1; directionText+="Down "
+        var targetLoc = selfLoc
+        if RowD > 0 {
+            targetLoc.row+=1; directionText+="Down "
             zombie.alert = true
-
+            
         }
-        else if distance.RowD < 0 {
-            returnCoord.row-=1; directionText+="Up "
-            zombie.alert = true
-        }
-        if distance.ColD < 0 {
-            returnCoord.col-=1; directionText+="Left"
+        else if RowD < 0 {
+            targetLoc.row-=1; directionText+="Up "
             zombie.alert = true
         }
-        else if distance.ColD > 0 {
-            returnCoord.col+=1; directionText+="Right"
+        if ColD < 0 {
+            targetLoc.col-=1; directionText+="Left"
             zombie.alert = true
         }
-
-        var moveCost = terrainBoard[returnCoord.row][returnCoord.col].movementPenalty
-        if (board[returnCoord.row][returnCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
-            return returnCoord
-        } 
-        
-        //Wandering
-        let ranRow = safeNum(r: distance.seekerCoord.row+Int.random(in: -1...1))
-        let ranCol = safeNum(c: distance.seekerCoord.col+Int.random(in: -1...1))
-        moveCost = terrainBoard[ranRow][ranRow].movementPenalty
-        if board[ranRow][ranCol]==nil&&zombie.movementCount+moveCost<=zombie.stamina{//Check if will collide
-            //print("wander from \(distance.seekerCoord) to (\(ranRow), \(ranCol))")
+        else if ColD > 0 {
+            targetLoc.col+=1; directionText+="Right"
+            zombie.alert = true
+        }
+        if !willCollide(zombie, targetLoc) && zombie.alert {//Check if will collide
+            return (targetLoc, true)
+        }
+        else{
             zombie.alert = false
+            printZombieThoughts ? print("There is nothing to see or I have collided") : nil
+            return (selfLoc, false)
+           
+        }
+    }
+    func findBehaviorResultLocation(zombie : inout any Piece, targetList: [Coord])->Coord{
+        let distance = findDistance(zombie: &zombie, targetList: targetList)
+  
+        if attemptToAttack(selfPiece: &zombie, selfLoc: distance.seekerCoord) {
+            printZombieThoughts ? print(zombie.alert) : nil
+            printZombieThoughts ? print("ATTACK") : nil
+
+            zombie.alert = true
+            printZombieThoughts ? print(zombie.alert) : nil
+
+            return distance.seekerCoord
+        }
+        
+        let chaseStatus = returnChaseDirection(distance.RowD, distance.ColD, selfLoc: distance.seekerCoord, zombie: &zombie)
+        
+        if chaseStatus.isChasing{
+            printZombieThoughts ? print(zombie.alert) : nil
+
+            return chaseStatus.target
+        }
+        else{
+            printZombieThoughts ? print(zombie.alert) : nil
+
+            return wander(&zombie, distance.seekerCoord)
+        }
+            }
+    func willCollide(_ zombie : any Piece, _ desiredCoord : Coord) -> Bool{
+        let moveCost = terrainBoard[desiredCoord.row][desiredCoord.col].movementPenalty
+        if (board[desiredCoord.row][desiredCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
+            return false
+        }
+        return true
+    }
+    func wander(_ zombie : inout any Piece, _ selfCoord : Coord) -> Coord{
+        //Wandering
+        printZombieThoughts ? print("b/c I wander I don't see") : nil
+        let ranRow = safeNum(r: selfCoord.row+Int.random(in: -1...1))
+        let ranCol = safeNum(c: selfCoord.col+Int.random(in: -1...1))
+        if !willCollide(zombie, Coord(ranRow, ranCol)){//Check if will collide
+            zombie.alert = false
+            
             return Coord(row: ranRow, col: ranCol)
+            
         }
         else{
             //print("I remain at \(distance.seekerCoord)")
             zombie.alert = false
-            return distance.seekerCoord
+            return selfCoord
         }
     }
     func moveZombies(_ zombies : [any Piece], playerCoords: [Coord], zombieLoc: [Coord]){//Collects list of zombie
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
-            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: chooseLocationAndDamage(zombie: &zombies[currentZombie], targetList: playerCoords))//We're basically asking it to move itself.  Then it decides how to move.
+            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: findBehaviorResultLocation(zombie: &zombies[currentZombie], targetList: playerCoords))//We're basically asking it to move itself.  Then it decides how to move.
             
         }
     }
- 
 }
 
 /**PROGRAMMED BY CHATGPT3
