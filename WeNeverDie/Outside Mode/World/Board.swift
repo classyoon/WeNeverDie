@@ -27,6 +27,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var missionUnderWay = false
+    @Published var alreadyEscaped = false
     @Published var showEscapeOption = false
     var unitWasSelected : Bool {
         selectedUnit != nil

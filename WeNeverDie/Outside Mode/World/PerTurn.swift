@@ -115,6 +115,7 @@ extension Board {
                 monsterSpawnSFXPlayer?.play()
             }
         } else if turnsSinceStart > lengthOfPlay {
+            showEscapeOption = true
             missionUnderWay = false
         }
     }

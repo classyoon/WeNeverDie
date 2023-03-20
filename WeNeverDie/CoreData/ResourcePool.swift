@@ -202,4 +202,21 @@ class ResourcePool : ObservableObject {
         print("Passing Day Results - Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         checkForDefeat()
     }
+    func transferResourcesToResourcePool(vm : Board){
+        print("Adding -> Food : \(foodResource)")
+        foodResource += vm.foodNew
+        print("Result -> Food : \(foodResource)")
+        
+        survivorNumber+=vm.UnitsRecruited
+        
+        survivorSent = 0
+        
+        
+        print("Subtracting Deaths -> Survivors : \(survivorNumber)")
+        survivorNumber-=vm.UnitsDied
+        print("Result -> Survivors : \(survivorNumber)")
+        
+        print("Saving Data -> Food : \(foodResource) Survivors : \(survivorNumber) Cure Progress : \(WinProgress) Death Progress : \(progressToDeath)")
+        save(items: ResourcePoolData(resourcePool: self), key: key)
+    }
 }

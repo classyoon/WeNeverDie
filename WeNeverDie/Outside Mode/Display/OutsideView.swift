@@ -26,7 +26,7 @@ struct OutsideView: View {
             HStack{
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
-                        !vm.missionUnderWay ?
+                        (!vm.missionUnderWay && !vm.showEscapeOption) ?
                         ExitOverlayView(vm: vm, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                         : nil
                         
@@ -34,30 +34,7 @@ struct OutsideView: View {
                     .overlay{
                         vm.showEscapeOption ?
                         Group{
-                                VStack{
-                                    Text("Message to the user:")
-                                    HStack{
-                                        Button(action: {
-                                            vm.showEscapeOption = false
-                                            vm.missionUnderWay = false
-                                        }, label: {
-                                            Text("Drop food")
-                                        })
-                                        .buttonStyle(.bordered)
-                                        Button(action: {
-                                            vm.showEscapeOption = false
-                                            vm.missionUnderWay = false
-                                        }, label: {
-                                            Text("Run")
-                                        })
-                                        .buttonStyle(.bordered)
-                                    }
-                                }
-                                .frame(width: 300, height: 300)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .fill(.thickMaterial)
-                                )
+                            NightDecisionView(resultCalculator: NightResultCalculator(zombieCount: vm.numberOfZombies), showBoard: $showBoard, vm: vm, gameData: gameData)
                         }
                         : nil
                     }
