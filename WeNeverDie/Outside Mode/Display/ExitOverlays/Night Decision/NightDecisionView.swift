@@ -41,7 +41,6 @@ struct NightDecisionView: View {
                     else {
                         print("You made it out safely!")
                         gameData.transferResourcesToResourcePool(vm: vm)
-                        
                         showBoard = false
                         gameData.passDay()
                         leavingSoundPlayer?.play()

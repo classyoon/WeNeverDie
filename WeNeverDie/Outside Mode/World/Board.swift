@@ -78,15 +78,7 @@ class Board : ObservableObject, BoardProtocol {
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
         
         //print(tempTerrain)
-        var playercounter = 0
-        var rowCounter = 0
-        while playercounter < players{
-            if ((playercounter%3) != 0){
-                rowCounter += 1
-            }
-            tempTerrain[rowCounter][playercounter].name = "t"
-            playercounter+=1
-        }
+
         
         var counter = 0 // Sharing the counter
         var numberAdded = 0
@@ -144,6 +136,8 @@ class Board : ObservableObject, BoardProtocol {
     }
     //    var survivorList = [playerUnit(name: "Steve", board: self),  playerUnit(name: "Jobs", board: self)]
     
+    /// Spawns the player's units in rows of three
+    /// - Parameter amount: number of player units.
     func spawnPlayers(_ amount: Int) {
         var counter = 0
         var r = 0
@@ -157,9 +151,10 @@ class Board : ObservableObject, BoardProtocol {
                         break
                     }
                     set(moveable: playerUnit(name: namesSurvivors[counter], board: self), Coord: Coord(r, c))
-                    
+                    terrainBoard[r][c].name = "t"
                     counter += 1
                     c += 1
+                    print("\(counter)")
                 }
                 // Reset the value of c to 0 after each row
                 c = 0

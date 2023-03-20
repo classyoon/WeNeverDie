@@ -6,7 +6,7 @@
 //
 
 import Foundation
-var devMode = true
+var devMode = false
 var outsideTesting = false
 var printZombieThoughts = false
 //var campStats = true
@@ -71,7 +71,7 @@ class ResourcePool : ObservableObject {
     //Resources
     @Published var foodResource : Int = 10
     @Published var survivorNumber : Int = 3
-    @Published var survivorDefaultNumber : Int = 3
+    @Published var survivorDefaultNumber : Int = 6
     @Published var starving = false
     //    @Published var roster = [any Piece]()//unused
     //Sent Variables

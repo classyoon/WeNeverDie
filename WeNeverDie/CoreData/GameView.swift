@@ -37,6 +37,7 @@ struct GameView: View {
             }
         }.onChange(of: showBoard) { newValue in
             if newValue {
+                print("Survivors Sent : \(gameData.survivorSent)")
                 board.generateBoard(gameData.survivorSent)
             }
         }

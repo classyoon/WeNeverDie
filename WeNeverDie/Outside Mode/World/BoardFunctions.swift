@@ -27,22 +27,22 @@ extension Board {
     }
     func safeNum(c : Int)->Int{
         if c>colMax-1{
-            //print("caught over shoot in col")
+            print("caught over shoot in col")
             return colMax-1
         }
         else if c<0 {
-           // print("caught under shoot in col")
+            print("caught under shoot in col")
             return 0
         }
         return c
     }
     func safeNum(r : Int)->Int{
         if r>rowMax-1{
-          //  print("caught over shoot in row")
+            print("caught over shoot in row")
             return rowMax-1
         }
         else if r<0 {
-            //print("caught under shoot in row")
+            print("caught under shoot in row")
             return 0
         }
         return r
