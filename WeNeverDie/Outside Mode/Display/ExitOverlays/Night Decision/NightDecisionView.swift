@@ -24,6 +24,7 @@ struct NightDecisionView: View {
                     gameData.transferResourcesToResourcePool(vm: vm)
                     showBoard = false
                     gameData.passDay()
+                    leavingSoundPlayer?.play()
                 } : Button("Unable to distract. Cost : \(resultCalculator.results.costOfSafeOption)"){}
                 Button("Run"){
                     // code for the risky option
@@ -34,6 +35,7 @@ struct NightDecisionView: View {
                         gameData.transferResourcesToResourcePool(vm: vm)
                         print("You were caught by the zombies and lost everything!")
                         showBoard = false
+                        eatingSoundPlayer?.play()
                         gameData.passDay()
                     }
                     else {
@@ -42,6 +44,7 @@ struct NightDecisionView: View {
                         
                         showBoard = false
                         gameData.passDay()
+                        leavingSoundPlayer?.play()
                     }
                     
                 }.buttonStyle(.bordered)

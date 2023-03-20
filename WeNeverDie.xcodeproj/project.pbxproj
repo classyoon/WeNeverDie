@@ -22,6 +22,7 @@
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CA3314DA29C7DEB800442EC3 /* TestingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314D929C7DEB800442EC3 /* TestingFiles.swift */; };
 		CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314DD29C8096D00442EC3 /* ResultScreen.swift */; };
+		CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
 		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
@@ -121,6 +122,7 @@
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		CA3314D929C7DEB800442EC3 /* TestingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingFiles.swift; sourceTree = "<group>"; };
 		CA3314DD29C8096D00442EC3 /* ResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
+		CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wet Eating.m4a"; sourceTree = "<group>"; };
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* MobFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobFunc.swift; sourceTree = "<group>"; };
 		CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardFunctions.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */,
+				CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */,
 				CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */,
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
 				CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */,
@@ -595,6 +598,7 @@
 				CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */,
 				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
 				CA9A035C29C0D56C00ED390B /* Grabbing.mp3 in Resources */,
+				CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */,
 				CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */,
 				CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,

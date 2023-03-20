@@ -26,6 +26,7 @@ var grabSFX = Bundle.main.url(forResource: "Grabbing", withExtension: "mp3")
 var emptySFX = Bundle.main.url(forResource: "EmptySearch", withExtension: "mp3")
 var vanSFX = Bundle.main.url(forResource: "Van DoorSFX", withExtension: "mp3")
 var drivingSFX = Bundle.main.url(forResource: "car startingSFX", withExtension: "mp3")
+var eatingSFX = Bundle.main.url(forResource: "Wet Eating", withExtension: "mp3")
 
 var defeatPlayer = try? AVAudioPlayer(contentsOf: (defeatSong!))
 var victoryPlayer = try? AVAudioPlayer(contentsOf: (victorySong!))
@@ -39,6 +40,7 @@ var grabSoundPlayer = try? AVAudioPlayer(contentsOf: (grabSFX!))
 var emptySoundPlayer = try? AVAudioPlayer(contentsOf: (emptySFX!))
 var VanDoorSoundPlayer = try? AVAudioPlayer(contentsOf: (vanSFX!))
 var StartingSoundPlayer = try? AVAudioPlayer(contentsOf: (drivingSFX!))
+var eatingSoundPlayer = try? AVAudioPlayer(contentsOf: (eatingSFX!))
 
 
 
