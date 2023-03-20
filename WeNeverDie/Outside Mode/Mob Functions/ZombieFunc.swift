@@ -109,13 +109,13 @@ extension Board {
 
             zombie.alert = true
             printZombieThoughts ? print(zombie.alert) : nil
-
             return distance.seekerCoord
         }
         
         let chaseStatus = returnChaseDirection(distance.RowD, distance.ColD, selfLoc: distance.seekerCoord, zombie: &zombie)
         
         if chaseStatus.isChasing{
+            printZombieThoughts ? print("I am chasing") : nil
             printZombieThoughts ? print(zombie.alert) : nil
 
             return chaseStatus.target

@@ -10,8 +10,7 @@ import SwiftUI
 struct StatusViewBar: View {
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
-    
-
+    var testNight = false//vm.changeToNight
     var body: some View {
         VStack{
             TopButtons(gameData: gameData)
@@ -24,15 +23,12 @@ struct StatusViewBar: View {
                 Button {
                     
                     vm.searchLocationVM()
-
+                    
                 } label: {
                     Text("Search")
                 }
                 .foregroundColor(vm.canAnyoneMove ? .white : .red)
                 .buttonStyle(.borderedProminent)
-                
-                
-                
             }
             HStack{
                 Button {

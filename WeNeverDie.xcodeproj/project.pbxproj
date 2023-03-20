@@ -20,9 +20,12 @@
 		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
-		CA3314DA29C7DEB800442EC3 /* TestingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314D929C7DEB800442EC3 /* TestingFiles.swift */; };
 		CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314DD29C8096D00442EC3 /* ResultScreen.swift */; };
 		CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
+		CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */; };
+		CA3314E829C8E0ED00442EC3 /* stabTrimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E729C8E0ED00442EC3 /* stabTrimmed.m4a */; };
+		CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */; };
+		CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */; };
 		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
@@ -66,8 +69,6 @@
 		CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */; };
 		CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034D29BFD57000ED390B /* Nom.m4a */; };
 		CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */; };
-		CA9A035629C0AE7A00ED390B /* Footsteps.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */; };
-		CA9A035C29C0D56C00ED390B /* Grabbing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */; };
 		CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */; };
 		CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */; };
 		CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */; };
@@ -120,9 +121,12 @@
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
-		CA3314D929C7DEB800442EC3 /* TestingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingFiles.swift; sourceTree = "<group>"; };
 		CA3314DD29C8096D00442EC3 /* ResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
 		CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wet Eating.m4a"; sourceTree = "<group>"; };
+		CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = trimmedGrabbing.m4a; sourceTree = "<group>"; };
+		CA3314E729C8E0ED00442EC3 /* stabTrimmed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = stabTrimmed.m4a; path = ../../../../../Downloads/stabTrimmed.m4a; sourceTree = "<group>"; };
+		CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cleanFootsteps.m4a; sourceTree = "<group>"; };
+		CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStatsDisplay.swift; sourceTree = "<group>"; };
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* MobFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobFunc.swift; sourceTree = "<group>"; };
 		CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardFunctions.swift; sourceTree = "<group>"; };
@@ -166,8 +170,6 @@
 		CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Long Growl.m4a"; sourceTree = "<group>"; };
 		CA9A034D29BFD57000ED390B /* Nom.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nom.m4a; sourceTree = "<group>"; };
 		CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = knifestabsfx.mp3; sourceTree = "<group>"; };
-		CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Footsteps.mp3; sourceTree = "<group>"; };
-		CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Grabbing.mp3; sourceTree = "<group>"; };
 		CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "car startingSFX.mp3"; sourceTree = "<group>"; };
 		CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EmptySearch.mp3; sourceTree = "<group>"; };
 		CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Van DoorSFX.mp3"; sourceTree = "<group>"; };
@@ -309,11 +311,12 @@
 		CA17474229A944AB00B81EF8 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
-				CA9A035B29C0D56C00ED390B /* Grabbing.mp3 */,
 				CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */,
-				CA9A035529C0AE7A00ED390B /* Footsteps.mp3 */,
+				CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */,
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+				CA3314E729C8E0ED00442EC3 /* stabTrimmed.m4a */,
 				CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */,
+				CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */,
 				CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */,
 				CA9A035F29C0DA9D00ED390B /* car startingSFX.mp3 */,
 				CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */,
@@ -335,6 +338,7 @@
 				CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */,
 				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
+				CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -355,7 +359,6 @@
 			children = (
 				CA48C74B298387E200106B97 /* MobFunc.swift */,
 				CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */,
-				CA3314D929C7DEB800442EC3 /* TestingFiles.swift */,
 				CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */,
 			);
 			path = "Mob Functions";
@@ -593,11 +596,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
+				CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */,
 				CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */,
 				CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */,
+				CA3314E829C8E0ED00442EC3 /* stabTrimmed.m4a in Resources */,
 				CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */,
 				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
-				CA9A035C29C0D56C00ED390B /* Grabbing.mp3 in Resources */,
 				CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */,
 				CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */,
 				CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */,
@@ -607,7 +611,7 @@
 				CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */,
 				CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */,
 				CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */,
-				CA9A035629C0AE7A00ED390B /* Footsteps.mp3 in Resources */,
+				CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,10 +654,10 @@
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
 				CA9A032C29BD7F7B00ED390B /* firstTutorialSetup.swift in Sources */,
+				CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */,
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
 				CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
-				CA3314DA29C7DEB800442EC3 /* TestingFiles.swift in Sources */,
 				CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,

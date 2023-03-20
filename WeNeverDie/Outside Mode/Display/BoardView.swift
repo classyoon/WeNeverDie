@@ -22,6 +22,7 @@ struct BoardView: View {
                 }
             }
             .id(vm.turn)
+            
         }
     }
 }
