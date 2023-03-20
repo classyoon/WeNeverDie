@@ -56,6 +56,7 @@ class Board : ObservableObject, BoardProtocol {
     let startSquares = 4
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
+    @Published var foodNew = 0
     
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience

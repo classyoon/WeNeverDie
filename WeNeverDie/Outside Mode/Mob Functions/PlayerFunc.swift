@@ -119,4 +119,29 @@ extension Board {
             }
         }
     }
+    func searchLocationVM(){
+        print("Triggered")
+        if var selected = selectedUnit {
+            
+            if let piece = getCoord(of: selected){ //?? nil
+                
+                if selected.getCanMove(){
+                    board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
+                    selected.movementCount+=1
+                    if terrainBoard[piece.row][piece.col].loot>0{
+                        foodNew+=1
+                        terrainBoard[piece.row][piece.col].loot-=1
+                        grabSoundPlayer?.prepareToPlay()
+                        grabSoundPlayer?.play()
+                    }
+                    else {
+                        emptySoundPlayer?.prepareToPlay()
+                        emptySoundPlayer?.play()
+                    }
+                }
+                selectedUnit = selected
+            }
+        }
+        
+    }
 }

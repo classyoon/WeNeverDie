@@ -20,6 +20,7 @@
 		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
+		CA3314DA29C7DEB800442EC3 /* TestingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314D929C7DEB800442EC3 /* TestingFiles.swift */; };
 		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
@@ -118,6 +119,7 @@
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		CA3314D929C7DEB800442EC3 /* TestingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingFiles.swift; sourceTree = "<group>"; };
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* MobFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobFunc.swift; sourceTree = "<group>"; };
 		CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardFunctions.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				CA48C74B298387E200106B97 /* MobFunc.swift */,
 				CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */,
+				CA3314D929C7DEB800442EC3 /* TestingFiles.swift */,
 				CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */,
 			);
 			path = "Mob Functions";
@@ -647,6 +650,7 @@
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
 				CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
+				CA3314DA29C7DEB800442EC3 /* TestingFiles.swift in Sources */,
 				CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */,
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,

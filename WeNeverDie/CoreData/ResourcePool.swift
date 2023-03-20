@@ -185,8 +185,9 @@ class ResourcePool : ObservableObject {
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
             victoryPlayer?.play()
+            musicPlayer?.stop()
             victory = true
-            AlreadyWon = true
+            //AlreadyWon = true
             print("No longer making cure : Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
     }
