@@ -8,34 +8,10 @@
 import SwiftUI
 
 struct StatusViewBar: View {
-    @Binding var food : Int
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
     
-    func searchLocation(){
-        if var selected = vm.selectedUnit {
-            
-            if let piece = vm.getCoord(of: selected){ //?? nil
-                
-                if selected.getCanMove(){
-                    vm.board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
-                    selected.movementCount+=1
-                    if vm.terrainBoard[piece.row][piece.col].loot>0{
-                        food+=1
-                        vm.terrainBoard[piece.row][piece.col].loot-=1
-                        grabSoundPlayer?.prepareToPlay()
-                        grabSoundPlayer?.play()
-                    }
-                    else {
-                        emptySoundPlayer?.prepareToPlay()
-                        emptySoundPlayer?.play()
-                    }
-                }
-                vm.selectedUnit = selected
-            }
-        }
-        
-    }
+
     var body: some View {
         VStack{
             TopButtons(gameData: gameData)
@@ -47,14 +23,8 @@ struct StatusViewBar: View {
             VStack(spacing: 30.0){
                 Button {
                     
-                    if vm.unitWasSelected{
-                        vm.searchLocationVM()
-                        vm.canAnyoneMove = vm.isAnyoneStillActive()
-                        vm.turn = UUID()
-                        if !(vm.selectedUnit?.getCanMove() ?? true) {
-                            vm.deselectUnit()
-                        }
-                    }
+                    vm.searchLocationVM()
+
                 } label: {
                     Text("Search")
                 }
@@ -96,6 +66,6 @@ struct StatusViewBar: View {
 
 struct StatusViewBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusViewBar(food: .constant(10), vm: Board(), gameData: ResourcePool())
+        StatusViewBar(vm: Board(), gameData: ResourcePool())
     }
 }

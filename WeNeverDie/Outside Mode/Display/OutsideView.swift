@@ -63,7 +63,7 @@ struct OutsideView: View {
                         : nil
                     }
                 
-                StatusViewBar(food: $food, vm: vm, gameData: gameData)
+                StatusViewBar(vm: vm, gameData: gameData)
             }.background(Color.black)
         }
     }

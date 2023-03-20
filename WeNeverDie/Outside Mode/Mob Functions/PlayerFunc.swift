@@ -55,7 +55,7 @@ extension Board {
                         set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
                         UnitsRecruited+=1
                         turn = UUID()
-                   
+                        
                     }
                 }
                 else if secondPiece.getCanMove() && secondPiece.isPlayerUnit {
@@ -92,7 +92,7 @@ extension Board {
         selectedUnit = nil
         highlightSquare = nil
         canAnyoneMove = isAnyoneStillActive()
-       
+        
     }
     func isAnyoneStillActive()->Bool{
         let playerList = createLists().playerCoords
@@ -120,28 +120,36 @@ extension Board {
         }
     }
     func searchLocationVM(){
-        print("Triggered")
-        if var selected = selectedUnit {
+        if unitWasSelected{
             
-            if let piece = getCoord(of: selected){ //?? nil
+            
+            if var selected = selectedUnit {
                 
-                if selected.getCanMove(){
-                    board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
-                    selected.movementCount+=1
-                    if terrainBoard[piece.row][piece.col].loot>0{
-                        foodNew+=1
-                        terrainBoard[piece.row][piece.col].loot-=1
-                        grabSoundPlayer?.prepareToPlay()
-                        grabSoundPlayer?.play()
+                if let piece = getCoord(of: selected){ //?? nil
+                    
+                    if selected.getCanMove(){
+                        board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
+                        selected.movementCount+=1
+                        if terrainBoard[piece.row][piece.col].loot>0{
+                            foodNew+=1
+                            terrainBoard[piece.row][piece.col].loot-=1
+                            grabSoundPlayer?.prepareToPlay()
+                            grabSoundPlayer?.play()
+                        }
+                        else {
+                            emptySoundPlayer?.prepareToPlay()
+                            emptySoundPlayer?.play()
+                        }
                     }
-                    else {
-                        emptySoundPlayer?.prepareToPlay()
-                        emptySoundPlayer?.play()
-                    }
+                    selectedUnit = selected
                 }
-                selectedUnit = selected
+            }
+            
+            canAnyoneMove = isAnyoneStillActive()
+            turn = UUID()
+            if !(selectedUnit?.getCanMove() ?? true) {
+                deselectUnit()
             }
         }
-        
     }
 }
