@@ -26,27 +26,26 @@ struct OutsideView: View {
             HStack{
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
-                        vm.showEscapeOption ?
-                        ExitOverlayView(vm: vm, food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
+                        !vm.missionUnderWay ?
+                        ExitOverlayView(vm: vm, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                         : nil
                         
                     }
                     .overlay{
-                        !vm.missionUnderWay ?
+                        vm.showEscapeOption ?
                         Group{
                                 VStack{
                                     Text("Message to the user:")
                                     HStack{
                                         Button(action: {
-                                            
-                                            vm.showEscapeOption = true
+                                            vm.showEscapeOption = false
                                             vm.missionUnderWay = false
                                         }, label: {
                                             Text("Drop food")
                                         })
                                         .buttonStyle(.bordered)
                                         Button(action: {
-                                            vm.showEscapeOption = true
+                                            vm.showEscapeOption = false
                                             vm.missionUnderWay = false
                                         }, label: {
                                             Text("Run")

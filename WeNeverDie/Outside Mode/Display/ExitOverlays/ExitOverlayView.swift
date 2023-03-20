@@ -9,14 +9,14 @@ import SwiftUI
 // TODO: Move this to resource pool
 struct ExitOverlayView: View {
     var vm : Board
-    let food : Int
+
     var gameData : ResourcePool
     @Binding var showBoard : Bool
     var unitsDied : Int
     var unitsRecruited : Int
     func transferResourcesToResourcePool(){
         print("Adding -> Food : \(gameData.foodResource)")
-        gameData.foodResource += food
+        gameData.foodResource += vm.foodNew
         print("Result -> Food : \(gameData.foodResource)")
         
         gameData.survivorNumber+=unitsRecruited
@@ -33,7 +33,7 @@ struct ExitOverlayView: View {
     }
     var body: some View {
         VStack{
-            Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We made it back, or we survived till dawn. Let's not do that again. Feature coming soon.")
+            Text(!vm.changeToNight ? "End Mission : Gathered \(vm.foodNew) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+vm.foodNew)" : "We made it back, or we survived till dawn. Let's not do that again. Feature coming soon.")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 vm.showEscapeOption = false
@@ -59,6 +59,6 @@ struct ExitOverlayView: View {
 
 struct ExitOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitOverlayView(vm: Board(), food: 20, gameData: ResourcePool(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
+        ExitOverlayView(vm: Board(), gameData: ResourcePool(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
     }
 }
