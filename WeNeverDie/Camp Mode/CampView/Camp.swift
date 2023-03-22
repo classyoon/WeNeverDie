@@ -28,8 +28,10 @@ struct CampView: View {
                     Spacer()
                     PassDayButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
                 }
-                BeginMissionButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
-                
+                HStack{
+                    BeginMissionButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
+                    gameData.switchToLeft ? Spacer() : nil
+                }
                 !gameData.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
                 gameData.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
                 
