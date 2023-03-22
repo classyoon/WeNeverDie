@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TilePieceDisplay: View {
+    @ObservedObject var gameData : ResourcePool
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -41,7 +42,7 @@ struct TilePieceDisplay: View {
                 }
             }
             if let piece = vm.board[row][col] {
-                PieceDisplay(piece: piece)
+                PieceDisplay(gameData: gameData, piece: piece)
             }
         }
         .aspectRatio(1, contentMode: .fit)
@@ -58,6 +59,6 @@ struct TilePieceDisplay: View {
 
 struct TilePieceDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        TilePieceDisplay(row: 10, col: 10, vm: Board())
+        TilePieceDisplay(gameData: ResourcePool(), row: 10, col: 10, vm: Board())
     }
 }

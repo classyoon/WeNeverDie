@@ -16,7 +16,7 @@ struct BoardView: View {
                 ForEach(0..<vm.rowMax, id: \.self) { row in
                     HStack(spacing: 0) {
                         ForEach(0..<vm.colMax, id: \.self) { col in
-                            TilePieceDisplay(row: row, col: col, vm: vm)
+                            TilePieceDisplay(gameData: gameData, row: row, col: col, vm: vm)
                         }
                     }
                 }

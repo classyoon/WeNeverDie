@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PieceDisplay: View {
+    @ObservedObject var gameData : ResourcePool
     @State var piece : any Piece
     @State var id = UUID()
     //    var nameSpace : Namespace.ID
@@ -19,20 +20,16 @@ struct PieceDisplay: View {
                 .resizable()
                 .scaledToFit()
                 .padding()
-      
-//            Text("H \(piece.health) S \(piece.stamina-piece.movementCount)")
-//                .padding(1)
-//                .foregroundColor(.black)
-//                .background(.white)
-//                .cornerRadius(10)
+            gameData.visionAssist ? AssistStatDisplay(piece: piece, gameData: gameData) : nil
             // Spacer()
         }//.padding(0.0)
-        .overlay(PieceStatsDisplay(piece: piece))
+        .overlay(!gameData.visionAssist ? PieceStatsDisplay(gameData: gameData, piece: piece) : nil)
     }
 }
 
 struct PieceDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        PieceDisplay(piece: Zombie(board: Board()))
+        PieceDisplay(gameData: ResourcePool(), piece: Zombie(board: Board()))
     }
 }
+

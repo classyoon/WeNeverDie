@@ -18,11 +18,11 @@ struct LeftHandButtons: View {
                 TopButtons(gameData: gameData)
                 Spacer()
             }
-                .frame(maxWidth: 70)
-                .padding()
+            .frame(maxWidth: 70)
+            .padding()
             Spacer()
-           
-                CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
+            
+            CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
             
                 .foregroundColor(.primary)
             

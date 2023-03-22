@@ -84,15 +84,15 @@ class ResourcePool : ObservableObject {
     @Published var victory = false
     @Published var isInMission = false
     //Victory Conditions
-    @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
+    @Published var deathRequirement : Int = 3 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
     @Published var WinCondition = 30
-    //ARE STARVING, BEFORE THEY DIE
     @Published var progressToDeath : Int = 0
     @Published var WinProgress = 0
     
-    
+    //Setting
     @Published var switchToLeft = false
-    
+    @Published var visionAssist = false
+
     let starvationAmount = 0
     
     @Published var days = 0

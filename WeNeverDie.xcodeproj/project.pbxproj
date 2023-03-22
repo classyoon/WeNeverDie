@@ -42,6 +42,8 @@
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
+		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
+		CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
@@ -154,6 +156,8 @@
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
+		CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
@@ -403,6 +407,8 @@
 				CA16EAC129C93CBD0047593B /* StatusViewBar */,
 				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
+				CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */,
+				CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */,
 				CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */,
 			);
 			path = Display;
@@ -457,6 +463,7 @@
 		CA8A319A296CC03E00755BCE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
 				CA17474229A944AB00B81EF8 /* Sound Effects */,
 				CA17474829A945BE00B81EF8 /* Music */,
 			);
@@ -516,7 +523,6 @@
 			isa = PBXGroup;
 			children = (
 				CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */,
-				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
 				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
 				CA9A036B29C0EED600ED390B /* AlertExample.swift */,
 			);
@@ -724,6 +730,7 @@
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
+				CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */,
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
@@ -757,6 +764,7 @@
 				CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */,
 				CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */,
 				CA16EAC029C935D50047593B /* HardModeResetButtonView.swift in Sources */,
+				CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */,
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
 				CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */,

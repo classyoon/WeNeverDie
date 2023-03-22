@@ -25,7 +25,7 @@ struct survivorSelector : View {
                 }.frame(maxHeight: 50)
             }
         }.padding()
-            .background(.brown.opacity(0.7))
+        .background(.brown.opacity(0.7))
     }
 }
 
