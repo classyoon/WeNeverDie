@@ -14,6 +14,7 @@ struct CureProgressView: View {
     var body: some View {
         ZStack {
             HStack{
+                gameData.switchToLeft ? Spacer() : nil
                 VStack{
                     Button {
                         showCureHelp = true
@@ -30,7 +31,7 @@ struct CureProgressView: View {
                         .padding()
                         .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
                 }
-                Spacer()
+                !gameData.switchToLeft ? Spacer() : nil
             }
             Group{
                 if showCureHelp {

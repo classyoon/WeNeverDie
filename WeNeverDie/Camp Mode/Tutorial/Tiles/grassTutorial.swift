@@ -10,7 +10,7 @@ import SwiftUI
 struct grassTutorial: View {
     var body: some View {
         VStack{
-            Text("Land & Scavenging").font(.title2)
+            Text("Land & Scavenging").font(.title)
             Image("grass").resizable().frame(width: 300, height: 300).padding()
             Text("This is a grass field.")//try to fix
         }

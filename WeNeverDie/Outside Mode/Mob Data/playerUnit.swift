@@ -15,6 +15,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var isPlayerUnit = true
     var isAttackable: Bool = false
     let isZombie : Bool = false
+    var isStruck = false
    
     var isHidden = false
     

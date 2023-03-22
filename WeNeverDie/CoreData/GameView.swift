@@ -30,6 +30,7 @@ struct GameView: View {
                         .onChange(of: gameData.shouldResetGame) { newValue in
                             if newValue {
                                 gameData.reset()
+                                
                             }
                         }
   
@@ -38,7 +39,9 @@ struct GameView: View {
         }.onChange(of: showBoard) { newValue in
             if newValue {
                 print("Survivors Sent : \(gameData.survivorSent)")
+                gameData.isInMission = true
                 board.generateBoard(gameData.survivorSent)
+               
             }
         }
     }

@@ -25,6 +25,7 @@ struct VictoryView: View {
                 Button {
                     gameData.victory = false
                     gameData.AlreadyWon = true
+                    victoryPlayer?.stop()
                 } label: {
                     Text("Endless")
                         .font(.headline)
@@ -54,6 +55,14 @@ struct VictoryView: View {
         }
         .padding()
         //.aspectRatio(3, contentMode: .fit)
+        // TODO: remove .onReceive from production. for testing purposes only
+        //            .onReceive(timer) { _ in
+        //                if gameData.victory {
+        //                    gameData.victory = false
+        //                } else {
+        //                    gameData.victory = true
+        //                }
+        //            }
     }
 }
 

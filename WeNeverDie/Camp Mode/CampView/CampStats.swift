@@ -48,24 +48,6 @@ struct CampStats : View {
             return "We have food for \(gameData.foodResource / gameData.survivorNumber) days, (\(gameData.foodResource) rations)."
         }
     }
-
-    var survivorStepper: some View {
-        VStack(alignment: .trailing) {
-            Text("People to send scavenging: \(surivorsSentOnMission)")
-                .font(.footnote)
-            Stepper(value: $surivorsSentOnMission, in: 0 ... gameData.survivorNumber) {
-                HStack {
-                    ForEach(survivorsArr, id: \.self) { index in
-                        Image(systemName: index < surivorsSentOnMission ? "person.fill" : "person")
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fit)
-                    }
-                }.frame(maxHeight: 50)
-            }
-        }.padding()
-            .background(.brown.opacity(0.7))
-    }
-    
    var instructions: some View {
         VStack {
             Text("Survive. Get food. Don't die. Make it back to camp.")
@@ -90,7 +72,7 @@ struct CampStats : View {
                 VStack {
                     instructions
                     Spacer()
-                    survivorStepper
+                    survivorSelector(gameData: gameData, surivorsSentOnMission: $surivorsSentOnMission, survivorsArr: $survivorsArr)
                     Spacer()
                 }.padding(.horizontal, 100)
                     .frame(width: UIScreen.screenWidth)

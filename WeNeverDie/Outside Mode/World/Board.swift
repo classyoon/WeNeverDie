@@ -164,6 +164,7 @@ class Board : ObservableObject, BoardProtocol {
     }
 
     func generateBoard(_ players : Int){
+        musicPlayer?.stop()
         missionUnderWay = true
         turnsSinceStart = 0
         lengthOfPlay = turnsOfDaylight + turnsOfNight

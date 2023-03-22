@@ -19,6 +19,7 @@ extension Board {
                     if piece.isPlayerUnit {
                         playerCoordPins.append( Coord(row: row, col: col))
                         playerPieces.append(piece)
+            
                     }
                     if piece.isZombie {
                         zombies.append(piece as! Zombie)
@@ -34,8 +35,9 @@ extension Board {
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
-                
+            
                 if let piece = board[row][col] {
+                    
                     if piece.health <= 0 {
                         if piece.isPlayerUnit{
                             UnitsDied+=1

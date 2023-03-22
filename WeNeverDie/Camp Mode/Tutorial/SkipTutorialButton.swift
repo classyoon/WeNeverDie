@@ -1,5 +1,5 @@
 //
-//  firstTutorialSetup.swift
+//  SkipTutorialButton.swift
 //  WeNeverDie
 //
 //  Created by Conner Yoon on 3/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct firstTutorialSetup: View {
+struct SkipTutorialButton: View {
     @ObservedObject var gameData : ResourcePool
     @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
@@ -25,6 +25,6 @@ struct firstTutorialSetup: View {
 
 struct firstTutorialSetup_Previews: PreviewProvider {
     static var previews: some View {
-        firstTutorialSetup(gameData: ResourcePool())
+        SkipTutorialButton(gameData: ResourcePool())
     }
 }

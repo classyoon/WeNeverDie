@@ -21,6 +21,7 @@ struct PieceStatsDisplay: View {
 //                Spacer()
 //            }//.padding()
             HStack{
+                
                 Text("\(piece.health)")
                     .padding(2)
                     .foregroundColor(.black)
@@ -32,7 +33,7 @@ struct PieceStatsDisplay: View {
             Spacer()
             HStack{
                 ForEach(0..<piece.stamina-piece.movementCount, id: \.self) { row in
-                    Rectangle().frame(width: 10,height: 15) .foregroundColor(Color.white)
+                    Rectangle().frame(width: 10,height: 15) .foregroundColor(Color.green)
                         .cornerRadius(5)
                 }
             }//.padding()

@@ -26,7 +26,7 @@ struct ResourcePoolData : Codable & Identifiable {
     var death = false
     var victory = false
     //Victory Conditions
-    var WinCondition = devMode ? 6 : 30
+    var WinCondition = devMode ? 30 : 6
     
     var progressToDeath : Int = 0
     var WinProgress = 0
@@ -82,6 +82,7 @@ class ResourcePool : ObservableObject {
     @Published var hasViewedTutorial = false
     @Published var death = false
     @Published var victory = false
+    @Published var isInMission = false
     //Victory Conditions
     @Published var deathRequirement : Int = 2 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
     @Published var WinCondition = 30
@@ -89,6 +90,8 @@ class ResourcePool : ObservableObject {
     @Published var progressToDeath : Int = 0
     @Published var WinProgress = 0
     
+    
+    @Published var switchToLeft = false
     
     let starvationAmount = 0
     
@@ -121,6 +124,8 @@ class ResourcePool : ObservableObject {
     
     /// Resets game
     func reset() {
+        
+        victoryPlayer?.stop()
         foodResource = 10
         survivorNumber = survivorDefaultNumber
         starving = false
@@ -138,6 +143,9 @@ class ResourcePool : ObservableObject {
         defeatPlayer?.stop()
         days = 0
     }
+    func toggleLeftHandMode(){
+        switchToLeft.toggle()
+    }
     
     func generateSurvivors(_ number : Int)->[any Piece] {
         let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
@@ -152,6 +160,7 @@ class ResourcePool : ObservableObject {
         return generatedRoster
     }
     func generateMap() -> Board{
+        
         return Board(players: survivorSent)
     }
     
@@ -175,7 +184,10 @@ class ResourcePool : ObservableObject {
             death = true
             print("Death")
             print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+//            musicPlayer?.stop()
+//            victoryPlayer?.play()
             defeatPlayer?.play()
+            musicPlayer?.stop()
         }
     }
     func calcWinProgress(){
@@ -185,6 +197,7 @@ class ResourcePool : ObservableObject {
             print("Checking for Cure Results -> Day : \(days)\nFood : \(foodResource) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
+            musicPlayer?.stop()
             victoryPlayer?.play()
             musicPlayer?.stop()
             victory = true
@@ -217,6 +230,7 @@ class ResourcePool : ObservableObject {
         print("Result -> Survivors : \(survivorNumber)")
         
         print("Saving Data -> Food : \(foodResource) Survivors : \(survivorNumber) Cure Progress : \(WinProgress) Death Progress : \(progressToDeath)")
+        isInMission = false
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
 }

@@ -11,10 +11,15 @@ import SwiftUI
 
 struct TutorialView: View {
     @ObservedObject var gameData : ResourcePool
+    @State var largeText = false
     var body: some View {
         ScrollView {
             VStack{
-                (!gameData.hasViewedTutorial ? firstTutorialSetup(gameData: gameData) : nil)
+                Button("Toggle Text Enlargement") {
+                    largeText.toggle()
+                }.buttonStyle(.bordered).font(.largeTitle)
+                
+                (gameData.hasViewedTutorial ? SkipTutorialButton(gameData: gameData) : nil)
                 introText()
                 HowToMove()
                 Spacer()
@@ -22,8 +27,9 @@ struct TutorialView: View {
                 enemyView()
                 tileExplainView()
                 sendOff()
-                (!gameData.hasViewedTutorial ? firstTutorialExit(gameData: gameData) : nil)
-            }.padding().navigationTitle("Tutorial")
+                (gameData.hasViewedTutorial ? firstTutorialExit(gameData: gameData) : nil)
+            }.textSelection(.enabled)
+                .font(largeText ? .title2 : .body).padding().navigationTitle("Tutorial")
         }
     }
 }

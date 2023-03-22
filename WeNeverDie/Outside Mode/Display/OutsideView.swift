@@ -24,6 +24,8 @@ struct OutsideView: View {
     var body: some View {
         NavigationStack {
             HStack{
+                gameData.switchToLeft ? StatusViewBar(vm: vm, gameData: gameData) : nil
+                
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
                         (!vm.missionUnderWay && !vm.showEscapeOption) ?
@@ -39,6 +41,7 @@ struct OutsideView: View {
                         : nil
                     }
                 
+                gameData.switchToLeft ? nil :
                 StatusViewBar(vm: vm, gameData: gameData)
             }.background(Color.black)
         }
