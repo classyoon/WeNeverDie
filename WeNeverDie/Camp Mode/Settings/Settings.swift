@@ -33,7 +33,7 @@ struct Settings: View {
         }.frame(maxHeight: 50)
     }
     var body: some View {
-        VStack {
+        VStack (alignment: gameData.switchToLeft ? .leading : .trailing){
             //            Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
             //            Button("Developer Mode Toggle") {
             //                devMode.toggle()
@@ -47,7 +47,8 @@ struct Settings: View {
             !gameData.isInMission ? HardModeResetButtonView(gameData: gameData) : nil
             //            .background(gameData.switchToLeft ? Color.b : Color.green)
             //
-        }.onAppear {
+        }.padding()
+        .onAppear {
             musicIsPlaying = musicPlayer?.isPlaying == true
         }
         
