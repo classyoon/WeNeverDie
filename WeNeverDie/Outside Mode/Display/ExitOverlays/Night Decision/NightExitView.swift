@@ -18,12 +18,12 @@ struct NightExitView: View {
 
     var body: some View {
         VStack{
-                Text("We survived the night. Let's not do that again. We gathered \(food) rations. That should leave us with \(gameData.foodResource-gameData.survivorNumber+food) rations")
+                Text("We survived the night. Let's not do that again. We gathered \(food) rations. That should leave us with \(gameData.foodStored-gameData.survivorNumber+food) rations")
                     .font(.title).foregroundColor(Color.black)
                 Button {
                     showBoard = false
                     gameData.passDay()
-                    gameData.foodResource += food
+                    gameData.foodStored += food
                     gameData.survivorNumber+=unitsRecruited
                     gameData.survivorSent = 0
                     save(items: ResourcePoolData(resourcePool: gameData), key: key)

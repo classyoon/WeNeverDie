@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ResourcePoolDataView: View {
     @StateObject var vm = ResourcePoolDataDefaults.shared
-    @State var foodResource : Int = 12
+    @State var foodStored : Int = 12
     var body: some View {
         List{
-            Stepper("Food Resource \(foodResource)", value: $foodResource)
-                .onChange(of: foodResource) { newValue in
+            Stepper("Food Resource \(foodStored)", value: $foodStored)
+                .onChange(of: foodStored) { newValue in
                 
-                    vm.data?.foodResource = foodResource
+                    vm.data?.foodStored = foodStored
                     vm.save(vm.data!)
                 }
-            Text("\(vm.data?.foodResource ?? 0)")
+            Text("\(vm.data?.foodStored ?? 0)")
         }
     }
 }

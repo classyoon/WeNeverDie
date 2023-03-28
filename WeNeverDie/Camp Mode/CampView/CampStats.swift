@@ -32,7 +32,7 @@ struct CampStats : View {
         print("Sending \(gameData.survivorSent)")
     }
     func starvationColor()->Color{
-        if gameData.foodResource <= 0 {
+        if gameData.foodStored <= 0 {
             return Color.red
         }
         return Color.green
@@ -45,7 +45,7 @@ struct CampStats : View {
             return "If you see this then it is a bug. You shouldn't see this."
         }
         else{
-            return "We have food for \(gameData.foodResource / gameData.survivorNumber) days, (\(gameData.foodResource) rations)."
+            return "We have food for \(gameData.foodStored / gameData.survivorNumber) days, (\(gameData.foodStored) rations)."
         }
     }
    var instructions: some View {

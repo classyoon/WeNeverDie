@@ -14,7 +14,7 @@ struct HardModeResetButtonView: View {
             
                 gameData.reset()
                 gameData.survivorNumber = 1
-                gameData.foodResource = 0
+                gameData.foodStored = 0
             
         } label: {
             Text("Want more of a challenge? This button will start you with one person and no food.")
