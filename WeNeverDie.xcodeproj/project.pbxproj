@@ -92,6 +92,7 @@
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
 		CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8729AD15000037C6F6 /* BoardView.swift */; };
+		CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA16EAF329CAA7330047593B /* stabTrimmed.m4a */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
@@ -673,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */,
 				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
 				CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */,
 				CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */,
