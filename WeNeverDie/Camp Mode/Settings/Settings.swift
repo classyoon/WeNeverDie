@@ -37,12 +37,13 @@ struct Settings: View {
                     .foregroundColor(musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5))
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
-            Button(gameData.visionAssist ? "Vision Assist Mode On" : "Vision Assist Mode Off"){
+            !gameData.isInMission ? Text("V Doesn't Work During Missions V") : Text("Other settings unavailible during mission")
+            !gameData.isInMission ? Button(gameData.visionAssist ? "Vision Assist Mode On" : "Vision Assist Mode Off"){
                 gameData.toggleAssistMode()
-            }.buttonStyle(.bordered)
-            Button(gameData.switchToLeft ? "Left Hand Mode On" : "Left Hand Mode Off"){
+            }.buttonStyle(.bordered) : nil
+            !gameData.isInMission ? Button(gameData.switchToLeft ? "Left Hand Mode On" : "Left Hand Mode Off"){
                 gameData.toggleLeftHandMode()
-            }.buttonStyle(.bordered)
+            }.buttonStyle(.bordered)  : nil
             !gameData.isInMission ?  ResetButtonView(gameData: gameData) : nil
             !gameData.isInMission ? HardModeResetButtonView(gameData: gameData) : nil
             //            .background(gameData.switchToLeft ? Color.b : Color.green)
