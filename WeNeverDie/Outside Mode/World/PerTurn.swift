@@ -112,7 +112,7 @@ extension Board {
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
             if zombieNumber < 10 {
-                spawnZombies(1)
+                spawnZombies(2)
                 monsterSpawnSFXPlayer?.prepareToPlay()
                 monsterSpawnSFXPlayer?.play()
             }
