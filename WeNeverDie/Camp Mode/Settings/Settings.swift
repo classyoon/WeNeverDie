@@ -38,7 +38,7 @@ struct Settings: View {
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
             Button(gameData.visionAssist ? "Vision Assist Mode On" : "Vision Assist Mode Off"){
-                gameData.toggleLeftHandMode()
+                gameData.toggleAssistMode()
             }.buttonStyle(.bordered)
             Button(gameData.switchToLeft ? "Left Hand Mode On" : "Left Hand Mode Off"){
                 gameData.toggleLeftHandMode()

@@ -146,6 +146,9 @@ class ResourcePool : ObservableObject {
     func toggleLeftHandMode(){
         switchToLeft.toggle()
     }
+    func toggleAssistMode(){
+        visionAssist.toggle()
+    }
     
     func generateSurvivors(_ number : Int)->[any Piece] {
         let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
