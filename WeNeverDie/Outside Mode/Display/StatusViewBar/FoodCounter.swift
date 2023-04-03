@@ -11,7 +11,7 @@ struct FoodCounter: View {
     @ObservedObject var vm : Board
     var body: some View {
         Text("Food collected : \(vm.foodNew)")
-            //.foregroundColor(vm.changeToNight ? .white : .black)
+            .foregroundColor(vm.changeToNight ? .white : .black)
     }
 }
 

@@ -44,7 +44,6 @@
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
 		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
-		CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
@@ -160,7 +159,6 @@
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
-		CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
@@ -408,12 +406,7 @@
 				91355AC3293AEE6A00907610 /* OutsideView.swift */,
 				CAD25F8729AD15000037C6F6 /* BoardView.swift */,
 				CA16EAC129C93CBD0047593B /* StatusViewBar */,
-				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
-				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
-				CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */,
-				CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */,
-				CA7981E229DB2E16005D9382 /* staminaBars.swift */,
-				CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */,
+				CA7981E429DB884F005D9382 /* PieceDisplay */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -462,6 +455,18 @@
 				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
 			);
 			path = Music;
+			sourceTree = "<group>";
+		};
+		CA7981E429DB884F005D9382 /* PieceDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
+				CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */,
+				CA7981E229DB2E16005D9382 /* staminaBars.swift */,
+				CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */,
+				CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */,
+			);
+			path = PieceDisplay;
 			sourceTree = "<group>";
 		};
 		CA8A319A296CC03E00755BCE /* Sounds */ = {
@@ -736,7 +741,6 @@
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,
-				CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */,
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,

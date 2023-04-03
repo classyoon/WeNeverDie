@@ -23,7 +23,7 @@ struct ExitOverlayView: View {
         
         gameData.survivorSent = 0
         
-        
+        gameData.isInMission = false
         print("Subtracting Deaths -> Survivors : \(gameData.survivorNumber)")
         gameData.survivorNumber-=vm.UnitsDied
         print("Result -> Survivors : \(gameData.survivorNumber)")

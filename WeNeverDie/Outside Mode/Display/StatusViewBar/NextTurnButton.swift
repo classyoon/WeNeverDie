@@ -12,6 +12,7 @@ struct NextTurnButton: View {
     @ObservedObject var vm : Board
     var body: some View {
         Button {
+           
             withAnimation{vm.nextTurn()}
             vm.turn = UUID()
             

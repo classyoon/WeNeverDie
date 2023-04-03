@@ -24,7 +24,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var damage = 5
     var trust = 0
     var movementCount = 0
-    let stamina = (devMode ? 10 : 3)
+    let stamina = (devMode ? 10 : 2)
     
     var isSelected = false
     var alert = false

@@ -26,7 +26,7 @@ struct ResourcePoolData : Codable & Identifiable {
     var death = false
     var victory = false
     //Victory Conditions
-    var WinCondition = devMode ? 30 : 6
+    var WinCondition = devMode ? 6 : 30
     
     var progressToDeath : Int = 0
     var WinProgress = 0
@@ -71,7 +71,7 @@ class ResourcePool : ObservableObject {
     //Resources
     @Published var foodStored : Int = 10
     @Published var survivorNumber : Int = 3
-    @Published var survivorDefaultNumber : Int = 6
+    @Published var survivorDefaultNumber : Int = 3
     @Published var starving = false
     //    @Published var roster = [any Piece]()//unused
     //Sent Variables
@@ -97,7 +97,7 @@ class ResourcePool : ObservableObject {
     
     @Published var days = 0
     init() {
-        foodStored = 10
+        foodStored = 0
         survivorNumber = survivorDefaultNumber
         print("Intializing Preview (Shouldn't see this) : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
     }
@@ -234,6 +234,7 @@ class ResourcePool : ObservableObject {
         
         print("Saving Data -> Food : \(foodStored) Survivors : \(survivorNumber) Cure Progress : \(WinProgress) Death Progress : \(progressToDeath)")
         isInMission = false
+        print("is in mission = \(isInMission)")
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
 }

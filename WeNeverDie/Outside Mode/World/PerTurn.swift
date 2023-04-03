@@ -138,6 +138,7 @@ extension Board {
 //            leavingSoundPlayer?.prepareToPlay()
 //            leavingSoundPlayer?.play()
         }
+        turn = UUID()
         
     }
 }
