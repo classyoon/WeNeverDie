@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NextTurnButton: View {
+    @ObservedObject var gameData : ResourcePool
     @ObservedObject var vm : Board
     var body: some View {
         Button {
@@ -19,18 +20,18 @@ struct NextTurnButton: View {
             Text("Next Turn").foregroundColor(Color.white)
             
                 .padding()
-                .background(vm.canAnyoneMove ? .gray : .green)
+                .background(vm.canAnyoneMove ? .gray : (gameData.visionAssist ? .blue : .green))
             
                 .clipShape(
                     RoundedRectangle(cornerRadius: 20))
         }
         .buttonStyle(.plain)
-        .shadow(color: vm.canAnyoneMove ? .clear : .green, radius: 5)
+        .shadow(color:  (vm.canAnyoneMove ? .clear :  (gameData.visionAssist ? Color.blue : Color.green)), radius: 5)
     }
 }
 
 struct NextTurnButton_Previews: PreviewProvider {
     static var previews: some View {
-        NextTurnButton(vm: Board())
+        NextTurnButton(gameData: ResourcePool(), vm: Board())
     }
 }

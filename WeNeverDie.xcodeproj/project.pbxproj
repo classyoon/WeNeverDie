@@ -42,6 +42,7 @@
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
+		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
 		CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
@@ -157,6 +158,7 @@
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
 		CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */,
 				CA85A61C29CB5D9200900C3C /* AssistStatDisplay.swift */,
 				CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */,
+				CA7981E229DB2E16005D9382 /* staminaBars.swift */,
 				CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */,
 			);
 			path = Display;
@@ -732,6 +735,7 @@
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
+				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,
 				CA85A61D29CB5D9300900C3C /* AssistStatDisplay.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */,

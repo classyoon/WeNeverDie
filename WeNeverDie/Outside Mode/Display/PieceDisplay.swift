@@ -20,10 +20,9 @@ struct PieceDisplay: View {
                 .resizable()
                 .scaledToFit()
                 .padding()
-            gameData.visionAssist ? AssistStatDisplay(piece: piece, gameData: gameData) : nil
             // Spacer()
         }//.padding(0.0)
-        .overlay(!gameData.visionAssist ? PieceStatsDisplay(gameData: gameData, piece: piece) : nil)
+        .overlay(PieceStatsDisplay(gameData: gameData, piece: piece))
     }
 }
 

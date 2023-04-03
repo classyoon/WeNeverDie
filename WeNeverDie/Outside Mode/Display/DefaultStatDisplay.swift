@@ -14,7 +14,7 @@ struct DefaultStatDisplay: View {
         VStack{
             HStack{
                 
-                Text(!piece.isRecruitable ? "\(piece.health)" : "T \(piece.trust)")
+                (!piece.isRecruitable ? Text("\(piece.health)") : nil)
                     .padding(2)
                     .foregroundColor(.black)
                     .background(.white)
@@ -23,12 +23,11 @@ struct DefaultStatDisplay: View {
                 
             }.padding(0.5)
             Spacer()
-            HStack{
-                ForEach(0..<piece.stamina-piece.movementCount, id: \.self) { row in
-                    Rectangle().frame(width: 10,height: 15) .foregroundColor(Color.green)
-                        .cornerRadius(5)
-                }
-            }
+            !piece.isRecruitable ? staminaBars(gameData: gameData, piece: piece) : nil
+            !piece.isRecruitable ?  nil : Text("Trust : \(piece.trust)").padding(2)
+                .foregroundColor(.black)
+                .background(.white)
+                .cornerRadius(10)
         }
     }
 }
