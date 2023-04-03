@@ -38,10 +38,10 @@ struct Settings: View {
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
             !gameData.isInMission ? nil : Text("Other settings unavailible during mission")
-            !gameData.isInMission ? Button(gameData.visionAssist ? "Vision Assist Mode On" : "Vision Assist Mode Off"){
+            !gameData.isInMission ? Button(gameData.visionAssist ? "Alternative Vision" : "Common Vision"){
                 gameData.toggleAssistMode()
             }.buttonStyle(.bordered) : nil
-            !gameData.isInMission ? Button(gameData.switchToLeft ? "Left Hand Mode On" : "Left Hand Mode Off"){
+            !gameData.isInMission ? Button(gameData.switchToLeft ? "Left Hand" : "Right Hand"){
                 gameData.toggleLeftHandMode()
             }.buttonStyle(.bordered)  : nil
             !gameData.isInMission ?  ResetButtonView(gameData: gameData) : nil

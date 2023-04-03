@@ -19,7 +19,7 @@ struct GameView: View {
             VStack {
                 
                 if !didViewTutorial {
-                    TutorialView(gameData: gameData)
+                    TutorialView(gameData: gameData, seenTutorialBool: $gameData.hasViewedTutorial)
                 }
                 else if  showBoard {
                     // Show the tutorial

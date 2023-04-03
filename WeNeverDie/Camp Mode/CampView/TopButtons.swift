@@ -14,7 +14,7 @@ struct TopButtons: View {
     var body: some View {
         VStack(spacing: 15) {
             NavigationLink {
-                TutorialView(gameData: gameData)
+                TutorialView(gameData: gameData, seenTutorialBool: $gameData.hasViewedTutorial)
                     .foregroundColor(Color(.label))
             } label: {
                 Image(systemName: "questionmark")
