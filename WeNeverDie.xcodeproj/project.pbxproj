@@ -44,6 +44,7 @@
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
 		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
+		CA8B95D029DE42B90099C121 /* LazySurvivorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
@@ -160,6 +161,7 @@
 		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
+		CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySurvivorSelector.swift; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
 		CA90F82A29ABDDC600AD34E9 /* CampStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStats.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				CA16EAE929CA975F0047593B /* PassDayButton.swift */,
 				CA16EAE729CA95D70047593B /* BeginMissionButton.swift */,
 				CA16EAEF29CAA3410047593B /* survivorSelector.swift */,
+				CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */,
 				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
 				CA9A029929B6E26500ED390B /* Events */,
 				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
@@ -756,6 +759,7 @@
 				CA23AE5B29514D69003DC26D /* Tile.swift in Sources */,
 				CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */,
 				E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */,
+				CA8B95D029DE42B90099C121 /* LazySurvivorSelector.swift in Sources */,
 				CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */,
 				CA9A028729B6DF4400ED390B /* sendOff.swift in Sources */,
 				CA9A028929B6DF6400ED390B /* grassTutorial.swift in Sources */,

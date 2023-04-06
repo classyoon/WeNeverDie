@@ -72,7 +72,7 @@ struct CampStats : View {
                 VStack {
                     instructions
                     Spacer()
-                    survivorSelector(gameData: gameData, surivorsSentOnMission: $surivorsSentOnMission, survivorsArr: $survivorsArr)
+                    survivorSelector(gameData: gameData, survivorsSentOnMission: $surivorsSentOnMission, survivorsArr: $survivorsArr)
                     Spacer()
                 }.padding(.horizontal, 100)
                     .frame(width: UIScreen.screenWidth)

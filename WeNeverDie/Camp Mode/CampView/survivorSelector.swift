@@ -9,16 +9,16 @@ import SwiftUI
 
 struct survivorSelector : View {
     @ObservedObject var gameData : ResourcePool
-    @Binding var surivorsSentOnMission: Int
+    @Binding var survivorsSentOnMission: Int
     @Binding var survivorsArr: [Int]
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("People to send scavenging: \(surivorsSentOnMission)")
+            Text("People to send scavenging: \(survivorsSentOnMission)")
                 .font(.footnote)
-            Stepper(value: $surivorsSentOnMission, in: 0 ... gameData.survivorNumber) {
+            Stepper(value: $survivorsSentOnMission, in: 0 ... gameData.survivorNumber) {
                 HStack {
                     ForEach(survivorsArr, id: \.self) { index in
-                        Image(systemName: index < surivorsSentOnMission ? "person.fill" : "person")
+                        Image(systemName: index < survivorsSentOnMission ? "person.fill" : "person")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                     }
@@ -32,6 +32,6 @@ struct survivorSelector : View {
 
 struct survivorSelector_Previews: PreviewProvider {
     static var previews: some View {
-        survivorSelector(gameData: ResourcePool(surviors: 10, food: 0), surivorsSentOnMission: .constant(0), survivorsArr: .constant([Int]()))
+        survivorSelector(gameData: ResourcePool(surviors: 10, food: 0), survivorsSentOnMission: .constant(0), survivorsArr: .constant([Int]()))
     }
 }
