@@ -38,8 +38,10 @@ class AudioManager {
         self.currentSongClip = currentSongClip
         
         // Initialize the soundURLs dictionary
-        let sounds = [("Monster Noises", "m4a"), ("Long Growl", "m4a"), ("Nom", "m4a"), ("stabTrimmed", "mp3")]
-        let songs = [("Kurt", "m4a"), ("Shadows", "m4a"), ("Apoc", "m4a"), ("Surrender", "mp3")]
+        let sounds = [("Monster Noises", "m4a"), ("Long Growl", "m4a"), ("Nom", "m4a"), ("stabTrimmed", "mp3"), ("trimmedGrabbing", "m4a"), ("EmptySearch", "mp3")]
+        
+        let songs = [("Kurt - Cheel", "mp3"), ("Shadows - Anno Domini Beats", "mp3"), ("The Dismal Hand - The Whole Other", "mp3")]
+        
         for (name, ext) in sounds {
             if let url = Bundle.main.url(forResource: name, withExtension: ext) {
                 soundURLs[name] = url
