@@ -44,6 +44,7 @@
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
 		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
+		CA8B95D529E4AFE80099C121 /* SoundLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95D429E4AFE80099C121 /* SoundLibrary.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
 		CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82A29ABDDC600AD34E9 /* CampStats.swift */; };
@@ -160,6 +161,7 @@
 		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
+		CA8B95D429E4AFE80099C121 /* SoundLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLibrary.swift; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
 		CA90F82A29ABDDC600AD34E9 /* CampStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStats.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
 				CA17474229A944AB00B81EF8 /* Sound Effects */,
 				CA17474829A945BE00B81EF8 /* Music */,
+				CA8B95D429E4AFE80099C121 /* SoundLibrary.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -783,6 +786,7 @@
 				CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */,
 				CA9A029529B6E00200ED390B /* HowToMove.swift in Sources */,
 				CA16EAE829CA95D70047593B /* BeginMissionButton.swift in Sources */,
+				CA8B95D529E4AFE80099C121 /* SoundLibrary.swift in Sources */,
 				CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */,
 				CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */,
 				CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */,
