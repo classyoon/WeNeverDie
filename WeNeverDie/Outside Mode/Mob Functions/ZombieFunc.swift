@@ -20,6 +20,7 @@ extension Board {
         for target in 0..<targetList.count{
             if abs(targetList[target].row-seekerLoc.row) <= DRow && abs(targetList[target].col-seekerLoc.col) <= DCol && board[targetList[target].row][targetList[target].col]?.isHidden == false {
                 
+                
                 targetLoc = targetList[target]
                 DRow = abs(targetList[target].row-seekerLoc.row); DCol = abs(targetList[target].col-seekerLoc.col)
                 thingSighted = true
@@ -98,16 +99,16 @@ extension Board {
             zombie.alert = false
             printZombieThoughts ? print("There is nothing to see or I have collided") : nil
             return (selfLoc, false)
-           
+            
         }
     }
     func findBehaviorResultLocation(zombie : inout any Piece, targetList: [Coord])->Coord{
         let distance = findDistance(zombie: &zombie, targetList: targetList)
-  
+        
         if attemptToAttack(selfPiece: &zombie, selfLoc: distance.seekerCoord) {
             printZombieThoughts ? print(zombie.alert) : nil
             printZombieThoughts ? print("ATTACK") : nil
-
+            
             zombie.alert = true
             printZombieThoughts ? print(zombie.alert) : nil
             return distance.seekerCoord
@@ -118,15 +119,15 @@ extension Board {
         if chaseStatus.isChasing{
             printZombieThoughts ? print("I am chasing") : nil
             printZombieThoughts ? print(zombie.alert) : nil
-
+            
             return chaseStatus.target
         }
         else{
             printZombieThoughts ? print(zombie.alert) : nil
-
+            
             return wander(&zombie, distance.seekerCoord)
         }
-            }
+    }
     func willCollide(_ zombie : any Piece, _ desiredCoord : Coord) -> Bool{
         let moveCost = terrainBoard[desiredCoord.row][desiredCoord.col].movementPenalty
         if (board[desiredCoord.row][desiredCoord.col]==nil && zombie.movementCount+moveCost<=zombie.stamina){//Check if will collide
@@ -154,8 +155,31 @@ extension Board {
     func moveZombies(_ zombies : [any Piece], playerCoords: [Coord], zombieLoc: [Coord]){//Collects list of zombie
         var zombies = zombies.self
         for currentZombie in 0..<zombies.count {
-            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: findBehaviorResultLocation(zombie: &zombies[currentZombie], targetList: playerCoords))//We're basically asking it to move itself.  Then it decides how to move.
             
+//            move(&zombies[currentZombie], from: zombieLoc[currentZombie], to: findBehaviorResultLocation(zombie: &zombies[currentZombie], targetList: playerCoords))//We're basically asking it to move itself.  Then it decides how to move.
+            executeZombieBehavior(zombie: &zombies[currentZombie], targetList: playerCoords)
+            
+        }
+    }
+    func executeZombieBehavior(zombie : inout any Piece, targetList: [Coord]){
+        let distance = findDistance(zombie: &zombie, targetList: targetList)
+        let chaseStatus = returnChaseDirection(distance.RowD, distance.ColD, selfLoc: distance.seekerCoord, zombie: &zombie)
+        
+        if attemptToAttack(selfPiece: &zombie, selfLoc: distance.seekerCoord) {
+            printZombieThoughts ? print(zombie.alert) : nil
+            printZombieThoughts ? print("ATTACK") : nil
+            
+            zombie.alert = true
+            printZombieThoughts ? print(zombie.alert) : nil
+            
+        }
+        else if chaseStatus.isChasing{
+            move(&zombie, from: distance.seekerCoord, to: chaseStatus.target)
+            zombie.alert = true
+        }
+        else{
+            printZombieThoughts ? print(zombie.alert) : nil
+            move(&zombie, from: distance.seekerCoord, to: wander(&zombie, distance.seekerCoord))
         }
     }
 }
