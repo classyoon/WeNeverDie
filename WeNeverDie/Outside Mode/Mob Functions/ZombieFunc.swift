@@ -75,6 +75,7 @@ extension Board {
             targetLoc.col+=1; directionText+="Right"
         }
         if !willCollide(zombie, targetLoc) {//Check if will collide
+            print("I am moving \(directionText) to chase a target")
             return (targetLoc, true)
         }
         else{
@@ -90,7 +91,6 @@ extension Board {
         }
         return true
     }
-    
     func wander(_ zombie : any Piece, _ selfCoord : Coord) -> Coord{
         //Wandering
         let ranRow = safeNum(r: selfCoord.row+Int.random(in: -1...1))
