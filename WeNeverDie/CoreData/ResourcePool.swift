@@ -27,11 +27,13 @@ struct ResourcePoolData : Codable & Identifiable {
     var victory = false
     //Victory Conditions
     var WinCondition = devMode ? 6 : 30
-    
+    var lastTappedIndex: Int?
+    var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     var progressToDeath : Int = 0
     var WinProgress = 0
     var days = 0
     init(resourcePool : ResourcePool){
+        
         self.foodStored = resourcePool.foodStored
         self.survivorNumber = resourcePool.survivorNumber
         self.starving = resourcePool.starving
@@ -45,6 +47,7 @@ struct ResourcePoolData : Codable & Identifiable {
         self.WinProgress = resourcePool.WinProgress
         self.days = resourcePool.days
         self.hasViewedTutorial = resourcePool.hasViewedTutorial
+        self.selectStatuses = resourcePool.selectStatuses
     }
     init(){
         
@@ -62,6 +65,7 @@ struct ResourcePoolData : Codable & Identifiable {
         self.progressToDeath = progressToDeath
         self.WinProgress = WinProgress
         self.days = days
+        self.selectStatuses = Array(repeating: false, count: survivorNumber)
     }
     
 }
@@ -92,20 +96,25 @@ class ResourcePool : ObservableObject {
     //Setting
     @Published var switchToLeft = false
     @Published var visionAssist = false
-
+    @Published var lastTappedIndex: Int?
+    
+    
+    //UI
+    @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     let starvationAmount = 0
     
     @Published var days = 0
     init() {
         foodStored = 0
-        survivorNumber = survivorDefaultNumber
-        print("Intializing Preview (Shouldn't see this) : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+        survivorNumber = 3
+        //selectStatuses = Array(repeating: false, count: 3)
     }
     
     init(surviors : Int, food : Int) {
         foodStored = food
         survivorNumber = surviors
-        print("Intializing : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+        //print("Intializing : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
+        
     }
     func setValue(resourcePoolData: ResourcePoolData){
         self.foodStored = resourcePoolData.foodStored
@@ -187,8 +196,8 @@ class ResourcePool : ObservableObject {
             death = true
             print("Death")
             print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-//            musicPlayer?.stop()
-//            victoryPlayer?.play()
+            //            musicPlayer?.stop()
+            //            victoryPlayer?.play()
             defeatPlayer?.play()
             musicPlayer?.stop()
         }
@@ -236,5 +245,39 @@ class ResourcePool : ObservableObject {
         isInMission = false
         print("is in mission = \(isInMission)")
         save(items: ResourcePoolData(resourcePool: self), key: key)
+    }
+    
+    
+    func balance(_ index : Int){
+        
+        if lastTappedIndex == index {
+            // Tapped the same button twice, set all buttons to the left to false
+            for i in 0...index {
+                selectStatuses[i] = false
+            }
+            survivorSent = 0
+            lastTappedIndex = nil
+        } else {
+            // Tapped a different button, update the selection
+            survivorSent = index+1
+            if switchToLeft {
+                       for x in stride(from: selectStatuses.count - 1, through: 0, by: -1) {
+                           if x >= survivorSent {
+                               selectStatuses[x] = true
+                           } else {
+                               selectStatuses[x] = false
+                           }
+                       }
+                   } else {
+                       for x in 0..<selectStatuses.count {
+                           if x <= survivorSent {
+                               selectStatuses[x] = true
+                           } else {
+                               selectStatuses[x] = false
+                           }
+                       }
+                   }
+            lastTappedIndex = index
+        }
     }
 }

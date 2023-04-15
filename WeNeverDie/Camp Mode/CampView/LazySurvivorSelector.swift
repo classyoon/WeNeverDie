@@ -8,58 +8,34 @@
 import SwiftUI
 
 struct LazySurvivorSelector: View {
-    @State var rowofbuttons = [buttonSelected(), buttonSelected(), buttonSelected()]
-    @State var numberSelected = 0
-    @State var lastTappedIndex: Int?
+
+    @ObservedObject var GameData : ResourcePool
     
     var body: some View {
         VStack{
-            Text("Numbers : \(numberSelected)")
             HStack{
-                ForEach(rowofbuttons.indices, id: \.self){ index in
+                
+                ForEach(0..<GameData.selectStatuses.count, id: \.self){ index in
                     VStack{
-                        Button(rowofbuttons[index].selected ? "true" : "false"){
-                            if lastTappedIndex == index {
-                                // Tapped the same button twice, set all buttons to the left to false
-                                for i in 0...index {
-                                    rowofbuttons[i] = buttonSelected(selected: false)
-                                }
-                                numberSelected = 0
-                                lastTappedIndex = nil
-                            } else {
-                                // Tapped a different button, update the selection
-                                numberSelected = index
-                                for x in rowofbuttons.indices {
-                                    if x <= numberSelected {
-                                        rowofbuttons[x] = buttonSelected(selected: true)
-                                    } else {
-                                        rowofbuttons[x] = buttonSelected(selected: false)
-                                    }
-                                }
-                                lastTappedIndex = index
-                            }
+                        Button {
+                            GameData.balance(index)
+                        } label: {
+                            Image(systemName: GameData.switchToLeft ?
+                                                           (index >= GameData.selectStatuses.count - GameData.survivorSent ? "person.fill" : "person") :
+                                                           (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
+                                .aspectRatio(1, contentMode: .fit)
                         }
-                        Rectangle().fill(rowofbuttons[index].selected ? .green : .red)
-                            .frame(width: 100, height: 100)
                     }
                 }
-            }
+                
+            }.frame(maxHeight: 50)
         }
     }
 }
 
 struct LazySurvivorSelector_Previews: PreviewProvider {
     static var previews: some View {
-        LazySurvivorSelector()
+    LazySurvivorSelector(GameData: ResourcePool())
     }
-}
-
-
-
-
-
-
-struct buttonSelected {
-    @State var selected = false
 }
 

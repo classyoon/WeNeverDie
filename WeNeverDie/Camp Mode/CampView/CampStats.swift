@@ -72,16 +72,12 @@ struct CampStats : View {
                 VStack {
                     instructions
                     Spacer()
-                    survivorSelector(gameData: gameData, survivorsSentOnMission: $surivorsSentOnMission, survivorsArr: $survivorsArr)
+            
+                    survivorSelector(gameData: gameData)
                     Spacer()
                 }.padding(.horizontal, 100)
                     .frame(width: UIScreen.screenWidth)
             }
-        }
-        .onAppear {
-            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
-        }.onChange(of: gameData.survivorNumber) { _ in
-            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
         }
     }
 }
