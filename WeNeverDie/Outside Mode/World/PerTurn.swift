@@ -129,7 +129,7 @@ extension Board {
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
         updateDayLightStatus(zombies.count)
         applyTileStatuses(players)
-        moveZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
+        runBehaviorOfAllZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
         //checkEndMission()

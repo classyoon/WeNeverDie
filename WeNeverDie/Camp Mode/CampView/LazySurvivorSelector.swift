@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LazySurvivorSelector: View {
-
+    
     @ObservedObject var GameData : ResourcePool
     
     var body: some View {
@@ -21,8 +21,8 @@ struct LazySurvivorSelector: View {
                             GameData.balance(index)
                         } label: {
                             Image(systemName: GameData.switchToLeft ?
-                                                           (index >= GameData.selectStatuses.count - GameData.survivorSent ? "person.fill" : "person") :
-                                                           (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
+                                  (index >= GameData.selectStatuses.count - GameData.survivorSent ? "person.fill" : "person") :
+                                    (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
                                 .aspectRatio(1, contentMode: .fit)
                         }
                     }
@@ -35,7 +35,7 @@ struct LazySurvivorSelector: View {
 
 struct LazySurvivorSelector_Previews: PreviewProvider {
     static var previews: some View {
-    LazySurvivorSelector(GameData: ResourcePool())
+        LazySurvivorSelector(GameData: ResourcePool())
     }
 }
 
