@@ -27,7 +27,6 @@ struct LazySurvivorSelector: View {
                         }
                     }
                 }
-                
             }.frame(maxHeight: 50)
         }
     }
