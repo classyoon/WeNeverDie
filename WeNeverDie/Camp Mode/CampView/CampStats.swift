@@ -72,8 +72,21 @@ struct CampStats : View {
                 VStack {
                     instructions
                     Spacer()
-            
-                    survivorSelector(gameData: gameData)
+                    HStack{
+                        gameData.switchToLeft ? nil : Spacer()
+                        gameData.switchToLeft ? nil : Spacer()
+                        gameData.switchToLeft ? nil : Spacer()
+                        
+                        gameData.switchToLeft ? Spacer() : nil
+                        
+                        survivorSelector(gameData: gameData)
+                        
+                        gameData.switchToLeft ? nil : Spacer()
+                        
+                        gameData.switchToLeft ? Spacer() : nil
+                        gameData.switchToLeft ? Spacer() : nil
+                        gameData.switchToLeft ? Spacer() : nil
+                    }
                     Spacer()
                 }.padding(.horizontal, 100)
                     .frame(width: UIScreen.screenWidth)
