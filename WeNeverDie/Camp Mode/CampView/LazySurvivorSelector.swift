@@ -9,14 +9,14 @@ import SwiftUI
 
 struct LazySurvivorSelector: View {
     
-    @ObservedObject var GameData : ResourcePool
+    @ObservedObject var GameData: ResourcePool
     
     var body: some View {
         VStack{
             HStack{
                 
                 ForEach(0..<GameData.selectStatuses.count, id: \.self){ index in
-                    VStack{
+                  
                         Button {
                             GameData.balance(index)
                         } label: {
@@ -25,7 +25,7 @@ struct LazySurvivorSelector: View {
                                     (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
                                 .aspectRatio(1, contentMode: .fit)
                         }
-                    }
+                    
                 }
             }.frame(maxHeight: 50)
         }

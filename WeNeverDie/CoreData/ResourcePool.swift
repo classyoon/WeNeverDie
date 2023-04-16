@@ -248,37 +248,30 @@ class ResourcePool : ObservableObject {
     }
     
     
-    func balance(_ index : Int){
-        
+    func balance(_ index: Int) {
         if lastTappedIndex == index {
-            // Tapped the same button twice, set all buttons to the left to false
+            // Tapped the same button twice set all buttons to false
             for i in 0...index {
                 selectStatuses[i] = false
             }
             survivorSent = 0
             lastTappedIndex = nil
         } else {
-            // Tapped a different button, update the selection
-            survivorSent = index+1
+            // Set the survivorSent value based on the index and switchToLeft flag
             if switchToLeft {
-                       for x in stride(from: selectStatuses.count - 1, through: 0, by: -1) {
-                           if x >= survivorSent {
-                               selectStatuses[x] = true
-                           } else {
-                               selectStatuses[x] = false
-                           }
-                       }
-                   } else {
-                       for x in 0..<selectStatuses.count {
-                           if x <= survivorSent {
-                               selectStatuses[x] = true
-                           } else {
-                               selectStatuses[x] = false
-                           }
-                       }
-                   }
+                survivorSent = selectStatuses.count - index
+            } else {
+                survivorSent = index + 1
+            }
+            
+            // Set the selectStatuses array based on the survivorSent value
+            for i in 0..<selectStatuses.count {
+                selectStatuses[i] = (i < survivorSent)
+            }
+            
             lastTappedIndex = index
         }
     }
+
 
 }
