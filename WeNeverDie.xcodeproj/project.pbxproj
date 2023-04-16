@@ -186,7 +186,7 @@
 		CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPersistance.swift; sourceTree = "<group>"; };
 		CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePoolDataView.swift; sourceTree = "<group>"; };
 		CA9A02A529B94B2700ED390B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CureProgressView.swift; path = ../../../CureProgressView.swift; sourceTree = "<group>"; };
+		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CureProgressView.swift; sourceTree = "<group>"; };
 		CA9A02B529B972F300ED390B /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
 		CA9A032B29BD7F7B00ED390B /* SkipTutorialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipTutorialButton.swift; sourceTree = "<group>"; };
 		CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstTutorialExit.swift; sourceTree = "<group>"; };
@@ -485,21 +485,53 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		CA8B95D829EB814D0099C121 /* CureView */ = {
+			isa = PBXGroup;
+			children = (
+				CA9A033329BE4D6700ED390B /* CureProgressInfoView.swift */,
+				CA9A02B329B970EB00ED390B /* CureProgressView.swift */,
+			);
+			path = CureView;
+			sourceTree = "<group>";
+		};
+		CA8B95D929EB816B0099C121 /* Survivor Selector */ = {
+			isa = PBXGroup;
+			children = (
+				CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */,
+				CA16EAEF29CAA3410047593B /* survivorSelector.swift */,
+			);
+			path = "Survivor Selector";
+			sourceTree = "<group>";
+		};
+		CA8B95DA29EB823B0099C121 /* Button Places */ = {
+			isa = PBXGroup;
+			children = (
+				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
+				CA8B95D829EB814D0099C121 /* CureView */,
+				CA16EAEB29CAA0750047593B /* RightHandButtons.swift */,
+				CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */,
+			);
+			path = "Button Places";
+			sourceTree = "<group>";
+		};
+		CA8B95DB29EB82940099C121 /* Next Day Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				CA16EAE929CA975F0047593B /* PassDayButton.swift */,
+				CA16EAE729CA95D70047593B /* BeginMissionButton.swift */,
+			);
+			path = "Next Day Buttons";
+			sourceTree = "<group>";
+		};
 		CA90F82929ABDDA500AD34E9 /* CampView */ = {
 			isa = PBXGroup;
 			children = (
+				CA8B95DB29EB82940099C121 /* Next Day Buttons */,
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
-				CA16EAEB29CAA0750047593B /* RightHandButtons.swift */,
-				CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */,
-				CA16EAE929CA975F0047593B /* PassDayButton.swift */,
-				CA16EAE729CA95D70047593B /* BeginMissionButton.swift */,
-				CA16EAEF29CAA3410047593B /* survivorSelector.swift */,
-				CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */,
+				CA8B95DA29EB823B0099C121 /* Button Places */,
+				CA8B95D929EB816B0099C121 /* Survivor Selector */,
 				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
 				CA9A029929B6E26500ED390B /* Events */,
-				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
-				CA9A02B329B970EB00ED390B /* CureProgressView.swift */,
-				CA9A033329BE4D6700ED390B /* CureProgressInfoView.swift */,
 			);
 			path = CampView;
 			sourceTree = "<group>";

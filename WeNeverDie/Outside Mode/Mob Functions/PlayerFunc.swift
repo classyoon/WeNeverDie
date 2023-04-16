@@ -25,6 +25,7 @@ extension Board {
             }
             else {
                 highlightSquare = Coord(tapRow, tapCol)//Select Tile
+                
             }
         }
         else if var piece = selectedUnit, let startPoint = highlightSquare {
