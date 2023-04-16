@@ -18,6 +18,8 @@ struct TilePieceDisplay: View {
             Tile2(image: "forest", tileLocation: Coord(row, col), optionalColor: Color.brown)
         case "w":
             Tile2(image: "water", tileLocation: Coord(row, col))
+        case "m":
+            Tile2(image: "forest", tileLocation: Coord(row, col), optionalColor: Color.brown)
         case "X":
             ZStack{
                 Tile2(image: "grass", tileLocation: Coord(row, col))

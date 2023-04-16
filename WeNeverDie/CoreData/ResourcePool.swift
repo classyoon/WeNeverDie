@@ -98,7 +98,13 @@ class ResourcePool : ObservableObject {
     @Published var visionAssist = false
     @Published var lastTappedIndex: Int?
     //Buildings
-    @Published var buildingProjects = [Building(name: "Mine", cost: 30, matCost: 10), Building(name: "Farm", cost: 20, matCost: 5), Building(name: "Upgrade", cost: 10, matCost: 3)]
+    @Published var buildingProjects = [Building(name: "Mine", matCost: 10, cost: 30), Building(name: "Farm", matCost: 5, cost: 20), Building(name: "Upgrade", matCost: 3, cost: 10), Building(name: "Lab", matCost: 10, cost: 30), Building(name: "Cure", cost: 30, prerequisite: "Lab")]
+
+    
+    @Published var resourcePts = 10
+    @Published var requestedResources = 0
+    @Published var observedIndex = 0
+    @Published var canResearchVictory = false
     
     //UI
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
@@ -264,7 +270,6 @@ class ResourcePool : ObservableObject {
             } else {
                 survivorSent = index + 1
             }
-            
             // Set the selectStatuses array based on the survivorSent value
             for i in 0..<selectStatuses.count {
                 selectStatuses[i] = (i < survivorSent)
@@ -273,6 +278,49 @@ class ResourcePool : ObservableObject {
             lastTappedIndex = index
         }
     }
-
-
+    
+    func refundResources(){
+        let currentProject = buildingProjects[observedIndex]
+        if currentProject.progress < currentProject.cost {
+            requestedResources = 0
+        }
+    }
+    func selectProject(index : Int){
+        var currentProject = buildingProjects[observedIndex]
+        if index != observedIndex {
+            currentProject = buildingProjects[index]
+            observedIndex = index
+            requestedResources+=currentProject.matCost
+            refundResources()
+        }
+    }
+    func tryToUseBuilding(_ i : Int){
+        if buildingProjects[i].isFunctional {
+            // Check the name of the building
+            switch buildingProjects[i].name {
+            case "Farm":
+                // The farm adds more people per tap of the go button
+                foodStored += 3
+            case "Mine":
+                // The mine produces resources per tap of the go button
+                resourcePts += 3
+            case "Lab":
+                addBuildingWithPrerequisite("Lab")
+            default:
+                break
+            }
+        }
+    }
+    
+    func addBuildingWithPrerequisite(_ prerequisite: String) {
+        for building in buildingProjects {
+            if building.prerequisite == prerequisite {
+                if !buildingProjects.contains(building) {
+                    buildingProjects.append(building)
+                }
+            }
+        }
+    }
+    
 }
+
