@@ -7,13 +7,14 @@
 
 import Foundation
 
-struct building {
-    var cost : Double//Cost for building to function
-    var progress : Double//Progress on it
-    var survivorsWorking : [Double]
-    /**
-     Lab, allows building of the cure
-     Barracks, allow training
-     
-     */
+struct Building : Identifiable, Equatable{
+    var id = UUID()
+    
+    var name : String
+    var cost : Int//Cost for building to function
+    var progress : Int = 0//Progress on it
+    var matCost : Int
+    var survivorsWorking : Int = 0//Number of people working
+    var isFunctional = false
+    
 }

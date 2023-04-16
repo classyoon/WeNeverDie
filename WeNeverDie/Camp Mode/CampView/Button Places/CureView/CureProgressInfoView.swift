@@ -17,7 +17,7 @@ struct CureProgressInfoView: View {
             .frame(width: 300, height: 200)
             .overlay(
                 VStack{
-                    Text("Cure Progress : \(progressString)")
+                    Text("Project : \(progressString)")
                         .font(.title3)
                         .bold()
                         .padding(.bottom)

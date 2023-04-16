@@ -97,7 +97,8 @@ class ResourcePool : ObservableObject {
     @Published var switchToLeft = false
     @Published var visionAssist = false
     @Published var lastTappedIndex: Int?
-    
+    //Buildings
+    @Published var buildingProjects = [Building(name: "Mine", cost: 30, matCost: 10), Building(name: "Farm", cost: 20, matCost: 5), Building(name: "Upgrade", cost: 10, matCost: 3)]
     
     //UI
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
