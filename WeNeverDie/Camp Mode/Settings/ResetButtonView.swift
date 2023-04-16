@@ -19,14 +19,14 @@ struct ResetButtonView: View {
                 .font(.headline)
                 .bold()
                 .padding()
-                .foregroundColor(.red)
+                .foregroundColor(gameData.visionAssist ? Color.purple : Color.red)
                 .background(
                     Color.white
                 ).overlay(
                     RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color.red, lineWidth: 5)
+                        .stroke(gameData.visionAssist ? Color.purple : Color.red, lineWidth: 5)
                 ).clipShape(RoundedRectangle(cornerRadius: 50))
-        }.shadow(color: .red, radius: 5)
+        }.shadow(color: gameData.visionAssist ? Color.purple : Color.red, radius: 5)
     }
 }
 

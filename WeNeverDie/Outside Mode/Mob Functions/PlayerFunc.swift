@@ -51,9 +51,6 @@ extension Board {
         }
         return false
     }
-    
-    ///
-    ///This applies all the tile statuses to the player units.
     func applyTileStatuses(_ playerCoordPins : [Coord]){
         for coord in playerCoordPins {
             if board[coord.row][coord.col] != nil {

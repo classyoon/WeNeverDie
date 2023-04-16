@@ -50,6 +50,7 @@ extension Board {
             highlightSquare = Coord(tapRow, tapCol)
         }
     }
+    
     func handleSwitchingUnit(tapRow: Int, tapCol : Int){
         highlightSquare == Coord(tapRow, tapCol) ? deselectUnit() : SelectUnitOn(tapRow, tapCol)
     }

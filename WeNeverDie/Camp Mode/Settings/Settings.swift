@@ -34,7 +34,7 @@ struct Settings: View {
                 Image(systemName: musicIsPlaying ? "speaker.wave.2.circle.fill" : "speaker.slash.circle")
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                    .foregroundColor(musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5))
+                    .foregroundColor(gameData.visionAssist ? (musicIsPlaying ? Color(.yellow) : Color(.purple).opacity(0.5)) : (musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5)))
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
             !gameData.isInMission ? nil : Text("Other settings unavailible during mission")

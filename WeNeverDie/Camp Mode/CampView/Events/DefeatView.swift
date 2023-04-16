@@ -42,9 +42,9 @@ struct DefeatView: View {
                     Text("WE NEVER DIE")
                         .font(.largeTitle)
                         .bold()
-                        .shadow(color: .red, radius: 5, x: -5, y: 5)
+                        .shadow(color: gameData.visionAssist ? .purple : .red, radius: 5, x: -5, y: 5)
                         .padding()
-                        .foregroundColor(.red)
+                        .foregroundColor(gameData.visionAssist ? .purple : .red)
                         .background(
                             Color(.systemBackground)
                                 .opacity(0.3)

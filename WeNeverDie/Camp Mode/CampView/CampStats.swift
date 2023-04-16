@@ -33,9 +33,9 @@ struct CampStats : View {
     }
     func starvationColor()->Color{
         if gameData.foodStored <= 0 {
-            return Color.red
+            return gameData.visionAssist ? Color.purple : Color.red
         }
-        return Color.green
+        return gameData.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
         if gameData.starving{
