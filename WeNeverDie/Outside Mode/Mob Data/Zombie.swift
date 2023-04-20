@@ -19,7 +19,7 @@ struct Zombie: Piece, Equatable {
     var isZombie: Bool = true
    
     var health = 10
-    var damage = (devMode ? 0 : 3)
+    var damage = (devMode ? 0 : 5)
     var alert = false
     let stamina = 1
     var movementCount = 0

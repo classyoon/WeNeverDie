@@ -32,6 +32,8 @@ struct ResourcePoolData : Codable & Identifiable {
     var progressToDeath : Int = 0
     var WinProgress = 0
     var days = 0
+    var buildingProjects = [Building]()
+
     init(resourcePool : ResourcePool){
         
         self.foodStored = resourcePool.foodStored
@@ -48,11 +50,12 @@ struct ResourcePoolData : Codable & Identifiable {
         self.days = resourcePool.days
         self.hasViewedTutorial = resourcePool.hasViewedTutorial
         self.selectStatuses = resourcePool.selectStatuses
+        self.buildingProjects = resourcePool.buildingProjects
     }
     init(){
         
     }
-    init(foodStored: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
+    init(foodStored: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0, buildingProjects: [Building] = [Building]()) {
         self.foodStored = foodStored
         self.survivorNumber = survivorNumber
         self.starving = starving
@@ -66,6 +69,9 @@ struct ResourcePoolData : Codable & Identifiable {
         self.WinProgress = WinProgress
         self.days = days
         self.selectStatuses = Array(repeating: false, count: survivorNumber)
+        self.buildingProjects = buildingProjects
+        
+        
     }
     
 }
@@ -136,6 +142,7 @@ class ResourcePool : ObservableObject {
         self.progressToDeath = resourcePoolData.progressToDeath
         self.WinProgress = resourcePoolData.WinProgress
         self.days = resourcePoolData.days
+        self.buildingProjects = resourcePoolData.buildingProjects
     }
     
     /// Resets game
@@ -158,6 +165,7 @@ class ResourcePool : ObservableObject {
         victoryPlayer?.stop()
         defeatPlayer?.stop()
         days = 0
+        buildingProjects = [Building(name: "Mine", matCost: 10, cost: 30), Building(name: "Farm", matCost: 5, cost: 20), Building(name: "Upgrade", matCost: 3, cost: 10), Building(name: "Lab", matCost: 10, cost: 30), Building(name: "Cure", cost: 30, prerequisite: "Lab")]
     }
     func toggleLeftHandMode(){
         switchToLeft.toggle()
@@ -306,6 +314,8 @@ class ResourcePool : ObservableObject {
                 resourcePts += 3
             case "Lab":
                 addBuildingWithPrerequisite("Lab")
+            case "Cure":
+                victory = true
             default:
                 break
             }

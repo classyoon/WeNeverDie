@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Building : Identifiable, Equatable{
+struct Building : Identifiable, Equatable, Codable{
     var id = UUID()
     
     var name : String

@@ -6,7 +6,61 @@
 //
 
 import SwiftUI
-
+class CampManager : ObservableObject{
+    @ObservedObject var gameData : ResourcePool = ResourcePool()
+    var survivorsSentOnMission : Int = 0
+    var isExitButtonPressed : Bool = false
+    var isResetButtonPressed : Bool = false
+    var starvationColor : Color = Color.green
+    
+    func shouldShowMap() -> Bool{
+        if survivorsSentOnMission > 0{
+            return true
+        }
+        return false
+    }
+    
+    func getStarvationColor()->Color{
+        if gameData.foodStored <= 0 {
+            return gameData.visionAssist ? Color.purple : Color.red
+        }
+        return gameData.visionAssist ? Color.yellow : Color.green
+    }
+    
+    func getDeathCalc()->Int{
+        return gameData.deathRequirement-gameData.progressToDeath
+    }
+    func getStarvationStatus()->Bool{
+        return gameData.starving
+    }
+    func catchNegativeSurvivorBug()->Bool{
+        return gameData.survivorNumber <= 0
+    }
+    func getDaysOfFood()->Int{
+        return gameData.foodStored / gameData.survivorNumber
+    }
+    func getFoodStored()->Int{
+        return gameData.foodStored
+    }
+}
+class CampViewModel : ObservableObject {
+    @ObservedObject var campManager = CampManager()
+    func starvationText()->String{
+        if campManager.getStarvationStatus(){
+            return "We are starving. Days till death \(campManager.getDeathCalc())"
+        }
+        if campManager.catchNegativeSurvivorBug(){
+            return "If you see this then it is a bug. You shouldn't see this."
+        }
+        else{
+            return "We have food for \(campManager.getDaysOfFood()) days, (\(campManager.getFoodStored()) rations)."
+        }
+    }
+    func getShouldShowMap()->Bool{
+        return campManager.shouldShowMap()
+    }
+    
+}
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
     @Binding var shouldResetGame : Bool
