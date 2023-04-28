@@ -215,7 +215,7 @@
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
 		CAD25F8729AD15000037C6F6 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		CAD9423629FC140700A58878 /* handleTapFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handleTapFunctions.swift; sourceTree = "<group>"; };
+		CAD9423629FC140700A58878 /* handleTapFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = handleTapFunctions.swift; path = ../../CoreData/handleTapFunctions.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
@@ -323,7 +323,6 @@
 		91355AD1293AF5FE00907610 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CAD9423629FC140700A58878 /* handleTapFunctions.swift */,
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */,
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
@@ -435,6 +434,7 @@
 		CA17474629A9456000B81EF8 /* Mob Functions */ = {
 			isa = PBXGroup;
 			children = (
+				CAD9423629FC140700A58878 /* handleTapFunctions.swift */,
 				CA48C74B298387E200106B97 /* MobFunc.swift */,
 				CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */,
 				CA8B95DC29EB8CD40099C121 /* handleTapFunctions.swift */,
