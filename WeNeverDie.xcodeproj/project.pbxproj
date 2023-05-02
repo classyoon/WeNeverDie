@@ -96,7 +96,6 @@
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
 		CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8729AD15000037C6F6 /* BoardView.swift */; };
-		CAD9423729FC140700A58878 /* handleTapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD9423629FC140700A58878 /* handleTapFunctions.swift */; };
 		CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA16EAF329CAA7330047593B /* stabTrimmed.m4a */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
@@ -215,7 +214,6 @@
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
 		CAD25F8729AD15000037C6F6 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		CAD9423629FC140700A58878 /* handleTapFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = handleTapFunctions.swift; path = ../../CoreData/handleTapFunctions.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
@@ -434,7 +432,6 @@
 		CA17474629A9456000B81EF8 /* Mob Functions */ = {
 			isa = PBXGroup;
 			children = (
-				CAD9423629FC140700A58878 /* handleTapFunctions.swift */,
 				CA48C74B298387E200106B97 /* MobFunc.swift */,
 				CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */,
 				CA8B95DC29EB8CD40099C121 /* handleTapFunctions.swift */,
@@ -773,7 +770,6 @@
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
-				CAD9423729FC140700A58878 /* handleTapFunctions.swift in Sources */,
 				CA9A034529BF7ABE00ED390B /* MessageView.swift in Sources */,
 				CA9A034329BF7A0200ED390B /* NightResultsCalculator.swift in Sources */,
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
