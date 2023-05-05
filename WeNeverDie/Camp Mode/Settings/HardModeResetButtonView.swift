@@ -11,11 +11,8 @@ struct HardModeResetButtonView: View {
     @ObservedObject var gameData : ResourcePool
     var body: some View {
         Button {
-            
-                gameData.reset()
-                gameData.survivorNumber = 1
-                gameData.foodStored = 0
-            
+            gameData.hardmodeReset()
+
         } label: {
             Text("Want more of a challenge? This button will start you with one person and no food.")
                 .font(.headline)
