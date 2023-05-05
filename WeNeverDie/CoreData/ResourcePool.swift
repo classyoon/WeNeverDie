@@ -136,6 +136,7 @@ class ResourcePool : ObservableObject {
         self.progressToDeath = resourcePoolData.progressToDeath
         self.WinProgress = resourcePoolData.WinProgress
         self.days = resourcePoolData.days
+        self.selectStatuses = resourcePoolData.selectStatuses
     }
     
     /// Resets game
@@ -146,7 +147,8 @@ class ResourcePool : ObservableObject {
         survivorNumber = survivorDefaultNumber
         starving = false
         //        roster = generateSurvivors(survivorNumber)
-        
+        selectStatuses = Array(repeating: false, count: survivorNumber)
+      
         survivorSent = 0
         
         death = false
@@ -234,6 +236,7 @@ class ResourcePool : ObservableObject {
         print("Passing Day Results - Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         checkForDefeat()
     }
+
     func transferResourcesToResourcePool(vm : Board){
         print("Adding -> Food : \(foodStored)")
         foodStored += vm.foodNew
@@ -243,7 +246,7 @@ class ResourcePool : ObservableObject {
         
         survivorSent = 0
         
-        
+        selectStatuses = Array(repeating: false, count: survivorNumber)
         print("Subtracting Deaths -> Survivors : \(survivorNumber)")
         survivorNumber-=vm.UnitsDied
         print("Result -> Survivors : \(survivorNumber)")
@@ -253,7 +256,12 @@ class ResourcePool : ObservableObject {
         print("is in mission = \(isInMission)")
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
-    
+    func hardmodeReset(){
+        reset()
+        survivorNumber = 1
+        foodStored = 0
+        selectStatuses = Array(repeating: false, count: survivorNumber)
+    }
     
     func balance(_ index: Int) {
         if lastTappedIndex == index {

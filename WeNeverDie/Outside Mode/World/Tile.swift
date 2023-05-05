@@ -50,7 +50,19 @@ struct Tile2: View {
         }
     }
 }
-
+struct Tile: View {
+    var difference = 1.0
+    var tileLocation: Coord
+    var optionalColor = Color.clear
+    @ViewBuilder
+    var body: some View {
+        ZStack{
+            Rectangle()
+                .fill(optionalColor)
+                .border(Color.white, width: difference)
+        }
+    }
+}
 struct Tile_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
