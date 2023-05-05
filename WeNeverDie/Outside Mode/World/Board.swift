@@ -64,12 +64,19 @@ class Board : ObservableObject, BoardProtocol {
         let maxPercent = percent+varience
         return Int(Int.random(in: Int( minPercent*Double(availibleTiles))...Int((maxPercent*Double(availibleTiles)))))
     }
-    
-    func randomGenerateTerrain(players : Int, trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
+    func findGrassTile(_ tempTerrain : [[TileType]])->Coord{
+        var potentialGrass = randomLoc()
+        while (tempTerrain[potentialGrass.row][potentialGrass.col].name != "g"){
+            potentialGrass = randomLoc()
+        }
+        return potentialGrass
+    }
+    func randomGenerateTerrain(players : Int, trees : Double = 0, houses : Double = 0, water : Double = 0, mines: Double = 0, exit escapePoint : Coord)->[[TileType]]{
       //  print(board)
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
+        let mines = randomCountFromPercent(mines)
         
         var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: colMax), count: rowMax)
 //        print(tempTerrain)
@@ -84,33 +91,30 @@ class Board : ObservableObject, BoardProtocol {
         var numberAdded = 0
         
         while (((counter<trees-startSquares)||(counter<houses)||(counter<water))&&(numberAdded<availibleTiles)){
-            var Random = randomLoc()
-            while (tempTerrain[Random.row][Random.col].name != "g"){
-                Random = randomLoc()
-            }
+            var emptyTileType = findGrassTile(tempTerrain)
             if counter<trees-startSquares {
-                tempTerrain[Random.row][Random.col].name = "t"
+                tempTerrain[emptyTileType.row][emptyTileType.col].name = "t"
                 numberAdded += 1
-                tempTerrain[Random.row][Random.col].setTileBonuses()
+                tempTerrain[emptyTileType.row][emptyTileType.col].setTileBonuses()
             }
-            while (tempTerrain[Random.row][Random.col].name != "g"){
-                Random = randomLoc()
+            emptyTileType = findGrassTile(tempTerrain)
+            if counter<mines {
+                tempTerrain[emptyTileType.row][emptyTileType.col].name = "m"
+                numberAdded += 1
+                tempTerrain[emptyTileType.row][emptyTileType.col].setTileBonuses()
             }
+            emptyTileType = findGrassTile(tempTerrain)
             if counter<houses {
-                tempTerrain[Random.row][Random.col].name = "h"
+                tempTerrain[emptyTileType.row][emptyTileType.col].name = "h"
                 numberAdded += 1
-                tempTerrain[Random.row][Random.col].setTileBonuses()
+                tempTerrain[emptyTileType.row][emptyTileType.col].setTileBonuses()
             }
-            while (tempTerrain[Random.row][Random.col].name != "g"){
-                Random = randomLoc()
-            }
+            emptyTileType = findGrassTile(tempTerrain)
             if counter<water {
-                tempTerrain[Random.row][Random.col].name = "w"
+                tempTerrain[emptyTileType.row][emptyTileType.col].name = "w"
                 numberAdded += 1
-                tempTerrain[Random.row][Random.col].setTileBonuses()
+                tempTerrain[emptyTileType.row][emptyTileType.col].setTileBonuses()
             }
-            
-            
             counter+=1
         }
        // print(tempTerrain)
@@ -171,7 +175,7 @@ class Board : ObservableObject, BoardProtocol {
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(players : players, trees: 0.4, houses: 0.2, water: 0.1, exit : bottomRight)
+        terrainBoard = randomGenerateTerrain(players : players, trees: 0.4, houses: 0.2, water: 0.1, mines: 0.2, exit : bottomRight)
         //print("Terrain generated, generating players")
      
         spawnPlayers(players)

@@ -11,6 +11,7 @@ struct CureProgressInfoView: View {
     @Binding var progress : Int
     @State var max : Int
     @Binding var showCure : Bool
+    @ObservedObject var gameData : ResourcePool
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
@@ -18,19 +19,19 @@ struct CureProgressInfoView: View {
             .overlay(
                 VStack{
                     
-                    Text("Cure Progress : \(progressString)")
+                    Text("Current Progress of Project : \(progressString)")
                         .font(.title3)
                         .bold()
                         .padding(.bottom)
-        
-                    Text("Keep survivors at home to progress faster").padding(.bottom)
+                    BasicBuildMenu(GameData: gameData)
+                    //                    Text("Keep survivors at home to progress faster").padding(.bottom)
                     
                     Button("Understood"){
                         showCure = false
                     }.buttonStyle(.bordered)
                 }.padding()
             )
-
+        
         
     }
     private var progressString : String {
@@ -39,10 +40,11 @@ struct CureProgressInfoView: View {
     }
 }
 struct WrapperCureProgression : View {
+    @ObservedObject var gameData = ResourcePool()
     @State var cureProgression = 5
     @State var cureCondition = 10
     var body: some View{
-        CureProgressInfoView(progress: $cureProgression, max: cureCondition, showCure: .constant(true))
+        CureProgressInfoView(progress: $cureProgression, max: cureCondition, showCure: .constant(true), gameData: gameData)
     }
 }
 struct CureProgressInfo_Previews: PreviewProvider {

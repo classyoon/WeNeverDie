@@ -31,6 +31,7 @@
 		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
+		CA2A2E652A05A426006FEE7D /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2A2E642A05A426006FEE7D /* BuildingManager.swift */; };
 		CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314DD29C8096D00442EC3 /* ResultScreen.swift */; };
 		CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
 		CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */; };
@@ -152,6 +153,7 @@
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		CA2A2E642A05A426006FEE7D /* BuildingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		CA3314DD29C8096D00442EC3 /* ResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
 		CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wet Eating.m4a"; sourceTree = "<group>"; };
 		CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = trimmedGrabbing.m4a; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
+				CA2A2E642A05A426006FEE7D /* BuildingManager.swift */,
 				CA8B95FA29ECA11B0099C121 /* ResourceBuildings.swift */,
 			);
 			path = CoreData;
@@ -776,6 +779,7 @@
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				CA8B95F929EC8F1E0099C121 /* BasicBuildMenu.swift in Sources */,
+				CA2A2E652A05A426006FEE7D /* BuildingManager.swift in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
 				CA9A034529BF7ABE00ED390B /* MessageView.swift in Sources */,
 				CA9A034329BF7A0200ED390B /* NightResultsCalculator.swift in Sources */,

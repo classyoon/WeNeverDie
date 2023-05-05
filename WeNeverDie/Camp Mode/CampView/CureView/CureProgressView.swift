@@ -35,7 +35,7 @@ struct CureProgressView: View {
             }
             Group{
                 if showCureHelp {
-                    CureProgressInfoView(progress: $gameData.WinProgress, max: gameData.WinCondition, showCure: $showCureHelp)
+                    CureProgressInfoView(progress: $gameData.WinProgress, max: gameData.WinCondition, showCure: $showCureHelp, gameData : gameData)
                 }else{
                     Spacer()
                 }

@@ -31,6 +31,7 @@ struct ResourcePoolData : Codable & Identifiable {
     var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     var progressToDeath : Int = 0
     var WinProgress = 0
+    var selectedBuilding = 0
     var days = 0
     init(resourcePool : ResourcePool){
         
@@ -98,19 +99,18 @@ class ResourcePool : ObservableObject {
     @Published var visionAssist = false
     @Published var lastTappedIndex: Int?
     //Buildings
-    @Published var buildingProjects = [Building(name: "Mine", matCost: 10, cost: 30), Building(name: "Farm", matCost: 5, cost: 20), Building(name: "Upgrade", matCost: 3, cost: 10), Building(name: "Lab", matCost: 10, cost: 30), Building(name: "Cure", cost: 30, prerequisite: "Lab")]
-
-    
+    @Published var buildingProjects = [Building(name: "Mine", matCost: 10, cost: 30), Building(name: "Farm", matCost: 5, cost: 20), Building(name: "Upgrade", matCost: 3, cost: 10), Building(name: "Lab", matCost: 10, cost: 30)]
+    @Published var unavailibleProjects = [Building(name: "Cure", cost: 30, prerequisite: "Lab")]
     @Published var resourcePts = 10
     @Published var requestedResources = 0
     @Published var observedIndex = 0
-    @Published var canResearchVictory = false
-    
     //UI
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
+    @Published var days = 0
+    //Easier to understand code names
     let starvationAmount = 0
     
-    @Published var days = 0
+  
     init() {
         foodStored = 0
         survivorNumber = 3
@@ -148,7 +148,7 @@ class ResourcePool : ObservableObject {
         starving = false
         //        roster = generateSurvivors(survivorNumber)
         selectStatuses = Array(repeating: false, count: survivorNumber)
-      
+        
         survivorSent = 0
         
         death = false
@@ -314,6 +314,8 @@ class ResourcePool : ObservableObject {
                 resourcePts += 3
             case "Lab":
                 addBuildingWithPrerequisite("Lab")
+            case "Cure":
+                victory = true
             default:
                 break
             }
@@ -321,12 +323,11 @@ class ResourcePool : ObservableObject {
     }
     
     func addBuildingWithPrerequisite(_ prerequisite: String) {
-        for building in buildingProjects {
-            if building.prerequisite == prerequisite {
-                if !buildingProjects.contains(building) {
-                    buildingProjects.append(building)
-                }
+        for possible in unavailibleProjects {
+            if !buildingProjects.contains(possible) && prerequisite == possible.prerequisite{
+                buildingProjects.append(possible)
             }
+            
         }
     }
     
