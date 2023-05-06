@@ -13,7 +13,7 @@ struct CampView: View {
     @State var showCureHelp = false
     @Binding var surivorsSentOnMission: Int
     @State var degrees: Double = 0
-
+    @ObservedObject var uiSettings: UserSettingsManager
     // TODO: remove Timer from production. for testing purposes only
     //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
     
@@ -24,16 +24,16 @@ struct CampView: View {
                 VStack {
                     Spacer()
                     //MARK: Stats
-                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard)
+                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard, uiSettings: gameData.uiSetting)
                     Spacer()
                     PassDayButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
                 }
                 HStack{
                     BeginMissionButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
-                    gameData.switchToLeft ? Spacer() : nil
+                    uiSettings.switchToLeft ? Spacer() : nil
                 }
-                !gameData.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
-                gameData.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
+                !uiSettings.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
+                uiSettings.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
                 
             }
             //MARK: Background
@@ -48,7 +48,7 @@ struct CampView: View {
             //MARK: Death
                 .overlay {
                     gameData.death ?
-                    DefeatView(gameData: gameData)
+                    DefeatView(gameData: gameData, uiSettings: uiSettings)
                         .padding()
                     : nil
                 }.foregroundColor(.white)
@@ -71,7 +71,7 @@ struct CampView: View {
 
 struct CampView_Previews: PreviewProvider {
     static var previews: some View {
-        CampView(showBoard: Binding.constant(false), gameData: ResourcePool(), surivorsSentOnMission: Binding.constant(0))
+        CampView(showBoard: Binding.constant(false), gameData: ResourcePool(), surivorsSentOnMission: Binding.constant(0), uiSettings: UserSettingsManager())
     }
 }
 

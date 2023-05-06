@@ -14,7 +14,7 @@ struct survivorSelector : View {
         VStack(alignment: .trailing) {
             Text("People to send scavenging: \(gameData.survivorSent)")
                 .font(.footnote)
-            LazySurvivorSelector(GameData: gameData)
+            LazySurvivorSelector(GameData: gameData, uiSettings: gameData.uiSetting)
         }.padding()
         .background(.brown.opacity(0.7))
     }

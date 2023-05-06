@@ -16,10 +16,10 @@ struct StatusViewBar: View {
             TopButtons(gameData: gameData)
                 .frame(maxWidth: 70)
                 .padding()
-            CountDown(vm: vm, gameData: gameData)
+            CountDown(vm: vm, uiSettings: gameData.uiSetting)
             FoodCounter(vm: vm)
             SearchButton(vm: vm)
-            NextTurnButton(gameData: gameData, vm: vm)
+            NextTurnButton(uiSettings: gameData.uiSetting, vm: vm)
             
         }
         .padding()

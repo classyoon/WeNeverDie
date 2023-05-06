@@ -13,7 +13,7 @@ struct RightHandButtons: View {
     var body: some View {
         HStack {
             //MARK: Cure
-            CureProgressView(gameData: gameData, showCureHelp: $showCureHelp)
+            CureProgressView(gameData: gameData, uiSettings: gameData.uiSetting, showCureHelp: $showCureHelp)
                 .foregroundColor(.primary)
             Spacer()
             VStack{

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct CureProgressView: View {
     @ObservedObject var gameData : ResourcePool
+    @ObservedObject var uiSettings : UserSettingsManager
     @Binding var showCureHelp : Bool
     
     var body: some View {
         ZStack {
             HStack{
-                gameData.switchToLeft ? Spacer() : nil
+            uiSettings.switchToLeft ? Spacer() : nil
                 VStack{
                     Button {
                         showCureHelp = true
@@ -31,7 +32,7 @@ struct CureProgressView: View {
                         .padding()
                         .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
                 }
-                !gameData.switchToLeft ? Spacer() : nil
+                !uiSettings.switchToLeft ? Spacer() : nil
             }
             Group{
                 if showCureHelp {
@@ -52,6 +53,6 @@ struct CureProgressView: View {
 
 struct CureProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CureProgressView(gameData: ResourcePool(), showCureHelp: .constant(true))
+        CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true))
     }
 }

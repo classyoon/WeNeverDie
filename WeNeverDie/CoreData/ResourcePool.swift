@@ -66,12 +66,15 @@ struct ResourcePoolData : Codable & Identifiable {
         self.WinProgress = WinProgress
         self.days = days
         self.selectStatuses = Array(repeating: false, count: survivorNumber)
+        
+    
     }
     
 }
 
 
 class ResourcePool : ObservableObject {
+  @Published var audio : AudioManager = AudioManager()
     //Resources
     @Published var foodStored : Int = 10
     @Published var survivorNumber : Int = 3
@@ -94,14 +97,13 @@ class ResourcePool : ObservableObject {
     @Published var WinProgress = 0
     
     //Setting
-    @Published var switchToLeft = false
-    @Published var visionAssist = false
     @Published var lastTappedIndex: Int?
     
     
     //UI
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     let starvationAmount = 0
+    @Published var uiSetting = UserSettingsManager()
     
     @Published var days = 0
     init() {
@@ -132,6 +134,7 @@ class ResourcePool : ObservableObject {
         self.selectStatuses = resourcePoolData.selectStatuses
     }
     
+
     /// Resets game
     func reset() {
         
@@ -154,13 +157,6 @@ class ResourcePool : ObservableObject {
         defeatPlayer?.stop()
         days = 0
     }
-    func toggleLeftHandMode(){
-        switchToLeft.toggle()
-    }
-    func toggleAssistMode(){
-        visionAssist.toggle()
-    }
-    
     func generateSurvivors(_ number : Int)->[any Piece] {
         let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
         let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
@@ -198,7 +194,7 @@ class ResourcePool : ObservableObject {
             death = true
             print("Death")
             print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-            //            musicPlayer?.stop()
+//                        musicPlayer?.stop()
             //            victoryPlayer?.play()
             defeatPlayer?.play()
             musicPlayer?.stop()
@@ -266,7 +262,7 @@ class ResourcePool : ObservableObject {
             lastTappedIndex = nil
         } else {
             // Set the survivorSent value based on the index and switchToLeft flag
-            if switchToLeft {
+            if uiSetting.switchToLeft {
                 survivorSent = selectStatuses.count - index
             } else {
                 survivorSent = index + 1
@@ -283,3 +279,4 @@ class ResourcePool : ObservableObject {
 
 
 }
+

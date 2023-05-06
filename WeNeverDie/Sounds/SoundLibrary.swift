@@ -20,6 +20,18 @@ var SFXPlayer = try? AVAudioPlayer(contentsOf: (SFXArrays[0][0]!))
 var MusicSFXPlayer = try? AVAudioPlayer(contentsOf: (MusicArrays[0][0]!))
 
 // Load the music file
+
+
+func soundURL(_ name: String, _ ext: String? = nil) -> URL? {
+    let defaultExt = "m4a"
+    let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
+
+    var finalExt = ext ?? (isSong ? "mp3" : defaultExt)
+    finalExt = finalExt.lowercased()
+
+    return Bundle.main.url(forResource: name, withExtension: finalExt)
+}
+
 let victorySong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
 let defeatSong = Bundle.main.url(forResource: "Shadows - Anno Domini Beats", withExtension: "mp3")
 let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")

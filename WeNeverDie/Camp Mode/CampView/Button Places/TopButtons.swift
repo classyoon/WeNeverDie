@@ -25,7 +25,7 @@ struct TopButtons: View {
             }.frame(maxHeight: 50)
                 .shadow(color: .black, radius: 5)
             NavigationLink {
-                Settings(gameData: gameData)
+                Settings(gameData: gameData, uiSettings: gameData.uiSetting)
             } label: {
                 Image(systemName: "gear")
                     .resizable()
