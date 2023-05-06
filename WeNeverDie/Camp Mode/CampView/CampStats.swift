@@ -12,6 +12,7 @@ struct CampStats : View {
     @Binding var shouldResetGame : Bool
     @Binding var surivorsSentOnMission: Int
     @Binding var showBoard : Bool
+    @ObservedObject var uiSettings : UserSettingsManager
 
     @State var survivorsArr: [Int] = []
 
@@ -33,9 +34,9 @@ struct CampStats : View {
     }
     func starvationColor()->Color{
         if gameData.foodStored <= 0 {
-            return gameData.visionAssist ? Color.purple : Color.red
+            return uiSettings.visionAssist ? Color.purple : Color.red
         }
-        return gameData.visionAssist ? Color.yellow : Color.green
+        return uiSettings.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
         if gameData.starving{
@@ -73,19 +74,19 @@ struct CampStats : View {
                     instructions
                     Spacer()
                     HStack{
-                        gameData.switchToLeft ? nil : Spacer()
-                        gameData.switchToLeft ? nil : Spacer()
-                        gameData.switchToLeft ? nil : Spacer()
+                        uiSettings.switchToLeft ? nil : Spacer()
+                        uiSettings.switchToLeft ? nil : Spacer()
+                        uiSettings.switchToLeft ? nil : Spacer()
                         
-                        gameData.switchToLeft ? Spacer() : nil
+                        uiSettings.switchToLeft ? Spacer() : nil
                         
                         survivorSelector(gameData: gameData)
                         
-                        gameData.switchToLeft ? nil : Spacer()
+                        uiSettings.switchToLeft ? nil : Spacer()
                         
-                        gameData.switchToLeft ? Spacer() : nil
-                        gameData.switchToLeft ? Spacer() : nil
-                        gameData.switchToLeft ? Spacer() : nil
+                        uiSettings.switchToLeft ? Spacer() : nil
+                        uiSettings.switchToLeft ? Spacer() : nil
+                        uiSettings.switchToLeft ? Spacer() : nil
                     }
                     Spacer()
                 }.padding(.horizontal, 100)
@@ -97,6 +98,6 @@ struct CampStats : View {
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false), uiSettings: UserSettingsManager())
     }
 }

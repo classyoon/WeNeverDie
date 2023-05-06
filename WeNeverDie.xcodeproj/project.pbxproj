@@ -31,12 +31,14 @@
 		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
+		CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */; };
+		CA2A2E682A06C071006FEE7D /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
+		CA2A2E6A2A06C7B4006FEE7D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */; };
+		CA2A2E6B2A06F58C006FEE7D /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
 		CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314DD29C8096D00442EC3 /* ResultScreen.swift */; };
-		CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
 		CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */; };
 		CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */; };
 		CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */; };
-		CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */; };
 		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
@@ -150,6 +152,8 @@
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
+		CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alert Noise Trimmed.m4a"; sourceTree = "<group>"; };
+		CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		CA3314DD29C8096D00442EC3 /* ResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
 		CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wet Eating.m4a"; sourceTree = "<group>"; };
 		CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = trimmedGrabbing.m4a; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 			children = (
 				CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */,
 				CA8A319B296CC04C00755BCE /* Monster Noises.m4a */,
+				CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */,
 				CA9A034D29BFD57000ED390B /* Nom.m4a */,
 				CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */,
 			);
@@ -482,6 +487,7 @@
 			children = (
 				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
 				CA8B95D229E462790099C121 /* SoundLibrary.swift */,
+				CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */,
 				CA17474229A944AB00B81EF8 /* Sound Effects */,
 				CA17474829A945BE00B81EF8 /* Music */,
 			);
@@ -724,15 +730,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2A2E6B2A06F58C006FEE7D /* Wet Eating.m4a in Resources */,
 				CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */,
-				CA341E8629A5912E00225529 /* Kurt - Cheel.mp3 in Resources */,
 				CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */,
 				CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */,
 				CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */,
 				CA9A035029BFF57200ED390B /* knifestabsfx.mp3 in Resources */,
 				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
-				CA3314E029C80C0F00442EC3 /* Wet Eating.m4a in Resources */,
+				CA2A2E682A06C071006FEE7D /* Kurt - Cheel.mp3 in Resources */,
 				CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */,
+				CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */,
 				CA9A036029C0DA9D00ED390B /* car startingSFX.mp3 in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
@@ -767,6 +774,7 @@
 			files = (
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */,
+				CA2A2E6A2A06C7B4006FEE7D /* AudioManager.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,

@@ -20,6 +20,35 @@ var SFXPlayer = try? AVAudioPlayer(contentsOf: (SFXArrays[0][0]!))
 var MusicSFXPlayer = try? AVAudioPlayer(contentsOf: (MusicArrays[0][0]!))
 
 // Load the music file
+var defeatPlayer = try? AVAudioPlayer(contentsOf: (defeatSong!))
+var victoryPlayer = try? AVAudioPlayer(contentsOf: (victorySong!))
+var musicPlayer = try? AVAudioPlayer(contentsOf: (kurtSong!))
+
+var VanDoorSoundPlayer = try? AVAudioPlayer(contentsOf: (vanSFX!))
+var StartingSoundPlayer = try? AVAudioPlayer(contentsOf: (drivingSFX!))
+var eatingSoundPlayer = try? AVAudioPlayer(contentsOf: (eatingSFX!))
+var leavingSoundPlayer = try? AVAudioPlayer(contentsOf: (leavingSFX!))
+
+
+var soundPlayer = try? AVAudioPlayer(contentsOf: (monsterNoisesURL!))
+var monsterSpawnSFXPlayer = try? AVAudioPlayer(contentsOf: (secondMonsterNoise!))
+
+var playerSoundPlayer = try? AVAudioPlayer(contentsOf: (knifeStabSFX!))
+var playerwalkSoundPlayer = try? AVAudioPlayer(contentsOf: (walkingSFX!))
+var grabSoundPlayer = try? AVAudioPlayer(contentsOf: (grabSFX!))
+var emptySoundPlayer = try? AVAudioPlayer(contentsOf: (emptySFX!))
+
+
+func soundURL(_ name: String, _ ext: String? = nil) -> URL? {
+    let defaultExt = "m4a"
+    let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
+
+    var finalExt = ext ?? (isSong ? "mp3" : defaultExt)
+    finalExt = finalExt.lowercased()
+
+    return Bundle.main.url(forResource: name, withExtension: finalExt)
+}
+
 let victorySong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
 let defeatSong = Bundle.main.url(forResource: "Shadows - Anno Domini Beats", withExtension: "mp3")
 let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")

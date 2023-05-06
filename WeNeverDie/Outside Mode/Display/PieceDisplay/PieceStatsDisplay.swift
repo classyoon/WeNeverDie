@@ -13,7 +13,7 @@ struct PieceStatsDisplay: View {
     var body: some View {
         
         VStack{
-            DefaultStatDisplay(gameData : gameData, piece : piece)
+            DefaultStatDisplay(uiSetting: gameData.uiSetting, piece : piece)
         }
     }
 }

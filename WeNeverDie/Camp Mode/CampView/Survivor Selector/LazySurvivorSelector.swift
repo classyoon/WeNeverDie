@@ -10,6 +10,7 @@ import SwiftUI
 struct LazySurvivorSelector: View {
     
     @ObservedObject var GameData: ResourcePool
+    @ObservedObject var uiSettings : UserSettingsManager
     
     var body: some View {
         VStack{
@@ -20,7 +21,7 @@ struct LazySurvivorSelector: View {
                         Button {
                             GameData.balance(index)
                         } label: {
-                            Image(systemName: GameData.switchToLeft ?
+                            Image(systemName: uiSettings.switchToLeft ?
                                   (index >= GameData.selectStatuses.count - GameData.survivorSent ? "person.fill" : "person") :
                                     (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
                                 .aspectRatio(1, contentMode: .fit)
@@ -34,7 +35,7 @@ struct LazySurvivorSelector: View {
 
 struct LazySurvivorSelector_Previews: PreviewProvider {
     static var previews: some View {
-        LazySurvivorSelector(GameData: ResourcePool())
+        LazySurvivorSelector(GameData: ResourcePool(), uiSettings: UserSettingsManager())
     }
 }
 

@@ -11,23 +11,6 @@ import AVFAudio
 
 import AVFoundation
 
-var defeatPlayer = try? AVAudioPlayer(contentsOf: (defeatSong!))
-var victoryPlayer = try? AVAudioPlayer(contentsOf: (victorySong!))
-var musicPlayer = try? AVAudioPlayer(contentsOf: (kurtSong!))
-
-var VanDoorSoundPlayer = try? AVAudioPlayer(contentsOf: (vanSFX!))
-var StartingSoundPlayer = try? AVAudioPlayer(contentsOf: (drivingSFX!))
-var eatingSoundPlayer = try? AVAudioPlayer(contentsOf: (eatingSFX!))
-var leavingSoundPlayer = try? AVAudioPlayer(contentsOf: (leavingSFX!))
-
-
-var soundPlayer = try? AVAudioPlayer(contentsOf: (monsterNoisesURL!))
-var monsterSpawnSFXPlayer = try? AVAudioPlayer(contentsOf: (secondMonsterNoise!))
-
-var playerSoundPlayer = try? AVAudioPlayer(contentsOf: (knifeStabSFX!))
-var playerwalkSoundPlayer = try? AVAudioPlayer(contentsOf: (walkingSFX!))
-var grabSoundPlayer = try? AVAudioPlayer(contentsOf: (grabSFX!))
-var emptySoundPlayer = try? AVAudioPlayer(contentsOf: (emptySFX!))
 
 import AVFoundation
 

@@ -7,17 +7,33 @@
 
 import SwiftUI
 
-struct Settings: View {
-    @ObservedObject var gameData: ResourcePool
-    
-    @State var musicIsPlaying = false
-    var body: some View {
-        VStack (alignment: gameData.switchToLeft ? .leading : .trailing){
-//                        Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
+
+
+//Text(devMode ? "Game Developer Mode on (go back to camp to update)":"Game Developer Mode off (go back to camp to update)").foregroundColor(Color.blue)
 //                        Button("Developer Mode Toggle") {
 //                            devMode.toggle()
 //                            print("devMode \(devMode)")
 //                        }.buttonStyle(.bordered)
+class UserSettingsManager : ObservableObject {
+    @Published var switchToLeft = false
+    @Published var visionAssist = false
+    
+    func toggleLeftHandMode(){
+        switchToLeft.toggle()
+    }
+    func toggleAssistMode(){
+        visionAssist.toggle()
+    }
+}
+
+struct Settings: View {
+    @ObservedObject var gameData: ResourcePool
+    static var musicVolume: Float = 1.0
+    static var sfxVolume: Float = 1.0
+    @State var musicIsPlaying = false
+    @ObservedObject var uiSettings : UserSettingsManager
+    var body: some View {
+        VStack (alignment: uiSettings.switchToLeft ? .leading : .trailing){
             Button {
                 if musicIsPlaying {
                     guard (musicPlayer?.pause()) != nil else {
@@ -34,19 +50,20 @@ struct Settings: View {
                 Image(systemName: musicIsPlaying ? "speaker.wave.2.circle.fill" : "speaker.slash.circle")
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                    .foregroundColor(gameData.visionAssist ? (musicIsPlaying ? Color(.yellow) : Color(.purple).opacity(0.5)) : (musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5)))
+                    .foregroundColor(uiSettings.visionAssist ? (musicIsPlaying ? Color(.yellow) : Color(.purple).opacity(0.5)) : (musicIsPlaying ? Color(.green) : Color(.red).opacity(0.5)))
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
-            !gameData.isInMission ? nil : Text("Other settings unavailible during mission")
-            !gameData.isInMission ? Button(gameData.visionAssist ? "Alternative Vision" : "Common Vision"){
-                gameData.toggleAssistMode()
-            }.buttonStyle(.bordered) : nil
-            !gameData.isInMission ? Button(gameData.switchToLeft ? "Left Hand" : "Right Hand"){
-                gameData.toggleLeftHandMode()
-            }.buttonStyle(.bordered)  : nil
-            !gameData.isInMission ?  ResetButtonView(gameData: gameData) : nil
-            !gameData.isInMission ? HardModeResetButtonView(gameData: gameData) : nil
-            //            .background(gameData.switchToLeft ? Color.b : Color.green)
+            Button(uiSettings.visionAssist ? "Alternative Vision" : "Common Vision"){
+                uiSettings.toggleAssistMode()
+            }.buttonStyle(.bordered)
+            Button(uiSettings.switchToLeft ? "Left Hand" : "Right Hand"){
+                uiSettings.toggleLeftHandMode()
+            }.buttonStyle(.bordered)
+            
+            !gameData.isInMission ? nil : Text("Reset unavailible during mission")
+            !gameData.isInMission ?  ResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting) : nil
+            !gameData.isInMission ? HardModeResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting) : nil
+            //            .background(uiSettings.switchToLeft ? Color.b : Color.green)
             //
         }.padding()
         .onAppear {
@@ -58,6 +75,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings(gameData: ResourcePool())
+        Settings(gameData: ResourcePool(), uiSettings: UserSettingsManager())
     }
 }

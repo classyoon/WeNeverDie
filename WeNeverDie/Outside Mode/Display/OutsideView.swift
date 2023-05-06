@@ -19,12 +19,13 @@ struct OutsideView: View {
     //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
-    
+    @ObservedObject var uiSettings : UserSettingsManager
+
     
     var body: some View {
         NavigationStack {
             HStack{
-                gameData.switchToLeft ? StatusViewBar(vm: vm, gameData: gameData) : nil
+                uiSettings.switchToLeft ? StatusViewBar(vm: vm, gameData: gameData) : nil
                 
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
@@ -41,7 +42,7 @@ struct OutsideView: View {
                         : nil
                     }
                 
-                gameData.switchToLeft ? nil :
+                uiSettings.switchToLeft ? nil :
                 StatusViewBar(vm: vm, gameData: gameData)
             }.background(Color.black)
         }
@@ -50,6 +51,6 @@ struct OutsideView: View {
 
 struct OutsideView_Previews: PreviewProvider {
     static var previews: some View {
-        OutsideView(showBoard: Binding.constant(false), vm: Board(), gameData: ResourcePool())
+        OutsideView(showBoard: Binding.constant(false), vm: Board(), gameData: ResourcePool(), uiSettings: UserSettingsManager())
     }
 }
