@@ -43,6 +43,7 @@
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
+		CA75105A2A06FE6B004AAAE3 /* ResourceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510592A06FE6B004AAAE3 /* ResourceCalculator.swift */; };
 		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
 		CA8B95D029DE42B90099C121 /* LazySurvivorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */; };
@@ -165,6 +166,7 @@
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CA7510592A06FE6B004AAAE3 /* ResourceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCalculator.swift; sourceTree = "<group>"; };
 		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
+				CA7510592A06FE6B004AAAE3 /* ResourceCalculator.swift */,
 				CA2A2E642A05A426006FEE7D /* BuildingManager.swift */,
 				CA8B95FA29ECA11B0099C121 /* ResourceBuildings.swift */,
 			);
@@ -825,6 +828,7 @@
 				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
+				CA75105A2A06FE6B004AAAE3 /* ResourceCalculator.swift in Sources */,
 				CA9A029329B6DFEC00ED390B /* enemyView.swift in Sources */,
 				CA9A029D29B9363700ED390B /* building.swift in Sources */,
 				CA9A02A629B94B2700ED390B /* DataService.swift in Sources */,

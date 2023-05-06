@@ -34,4 +34,7 @@ class BuildingManager : ObservableObject {
             
         }
     }
+    func progressBuilding(){
+        
+    }
 }

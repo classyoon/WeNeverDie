@@ -109,7 +109,7 @@ class ResourcePool : ObservableObject {
     @Published var days = 0
     //Easier to understand code names
     let starvationAmount = 0
-    
+    @Published var stockpile = ResourceManager()
   
     init() {
         foodStored = 0
