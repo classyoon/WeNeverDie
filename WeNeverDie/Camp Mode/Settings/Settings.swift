@@ -60,7 +60,7 @@ struct Settings: View {
                 uiSettings.toggleLeftHandMode()
             }.buttonStyle(.bordered)
             
-            !gameData.isInMission ? nil : Text("Reset unavailible during mission")
+            !gameData.isInMission ? nil : Text("Reset unavailable during mission")
             !gameData.isInMission ?  ResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting) : nil
             !gameData.isInMission ? HardModeResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting) : nil
             //            .background(uiSettings.switchToLeft ? Color.b : Color.green)
