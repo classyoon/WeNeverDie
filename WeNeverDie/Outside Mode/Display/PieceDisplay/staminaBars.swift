@@ -14,7 +14,7 @@ struct staminaBars: View {
         HStack{
             ForEach(0..<piece.stamina-piece.movementCount, id: \.self) { row in
                 ZStack{
-                    Rectangle().frame(width: 10,height: 15) .foregroundColor((uiSettings.visionAssist ? Color.purple : Color.green))
+                    Rectangle().frame(width: 10,height: 15) .foregroundColor(uiSettings.visionAssist ? Color.purple : Color.green).saturation(1.3)
                         .cornerRadius(5)
                     
                 }

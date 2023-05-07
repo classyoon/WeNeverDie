@@ -74,13 +74,6 @@ class AudioManager : ObservableObject{
 
         return url
     }
-//    func soundURL(_ name: String, _ ext: String = "m4a") -> URL {
-//        guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
-//            fatalError("Could not find sound file: \(name).\(ext)")
-//        }
-//        return url
-//    }
- 
     func playMusic(_ name: String) {
         if let url = songList[name], !musicMute {
             do {

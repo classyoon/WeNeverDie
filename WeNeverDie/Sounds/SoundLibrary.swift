@@ -39,15 +39,6 @@ var grabSoundPlayer = try? AVAudioPlayer(contentsOf: (grabSFX!))
 var emptySoundPlayer = try? AVAudioPlayer(contentsOf: (emptySFX!))
 
 
-func soundURL(_ name: String, _ ext: String? = nil) -> URL? {
-    let defaultExt = "m4a"
-    let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
-
-    var finalExt = ext ?? (isSong ? "mp3" : defaultExt)
-    finalExt = finalExt.lowercased()
-
-    return Bundle.main.url(forResource: name, withExtension: finalExt)
-}
 
 let victorySong = Bundle.main.url(forResource: "The Dismal Hand - The Whole Other", withExtension: "mp3")
 let defeatSong = Bundle.main.url(forResource: "Shadows - Anno Domini Beats", withExtension: "mp3")
