@@ -45,7 +45,7 @@ class AudioManager : ObservableObject{
         }
     }
     func loadSongs(){
-        soundEffects = [
+        songList = [
             "Kurt": soundURL("Kurt - Cheel", "mp3"),
             "Death": soundURL("Shadows - Anno Domini Beats", "mp3"),
             "Victory": soundURL("The Dismal Hand - The Whole Other", "mp3")
