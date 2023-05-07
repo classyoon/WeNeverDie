@@ -194,10 +194,7 @@ class ResourcePool : ObservableObject {
             death = true
             print("Death")
             print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-//                        musicPlayer?.stop()
-            //            victoryPlayer?.play()
-            defeatPlayer?.play()
-            musicPlayer?.stop()
+            audio.playMusic("Death")
         }
     }
     func calcWinProgress(){
@@ -207,9 +204,7 @@ class ResourcePool : ObservableObject {
             print("Checking for Cure Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
         }
         if WinProgress >= WinCondition && AlreadyWon == false {
-            musicPlayer?.stop()
-            victoryPlayer?.play()
-            musicPlayer?.stop()
+            audio.playMusic("Victory")
             victory = true
             //AlreadyWon = true
             print("No longer making cure : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")

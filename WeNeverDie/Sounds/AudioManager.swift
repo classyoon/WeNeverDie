@@ -8,81 +8,67 @@
 import Foundation
 import AVFAudio
 class AudioManager : ObservableObject{
+    enum SFXTag: String, CaseIterable{
+        case monsterNoises = "Monster Noises"
+        case longGrowl = "Long Growl"
+        case nom = "Nom"
+        case stab = "stabTrimmed"
+        case footsteps = "cleanFootsteps"
+        case grabbing = "trimmedGrabbing"
+        case empty = "EmptySearch.mp3"
+        case badResult = "Wet Eating"
+        case vanDoor = "Van DoorSFX.mp3"
+        case carStarting = "car startingSFX.mp3"
+        case leaving = "LeavingSFX.mp3"
+    }
     var musicPlayer: AVAudioPlayer?
     var songList = [String : URL]()
-    var soundEffects = [String : URL]()
+    var soundEffects = [SFXTag : URL]()
     var soundPlayers = [String: AVAudioPlayer]()
     @Published var sfxVolume: Float = 1.0
     @Published var musicVolume: Float = 1.0
+    @Published var masterVolume: Float = 1.0
     @Published var sfxMute: Bool = false
     @Published var musicMute: Bool = false
-
+    
     init() {
         loadSFX()
         loadSongs()
     }
     func loadSFX(){
-        soundEffects = [
-            "Monster Noises": soundURL("Monster Noises"),
-            "Long Growl": soundURL("Long Growl"),
-            "Nom": soundURL("Nom"),
-            "Stab": soundURL("stabTrimmed"),
-            "Footsteps": soundURL("cleanFootsteps"),
-            "Grabbing": soundURL("trimmedGrabbing"),
-            "Empty": soundURL("EmptySearch", "mp3"),
-            "Bad Result": soundURL("Wet Eating"),
-            "Van Door": soundURL("Van DoorSFX", "mp3"),
-            "Car Starting": soundURL("car startingSFX", "mp3"),
-            "Leaving": soundURL("LeavingSFX", "mp3"),
-        ]
-        for (tag, url) in soundEffects {
+        for sound in SFXTag.allCases {
+            let url = soundURL(sound.rawValue)
             do {
                 let player = try AVAudioPlayer(contentsOf: url)
-                soundPlayers[tag] = player
+                soundPlayers[sound.rawValue] = player
             } catch {
-                print("Error loading sound effect: \(tag)")
+                print("Error loading sound effect: \(sound.rawValue)")
             }
         }
     }
     func loadSongs(){
-        soundEffects = [
-            "Kurt": soundURL("Kurt - Cheel", "mp3"),
-            "Death": soundURL("Shadows - Anno Domini Beats", "mp3"),
-            "Victory": soundURL("The Dismal Hand - The Whole Other", "mp3")
+        songList = [
+            "Kurt": soundURL("Kurt - Cheel"),
+            "Death": soundURL("Shadows - Anno Domini Beats"),
+            "Victory": soundURL("The Dismal Hand - The Whole Other")
         ]
     }
-    func playSFX(_ tag: String) {
-        guard let player = soundPlayers[tag], !sfxMute else {
+    func playSFX(_ tag: SFXTag) {
+        guard let player = soundPlayers[tag.rawValue] else {
             print("Error: Sound effect player not found for tag '\(tag)'")
             return
         }
         
+        player.volume = sfxVolume * masterVolume
+        
         player.currentTime = 0
-        player.volume = sfxVolume
         player.play()
     }
-    func soundURL(_ name: String, _ ext: String? = nil) -> URL {
-        let defaultExt = "m4a"
-        let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
-
-        var finalExt = ext ?? (isSong ? "mp3" : defaultExt)
-        finalExt = finalExt.lowercased()
-
-        guard let url = Bundle.main.url(forResource: name, withExtension: finalExt) else {
-            fatalError("Could not find sound file: \(name).\(finalExt)")
-        }
-
-        return url
-    }
-//    func soundURL(_ name: String, _ ext: String = "m4a") -> URL {
-//        guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
-//            fatalError("Could not find sound file: \(name).\(ext)")
-//        }
-//        return url
-//    }
- 
+    
     func playMusic(_ name: String) {
         if let url = songList[name], !musicMute {
+            print("Playing music: \(name)")
+            print("URL: \(url)")
             do {
                 if musicPlayer == nil {
                     musicPlayer = try AVAudioPlayer(contentsOf: url)
@@ -92,7 +78,7 @@ class AudioManager : ObservableObject{
                 }
                 musicPlayer?.numberOfLoops = -1
                 musicPlayer?.prepareToPlay()
-                musicPlayer?.volume = musicVolume
+                musicPlayer?.volume = musicVolume * masterVolume
                 musicPlayer?.play()
             } catch {
                 print("Error playing music: \(error.localizedDescription)")
@@ -101,10 +87,40 @@ class AudioManager : ObservableObject{
             print("Error: unable to load music file.")
         }
     }
-
-    func stopMusic() {
-        musicPlayer?.stop()
-        musicPlayer = nil
+    func soundURL(_ name: String) -> URL {
+        let defaultExt = "m4a"
+        let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
+        
+        var finalExt = defaultExt
+        var components = name.components(separatedBy: ".")
+        if components.count > 1, let ext = components.popLast()?.lowercased() {
+            finalExt = ext
+        } else if isSong {
+            finalExt = "mp3"
+        }
+        
+        let fileName = components.joined(separator: ".")
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: finalExt) else {
+            fatalError("Could not find sound file: \(fileName).\(finalExt)")
+        }
+        
+        return url
     }
-
+    
+    func toggleMusicMute() {
+        musicMute.toggle()
+        if let player = musicPlayer {
+            player.volume = musicMute ? 0 : musicVolume
+        }
+    }
+    
+    func toggleSFXMute() {
+        sfxMute.toggle()
+        for player in soundPlayers.values {
+            player.volume = sfxMute ? 0 : sfxVolume
+        }
+    }
+    
+    
+    
 }
