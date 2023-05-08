@@ -20,11 +20,10 @@ struct NightDecisionView: View {
                     // code for the safe option
                     print("Dropping some food and running...")
                     vm.foodNew-=resultCalculator.results.costOfSafeOption
-                    print("You lost \(resultCalculator.results.costOfSafeOption) loot, you now have \(resultCalculator.results.costOfSafeOption) loot")
-                    gameData.transferResourcesToResourcePool(vm: vm)
-                    showBoard = false
-                    gameData.passDay()
-                    leavingSoundPlayer?.play()
+
+                    vm.neutralOutcome = true
+                    vm.audio.playSFX(.carStarting)
+                    vm.showEscapeOption = false
                 } : Button("Unable to distract. Cost : \(resultCalculator.results.costOfSafeOption)"){}
                 Button("Run"){
                     // code for the risky option
@@ -34,16 +33,15 @@ struct NightDecisionView: View {
                         vm.UnitsDied+=1
                         gameData.transferResourcesToResourcePool(vm: vm)
                         print("You were caught by the zombies and lost everything!")
-                        showBoard = false
-                        eatingSoundPlayer?.play()
-                        gameData.passDay()
+                        vm.badOutcome = true                       
+                        vm.audio.playSFX(.badResult)
+                        vm.showEscapeOption = false
                     }
                     else {
                         print("You made it out safely!")
-                        gameData.transferResourcesToResourcePool(vm: vm)
-                        showBoard = false
-                        gameData.passDay()
-                        leavingSoundPlayer?.play()
+                        vm.audio.playSFX(.carStarting)
+                        vm.showEscapeOption = false
+                        vm.avoidedOutcome = true             
                     }
                     
                 }.buttonStyle(.bordered)

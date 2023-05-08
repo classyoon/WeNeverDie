@@ -21,10 +21,7 @@ struct ExitOverlayView: View {
             Button {
                 vm.showEscapeOption = false
                 showBoard = false
-                
-                leavingSoundPlayer?.stop()
-                
-               
+    
                 gameData.transferResourcesToResourcePool(vm: vm)
                 print("Pre Pass Day Function -> Food : \(gameData.foodStored) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
                 gameData.passDay()

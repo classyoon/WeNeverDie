@@ -23,8 +23,8 @@ struct BeginMissionButton: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 // Code you want to be delayed
                 showBoard = true
-                StartingSoundPlayer?.prepareToPlay()
-                StartingSoundPlayer?.play()
+                gameData.audio.playSFX(.carStarting)
+              
             }
         } label: {
             VStack {

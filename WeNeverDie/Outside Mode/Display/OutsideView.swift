@@ -40,6 +40,21 @@ struct OutsideView: View {
                             NightDecisionView(resultCalculator: NightResultCalculator(zombieCount: vm.numberOfZombies), showBoard: $showBoard, vm: vm, gameData: gameData)
                         }
                         : nil
+                        vm.badOutcome ?
+                        Group{
+                            BadResultView(vm: vm, gameData: gameData, showBoard: $showBoard)
+                        }
+                        : nil
+                        vm.avoidedOutcome ?
+                        Group{
+                            ResultScreen(vm: vm, gameData: gameData, showBoard: $showBoard)
+                        }
+                        : nil
+                        vm.neutralOutcome ?
+                        Group{
+                            DistractionView(vm: vm, gameData: gameData, showBoard: $showBoard)
+                        }
+                        : nil
                     }
                 
                 uiSettings.switchToLeft ? nil :

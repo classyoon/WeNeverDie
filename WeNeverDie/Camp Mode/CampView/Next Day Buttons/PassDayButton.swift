@@ -36,8 +36,8 @@ struct PassDayButton: View {
         Button {
             campPassDay()
             if canSendMission {
-                leavingSoundPlayer?.prepareToPlay()
-                leavingSoundPlayer?.play()
+              
+                gameData.audio.playSFX(.carStarting)
             }
         } label: {
             VStack {

@@ -25,7 +25,6 @@ struct VictoryView: View {
                 Button {
                     gameData.victory = false
                     gameData.AlreadyWon = true
-                    victoryPlayer?.stop()
                 } label: {
                     Text("Endless")
                         .font(.headline)

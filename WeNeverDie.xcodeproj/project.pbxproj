@@ -44,11 +44,14 @@
 		CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2C29A8113E00F40B4F /* TutorialView.swift */; };
 		CA744D2F29A82C6300F40B4F /* tileExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2E29A82C6300F40B4F /* tileExplainView.swift */; };
 		CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D3029A83D5B00F40B4F /* Settings.swift */; };
+		CA7510AF2A095392004AAAE3 /* TappableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510AE2A095392004AAAE3 /* TappableSlider.swift */; };
+		CA7510B32A097A53004AAAE3 /* MuteToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510B22A097A53004AAAE3 /* MuteToggleButton.swift */; };
+		CA7510B52A097E29004AAAE3 /* ResetButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510B42A097E29004AAAE3 /* ResetButtons.swift */; };
+		CA7510B72A098897004AAAE3 /* BadResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510B62A098897004AAAE3 /* BadResultView.swift */; };
+		CA7510B92A098C02004AAAE3 /* DistractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7510B82A098C02004AAAE3 /* DistractionView.swift */; };
 		CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7981E229DB2E16005D9382 /* staminaBars.swift */; };
 		CA85A61B29CB5D8500900C3C /* DefaultStatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */; };
 		CA8B95D029DE42B90099C121 /* LazySurvivorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */; };
-		CA8B95D129E4613C0099C121 /* SoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034629BFCE9D00ED390B /* SoundTests.swift */; };
-		CA8B95D329E462790099C121 /* SoundLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95D229E462790099C121 /* SoundLibrary.swift */; };
 		CA8B95DD29EB8CD40099C121 /* handleTapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8B95DC29EB8CD40099C121 /* handleTapFunctions.swift */; };
 		CA90F82429ABA81A00AD34E9 /* ExitOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */; };
 		CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */; };
@@ -81,7 +84,6 @@
 		CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */; };
 		CA9A034329BF7A0200ED390B /* NightResultsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034229BF7A0200ED390B /* NightResultsCalculator.swift */; };
 		CA9A034529BF7ABE00ED390B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034429BF7ABE00ED390B /* MessageView.swift */; };
-		CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A034629BFCE9D00ED390B /* SoundTests.swift */; };
 		CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA8A319B296CC04C00755BCE /* Monster Noises.m4a */; };
 		CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034929BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 */; };
 		CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */; };
@@ -165,11 +167,15 @@
 		CA744D2C29A8113E00F40B4F /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CA744D2E29A82C6300F40B4F /* tileExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tileExplainView.swift; sourceTree = "<group>"; };
 		CA744D3029A83D5B00F40B4F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CA7510AE2A095392004AAAE3 /* TappableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableSlider.swift; sourceTree = "<group>"; };
+		CA7510B22A097A53004AAAE3 /* MuteToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteToggleButton.swift; sourceTree = "<group>"; };
+		CA7510B42A097E29004AAAE3 /* ResetButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButtons.swift; sourceTree = "<group>"; };
+		CA7510B62A098897004AAAE3 /* BadResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadResultView.swift; sourceTree = "<group>"; };
+		CA7510B82A098C02004AAAE3 /* DistractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractionView.swift; sourceTree = "<group>"; };
 		CA7981E229DB2E16005D9382 /* staminaBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staminaBars.swift; sourceTree = "<group>"; };
 		CA85A61A29CB5D8500900C3C /* DefaultStatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStatDisplay.swift; sourceTree = "<group>"; };
 		CA8A319B296CC04C00755BCE /* Monster Noises.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monster Noises.m4a"; sourceTree = "<group>"; };
 		CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySurvivorSelector.swift; sourceTree = "<group>"; };
-		CA8B95D229E462790099C121 /* SoundLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLibrary.swift; sourceTree = "<group>"; };
 		CA8B95DC29EB8CD40099C121 /* handleTapFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handleTapFunctions.swift; sourceTree = "<group>"; };
 		CA90F82329ABA81A00AD34E9 /* ExitOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitOverlayView.swift; sourceTree = "<group>"; };
 		CA90F82529ABAF1F00AD34E9 /* TilePieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePieceDisplay.swift; sourceTree = "<group>"; };
@@ -202,7 +208,6 @@
 		CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDecisionView.swift; sourceTree = "<group>"; };
 		CA9A034229BF7A0200ED390B /* NightResultsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightResultsCalculator.swift; sourceTree = "<group>"; };
 		CA9A034429BF7ABE00ED390B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		CA9A034629BFCE9D00ED390B /* SoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTests.swift; sourceTree = "<group>"; };
 		CA9A034929BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Dismal Hand - The Whole Other.mp3"; sourceTree = "<group>"; };
 		CA9A034B29BFD4FF00ED390B /* Long Growl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Long Growl.m4a"; sourceTree = "<group>"; };
 		CA9A034D29BFD57000ED390B /* Nom.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nom.m4a; sourceTree = "<group>"; };
@@ -330,6 +335,7 @@
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
+				CA16EACA29C93FF00047593B /* Settings */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -350,6 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				CA744D3029A83D5B00F40B4F /* Settings.swift */,
+				CA7510B42A097E29004AAAE3 /* ResetButtons.swift */,
+				CA7510B22A097A53004AAAE3 /* MuteToggleButton.swift */,
 				CA16EABF29C935D50047593B /* HardModeResetButtonView.swift */,
 				CA16EABD29C9356D0047593B /* ResetButtonView.swift */,
 			);
@@ -393,7 +401,6 @@
 		CA17474129A9446B00B81EF8 /* Camp Mode */ = {
 			isa = PBXGroup;
 			children = (
-				CA16EACA29C93FF00047593B /* Settings */,
 				CA90F82929ABDDA500AD34E9 /* CampView */,
 				CA17474729A9457900B81EF8 /* Tutorial */,
 				CA9A029C29B9363700ED390B /* building.swift */,
@@ -470,6 +477,16 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
+		CA7510BA2A099019004AAAE3 /* Second Stage */ = {
+			isa = PBXGroup;
+			children = (
+				CA7510B62A098897004AAAE3 /* BadResultView.swift */,
+				CA3314DD29C8096D00442EC3 /* ResultScreen.swift */,
+				CA7510B82A098C02004AAAE3 /* DistractionView.swift */,
+			);
+			path = "Second Stage";
+			sourceTree = "<group>";
+		};
 		CA7981E429DB884F005D9382 /* PieceDisplay */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,8 +502,6 @@
 		CA8A319A296CC03E00755BCE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				CA9A034629BFCE9D00ED390B /* SoundTests.swift */,
-				CA8B95D229E462790099C121 /* SoundLibrary.swift */,
 				CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */,
 				CA17474229A944AB00B81EF8 /* Sound Effects */,
 				CA17474829A945BE00B81EF8 /* Music */,
@@ -582,6 +597,7 @@
 				CA9A033829BE87E300ED390B /* VerticalProgressBar.swift */,
 				CA9A02B529B972F300ED390B /* PieceRotationTest.swift */,
 				CA9A036B29C0EED600ED390B /* AlertExample.swift */,
+				CA7510AE2A095392004AAAE3 /* TappableSlider.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -602,7 +618,7 @@
 				CA9A033A29BE954700ED390B /* NightExitView.swift */,
 				CA9A034229BF7A0200ED390B /* NightResultsCalculator.swift */,
 				CA9A033F29BE9D6E00ED390B /* NightDecisionView.swift */,
-				CA3314DD29C8096D00442EC3 /* ResultScreen.swift */,
+				CA7510BA2A099019004AAAE3 /* Second Stage */,
 			);
 			path = "Night Decision";
 			sourceTree = "<group>";
@@ -774,6 +790,7 @@
 			files = (
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */,
+				CA7510AF2A095392004AAAE3 /* TappableSlider.swift in Sources */,
 				CA2A2E6A2A06C7B4006FEE7D /* AudioManager.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
@@ -789,8 +806,10 @@
 				CA16EAC729C93E3B0047593B /* CountDown.swift in Sources */,
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
+				CA7510B32A097A53004AAAE3 /* MuteToggleButton.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,
+				CA7510B52A097E29004AAAE3 /* ResetButtons.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
 				CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */,
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
@@ -799,9 +818,7 @@
 				CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */,
 				CA8B95DD29EB8CD40099C121 /* handleTapFunctions.swift in Sources */,
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
-				CA9A034729BFCE9D00ED390B /* SoundTests.swift in Sources */,
 				CA16EAC929C93EBC0047593B /* FoodCounter.swift in Sources */,
-				CA8B95D329E462790099C121 /* SoundLibrary.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
 				CA16EAEA29CA975F0047593B /* PassDayButton.swift in Sources */,
 				CA9A033B29BE954700ED390B /* NightExitView.swift in Sources */,
@@ -831,6 +848,7 @@
 				CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */,
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
 				CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */,
+				CA7510B92A098C02004AAAE3 /* DistractionView.swift in Sources */,
 				CA16EAC329C93D1F0047593B /* NextTurnButton.swift in Sources */,
 				CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */,
 				CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */,
@@ -846,6 +864,7 @@
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 				CA16EAEE29CAA0A20047593B /* LeftHandButtons.swift in Sources */,
 				CA9A028F29B6DFAB00ED390B /* forestExplainView.swift in Sources */,
+				CA7510B72A098897004AAAE3 /* BadResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,7 +882,6 @@
 			files = (
 				91355AB5293AEE4800907610 /* WeNeverDieUITestsLaunchTests.swift in Sources */,
 				91355AB3293AEE4800907610 /* WeNeverDieUITests.swift in Sources */,
-				CA8B95D129E4613C0099C121 /* SoundTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

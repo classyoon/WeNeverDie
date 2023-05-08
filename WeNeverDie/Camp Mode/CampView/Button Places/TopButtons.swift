@@ -25,7 +25,7 @@ struct TopButtons: View {
             }.frame(maxHeight: 50)
                 .shadow(color: .black, radius: 5)
             NavigationLink {
-                Settings(gameData: gameData, uiSettings: gameData.uiSetting)
+                Settings(gameData: gameData, uiSettings: gameData.uiSetting, audio: gameData.audio).padding()
             } label: {
                 Image(systemName: "gear")
                     .resizable()
@@ -34,14 +34,7 @@ struct TopButtons: View {
                     .shadow(radius: 5)
             }.frame(maxHeight: 50)
                 .shadow(color: .black, radius: 5)
-//            Spacer()
-        }.onAppear {
-            if initialLoad {
-                guard (musicPlayer?.play()) != nil else {
-                    fatalError("Unable to start music")
-                }
-                initialLoad = false
-            }
+            //            Spacer()
         }
     }
 }

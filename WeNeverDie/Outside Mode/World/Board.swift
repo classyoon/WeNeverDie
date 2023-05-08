@@ -48,7 +48,9 @@ class Board : ObservableObject, BoardProtocol {
         }
     }
     @Published var canAnyoneMove = true
-    
+    @Published var badOutcome = false
+    @Published var neutralOutcome = false
+    @Published var avoidedOutcome = false
     @Published var turn = UUID()
     
     @Published var possibleLoc: [Coord] = []
@@ -58,6 +60,8 @@ class Board : ObservableObject, BoardProtocol {
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
     @Published var foodNew = 0
+    @Published var uiSettings : UserSettingsManager
+    @Published var audio : AudioManager
     
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
@@ -164,7 +168,7 @@ class Board : ObservableObject, BoardProtocol {
     }
 
     func generateBoard(_ players : Int){
-        musicPlayer?.stop()
+        
         missionUnderWay = true
         turnsSinceStart = 0
         lengthOfPlay = turnsOfDaylight + turnsOfNight
@@ -178,11 +182,16 @@ class Board : ObservableObject, BoardProtocol {
         spawnZombies(2)
         set(moveable: recruit(board: self), Coord: randomLoc())
     }
-    init(players : Int){
-        
+    init(players : Int, _ audioInit : AudioManager, _ settings : UserSettingsManager){
+        audio = audioInit
+        uiSettings = settings
         generateBoard(outsideTesting && devMode ? 1 : players)
+        uiSettings.isAutoPauseMusic ? audio.pauseMusic() : nil
     }
     init(){
+        audio = AudioManager()
+        uiSettings = UserSettingsManager()
         generateBoard(1)
+        uiSettings.isAutoPauseMusic ? audio.pauseMusic() : nil
     }
 }

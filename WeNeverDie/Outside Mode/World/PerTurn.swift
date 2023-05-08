@@ -83,8 +83,7 @@ extension Board {
                      
                     }
                 }
-                leavingSoundPlayer?.prepareToPlay()
-                leavingSoundPlayer?.play()
+                audio.playSFX(.carStarting)
                 print("END MISSION")
              
 //                print(survivorList)
@@ -113,8 +112,8 @@ extension Board {
             changeToNight = true
             if zombieNumber < 10 {
                 spawnZombies(2)
-                monsterSpawnSFXPlayer?.prepareToPlay()
-                monsterSpawnSFXPlayer?.play()
+//
+                audio.playSFX(.longGrowl)
             }
         } else if turnsSinceStart > lengthOfPlay {
             showEscapeOption = true
@@ -135,8 +134,6 @@ extension Board {
         //checkEndMission()
         if createLists().playerCoords.count <= 0 {
             missionUnderWay = false
-//            leavingSoundPlayer?.prepareToPlay()
-//            leavingSoundPlayer?.play()
         }
         turn = UUID()
         

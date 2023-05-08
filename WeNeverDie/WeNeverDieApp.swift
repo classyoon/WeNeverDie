@@ -23,9 +23,6 @@ struct WeNeverDieApp: App {
                     returnedData = load(key: key) ?? ResourcePoolData()
                     gameData.setValue(resourcePoolData: returnedData)
                     gameData.audio.playMusic("Kurt")
-//                    musicPlayer?.prepareToPlay()
-//                    musicPlayer?.volume = 0.1
-//                    soundPlayer?.volume = 1.5
                 }
             //DeviceRotationViewTest()
         }

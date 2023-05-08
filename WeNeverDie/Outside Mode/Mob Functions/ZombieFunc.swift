@@ -40,7 +40,7 @@ extension Board {
                 if let nearbyPiece = board[r][c]{
                     if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
                         board[r][c]?.health -= selfPiece.damage
-                        soundPlayer?.play()
+                        audio.playSFX(.monsterNoises)
                         printZombieThoughts ? print(selfPiece.alert) : nil
                         printZombieThoughts ? print("While attacking I see") : nil
                         printZombieThoughts ? print(selfPiece.alert) : nil

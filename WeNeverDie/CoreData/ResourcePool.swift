@@ -137,8 +137,6 @@ class ResourcePool : ObservableObject {
 
     /// Resets game
     func reset() {
-        
-        victoryPlayer?.stop()
         foodStored = 10
         survivorNumber = survivorDefaultNumber
         starving = false
@@ -153,8 +151,8 @@ class ResourcePool : ObservableObject {
         shouldResetGame = false
         WinProgress = 0
         progressToDeath = 0
-        victoryPlayer?.stop()
-        defeatPlayer?.stop()
+        audio.playMusic("Kurt")
+       
         days = 0
     }
     func generateSurvivors(_ number : Int)->[any Piece] {
@@ -165,13 +163,13 @@ class ResourcePool : ObservableObject {
             let randomFirstName = firstNames.randomElement()!
             let randomLastName = lastNames.randomElement()!
             let fullName = "\(randomFirstName) \(randomLastName)"
-            generatedRoster.append(playerUnit(name: fullName, board: Board(players: number)))
+            generatedRoster.append(playerUnit(name: fullName, board: Board(players: number, audio, uiSetting)))
         }
         return generatedRoster
     }
     func generateMap() -> Board{
         
-        return Board(players: survivorSent)
+        return Board(players: survivorSent, audio, uiSetting)
     }
     
     func checkForDefeat() {
@@ -225,14 +223,15 @@ class ResourcePool : ObservableObject {
         print("Adding -> Food : \(foodStored)")
         foodStored += vm.foodNew
         print("Result -> Food : \(foodStored)")
-        
+        audio.resumeMusic()
         survivorNumber+=vm.UnitsRecruited
         
         survivorSent = 0
         
-        selectStatuses = Array(repeating: false, count: survivorNumber)
+        
         print("Subtracting Deaths -> Survivors : \(survivorNumber)")
         survivorNumber-=vm.UnitsDied
+        selectStatuses = Array(repeating: false, count: survivorNumber)
         print("Result -> Survivors : \(survivorNumber)")
         
         print("Saving Data -> Food : \(foodStored) Survivors : \(survivorNumber) Cure Progress : \(WinProgress) Death Progress : \(progressToDeath)")

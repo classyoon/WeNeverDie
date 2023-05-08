@@ -6,7 +6,9 @@
 //
 
 import Foundation
-import AVFAudio
+import AVFoundation
+let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3")
+var musicPlayer = try? AVAudioPlayer(contentsOf: (kurtSong!))
 class AudioManager : ObservableObject{
     enum SFXTag: String, CaseIterable{
         case monsterNoises = "Monster Noises"
@@ -25,9 +27,34 @@ class AudioManager : ObservableObject{
     var songList = [String : URL]()
     var soundEffects = [SFXTag : URL]()
     var soundPlayers = [String: AVAudioPlayer]()
-    @Published var sfxVolume: Float = 1.0
-    @Published var musicVolume: Float = 1.0
-    @Published var masterVolume: Float = 1.0
+    @Published var sfxVolume: Float = 4.0 {
+        didSet {
+            for player in soundPlayers.values {
+                player.volume = sfxMute ? 0 : (sfxVolume * masterVolume)
+            }
+        }
+    }
+    @Published var musicVolume: Float = 0.5{
+        didSet {
+            musicPlayer?.volume = musicMute ? 0 : (musicVolume * masterVolume)
+        }
+    }
+    
+    
+    @Published var masterVolume: Float = 1.0 {
+        didSet {
+            // Update volume of sound effects
+            for player in soundPlayers.values {
+                player.volume = sfxMute ? 0 : (sfxVolume * masterVolume)
+            }
+            
+            // Update volume of music
+            if let player = musicPlayer {
+                player.volume = musicMute ? 0 : (musicVolume * masterVolume)
+            }
+        }
+    }
+
     @Published var sfxMute: Bool = false
     @Published var musicMute: Bool = false
     
@@ -59,14 +86,14 @@ class AudioManager : ObservableObject{
             return
         }
         
-        player.volume = sfxVolume * masterVolume
+        player.volume =  sfxMute ? 0 : (sfxVolume * masterVolume)
         
         player.currentTime = 0
         player.play()
     }
     
     func playMusic(_ name: String) {
-        if let url = songList[name], !musicMute {
+        if let url = songList[name] {
             print("Playing music: \(name)")
             print("URL: \(url)")
             do {
@@ -78,7 +105,7 @@ class AudioManager : ObservableObject{
                 }
                 musicPlayer?.numberOfLoops = -1
                 musicPlayer?.prepareToPlay()
-                musicPlayer?.volume = musicVolume * masterVolume
+                musicPlayer?.volume = musicMute ? 0 : (musicVolume * masterVolume)
                 musicPlayer?.play()
             } catch {
                 print("Error playing music: \(error.localizedDescription)")
@@ -86,6 +113,12 @@ class AudioManager : ObservableObject{
         } else {
             print("Error: unable to load music file.")
         }
+    }
+    func pauseMusic(){
+        musicPlayer?.pause()
+    }
+    func resumeMusic(){
+        musicPlayer?.play()
     }
     func soundURL(_ name: String) -> URL {
         let defaultExt = "m4a"
@@ -120,7 +153,4 @@ class AudioManager : ObservableObject{
             player.volume = sfxMute ? 0 : sfxVolume
         }
     }
-    
-    
-    
 }

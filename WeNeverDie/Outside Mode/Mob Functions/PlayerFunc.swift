@@ -15,8 +15,7 @@ extension Board {
         board[tapRow][tapCol]?.health -= piece.damage
         board[startPoint.row][startPoint.col]?.incrementMoveCounter()
         deselectUnit()
-        playerSoundPlayer?.prepareToPlay()
-        playerSoundPlayer?.play()
+        audio.playSFX(.stab)
         turn = UUID()
         if board[tapRow][tapCol]!.health <= 0 {
             board[tapRow][tapCol] = nil
@@ -36,9 +35,9 @@ extension Board {
         }
     }
     func movePlayerUnit(tapRow: Int, tapCol: Int, startPoint : Coord, piece : inout any Piece){
-        playerwalkSoundPlayer?.prepareToPlay()
+        
         move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
-        playerwalkSoundPlayer?.play()
+        audio.playSFX(.footsteps)
     }
     func isAnyoneStillActive()->Bool{
         let playerList = createLists().playerCoords
@@ -67,12 +66,10 @@ extension Board {
                 if terrainBoard[piece.row][piece.col].loot>0{
                     foodNew+=1
                     terrainBoard[piece.row][piece.col].loot-=1
-                    grabSoundPlayer?.prepareToPlay()
-                    grabSoundPlayer?.play()
+                    audio.playSFX(.grabbing)
                 }
                 else {
-                    emptySoundPlayer?.prepareToPlay()
-                    emptySoundPlayer?.play()
+                    audio.playSFX(.empty)
                 }
             }
             selectedUnit = selected
