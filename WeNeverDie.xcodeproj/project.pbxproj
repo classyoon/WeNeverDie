@@ -104,6 +104,10 @@
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
+		CAEBC0222A16E7790050A0EE /* WinCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBC0212A16E7790050A0EE /* WinCondition.swift */; };
+		CAEBC0242A16E7CF0050A0EE /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBC0232A16E7CF0050A0EE /* NameGenerator.swift */; };
+		CAEBC0262A16E8130050A0EE /* ResetFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBC0252A16E8130050A0EE /* ResetFuncs.swift */; };
+		CAEBC0282A16E8910050A0EE /* stepperFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBC0272A16E8910050A0EE /* stepperFunc.swift */; };
 		E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE11A629AD28ED0095416B /* ViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -226,6 +230,10 @@
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
+		CAEBC0212A16E7790050A0EE /* WinCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCondition.swift; sourceTree = "<group>"; };
+		CAEBC0232A16E7CF0050A0EE /* NameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
+		CAEBC0252A16E8130050A0EE /* ResetFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetFuncs.swift; sourceTree = "<group>"; };
+		CAEBC0272A16E8910050A0EE /* stepperFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepperFunc.swift; sourceTree = "<group>"; };
 		E5DE11A629AD28ED0095416B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -335,6 +343,11 @@
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
+				CAEBC0272A16E8910050A0EE /* stepperFunc.swift */,
+				CAEBC0252A16E8130050A0EE /* ResetFuncs.swift */,
+				CAEBC0212A16E7790050A0EE /* WinCondition.swift */,
+				CAEBC0232A16E7CF0050A0EE /* NameGenerator.swift */,
+				CA17474729A9457900B81EF8 /* Tutorial */,
 				CA16EACA29C93FF00047593B /* Settings */,
 			);
 			path = CoreData;
@@ -401,8 +414,12 @@
 		CA17474129A9446B00B81EF8 /* Camp Mode */ = {
 			isa = PBXGroup;
 			children = (
-				CA90F82929ABDDA500AD34E9 /* CampView */,
-				CA17474729A9457900B81EF8 /* Tutorial */,
+				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
+				CA9A029929B6E26500ED390B /* Events */,
+				CA8B95D929EB816B0099C121 /* Survivor Selector */,
+				CA8B95DA29EB823B0099C121 /* Button Places */,
+				CACCD570298C8B5A005BE6DE /* Camp.swift */,
+				CA8B95DB29EB82940099C121 /* Next Day Buttons */,
 				CA9A029C29B9363700ED390B /* building.swift */,
 			);
 			path = "Camp Mode";
@@ -455,12 +472,11 @@
 		CA17474729A9457900B81EF8 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				CAEBC0202A16D8DA0050A0EE /* Tutorial Buttons */,
 				CA744D2C29A8113E00F40B4F /* TutorialView.swift */,
-				CA9A032B29BD7F7B00ED390B /* SkipTutorialButton.swift */,
 				CA9A029029B6DFCF00ED390B /* introText.swift */,
 				CA9A029829B6E03F00ED390B /* Controls */,
 				CA9A029229B6DFEC00ED390B /* enemyView.swift */,
-				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
 				CA9A028329B6DD8000ED390B /* Tiles */,
 				CA9A028629B6DF4400ED390B /* sendOff.swift */,
 			);
@@ -547,19 +563,6 @@
 			path = "Next Day Buttons";
 			sourceTree = "<group>";
 		};
-		CA90F82929ABDDA500AD34E9 /* CampView */ = {
-			isa = PBXGroup;
-			children = (
-				CA8B95DB29EB82940099C121 /* Next Day Buttons */,
-				CACCD570298C8B5A005BE6DE /* Camp.swift */,
-				CA8B95DA29EB823B0099C121 /* Button Places */,
-				CA8B95D929EB816B0099C121 /* Survivor Selector */,
-				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
-				CA9A029929B6E26500ED390B /* Events */,
-			);
-			path = CampView;
-			sourceTree = "<group>";
-		};
 		CA9A028329B6DD8000ED390B /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +635,15 @@
 				CA17474429A9451500B81EF8 /* Display */,
 			);
 			path = "Outside Mode";
+			sourceTree = "<group>";
+		};
+		CAEBC0202A16D8DA0050A0EE /* Tutorial Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				CA9A032B29BD7F7B00ED390B /* SkipTutorialButton.swift */,
+				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
+			);
+			path = "Tutorial Buttons";
 			sourceTree = "<group>";
 		};
 		E5DE11A529AD28E10095416B /* Style */ = {
@@ -817,6 +829,7 @@
 				CA9A032C29BD7F7B00ED390B /* SkipTutorialButton.swift in Sources */,
 				CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */,
 				CA8B95DD29EB8CD40099C121 /* handleTapFunctions.swift in Sources */,
+				CAEBC0262A16E8130050A0EE /* ResetFuncs.swift in Sources */,
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
 				CA16EAC929C93EBC0047593B /* FoodCounter.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
@@ -838,6 +851,7 @@
 				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
+				CAEBC0282A16E8910050A0EE /* stepperFunc.swift in Sources */,
 				CA9A029329B6DFEC00ED390B /* enemyView.swift in Sources */,
 				CA9A029D29B9363700ED390B /* building.swift in Sources */,
 				CA9A02A629B94B2700ED390B /* DataService.swift in Sources */,
@@ -849,6 +863,7 @@
 				CA48C74C298387E200106B97 /* MobFunc.swift in Sources */,
 				CA90F82B29ABDDC600AD34E9 /* CampStats.swift in Sources */,
 				CA7510B92A098C02004AAAE3 /* DistractionView.swift in Sources */,
+				CAEBC0242A16E7CF0050A0EE /* NameGenerator.swift in Sources */,
 				CA16EAC329C93D1F0047593B /* NextTurnButton.swift in Sources */,
 				CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */,
 				CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */,
@@ -856,6 +871,7 @@
 				CA16EAE829CA95D70047593B /* BeginMissionButton.swift in Sources */,
 				CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */,
 				CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */,
+				CAEBC0222A16E7790050A0EE /* WinCondition.swift in Sources */,
 				CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */,
 				CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */,
 				CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */,

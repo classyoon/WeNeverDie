@@ -13,9 +13,6 @@ struct OutsideView: View {
     @State var selectedStats = ""
     @Binding var showBoard : Bool
     @State var food = 0
-    @State var weaponry = true
-    @State var talk = true
-    
     //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool

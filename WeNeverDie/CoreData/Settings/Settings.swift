@@ -43,6 +43,7 @@ struct Settings: View {
             
             MuteToggleButton(name: "Sound FX", audio: audio, uiSettings: uiSettings, soundSet: .sfx)
             
+            
             Button(uiSettings.visionAssist ? "Alternative Vision" : "Common Vision"){
                 uiSettings.toggleAssistMode()
             }.buttonStyle(.bordered)

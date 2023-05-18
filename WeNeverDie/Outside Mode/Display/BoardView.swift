@@ -10,20 +10,19 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var gameData : ResourcePool
     @ObservedObject var vm : Board
+    
     var body: some View {
-        ScrollView{
-            VStack(spacing: 0) {
-                ForEach(0..<vm.rowMax, id: \.self) { row in
-                    HStack(spacing: 0) {
-                        ForEach(0..<vm.colMax, id: \.self) { col in
-                            TilePieceDisplay(gameData: gameData, row: row, col: col, vm: vm)
-                        }
+        VStack(spacing: 0) {
+            ForEach(0..<vm.rowMax, id: \.self) { row in
+                HStack(spacing: 0) {
+                    ForEach(0..<vm.colMax, id: \.self) { col in
+                        TilePieceDisplay(gameData: gameData, row: row, col: col, vm: vm)
                     }
                 }
             }
-            .id(vm.turn)
-            
         }
+        .id(vm.turn)
+        
     }
 }
 

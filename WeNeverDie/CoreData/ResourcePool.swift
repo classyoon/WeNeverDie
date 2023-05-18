@@ -133,81 +133,10 @@ class ResourcePool : ObservableObject {
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses
     }
-    
-
-    /// Resets game
-    func reset() {
-        foodStored = 10
-        survivorNumber = survivorDefaultNumber
-        starving = false
-        //        roster = generateSurvivors(survivorNumber)
-        selectStatuses = Array(repeating: false, count: survivorNumber)
-      
-        survivorSent = 0
-        
-        death = false
-        victory = false
-        AlreadyWon = false
-        shouldResetGame = false
-        WinProgress = 0
-        progressToDeath = 0
-        audio.playMusic("Kurt")
-       
-        days = 0
-    }
-    func generateSurvivors(_ number : Int)->[any Piece] {
-        let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
-        let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
-        var generatedRoster = [any Piece]()
-        for _ in 0..<number {
-            let randomFirstName = firstNames.randomElement()!
-            let randomLastName = lastNames.randomElement()!
-            let fullName = "\(randomFirstName) \(randomLastName)"
-            generatedRoster.append(playerUnit(name: fullName, board: Board(players: number, audio, uiSetting)))
-        }
-        return generatedRoster
-    }
     func generateMap() -> Board{
-        
         return Board(players: survivorSent, audio, uiSetting)
     }
-    
-    func checkForDefeat() {
-        print("Calc Defeat")
-        if foodStored > starvationAmount {
-            starving = false
-            if progressToDeath > 0 {
-                print("Regen")
-                progressToDeath -= 1
-                print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-            }
-        } else {
-            foodStored = starvationAmount //
-            starving = true
-            print("starving")
-            progressToDeath += 1
-            print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-        }
-        if progressToDeath > deathRequirement || survivorNumber<=0{
-            death = true
-            print("Death")
-            print("Checking for Defeat Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-            audio.playMusic("Death")
-        }
-    }
-    func calcWinProgress(){
-        print("Making cure with \(survivorNumber-survivorSent) survivors")
-        if survivorSent != survivorNumber {
-            WinProgress+=(survivorNumber-survivorSent)
-            print("Checking for Cure Results -> Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-        }
-        if WinProgress >= WinCondition && AlreadyWon == false {
-            audio.playMusic("Victory")
-            victory = true
-            //AlreadyWon = true
-            print("No longer making cure : Day : \(days)\nFood : \(foodStored) \nSurvivors : \(survivorNumber) \nCure Progress : \(WinProgress) \nDeath Progress : \(progressToDeath)")
-        }
-    }
+   
     
     func passDay(){
         print("Food \(foodStored)")
@@ -227,8 +156,6 @@ class ResourcePool : ObservableObject {
         survivorNumber+=vm.UnitsRecruited
         
         survivorSent = 0
-        
-        
         print("Subtracting Deaths -> Survivors : \(survivorNumber)")
         survivorNumber-=vm.UnitsDied
         selectStatuses = Array(repeating: false, count: survivorNumber)
@@ -239,38 +166,5 @@ class ResourcePool : ObservableObject {
         print("is in mission = \(isInMission)")
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
-    func hardmodeReset(){
-        reset()
-        survivorNumber = 1
-        foodStored = 0
-        selectStatuses = Array(repeating: false, count: survivorNumber)
-    }
-    
-    func balance(_ index: Int) {
-        if lastTappedIndex == index {
-            // Tapped the same button twice set all buttons to false
-            for i in 0...index {
-                selectStatuses[i] = false
-            }
-            survivorSent = 0
-            lastTappedIndex = nil
-        } else {
-            // Set the survivorSent value based on the index and switchToLeft flag
-            if uiSetting.switchToLeft {
-                survivorSent = selectStatuses.count - index
-            } else {
-                survivorSent = index + 1
-            }
-            
-            // Set the selectStatuses array based on the survivorSent value
-            for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < survivorSent)
-            }
-            
-            lastTappedIndex = index
-        }
-    }
-
-
 }
 

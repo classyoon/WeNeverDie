@@ -41,7 +41,7 @@ struct WrapperCureProgression : View {
     @State var cureProgression = 5
     @State var cureCondition = 10
     var body: some View{
-        CureProgressInfoView(progress: $cureProgression, max: cureCondition, showCure: .constant(true))
+        CureProgressInfoView(progress: $cureProgression, max: cureCondition, showCure: .constant(true)).padding()
     }
 }
 struct CureProgressInfo_Previews: PreviewProvider {

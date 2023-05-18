@@ -11,7 +11,7 @@ struct CountDown: View {
     @ObservedObject var vm : Board
     @ObservedObject var uiSettings : UserSettingsManager
     var body: some View {
-        Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) hrs til night").foregroundColor(vm.changeToNight ? (uiSettings.visionAssist ? Color.yellow : Color.red) : nil)
+        Text(vm.changeToNight ? "It's night" : "\(vm.turnsOfDaylight-vm.turnsSinceStart) turns til night").foregroundColor(vm.changeToNight ? (uiSettings.visionAssist ? Color.yellow : Color.red) : nil)
         
     }
    

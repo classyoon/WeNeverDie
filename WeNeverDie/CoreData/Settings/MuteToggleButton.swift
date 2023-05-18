@@ -57,6 +57,7 @@ enum SoundSet {
 
 struct MuteToggleButton_Previews: PreviewProvider {
     static var previews: some View {
-        MuteToggleButton(name: "Test", audio: AudioManager(), uiSettings: UserSettingsManager(), soundSet: .music)
+        
+        MuteToggleButton(name: "Test", audio: AudioManager(), uiSettings: UserSettingsManager(), soundSet: .sfx)
     }
 }

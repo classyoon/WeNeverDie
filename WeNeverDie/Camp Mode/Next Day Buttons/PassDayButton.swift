@@ -45,7 +45,7 @@ struct PassDayButton: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .foregroundColor(.white)
-                Text("We should try to Sleep. Zombies can wait.")
+                Text("Pass day, will send any people you have selected into a mission")
             }
         }.padding()
             .frame(maxHeight: 100)
