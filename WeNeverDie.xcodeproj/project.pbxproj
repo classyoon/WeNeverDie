@@ -343,10 +343,7 @@
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
-				CAEBC0272A16E8910050A0EE /* stepperFunc.swift */,
-				CAEBC0252A16E8130050A0EE /* ResetFuncs.swift */,
-				CAEBC0212A16E7790050A0EE /* WinCondition.swift */,
-				CAEBC0232A16E7CF0050A0EE /* NameGenerator.swift */,
+				CAEBC02B2A16EBF90050A0EE /* Game Data Functions */,
 				CA17474729A9457900B81EF8 /* Tutorial */,
 				CA16EACA29C93FF00047593B /* Settings */,
 			);
@@ -644,6 +641,17 @@
 				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
 			);
 			path = "Tutorial Buttons";
+			sourceTree = "<group>";
+		};
+		CAEBC02B2A16EBF90050A0EE /* Game Data Functions */ = {
+			isa = PBXGroup;
+			children = (
+				CAEBC0272A16E8910050A0EE /* stepperFunc.swift */,
+				CAEBC0232A16E7CF0050A0EE /* NameGenerator.swift */,
+				CAEBC0212A16E7790050A0EE /* WinCondition.swift */,
+				CAEBC0252A16E8130050A0EE /* ResetFuncs.swift */,
+			);
+			path = "Game Data Functions";
 			sourceTree = "<group>";
 		};
 		E5DE11A529AD28E10095416B /* Style */ = {
