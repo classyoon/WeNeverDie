@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TilePieceDisplay: View {
     @ObservedObject var gameData : ResourcePool
+
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -39,6 +40,16 @@ struct TilePieceDisplay: View {
                 }
                 if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
                     Circle().fill(Color.white.opacity(0.3)).padding()
+                }
+                if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
+                    if let piece = vm.board[row][col] {
+                        if piece.isZombie {
+                            Circle().fill(Color.red.opacity(0.5)).padding()
+                        }
+                        if piece.isRecruitable {
+                            Circle().fill(Color.green.opacity(0.5)).padding() 
+                        }
+                    }
                 }
             }
             if let piece = vm.board[row][col] {

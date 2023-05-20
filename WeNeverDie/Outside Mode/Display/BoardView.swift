@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct BoardView: View {
-    @ObservedObject var gameData : ResourcePool
-    @ObservedObject var vm : Board
+    @ObservedObject var gameData: ResourcePool
+    @ObservedObject var vm: Board
+
+    var size: Int {
+        vm.colMax * vm.rowMax * 30
+    }
+
     var body: some View {
-        ScrollView{
+        ScrollView([.horizontal, .vertical], showsIndicators: false) {
             VStack(spacing: 0) {
                 ForEach(0..<vm.rowMax, id: \.self) { row in
                     HStack(spacing: 0) {
@@ -21,11 +26,13 @@ struct BoardView: View {
                     }
                 }
             }
+            .frame(width: CGFloat(size))
             .id(vm.turn)
             
         }
     }
 }
+
 
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
