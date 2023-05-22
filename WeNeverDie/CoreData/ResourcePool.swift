@@ -78,6 +78,7 @@ class ResourcePool : ObservableObject {
     //Resources
     @Published var foodStored : Int = 10
     @Published var survivorNumber : Int = 3
+    @Published var buildingResources : Int = 0
     @Published var survivorDefaultNumber : Int = 3
     @Published var starving = false
     //    @Published var roster = [any Piece]()//unused

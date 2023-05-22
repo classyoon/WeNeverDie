@@ -13,9 +13,9 @@ struct CampStats : View {
     @Binding var surivorsSentOnMission: Int
     @Binding var showBoard : Bool
     @ObservedObject var uiSettings : UserSettingsManager
-
+    
     @State var survivorsArr: [Int] = []
-
+    
     func shouldShowMap() -> Bool{
         if surivorsSentOnMission > 0{
             return true
@@ -49,7 +49,18 @@ struct CampStats : View {
             return "We have food for \(gameData.foodStored / gameData.survivorNumber) days, (\(gameData.foodStored) rations)."
         }
     }
-   var instructions: some View {
+    func resourceAmount()->String{
+        if gameData.buildingResources == 0 {
+            return "We have no building material"
+        }
+        else if gameData.buildingResources < 0 {
+            return "This is a bug and you should not see this"
+        }
+        else {
+            return "We have \(gameData.buildingResources) building materials."
+        }
+    }
+    var instructions: some View {
         VStack {
             Text("Survive. Get food. Don't die. Make it back to camp.")
                 .font(.headline)
@@ -58,6 +69,9 @@ struct CampStats : View {
                 .font(.subheadline)
                 .foregroundColor(starvationColor())
                 .shadow(color: .black, radius: 5)
+            Text(resourceAmount())
+                .font(.subheadline)
+                .foregroundColor(.white)
         }.background {
             Color(.black).opacity(0.7)
         }
@@ -74,19 +88,24 @@ struct CampStats : View {
                     instructions
                     Spacer()
                     HStack{
-                        uiSettings.switchToLeft ? nil : Spacer()
-                        uiSettings.switchToLeft ? nil : Spacer()
-                        uiSettings.switchToLeft ? nil : Spacer()
-                        
-                        uiSettings.switchToLeft ? Spacer() : nil
-                        
+                        if uiSettings.switchToLeft {
+                            Spacer()
+                        } else {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        }
+
                         survivorSelector(gameData: gameData)
-                        
-                        uiSettings.switchToLeft ? nil : Spacer()
-                        
-                        uiSettings.switchToLeft ? Spacer() : nil
-                        uiSettings.switchToLeft ? Spacer() : nil
-                        uiSettings.switchToLeft ? Spacer() : nil
+
+                        if uiSettings.switchToLeft {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        } else {
+                            Spacer()
+                        }
+
                     }
                     Spacer()
                 }.padding(.horizontal, 100)
