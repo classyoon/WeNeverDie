@@ -7,38 +7,60 @@
 
 import Foundation
 
-class GameCondition : ObservableObject, Codable {
+class GameCondition : ObservableObject {
     @Published var stockpile : Stockpile
-    //Game Condition
-    @Published var AlreadyWon = false
-    @Published var shouldResetGame = false
-    @Published var hasViewedTutorial = false
-    @Published var death = false
-    @Published var victory = false
-    //Victory Conditions
-    @Published var deathRequirement : Int = 3 /// AMOUNT OF DAYS PLAYER HAS TO GET FOOD IF THEY
-    @Published var progressToDeath : Int = 0
-    init(_ stockpile : Stockpile){
+    @Published var data : GameConditionModel
+    var starving : Bool {
+        stockpile.stockpileData.foodStored<=0
+    }
+    
+    init(_ stockpile : Stockpile, data : GameConditionModel){
         self.stockpile = stockpile
+        self.data = data
     }
     func checkForDefeat() {
-        if !stockpile.starving {
-            if progressToDeath > 0 {
-                progressToDeath -= 1
-            }
+        if !starving {
+            data.progressToDeath -= 1
         } else {
-            progressToDeath += 1
+            data.progressToDeath += 1
         }
-        if progressToDeath > deathRequirement || stockpile.survivorNumber<=0{
-            death = true
+        if data.starvedToDeath() || stockpile.runOutOfPeople() {
+            data.setDefeat()
         }
+        
+    }
+    func getDeathCountdown()->Int{
+        return data.deathRequirement-data.progressToDeath
     }
     func reset(){
+        data.reset()
+    }
+    
+}
+struct GameConditionModel : Identifiable, Codable {
+    var id = UUID()
+    var AlreadyWon = false
+    var shouldResetGame = false
+    var hasViewedTutorial = false
+    var death = false
+    var victory = false
+    var deathRequirement : Int = 3 
+    var progressToDeath : Int = 0
+    mutating func reset(){
         AlreadyWon = false
         shouldResetGame = false
         hasViewedTutorial = false
         death = false
         victory = false
         progressToDeath = 0
+    }
+    func starvedToDeath()->Bool{
+        if progressToDeath > deathRequirement {
+            return true
+        }
+        return false
+    }
+    mutating func setDefeat(){
+        death = true
     }
 }

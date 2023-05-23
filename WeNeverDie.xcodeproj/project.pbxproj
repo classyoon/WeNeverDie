@@ -349,11 +349,11 @@
 				CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */,
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
 				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
+				CA3323402A1C6EBB0078E79C /* Building */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 				CA33231E2A1C40540078E79C /* GameCondition.swift */,
 				CA33231C2A1C38920078E79C /* StockpileManager.swift */,
 				CA33231A2A1C37C80078E79C /* ResourceData.swift */,
-				CA3323182A1C352D0078E79C /* BuildingManager.swift */,
 				CA16EACA29C93FF00047593B /* Settings */,
 			);
 			path = CoreData;
@@ -422,8 +422,6 @@
 			children = (
 				CA90F82929ABDDA500AD34E9 /* CampView */,
 				CA17474729A9457900B81EF8 /* Tutorial */,
-				CA9A029C29B9363700ED390B /* building.swift */,
-				CA3323162A1C34510078E79C /* BuildingTypes.swift */,
 			);
 			path = "Camp Mode";
 			sourceTree = "<group>";
@@ -495,6 +493,16 @@
 				CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */,
 			);
 			path = Music;
+			sourceTree = "<group>";
+		};
+		CA3323402A1C6EBB0078E79C /* Building */ = {
+			isa = PBXGroup;
+			children = (
+				CA3323162A1C34510078E79C /* BuildingTypes.swift */,
+				CA9A029C29B9363700ED390B /* building.swift */,
+				CA3323182A1C352D0078E79C /* BuildingManager.swift */,
+			);
+			path = Building;
 			sourceTree = "<group>";
 		};
 		CA7510BA2A099019004AAAE3 /* Second Stage */ = {
@@ -1164,7 +1172,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = SGDBJPAB63;
+				DEVELOPMENT_TEAM = 83Z22V6XMU;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;

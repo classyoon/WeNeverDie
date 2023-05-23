@@ -35,11 +35,11 @@ class BuildingManager : ObservableObject, Codable {
                 } else if let resourceProducer = building as? ResourceProducer {
                     switch resourceProducer.produces {
                     case .food:
-                        stock.foodStored += resourceProducer.output
+                        stock.stockpileData.foodStored += resourceProducer.output
                     case .material :
-                        stock.buildingResources += resourceProducer.output
+                        stock.stockpileData.buildingResources += resourceProducer.output
                     case .people :
-                        stock.survivorNumber += resourceProducer.output
+                        stock.stockpileData.survivorNumber += resourceProducer.output
                     }
                 }
             }
@@ -49,7 +49,7 @@ class BuildingManager : ObservableObject, Codable {
     
     func canAssignWorker(to building: Building) -> Bool {
         let assignedWorkers = buildings.reduce(0) { $0 + $1.workers }
-        let result = assignedWorkers < stock.survivorNumber
+        let result = assignedWorkers < stock.getNumOfPeople()
         return result
     }
     
@@ -64,8 +64,7 @@ class BuildingManager : ObservableObject, Codable {
     }
     func scrap(_ building : Building){
         building.workers = 0
-        stock.buildingResources+=building.materialCost
+        stock.stockpileData.buildingResources+=building.materialCost
         building.workProgress = 0
     }
-    
 }

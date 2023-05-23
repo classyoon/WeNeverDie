@@ -66,11 +66,11 @@ class BuildingsViewModel : ObservableObject{
     }
     func startConstructionButton(for building: Building, ResourcePool: ResourcePool) -> some View {
         Group {
-            if !building.constructionStarted && ResourcePool.stockpile.buildingResources >= building.materialCost{
+            if !building.constructionStarted && ResourcePool.stockpile.getNumOfMat() >= building.materialCost{
                 Button("Start Construction") {
                     building.constructionStarted = true
                     ResourcePool.buildingMan.assignWorker(to: building)
-                    ResourcePool.stockpile.buildingResources -= building.materialCost
+                    ResourcePool.stockpile.stockpileData.buildingResources -= building.materialCost
                 }
             } else if !building.constructionStarted{
                 Text("Not enough resources, Need \(building.materialCost)")
@@ -89,7 +89,7 @@ class BuildingsViewModel : ObservableObject{
                         ResourcePool.buildingMan.removeWorker(from: building)
                     }
                     Button("+") {
-                        ResourcePool.buildingMan.assignWorker(to: building)
+                        ResourcePool.buildingMan.data.assignWorker(to: building)
                     }
                 }
             }

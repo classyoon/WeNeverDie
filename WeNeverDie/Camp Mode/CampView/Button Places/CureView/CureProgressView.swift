@@ -20,7 +20,7 @@ struct CureProgressView: View {
                     Button {
                         showCureHelp = true
                     } label: {
-                        Image(systemName: gameData.gameCon.victory ? "syringe.fill" : "syringe")
+                        Image(systemName: gameData.gameCon.data.AlreadyWon ? "syringe.fill" : "syringe")
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(.accentColor)

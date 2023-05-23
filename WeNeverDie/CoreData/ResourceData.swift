@@ -20,25 +20,21 @@ struct ResourcePoolData : Codable & Identifiable {
     var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     
     var days = 0
-    var stockpile = Stockpile()
-    var gameCon : GameCondition {
-        GameCondition(stockpile)
-    }
-    var buildMan : BuildingManager {
-        BuildingManager(stockpile)
-    }
+    var gameConData : GameConditionModel
+    var stockpileData : StockpileModel
+    var buildData : BuildingManagerModel
+
     init(resourcePool : ResourcePool){
         
-        self.stockpile = resourcePool.stockpile
         self.survivorSent = resourcePool.survivorSent
         self.days = resourcePool.days
         self.selectStatuses = resourcePool.selectStatuses
-        self.buildMan = resourcePool.buildingMan
-        self.gameCon = resourcePool.gameCon
-    }
-    init(){
+        self.gameConData = resourcePool.gameConData
+        self.stockpileData = resourcePool.stockpileData
+        self.buildData = resourcePool.buildData
         
     }
+   
 //    init(foodStored: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
 //        self.foodStored = foodStored
 //        self.survivorNumber = survivorNumber

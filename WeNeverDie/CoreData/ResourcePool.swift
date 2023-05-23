@@ -11,15 +11,19 @@ var outsideTesting = false
 var printZombieThoughts = false
 //var campStats = true
 class ResourcePool : ObservableObject {
+    var stockpileData : StockpileModel = StockpileModel()
+    var gameConData : GameConditionModel = GameConditionModel()
+    var buildData : BuildingManagerModel = BuildingManagerModel()
     @Published var audio : AudioManager = AudioManager()
+    
     //Resources
-    @Published var stockpile : Stockpile = Stockpile(foodStored: 10, survivorNumber: 3, buildingResources: 0)
+    @Published var stockpile : Stockpile = Stockpile(StockpileModel())
     //    @Published var roster = [any Piece]()//unused
     var buildingMan : BuildingManager {
-        BuildingManager(self.stockpile)
+        BuildingManager(self.stockpile, buildData)
     }
     var gameCon : GameCondition {
-        GameCondition(self.stockpile)
+        GameCondition(self.stockpile, data: gameConData)
     }
     //Sent Variables
     @Published var survivorSent : Int = 0
@@ -33,19 +37,21 @@ class ResourcePool : ObservableObject {
     @Published var uiSetting = UserSettingsManager()
     
     @Published var days = 0
+    
     init() {
-        stockpile = Stockpile(foodStored: 10, survivorNumber: 3, buildingResources: 0)
+        stockpileData = StockpileModel()
+        stockpile = Stockpile(stockpileData)
     }
     func setValue(resourcePoolData: ResourcePoolData){
-        self.stockpile = resourcePoolData.stockpile
         self.survivorSent = resourcePoolData.survivorSent
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses
+        self.stockpileData = resourcePoolData.stockpileData
     }
 
     func reset() {
         stockpile.reset()
-        selectStatuses = Array(repeating: false, count: stockpile.survivorNumber)
+        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
         survivorSent = 0
         gameCon.reset()
         audio.playMusic("Kurt")
@@ -78,13 +84,13 @@ class ResourcePool : ObservableObject {
         stockpile.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()
         survivorSent = 0
-        selectStatuses = Array(repeating: false, count: stockpile.survivorNumber)
+        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
         isInMission = false
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
     func hardmodeReset(){
         reset()
-        stockpile = Stockpile(foodStored: 0, survivorNumber: 1, buildingResources: 0)
+        stockpile = Stockpile(StockpileModel(foodStored: 0, survivorNumber: 1))
         selectStatuses = Array(repeating: false, count: 1)
     }
     

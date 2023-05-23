@@ -13,13 +13,12 @@ struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
     @State var showBoard = outsideTesting && devMode ? true : false
-    @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
         ZStack {
             VStack {
                 
-                if !didViewTutorial {
-                    TutorialView(gameData: gameData, seenTutorialBool: gameData.gameCon.hasViewedTutorial)
+                if !gameData.gameCon.data.hasViewedTutorial {
+                    TutorialView(gameData: gameData, seenTutorialBool: gameData.gameCon.data.hasViewedTutorial)
                 }
                 else if  showBoard {
                     // Show the tutorial
@@ -27,13 +26,6 @@ struct GameView: View {
                 }
                 else {
                     CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent, uiSettings: gameData.uiSetting)
-                        .onChange(of: gameData.gameCon.shouldResetGame) { newValue in
-                            if newValue {
-                                gameData.reset()
-                                
-                            }
-                        }
-  
                 }
             }
         }.onChange(of: showBoard) { newValue in
