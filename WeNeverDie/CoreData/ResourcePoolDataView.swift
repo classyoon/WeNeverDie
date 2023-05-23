@@ -15,10 +15,10 @@ struct ResourcePoolDataView: View {
             Stepper("Food Resource \(foodStored)", value: $foodStored)
                 .onChange(of: foodStored) { newValue in
                 
-                    vm.data?.foodStored = foodStored
+                    vm.data?.stockpile.foodStored = foodStored
                     vm.save(vm.data!)
                 }
-            Text("\(vm.data?.foodStored ?? 0)")
+            Text("\(vm.data?.stockpile.foodStored ?? 0)")
         }
     }
 }

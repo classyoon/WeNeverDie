@@ -10,7 +10,7 @@ import SwiftUI
 @main
 
 struct WeNeverDieApp: App {
-    @StateObject var gameData = ResourcePool(surviors: 1, food: 0)
+    @StateObject var gameData = ResourcePool()
     @StateObject var board = Board()
     @State var returnedData = ResourcePoolData()
     

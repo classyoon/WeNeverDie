@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct CureProgressInfoView: View {
-    @Binding var progress : Int
-    @State var max : Int
     @Binding var showCure : Bool
+    @State var buildingMan : BuildingManager
+    @State var stock : Stockpile
+    var vm = BuildingsViewModel()
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
             .frame(width: 300, height: 200)
             .overlay(
                 VStack{
-                    Text("Cure Progress : \(progressString)")
-                        .font(.title3)
-                        .bold()
-                        .padding(.bottom)
-        
-                    Text("Keep survivors at home to progress faster").padding(.bottom)
+                    Text("Workers \(stock.workers), Materials \(stock.buildingResources)").padding()
+                    ScrollView{
+                        ForEach(buildingMan.buildings.indices, id: \.self) { index in
+                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan)
+                        }
+                    }
                     
                     Button("Understood"){
                         showCure = false

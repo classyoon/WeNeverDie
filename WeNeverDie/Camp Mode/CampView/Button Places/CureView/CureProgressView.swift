@@ -20,23 +20,19 @@ struct CureProgressView: View {
                     Button {
                         showCureHelp = true
                     } label: {
-                        Image(systemName: gameData.victory ? "syringe.fill" : "syringe")
+                        Image(systemName: gameData.gameCon.victory ? "syringe.fill" : "syringe")
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(.accentColor)
                             .frame(maxHeight: 70)
                         
                     }.padding(.top)
-                    
-                    VerticalProgressBar(progress: gameData.WinProgress, max: gameData.WinCondition)
-                        .padding()
-                        .animation(.easeInOut(duration: 3), value: gameData.WinProgress)
                 }
                 !uiSettings.switchToLeft ? Spacer() : nil
             }
             Group{
                 if showCureHelp {
-                    CureProgressInfoView(progress: $gameData.WinProgress, max: gameData.WinCondition, showCure: $showCureHelp)
+                    CureProgressInfoView(showCure: $showCureHelp, buildingMan : gameData.buildingMan, stock : gameData.stockpile)
                 }else{
                     Spacer()
                 }

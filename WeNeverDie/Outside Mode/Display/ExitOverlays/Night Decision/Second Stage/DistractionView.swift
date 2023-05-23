@@ -17,7 +17,7 @@ struct DistractionView: View {
                 .font(.title).foregroundColor(Color.black)
             Button {
                 showBoard = false
-                gameData.transferResourcesToResourcePool(vm: vm)
+                gameData.stockpile.transferResourcesToResourcePool(vm: vm)
                 gameData.passDay()
                
             } label: {
@@ -30,9 +30,9 @@ struct DistractionView: View {
             .shadow(radius: 10)
     }
     func returnDescriptor() -> String{
-        var totalNumOfSurvivors = gameData.survivorNumber+vm.UnitsRecruited-vm.UnitsDied
+        var totalNumOfSurvivors = gameData.stockpile.survivorNumber+vm.UnitsRecruited-vm.UnitsDied
         
-        if (gameData.foodStored+vm.foodNew) - (totalNumOfSurvivors) >= totalNumOfSurvivors{
+        if (gameData.stockpile.foodStored+vm.foodNew) - (totalNumOfSurvivors) >= totalNumOfSurvivors{
             return " precious "
         }
         return ""

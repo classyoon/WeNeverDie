@@ -33,31 +33,31 @@ struct CampStats : View {
         print("Sending \(gameData.survivorSent)")
     }
     func starvationColor()->Color{
-        if gameData.foodStored <= 0 {
+        if gameData.stockpile.foodStored <= 0 {
             return uiSettings.visionAssist ? Color.purple : Color.red
         }
         return uiSettings.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
-        if gameData.starving{
-            return "We are starving. Days till death \(gameData.deathRequirement-gameData.progressToDeath)"
+        if gameData.stockpile.starving{
+            return "We are starving. Days till death \(gameData.gameCon.deathRequirement-gameData.gameCon.progressToDeath)"
         }
-        if gameData.survivorNumber <= 0{
+        if gameData.stockpile.survivorNumber <= 0{
             return "If you see this then it is a bug. You shouldn't see this."
         }
         else{
-            return "We have food for \(gameData.foodStored / gameData.survivorNumber) days, (\(gameData.foodStored) rations)."
+            return "We have food for \(gameData.stockpile.foodStored / gameData.stockpile.survivorNumber) days, (\(gameData.stockpile.foodStored) rations)."
         }
     }
     func resourceAmount()->String{
-        if gameData.buildingResources == 0 {
+        if gameData.stockpile.buildingResources == 0 {
             return "We have no building material"
         }
-        else if gameData.buildingResources < 0 {
+        else if gameData.stockpile.buildingResources < 0 {
             return "This is a bug and you should not see this"
         }
         else {
-            return "We have \(gameData.buildingResources) building materials."
+            return "We have \(gameData.stockpile.buildingResources) building materials."
         }
     }
     var instructions: some View {

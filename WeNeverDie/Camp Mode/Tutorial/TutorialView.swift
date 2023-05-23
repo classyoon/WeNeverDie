@@ -11,7 +11,7 @@ import SwiftUI
 
 struct TutorialView: View {
     @ObservedObject var gameData : ResourcePool
-    @Binding var seenTutorialBool : Bool
+    @State var seenTutorialBool : Bool
     @State var largeText = false
     var testBool  = true
     var body: some View {
@@ -38,7 +38,7 @@ struct TutorialView: View {
 
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
-        TutorialView(gameData: (ResourcePool()), seenTutorialBool: .constant(false))
+        TutorialView(gameData: (ResourcePool()), seenTutorialBool: false)
     }
 }
 

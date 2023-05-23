@@ -19,7 +19,7 @@ struct GameView: View {
             VStack {
                 
                 if !didViewTutorial {
-                    TutorialView(gameData: gameData, seenTutorialBool: $gameData.hasViewedTutorial)
+                    TutorialView(gameData: gameData, seenTutorialBool: gameData.gameCon.hasViewedTutorial)
                 }
                 else if  showBoard {
                     // Show the tutorial
@@ -27,7 +27,7 @@ struct GameView: View {
                 }
                 else {
                     CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent, uiSettings: gameData.uiSetting)
-                        .onChange(of: gameData.shouldResetGame) { newValue in
+                        .onChange(of: gameData.gameCon.shouldResetGame) { newValue in
                             if newValue {
                                 gameData.reset()
                                 
