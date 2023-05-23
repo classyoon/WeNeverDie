@@ -19,18 +19,34 @@ class GameCondition : ObservableObject {
         self.data = data
     }
     func checkForDefeat() {
+        print("check for defeat starting at \(data.progressToDeath)")
         if !starving {
             data.progressToDeath -= 1
+            print("Regen")
         } else {
-            data.progressToDeath += 1
+            data.loseHealth()
+            print("Dying \(data.progressToDeath)")
         }
         if data.starvedToDeath() || stockpile.runOutOfPeople() {
             data.setDefeat()
+            print("Starved to death")
         }
         
     }
     func getDeathCountdown()->Int{
         return data.deathRequirement-data.progressToDeath
+    }
+    func getDeath()-> Bool {
+        return data.death
+    }
+    func checkHaveWon()-> Bool {
+        return data.AlreadyWon
+    }
+    func checkVictory()-> Bool {
+        return data.victory
+    }
+    func checkViewedTutorial()-> Bool {
+        return data.hasViewedTutorial
     }
     func reset(){
         data.reset()
@@ -59,6 +75,9 @@ struct GameConditionModel : Identifiable, Codable {
             return true
         }
         return false
+    }
+    mutating func loseHealth(){
+        progressToDeath+=1
     }
     mutating func setDefeat(){
         death = true

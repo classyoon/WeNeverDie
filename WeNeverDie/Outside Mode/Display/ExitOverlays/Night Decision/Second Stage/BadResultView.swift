@@ -13,7 +13,7 @@ struct BadResultView: View {
     @Binding var showBoard : Bool
     var body: some View {
         VStack{
-            Text(gameData.survivorNumber != 1 ? "End Mission : Gathered \(vm.foodNew) pieces of food. Someone didn't make it though." : "It was agony...\nYou didn't make it...")
+            Text(gameData.stockpile.getNumOfPeople() != 1 ? "End Mission : Gathered \(vm.foodNew) pieces of food. Someone didn't make it though." : "It was agony...\nYou didn't make it...")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 showBoard = false
@@ -21,7 +21,7 @@ struct BadResultView: View {
                 gameData.passDay()
                
             } label: {
-                Text(gameData.survivorNumber != 1 ? "Move on" : "Perish")
+                Text(gameData.stockpile.getNumOfPeople() != 1 ? "Move on" : "Perish")
             }.buttonStyle(.borderedProminent)
             
         }.padding()
@@ -33,6 +33,6 @@ struct BadResultView: View {
 
 struct BadResultView_Previews: PreviewProvider {
     static var previews: some View {
-        BadResultView(vm: Board(), gameData: ResourcePool(surviors: 1, food: 10), showBoard: .constant(true))
+        BadResultView(vm: Board(), gameData: ResourcePool(), showBoard: .constant(true))
     }
 }

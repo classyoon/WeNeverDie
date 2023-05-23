@@ -17,7 +17,7 @@ struct GameView: View {
         ZStack {
             VStack {
                 
-                if !gameData.gameCon.data.hasViewedTutorial {
+                if gameData.gameCon.data.hasViewedTutorial {
                     TutorialView(gameData: gameData, seenTutorialBool: gameData.gameCon.data.hasViewedTutorial)
                 }
                 else if  showBoard {

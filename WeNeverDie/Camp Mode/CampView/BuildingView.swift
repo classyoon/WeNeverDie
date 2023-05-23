@@ -6,19 +6,19 @@
 //
 
 import SwiftUI
-
+import Foundation
 struct BuildingView: View {
     @ObservedObject var building: Building
     @ObservedObject var vm : BuildingsViewModel
-    @ObservedObject var ResourcePool : ResourcePool
-    
+    @ObservedObject var buildMan : BuildingManager
+    @ObservedObject var stock : Stockpile
     @State private var showScrapAlert = false
     
     var body: some View {
         VStack {
             Text(vm.workCostText(for: building))
-            vm.buildingButtons(for: building, ResourcePool: ResourcePool)
-            if building.constructionStarted && (ResourcePool.buildingMan.canAssignWorker(to: building) || building.workers > 0) {
+            vm.buildingButtons(for: building, buildMan: buildMan, stock: stock )
+            if building.constructionStarted && (buildMan.canAssignWorker(to: building) || building.workers > 0) {
                 Button("Scrap") {
                     showScrapAlert = true
                 }
@@ -28,7 +28,7 @@ struct BuildingView: View {
                         message: Text("This will refund your resources."),
                         primaryButton: .destructive(Text("Scrap")) {
                             building.constructionStarted = false
-                            ResourcePool.buildingMan.scrap(building)
+                            buildMan.scrap(building)
                         },
                         secondaryButton: .cancel()
                     )
@@ -41,6 +41,6 @@ struct BuildingView: View {
 
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingView(building: Building(name: "HQ", workCost: 100), vm: BuildingsViewModel(), ResourcePool: ResourcePool())
+        BuildingView(building: Building(model: BuildingData(name: "HQ", workCost: 100)), vm: BuildingsViewModel(), buildMan: BuildingManager(model: BuildingManagerModel(), stock: Stockpile()), stock: Stockpile())
     }
 }

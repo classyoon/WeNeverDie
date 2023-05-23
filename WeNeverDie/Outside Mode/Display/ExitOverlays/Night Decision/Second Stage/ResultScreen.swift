@@ -34,7 +34,7 @@ struct ResultScreen: View {
 
 struct ResultScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ResultScreen(vm: Board(), gameData: ResourcePool(surviors: 2, food: 10), showBoard: .constant(true))
+        ResultScreen(vm: Board(), gameData: ResourcePool(), showBoard: .constant(true))
     }
 }
 

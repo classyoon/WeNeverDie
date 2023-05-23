@@ -11,38 +11,33 @@ var outsideTesting = false
 var printZombieThoughts = false
 //var campStats = true
 class ResourcePool : ObservableObject {
-    var stockpileData : StockpileModel = StockpileModel()
-    var gameConData : GameConditionModel = GameConditionModel()
-    var buildData : BuildingManagerModel = BuildingManagerModel()
+    @Published var buildVm : BuildingsViewModel = BuildingsViewModel()
+    @Published var stockpileData : StockpileModel = StockpileModel()
+    @Published var gameConData : GameConditionModel = GameConditionModel()
+    @Published var buildData : BuildingManagerModel = BuildingManagerModel()
     @Published var audio : AudioManager = AudioManager()
-    
-    //Resources
     @Published var stockpile : Stockpile = Stockpile(StockpileModel())
-    //    @Published var roster = [any Piece]()//unused
     var buildingMan : BuildingManager {
-        BuildingManager(self.stockpile, buildData)
+        BuildingManager(model: buildData, stock: stockpile)
     }
     var gameCon : GameCondition {
         GameCondition(self.stockpile, data: gameConData)
     }
-    //Sent Variables
-    @Published var survivorSent : Int = 0
-    //Game Condition
+   
     @Published var isInMission = false
     
-    //Setting
+    @Published var survivorSent : Int = 0
     @Published var lastTappedIndex: Int?
-    //UI
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
-    
     @Published var days = 0
     
     init() {
         stockpileData = StockpileModel()
         stockpile = Stockpile(stockpileData)
     }
-    func setValue(resourcePoolData: ResourcePoolData){
+    
+    func setValue(resourcePoolData: ResourcePoolData) {
         self.survivorSent = resourcePoolData.survivorSent
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses

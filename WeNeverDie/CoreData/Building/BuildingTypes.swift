@@ -6,38 +6,86 @@
 //
 
 import Foundation
-enum ResourceType {
+enum ResourceType : Codable {
     case food, material, people
 }
 class ResourceProducer: Building {
-    var output = 0
-    var rate: Int
-    var produces : ResourceType
-    
+    var extraModel: ProducerData
+
+    var output: Int {
+        get { extraModel.output }
+        set { extraModel.output = newValue }
+    }
+
+    var rate: Int {
+        get { extraModel.rate }
+        set { extraModel.rate = newValue }
+    }
+
+    var produces: ResourceType {
+        get { extraModel.produces }
+        set { extraModel.produces = newValue }
+    }
+
     override func doSomething() {
         output = rate * workers
     }
-    
-    init(name: String, workCost: Int, rate: Int, produces : ResourceType) {
-        self.rate = rate
-        self.produces = produces
-        super.init(name: name, workCost: workCost)
+
+    init(model : BuildingData, extraModel : ProducerData) {
+        self.extraModel = extraModel
+        super.init(model: model)
     }
 }
+struct ProducerData : Codable, BuildingProtocol {
+    var name: String
+    var workers: Int
+    var workProgress: Int
+    var workCost: Int
+    var autoWithDrawed: Bool
+    var materialCost: Int
+    var constructionStarted: Bool
+    var rate : Int
+    var output = 0
+    var produces : ResourceType
+}
+
+
 
 class AdvancementBuilding: Building {
-    var techBranch = [Building]()
-    var hasGiven = false
-  
+    var extraModel: AdvancementData
+
+    var techBranch: [BuildingData] {
+        get { extraModel.techBranch }
+        set { extraModel.techBranch = newValue }
+    }
+
+    var hasGiven: Bool {
+        get { extraModel.hasGiven }
+        set { extraModel.hasGiven = newValue }
+    }
+
     override func doSomething() {
         hasGiven = true
         techBranch = []
     }
-    
-    init(name: String, workCost : Int, techBranch: [Building], materialCost : Int) {
-        self.techBranch = techBranch
-        super.init( name: name, workCost: workCost, materialCost: materialCost)
+
+    init(model : BuildingData, extraModel : AdvancementData) {
+        self.extraModel = extraModel
+        super.init(model: model)
     }
+}
+
+
+struct AdvancementData : Codable, BuildingProtocol {
+    var name: String
+    var workers: Int
+    var workProgress: Int
+    var workCost: Int
+    var autoWithDrawed: Bool
+    var materialCost: Int
+    var constructionStarted: Bool
+    var techBranch : [BuildingData]
+    var hasGiven : Bool
 }
 
 

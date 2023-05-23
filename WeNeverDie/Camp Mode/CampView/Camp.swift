@@ -44,17 +44,17 @@ struct CampView: View {
                     //.opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
             
-                .blur(radius: gameData.gameCon.death || (gameData.gameCon.victory && !gameData.gameCon.AlreadyWon) ? 10 : 0)
+                .blur(radius: gameData.gameCon.getDeath() || (gameData.gameCon.checkVictory() && !gameData.gameCon.checkHaveWon()) ? 10 : 0)
             //MARK: Death
                 .overlay {
-                    gameData.gameCon.death ?
+                    gameData.gameCon.getDeath() ?
                     DefeatView(gameData: gameData, uiSettings: uiSettings)
                         .padding()
                     : nil
                 }.foregroundColor(.white)
             //MARK: Victory
                 .overlay {
-                    (gameData.gameCon.victory && !gameData.gameCon.AlreadyWon) ?
+                    (gameData.gameCon.checkVictory() && !gameData.gameCon.checkHaveWon()) ?
                     HStack {
                         Spacer()
                         VictoryView(gameData: gameData)

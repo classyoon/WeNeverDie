@@ -23,6 +23,6 @@ struct survivorSelector : View {
 
 struct survivorSelector_Previews: PreviewProvider {
     static var previews: some View {
-        survivorSelector(gameData: ResourcePool(surviors: 10, food: 0))
+        survivorSelector(gameData: ResourcePool())
     }
 }

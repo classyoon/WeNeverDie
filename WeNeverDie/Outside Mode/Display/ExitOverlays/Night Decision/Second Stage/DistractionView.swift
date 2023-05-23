@@ -30,9 +30,9 @@ struct DistractionView: View {
             .shadow(radius: 10)
     }
     func returnDescriptor() -> String{
-        var totalNumOfSurvivors = gameData.stockpile.survivorNumber+vm.UnitsRecruited-vm.UnitsDied
+        var totalNumOfSurvivors = gameData.stockpile.getNumOfPeople()+vm.UnitsRecruited-vm.UnitsDied
         
-        if (gameData.stockpile.foodStored+vm.foodNew) - (totalNumOfSurvivors) >= totalNumOfSurvivors{
+        if (gameData.stockpile.getNumOfFood()+vm.foodNew) - (totalNumOfSurvivors) >= totalNumOfSurvivors{
             return " precious "
         }
         return ""

@@ -9,22 +9,27 @@ import SwiftUI
 
 struct CureProgressInfoView: View {
     @Binding var showCure : Bool
-    @State var buildingMan : BuildingManager
+    var buildingMan : BuildingManager
     @State var stock : Stockpile
     var vm = BuildingsViewModel()
+    var progress = 0
+    var max = 0
+   
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
             .frame(width: 300, height: 200)
             .overlay(
                 VStack{
-                    Text("Workers \(stock.workers), Materials \(stock.buildingResources)").padding()
+                    Text("Workers \(stock.getNumOfPeople()), Materials \(stock.getNumOfMat())").padding()
                     ScrollView{
                         ForEach(buildingMan.buildings.indices, id: \.self) { index in
-                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan)
+                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan, stock: stock)
+                            Text("Hi")
+                            
                         }
                     }
-                    
+                    .foregroundColor(.black)
                     Button("Understood"){
                         showCure = false
                     }.buttonStyle(.bordered)
@@ -38,15 +43,15 @@ struct CureProgressInfoView: View {
         return String(format: "%.1f%%", result)
     }
 }
-struct WrapperCureProgression : View {
-    @State var cureProgression = 5
-    @State var cureCondition = 10
-    var body: some View{
-        CureProgressInfoView(progress: $cureProgression, max: cureCondition, showCure: .constant(true))
-    }
-}
+//struct WrapperCureProgression : View {
+//    @State var cureProgression = 5
+//    @State var cureCondition = 10
+//    var body: some View{
+//        CureProgressInfoView(progress: cureProgression, max: cureCondition, showCure: .constant(true))
+//    }
+//}
 struct CureProgressInfo_Previews: PreviewProvider {
     static var previews: some View {
-        WrapperCureProgression()
+        CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
     }
 }
