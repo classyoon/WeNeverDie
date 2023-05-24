@@ -37,7 +37,12 @@ extension Board {
     func movePlayerUnit(tapRow: Int, tapCol: Int, startPoint : Coord, piece : inout any Piece){
         
         move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
-        audio.playSFX(.footsteps)
+        if terrainBoard[tapRow][tapCol].name == "X" {
+            audio.playSFX(.vanDoor)
+        }else {
+            audio.playSFX(.footsteps)
+        }
+        
     }
     func isAnyoneStillActive()->Bool{
         let playerList = createLists().playerCoords

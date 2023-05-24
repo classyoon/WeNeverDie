@@ -20,6 +20,7 @@ class AudioManager : ObservableObject{
         case empty = "EmptySearch.mp3"
         case badResult = "Wet Eating"
         case vanDoor = "Van DoorSFX.mp3"
+        case enterDoor = "close door sfx.mp3"
         case carStarting = "quieter car starting.mp3"
         case leaving = "LeavingSFX.mp3"
         case alerted = "Alert Noise Much Louder.mp3"

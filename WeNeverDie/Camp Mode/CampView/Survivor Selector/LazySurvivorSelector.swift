@@ -20,6 +20,7 @@ struct LazySurvivorSelector: View {
                   
                         Button {
                             GameData.balance(index)
+                            GameData.audio.playSFX(.enterDoor)
                         } label: {
                             Image(systemName: uiSettings.switchToLeft ?
                                   (index >= GameData.selectStatuses.count - GameData.stockpile.getSurvivorSent() ? "person.fill" : "person") :
