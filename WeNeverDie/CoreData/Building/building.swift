@@ -70,10 +70,17 @@ class Building: ObservableObject {
     func doSomething() {
         // implementation here
     }
+    init(producer : ProducerData) {
+        self.model = BuildingData(producer: producer)
+    }
+    init(advancement : AdvancementData) {
+        self.model = BuildingData(advancement: advancement)
+    }
 }
 
 
-struct BuildingData : Codable, BuildingProtocol {
+struct BuildingData : Codable, Identifiable {
+    var id = UUID()
     var name: String = ""
     var workers: Int = 0
     var workProgress: Int = 0
@@ -92,14 +99,36 @@ struct BuildingData : Codable, BuildingProtocol {
     mutating func build(){
         workProgress += workers
     }
+    init(id: UUID = UUID(), name: String, workers: Int = 0, workProgress: Int = 0, autoWithDrawed: Bool = true, materialCost: Int = 0, constructionStarted: Bool = false, workCost: Int) {
+        self.id = id
+        self.name = name
+        self.workers = workers
+        self.workProgress = workProgress
+        self.autoWithDrawed = autoWithDrawed
+        self.materialCost = materialCost
+        self.constructionStarted = constructionStarted
+        self.workCost = workCost
+    }
+    init(advancement : AdvancementData) {
+        self.id = advancement.id
+        self.name = advancement.name
+        self.workers = advancement.workers
+        self.workProgress = advancement.workProgress
+        self.autoWithDrawed = advancement.autoWithDrawed
+        self.materialCost = advancement.materialCost
+        self.constructionStarted = advancement.constructionStarted
+        self.workCost = advancement.workCost
+    }
+    init(producer : ProducerData) {
+        self.id = producer.id
+        self.name = producer.name
+        self.workers = producer.workers
+        self.workProgress = producer.workProgress
+        self.autoWithDrawed = producer.autoWithDrawed
+        self.materialCost = producer.materialCost
+        self.constructionStarted = producer.constructionStarted
+        self.workCost = producer.workCost
+    }
 }
 
-protocol BuildingProtocol {
-    var name: String { get set }
-    var workers: Int { get set }
-    var workProgress: Int { get set }
-    var workCost: Int { get }
-    var autoWithDrawed : Bool {get set}
-    var materialCost : Int {get}
-    var constructionStarted : Bool {get set}
-}
+

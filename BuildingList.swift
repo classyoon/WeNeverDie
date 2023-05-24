@@ -10,7 +10,7 @@ import SwiftUI
 struct BuildingList: View {
     @State var stock  = Stockpile()
     var buildingMan : BuildingManager {
-        BuildingManager(model: BuildingManagerModel(), stock: stock)
+        BuildingManager(stock: stock)
     }
    
     var vm = BuildingsViewModel()
@@ -18,14 +18,10 @@ struct BuildingList: View {
         ScrollView{
             ForEach(buildingMan.buildings.indices, id: \.self) { index in
                 BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan, stock: stock)
-                Text("Hi")
                 
             }
-            Text("Wat?")
-            Button("Print"){
-                print(buildingMan.buildings)
-            }
-        }
+            
+        }.padding()
     }
 }
 

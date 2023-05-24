@@ -10,7 +10,6 @@ struct ResourcePoolData : Codable & Identifiable {
     var id = UUID()
     
     //Sent Variables
-    var survivorSent : Int = 0
     var days = 0
     var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     //Game Condition
@@ -21,8 +20,6 @@ struct ResourcePoolData : Codable & Identifiable {
     var buildData : BuildingManagerModel
 
     init(resourcePool : ResourcePool){
-        
-        self.survivorSent = resourcePool.survivorSent
         self.days = resourcePool.days
         self.selectStatuses = resourcePool.selectStatuses
        
@@ -33,7 +30,6 @@ struct ResourcePoolData : Codable & Identifiable {
     }
     init(){
         days = 0
-        survivorSent = 0
         stockpileData = StockpileModel()
         gameConData = GameConditionModel()
         buildData = BuildingManagerModel()

@@ -116,11 +116,13 @@ extension Board {
         if attackNearbyPiece(selfPiece: zombie, selfLoc: percievedDistances.seekerCoord) {
             print("Attack")
             zombie.alert = true
+            audio.playSFX(.alerted)
             board[percievedDistances.seekerCoord.row][percievedDistances.seekerCoord.col] = zombie
         }
         else if chaseInformation.isChasing{
             print("Chase")
             zombie.alert = true
+            audio.playSFX(.alerted)
             move(&zombie, from: percievedDistances.seekerCoord, to: chaseInformation.pursuitCoord)
         }
         else{

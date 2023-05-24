@@ -14,7 +14,7 @@ struct ResultScreen: View {
     @Binding var showBoard : Bool
     var body: some View {
         VStack{
-            Text(gameData.survivorSent > 1 ? "You sprinted as fast as you could, hopping inside your van and slamming the accelerator. You made it with \(vm.foodNew) pieces of food." : "Y'all sprinted and y'all made it back with \(vm.foodNew) pieces of food")
+            Text(gameData.stockpile.getSurvivorSent() > 1 ? "You sprinted as fast as you could, hopping inside your van and slamming the accelerator. You made it with \(vm.foodNew) pieces of food." : "Y'all sprinted and y'all made it back with \(vm.foodNew) pieces of food")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 showBoard = false

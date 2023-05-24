@@ -23,13 +23,8 @@ struct PassDayButton: View {
     func campPassDay() {
         showBoard = shouldShowMap()
         gameData.passDay()
-        
-        print("Showing board = \(showBoard)")
-        print("Sending \(gameData.survivorSent)")
-        print("Sent \(surivorsSentOnMission)")
-        gameData.survivorSent = surivorsSentOnMission
-        print(surivorsSentOnMission)
-        print("Sending \(gameData.survivorSent)")
+      
+        gameData.stockpile.stockpileData.survivorSent = surivorsSentOnMission
         save(items: ResourcePoolData(resourcePool: gameData), key: key)
     }
     var body: some View {

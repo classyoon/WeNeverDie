@@ -18,7 +18,7 @@ class ResourcePool : ObservableObject {
     @Published var audio : AudioManager = AudioManager()
     @Published var stockpile : Stockpile = Stockpile(StockpileModel())
     var buildingMan : BuildingManager {
-        BuildingManager(model: buildData, stock: stockpile)
+        BuildingManager(stock: stockpile)
     }
     var gameCon : GameCondition {
         GameCondition(self.stockpile, data: gameConData)
@@ -26,7 +26,7 @@ class ResourcePool : ObservableObject {
    
     @Published var isInMission = false
     
-    @Published var survivorSent : Int = 0
+    
     @Published var lastTappedIndex: Int?
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
@@ -38,7 +38,6 @@ class ResourcePool : ObservableObject {
     }
     
     func setValue(resourcePoolData: ResourcePoolData) {
-        self.survivorSent = resourcePoolData.survivorSent
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses
         self.stockpileData = resourcePoolData.stockpileData
@@ -47,7 +46,6 @@ class ResourcePool : ObservableObject {
     func reset() {
         stockpile.reset()
         selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
-        survivorSent = 0
         gameCon.reset()
         audio.playMusic("Kurt")
         days = 0
@@ -66,7 +64,7 @@ class ResourcePool : ObservableObject {
     }
     func generateMap() -> Board{
         
-        return Board(players: survivorSent, audio, uiSetting)
+        return Board(players: stockpile.getSurvivorSent(), audio, uiSetting)
     }
     
     func passDay(){
@@ -78,7 +76,6 @@ class ResourcePool : ObservableObject {
     func transferResourcesToResourcePool(vm : Board){
         stockpile.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()
-        survivorSent = 0
         selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
         isInMission = false
         save(items: ResourcePoolData(resourcePool: self), key: key)
@@ -95,19 +92,19 @@ class ResourcePool : ObservableObject {
             for i in 0...index {
                 selectStatuses[i] = false
             }
-            survivorSent = 0
+            stockpile.setSurvivorSent(0)
             lastTappedIndex = nil
         } else {
             // Set the survivorSent value based on the index and switchToLeft flag
             if uiSetting.switchToLeft {
-                survivorSent = selectStatuses.count - index
+                stockpile.setSurvivorSent(selectStatuses.count - index)
             } else {
-                survivorSent = index + 1
+                stockpile.setSurvivorSent(index + 1)
             }
             
             // Set the selectStatuses array based on the survivorSent value
             for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < survivorSent)
+                selectStatuses[i] = (i < stockpile.getSurvivorSent())
             }
             lastTappedIndex = index
         }

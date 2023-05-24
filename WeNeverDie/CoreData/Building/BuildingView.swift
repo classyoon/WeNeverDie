@@ -41,6 +41,6 @@ struct BuildingView: View {
 
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingView(building: Building(model: BuildingData(name: "HQ", workCost: 100)), vm: BuildingsViewModel(), buildMan: BuildingManager(model: BuildingManagerModel(), stock: Stockpile()), stock: Stockpile())
+        BuildingView(building: Building(model: BuildingData(name: "HQ", workCost: 100)), vm: BuildingsViewModel(), buildMan: BuildingManager(stock: Stockpile()), stock: Stockpile())
     }
 }

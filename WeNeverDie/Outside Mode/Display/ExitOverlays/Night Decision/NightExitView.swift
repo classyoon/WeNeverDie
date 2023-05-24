@@ -23,9 +23,7 @@ struct NightExitView: View {
                 Button {
                     showBoard = false
                     gameData.passDay()
-                    gameData.stockpile.stockpileData.foodStored += food
-                    gameData.stockpile.stockpileData.survivorNumber+=unitsRecruited
-                    gameData.survivorSent = 0
+                    gameData.stockpile.transferResourcesToResourcePool(vm: vm)
                    
                     save(items: ResourcePoolData(resourcePool: gameData), key: key)
                     

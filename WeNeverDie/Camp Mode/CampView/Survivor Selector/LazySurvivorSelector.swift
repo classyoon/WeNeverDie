@@ -22,8 +22,8 @@ struct LazySurvivorSelector: View {
                             GameData.balance(index)
                         } label: {
                             Image(systemName: uiSettings.switchToLeft ?
-                                  (index >= GameData.selectStatuses.count - GameData.survivorSent ? "person.fill" : "person") :
-                                    (index < GameData.survivorSent ? "person.fill" : "person")) .resizable()
+                                  (index >= GameData.selectStatuses.count - GameData.stockpile.getSurvivorSent() ? "person.fill" : "person") :
+                                    (index < GameData.stockpile.getSurvivorSent() ? "person.fill" : "person")) .resizable()
                                 .aspectRatio(1, contentMode: .fit)
                         }
                     

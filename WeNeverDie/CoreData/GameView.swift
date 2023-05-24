@@ -25,14 +25,13 @@ struct GameView: View {
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData, uiSettings: gameData.uiSetting)
                 }
                 else {
-                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.survivorSent, uiSettings: gameData.uiSetting)
+                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.stockpile.stockpileData.survivorSent, uiSettings: gameData.uiSetting)
                 }
             }
         }.onChange(of: showBoard) { newValue in
             if newValue {
-                print("Survivors Sent : \(gameData.survivorSent)")
                 gameData.isInMission = true
-                board.generateBoard(gameData.survivorSent)
+                board.generateBoard(gameData.stockpile.getSurvivorSent())
                
             }
         }

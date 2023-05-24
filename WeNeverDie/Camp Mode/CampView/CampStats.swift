@@ -26,11 +26,8 @@ struct CampStats : View {
         gameData.passDay()
         showBoard = shouldShowMap()
         print(showBoard)
-        print("Sending \(gameData.survivorSent)")
         print("Sent \(surivorsSentOnMission)")
-        gameData.survivorSent = surivorsSentOnMission
-        print(surivorsSentOnMission)
-        print("Sending \(gameData.survivorSent)")
+        gameData.stockpile.setSurvivorSent(surivorsSentOnMission)
     }
     func starvationColor()->Color{
         if gameData.stockpile.getNumOfFood() <= 0 {

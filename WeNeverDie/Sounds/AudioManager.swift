@@ -22,6 +22,7 @@ class AudioManager : ObservableObject{
         case vanDoor = "Van DoorSFX.mp3"
         case carStarting = "car startingSFX.mp3"
         case leaving = "LeavingSFX.mp3"
+        case alerted = "Alert Noise Much Louder.mp3"
     }
     var musicPlayer: AVAudioPlayer?
     var songList = [String : URL]()

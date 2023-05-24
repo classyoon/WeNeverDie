@@ -21,11 +21,10 @@ struct CureProgressInfoView: View {
             .frame(width: 300, height: 200)
             .overlay(
                 VStack{
-                    Text("Workers \(stock.getNumOfPeople()), Materials \(stock.getNumOfMat())").padding()
+                    Text("Workers \(stock.getNumOfPeople()-stock.getSurvivorSent()), Materials \(stock.getNumOfMat())").padding()
                     ScrollView{
                         ForEach(buildingMan.buildings.indices, id: \.self) { index in
-                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan, stock: stock)
-                            Text("Hi")
+                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan, stock: stock).padding()
                             
                         }
                     }
