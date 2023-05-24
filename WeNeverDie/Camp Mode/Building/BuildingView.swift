@@ -17,7 +17,10 @@ struct BuildingView: View {
     var body: some View {
         VStack {
             Text(vm.workCostText(for: building))
+            Text(vm.workerText(for: building))
             vm.buildingButtons(for: building, buildMan: buildMan, stock: stock )
+                
+            
             if building.constructionStarted && (buildMan.canAssignWorker(to: building) || building.workers > 0) {
                 Button("Scrap") {
                     showScrapAlert = true
@@ -34,7 +37,7 @@ struct BuildingView: View {
                     )
                 }
             }
-        }.padding()
+        }
     }
 }
 

@@ -20,7 +20,7 @@ class BuildingsViewModel : ObservableObject{
         if building.workProgress >= building.workCost {
             return "\(building.name)"
         } else {
-            return "Building [\(building.name)] | Progress : \(building.workProgress) / \(building.workCost)"
+            return "Building a \(building.name) | Progress : \(building.workProgress) / \(building.workCost)"
         }
     }
     func startConstructionButton(for building: Building, buildMan: BuildingManager, stockpile : Stockpile) -> some View {

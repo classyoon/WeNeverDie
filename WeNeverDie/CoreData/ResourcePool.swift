@@ -71,8 +71,15 @@ class ResourcePool : ObservableObject {
         days+=1
         stockpile.calcConsumption()
         gameCon.checkForDefeat()
+        checkCure()
     }
-    
+    func checkCure() {
+        for building in buildingMan.buildings {
+            if building.name == "Cure" && building.isComplete {
+                gameCon.data.victory = true
+            }
+        }
+    }
     func transferResourcesToResourcePool(vm : Board){
         stockpile.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()

@@ -86,7 +86,7 @@ struct BuildingData : Codable, Identifiable {
     var workProgress: Int = 0
     var autoWithDrawed : Bool = true
     var materialCost : Int = 0
-    var constructionStarted : Bool = false
+    var constructionStarted : Bool = true
     var workCost: Int = 0
     mutating func increaseWorker() {
         workers += 1

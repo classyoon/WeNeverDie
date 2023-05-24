@@ -361,7 +361,6 @@
 			children = (
 				CACCD56E298C8085005BE6DE /* GameView.swift */,
 				CA33237F2A1D40060078E79C /* Saving */,
-				CA3323402A1C6EBB0078E79C /* Building */,
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 				CA33231E2A1C40540078E79C /* GameCondition.swift */,
 				CA33231C2A1C38920078E79C /* StockpileManager.swift */,
@@ -436,6 +435,7 @@
 		CA17474129A9446B00B81EF8 /* Camp Mode */ = {
 			isa = PBXGroup;
 			children = (
+				CA3323402A1C6EBB0078E79C /* Building */,
 				CA90F82929ABDDA500AD34E9 /* CampView */,
 				CA17474729A9457900B81EF8 /* Tutorial */,
 			);

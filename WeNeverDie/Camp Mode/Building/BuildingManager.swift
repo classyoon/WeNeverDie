@@ -39,8 +39,8 @@ class BuildingManager : ObservableObject {
             self.stock = stock
             self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [BuildingData( name: "Cure", workCost: 50), BuildingData(name: "Upgrade", workCost: 10)])
             self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 10, rate: 3, produces: .food)
-            self.mine = load(key: "mine") ?? ProducerData(name: "Homes", workCost: 20, rate: 1, produces: .people)
-            self.house = load(key: "house") ?? ProducerData(name: "Mine", workCost: 5, rate: 3, produces: .material)
+            self.house = load(key: "house") ?? ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
+            self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 5, rate: 3, produces: .material)
             self.buildings = [Building]()
 //            buildings.append(Building(advancement: advancementBuilding))
 //            buildings.append(Building(producer: farm))

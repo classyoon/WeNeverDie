@@ -46,10 +46,12 @@ struct TappableSlider: View {
 
 struct TappableSlider_Previews: PreviewProvider {
     @State static var value: Float = 0.5
+    @ObservedObject var audio = AudioManager()
     static var previews: some View {
         VStack {
             Text("Value: \(value)")
             TappableSlider(value: $value, range: 0...1, step: 0.01, isLeftHanded: true)
+            
         }
         .padding()
     }
