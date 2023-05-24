@@ -115,6 +115,8 @@
 		CAF863042A1D9A9400D5957A /* BuildingManagerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF863032A1D9A9400D5957A /* BuildingManagerVM.swift */; };
 		CAF863062A1E8FC800D5957A /* Alert Noise 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863052A1E8FC800D5957A /* Alert Noise 2.mp3 */; };
 		CAF863082A1E916200D5957A /* Alert Noise Much Louder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863072A1E916200D5957A /* Alert Noise Much Louder.mp3 */; };
+		CAF8630A2A1E931400D5957A /* cleanFootsteps2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */; };
+		CAF8630C2A1E94E200D5957A /* quieter car starting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF8630B2A1E94E200D5957A /* quieter car starting.mp3 */; };
 		E5DE11A729AD28ED0095416B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE11A629AD28ED0095416B /* ViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +250,8 @@
 		CAF863032A1D9A9400D5957A /* BuildingManagerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingManagerVM.swift; sourceTree = "<group>"; };
 		CAF863052A1E8FC800D5957A /* Alert Noise 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alert Noise 2.mp3"; sourceTree = "<group>"; };
 		CAF863072A1E916200D5957A /* Alert Noise Much Louder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alert Noise Much Louder.mp3"; sourceTree = "<group>"; };
+		CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cleanFootsteps2.mp3; sourceTree = "<group>"; };
+		CAF8630B2A1E94E200D5957A /* quieter car starting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "quieter car starting.mp3"; sourceTree = "<group>"; };
 		E5DE11A629AD28ED0095416B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -407,6 +411,7 @@
 			children = (
 				CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */,
 				CA16EAF329CAA7330047593B /* stabTrimmed.m4a */,
+				CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */,
 				CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */,
 				CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */,
 				CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */,
@@ -419,6 +424,7 @@
 			children = (
 				CA9A036729C0E06900ED390B /* LeavingSFX.mp3 */,
 				CA33239A2A1D520B0078E79C /* car startingSFX.mp3 */,
+				CAF8630B2A1E94E200D5957A /* quieter car starting.mp3 */,
 				CA9A036529C0DF7200ED390B /* Van DoorSFX.mp3 */,
 			);
 			path = TransitionSFX;
@@ -808,6 +814,7 @@
 				CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
+				CAF8630C2A1E94E200D5957A /* quieter car starting.mp3 in Resources */,
 				CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */,
 				CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */,
 				CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */,
@@ -815,6 +822,7 @@
 				CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */,
 				CAF863062A1E8FC800D5957A /* Alert Noise 2.mp3 in Resources */,
 				CAF863082A1E916200D5957A /* Alert Noise Much Louder.mp3 in Resources */,
+				CAF8630A2A1E931400D5957A /* cleanFootsteps2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
