@@ -10,13 +10,13 @@ import SwiftUI
 struct ExitOverlayView: View {
     var vm : Board
     @ObservedObject var gameData : ResourcePool
-    @ObservedObject var stockpile : Stockpile
+    @ObservedObject var stockpile = Stockpile.shared
     @Binding var showBoard : Bool
     var unitsDied : Int
     var unitsRecruited : Int
     var body: some View {
         VStack{
-            Text("End Mission : Gathered \(vm.foodNew) rations, total food for the day should be \(stockpile.getNumOfFood()-stockpile.getNumOfPeople()+vm.foodNew)")
+            Text("End Mission : Gathered \(vm.foodNew) rations, total food for the day should be \(Stockpile.shared.getNumOfFood()-Stockpile.shared.getNumOfPeople()+vm.foodNew)")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 vm.showEscapeOption = false
@@ -36,7 +36,7 @@ struct ExitOverlayView: View {
 
 struct ExitOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitOverlayView(vm: Board(), gameData: ResourcePool(), stockpile: Stockpile(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
+        ExitOverlayView(vm: Board(), gameData: ResourcePool(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
     }
 }
 

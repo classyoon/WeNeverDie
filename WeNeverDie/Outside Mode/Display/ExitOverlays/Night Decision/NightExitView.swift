@@ -15,7 +15,8 @@ struct NightExitView: View {
     var unitsDied : Int
     var unitsRecruited : Int
     var presentChoices = false//Present user with two
-
+    var constructor = BuildingViewConstructor.shared
+    @ObservedObject var stockpile = Stockpile.shared
     var body: some View {
         VStack{
             Text("We survived the night. Let's not do that again. We gathered \(food) rations. That should leave us with \(gameData.stockpile.getNumOfFood()-gameData.stockpile.getNumOfPeople()+food) rations")
@@ -23,7 +24,7 @@ struct NightExitView: View {
                 Button {
                     showBoard = false
                     gameData.passDay()
-                    gameData.stockpile.transferResourcesToResourcePool(vm: vm)
+                    Stockpile.shared.transferResourcesToResourcePool(vm: vm)
                    
                     save(items: ResourcePoolData(resourcePool: gameData), key: key)
                     

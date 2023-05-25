@@ -11,15 +11,14 @@ var outsideTesting = false
 var printZombieThoughts = false
 //var campStats = true
 class ResourcePool : ObservableObject {
-    @Published var buildVm : BuildingsViewModel = BuildingsViewModel()
-    @Published var stockpileData : StockpileModel = StockpileModel()
     @Published var gameConData : GameConditionModel = GameConditionModel()
-    @Published var buildData : BuildingManagerModel = BuildingManagerModel()
     @Published var audio : AudioManager = AudioManager()
-    @Published var stockpile : Stockpile = Stockpile(StockpileModel())
-    var buildingMan : BuildingManager {
-        BuildingManager(stock: stockpile)
-    }
+    var constructor : BuildingViewConstructor = BuildingViewConstructor.shared
+    var buildingMan : BuildingManager = BuildingManager()
+    
+
+    @Published var stockpileData : StockpileModel = StockpileModel()
+    @Published var stockpile : Stockpile = Stockpile.shared
     var gameCon : GameCondition {
         GameCondition(self.stockpile, data: gameConData)
     }
@@ -68,7 +67,9 @@ class ResourcePool : ObservableObject {
     
     func passDay(){
         days+=1
-        stockpile.calcConsumption()
+        print("day")
+        print(buildingMan.mine.output)
+        Stockpile.shared.calcConsumption()
         gameCon.checkForDefeat()
         checkCure()
     }
@@ -80,7 +81,7 @@ class ResourcePool : ObservableObject {
         }
     }
     func transferResourcesToResourcePool(vm : Board){
-        stockpile.transferResourcesToResourcePool(vm: vm)
+        Stockpile.shared.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()
         selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
         isInMission = false

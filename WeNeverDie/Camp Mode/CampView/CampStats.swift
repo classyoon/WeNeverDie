@@ -14,6 +14,8 @@ struct CampStats : View {
     @Binding var showBoard : Bool
     @ObservedObject var uiSettings : UserSettingsManager
     
+  var stockpile : Stockpile = Stockpile.shared
+    
     @State var survivorsArr: [Int] = []
     
     func shouldShowMap() -> Bool{
@@ -39,22 +41,22 @@ struct CampStats : View {
         if gameData.stockpile.isStarving(){
             return "We are starving. Days till death \(gameData.gameCon.getDeathCountdown())"
         }
-        if gameData.stockpile.getNumOfFood() <= 0{
+        if Stockpile.shared.getNumOfFood() <= 0{
             return "If you see this then it is a bug. You shouldn't see this."
         }
         else{
-            return "We have food for \(gameData.stockpile.getNumOfFood() / gameData.stockpile.getNumOfPeople()) days, (\(gameData.stockpile.getNumOfFood()) rations)."
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations)."
         }
     }
     func resourceAmount()->String{
-        if gameData.stockpile.getNumOfMat() == 0 {
+        if Stockpile.shared.getNumOfMat() == 0 {
             return "We have no building material"
         }
-        else if gameData.stockpile.getNumOfMat() < 0 {
+        else if Stockpile.shared.getNumOfMat() < 0 {
             return "This is a bug and you should not see this"
         }
         else {
-            return "We have \(gameData.stockpile.getNumOfMat()) building materials."
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials."
         }
     }
     var instructions: some View {

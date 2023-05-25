@@ -15,6 +15,7 @@ struct BeginMissionButton: View {
     var canSendMission: Bool {
         surivorsSentOnMission != 0
     }
+    
     var body: some View {
     Button {
             withAnimation {

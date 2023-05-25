@@ -17,7 +17,6 @@ struct ResourcePoolData : Codable & Identifiable {
     
     var gameConData : GameConditionModel
     var stockpileData : StockpileModel
-    var buildData : BuildingManagerModel
 
     init(resourcePool : ResourcePool){
         self.days = resourcePool.days
@@ -25,14 +24,12 @@ struct ResourcePoolData : Codable & Identifiable {
        
         self.gameConData = resourcePool.gameConData
         self.stockpileData = resourcePool.stockpileData
-        self.buildData = resourcePool.buildData
         
     }
     init(){
         days = 0
         stockpileData = StockpileModel()
         gameConData = GameConditionModel()
-        buildData = BuildingManagerModel()
         selectStatuses = Array(repeating: false, count: stockpileData.survivorNumber)
         
     }

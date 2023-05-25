@@ -11,7 +11,8 @@ struct CureProgressView: View {
     @ObservedObject var gameData : ResourcePool
     @ObservedObject var uiSettings : UserSettingsManager
     @Binding var showCureHelp : Bool
-    var vm : BuildingsViewModel
+    
+    var constructor = BuildingViewConstructor.shared
     
     var body: some View {
         ZStack {
@@ -50,6 +51,6 @@ struct CureProgressView: View {
 
 struct CureProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
+        CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true))
     }
 }

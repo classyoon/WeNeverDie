@@ -1,16 +1,24 @@
 //
+//  Stockpile.swift
+//  BuildingThePain
+//
+//  Created by Conner Yoon on 5/25/23.
+//
+
+import Foundation
+//
 //  StockpileManager.swift
 //  WeNeverDie
 //
 //  Created by Conner Yoon on 5/22/23.
-//
+//CHECK
 
 import Foundation
 class Stockpile : ObservableObject {
     @Published var stockpileData : StockpileModel
     var survivorDefaultNumber : Int = 3
-  
-    init() {
+    static let shared = Stockpile()
+    private init() {
         self.stockpileData = StockpileModel()
     }
     init(_ stock : StockpileModel) {
@@ -57,10 +65,10 @@ class Stockpile : ObservableObject {
 
 struct StockpileModel : Codable, Identifiable {
     var id = UUID()
-    var foodStored : Int = 10
+    var foodStored : Int = 3
     var survivorNumber : Int = 3
     var builders : Int = 0
-    var buildingResources : Int = 0
+    var buildingResources : Int = 10
     var survivorDefaultNumber : Int = 3
     var survivorSent : Int = 0
     var starving : Bool {
@@ -78,6 +86,8 @@ struct StockpileModel : Codable, Identifiable {
     }
     mutating func calcConsumption(){
         foodStored -= survivorNumber
+        print("Eating")
+        print(foodStored)
     }
     func runOutOfPeople()->Bool{
         if survivorNumber<=0 {
@@ -87,5 +97,4 @@ struct StockpileModel : Codable, Identifiable {
     }
     
 }
-
 

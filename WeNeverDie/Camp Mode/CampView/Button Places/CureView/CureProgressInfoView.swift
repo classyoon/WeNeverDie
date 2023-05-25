@@ -10,8 +10,7 @@ import SwiftUI
 struct CureProgressInfoView: View {
     @Binding var showCure : Bool
     @ObservedObject var buildingMan : BuildingManager
-    @ObservedObject var stock : Stockpile
-    @ObservedObject var vm = BuildingsViewModel()
+    @ObservedObject var stock = Stockpile.shared
     var progress = 0
     var max = 0
    
@@ -24,7 +23,7 @@ struct CureProgressInfoView: View {
                     Text("Workers \(stock.getNumOfPeople()-stock.getSurvivorSent()), Materials \(stock.getNumOfMat())").padding()
                     ScrollView{
                         ForEach(buildingMan.buildings.indices, id: \.self) { index in
-                            BuildingView(building: buildingMan.buildings[index], vm: vm, buildMan: buildingMan, stock: stock).padding()
+                            BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan, stock: stock).padding()
                             
                         }
                     }
@@ -54,7 +53,7 @@ struct CureProgressInfo_Previews: PreviewProvider {
     var game = ResourcePool()
     static var previews: some View {
         VStack{
-            CureProgressInfoView(showCure: .constant(true), buildingMan: BuildingManager(stock: Stockpile()), stock: Stockpile())
+            CureProgressInfoView(showCure: .constant(true), buildingMan: BuildingManager())
             //CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
            
         }

@@ -13,6 +13,7 @@ struct PassDayButton: View {
     }
     @Binding var surivorsSentOnMission: Int
     @ObservedObject var gameData : ResourcePool
+    var stockpile : Stockpile = Stockpile.shared
     @Binding var showBoard: Bool
     func shouldShowMap() -> Bool {
         if surivorsSentOnMission > 0 {
@@ -24,7 +25,7 @@ struct PassDayButton: View {
         showBoard = shouldShowMap()
         gameData.passDay()
       
-        gameData.stockpile.stockpileData.survivorSent = surivorsSentOnMission
+        Stockpile.shared.stockpileData.survivorSent = surivorsSentOnMission
         save(items: ResourcePoolData(resourcePool: gameData), key: key)
     }
     var body: some View {

@@ -22,7 +22,7 @@ struct LeftHandButtons: View {
             .padding()
             Spacer()
             
-            CureProgressView(gameData: gameData, uiSettings: gameData.uiSetting, showCureHelp: $showCureHelp, vm: gameData.buildVm)
+            CureProgressView(gameData: gameData, uiSettings: gameData.uiSetting, showCureHelp: $showCureHelp)
             
                 .foregroundColor(.primary)
             
