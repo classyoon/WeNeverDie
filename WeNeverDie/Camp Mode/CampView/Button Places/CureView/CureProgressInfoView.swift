@@ -9,9 +9,9 @@ import SwiftUI
 
 struct CureProgressInfoView: View {
     @Binding var showCure : Bool
-    var buildingMan : BuildingManager
-    @State var stock : Stockpile
-    var vm = BuildingsViewModel()
+    @ObservedObject var buildingMan : BuildingManager
+    @ObservedObject var stock : Stockpile
+    @ObservedObject var vm = BuildingsViewModel()
     var progress = 0
     var max = 0
    
@@ -31,6 +31,7 @@ struct CureProgressInfoView: View {
                     .foregroundColor(.black)
                     Button("Understood"){
                         showCure = false
+                        
                     }.buttonStyle(.bordered)
                 }.padding()
             )
@@ -50,7 +51,12 @@ struct CureProgressInfoView: View {
 //    }
 //}
 struct CureProgressInfo_Previews: PreviewProvider {
+    var game = ResourcePool()
     static var previews: some View {
-        CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
+        VStack{
+            CureProgressInfoView(showCure: .constant(true), buildingMan: BuildingManager(stock: Stockpile()), stock: Stockpile())
+            //CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
+           
+        }
     }
 }

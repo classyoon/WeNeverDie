@@ -23,7 +23,6 @@ class ResourcePool : ObservableObject {
     var gameCon : GameCondition {
         GameCondition(self.stockpile, data: gameConData)
     }
-   
     @Published var isInMission = false
     
     
@@ -45,7 +44,7 @@ class ResourcePool : ObservableObject {
 
     func reset() {
         stockpile.reset()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople()-stockpile.stockpileData.builders)
         gameCon.reset()
         audio.playMusic("Kurt")
         days = 0

@@ -12,6 +12,7 @@ class BuildingManager : ObservableObject {
         didSet {
             // Save function.
             save(items: advancementBuilding, key: "lab")
+            
         }
     }
     @Published var farm : ProducerData {
@@ -24,6 +25,7 @@ class BuildingManager : ObservableObject {
         didSet {
             // Save function.
             save(items: mine, key: "mine")
+            print("Workers \(advancementBuilding.workers)")
         }
     }
     @Published var house : ProducerData {
@@ -98,14 +100,19 @@ class BuildingManager : ObservableObject {
         func assignWorker(to building: Building) {
             if canAssignWorker(to: building) {
                 building.increaseWorker()
+                stock.stockpileData.builders+=1
             }
         }
         
         func removeWorker(from building: Building) {
             building.decreaseWorker()
+            if stock.stockpileData.builders > 0 {
+                stock.stockpileData.builders-=1
+            }
         }
         
         func scrap(_ building: Building) {
+            stock.stockpileData.builders-=building.workers
             building.workers = 0
             stock.stockpileData.buildingResources += building.materialCost
             building.workProgress = 0

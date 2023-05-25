@@ -16,7 +16,7 @@ struct LazySurvivorSelector: View {
         VStack{
             HStack{
                 
-                ForEach(0..<GameData.selectStatuses.count, id: \.self){ index in
+                ForEach(0..<GameData.selectStatuses.count-GameData.stockpile.stockpileData.builders, id: \.self){ index in
                   
                         Button {
                             GameData.balance(index)

@@ -66,6 +66,9 @@ struct StockpileModel : Codable, Identifiable {
     var starving : Bool {
         foodStored<0 ? true : false
     }
+    var unemployed : Int {
+        survivorNumber-builders
+    }
     mutating func reset(){
         survivorNumber = survivorDefaultNumber
         foodStored = 10

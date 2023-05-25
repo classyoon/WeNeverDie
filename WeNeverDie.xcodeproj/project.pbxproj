@@ -80,7 +80,6 @@
 		CA9A029529B6E00200ED390B /* HowToMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029429B6E00200ED390B /* HowToMove.swift */; };
 		CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029629B6E01800ED390B /* HowToAttack.swift */; };
 		CA9A029D29B9363700ED390B /* building.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029C29B9363700ED390B /* building.swift */; };
-		CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */; };
 		CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */; };
 		CA9A02A629B94B2700ED390B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02A529B94B2700ED390B /* DataService.swift */; };
 		CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A02B329B970EB00ED390B /* CureProgressView.swift */; };
@@ -219,7 +218,6 @@
 		CA9A029629B6E01800ED390B /* HowToAttack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToAttack.swift; sourceTree = "<group>"; };
 		CA9A029C29B9363700ED390B /* building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = building.swift; sourceTree = "<group>"; };
 		CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPersistance.swift; sourceTree = "<group>"; };
-		CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePoolDataView.swift; sourceTree = "<group>"; };
 		CA9A02A529B94B2700ED390B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CA9A02B329B970EB00ED390B /* CureProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CureProgressView.swift; sourceTree = "<group>"; };
 		CA9A02B529B972F300ED390B /* PieceRotationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRotationTest.swift; sourceTree = "<group>"; };
@@ -529,7 +527,6 @@
 			children = (
 				CA9A029E29B944ED00ED390B /* UserDefaultsPersistance.swift */,
 				CA9A02A529B94B2700ED390B /* DataService.swift */,
-				CA9A02A029B9461C00ED390B /* ResourcePoolDataView.swift */,
 				CA33231A2A1C37C80078E79C /* ResourceData.swift */,
 			);
 			path = Saving;
@@ -922,7 +919,6 @@
 				CA16EAC329C93D1F0047593B /* NextTurnButton.swift in Sources */,
 				CA3323462A1D11220078E79C /* BuildingVM.swift in Sources */,
 				CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */,
-				CA9A02A329B946AC00ED390B /* ResourcePoolDataView.swift in Sources */,
 				CA9A029529B6E00200ED390B /* HowToMove.swift in Sources */,
 				CA16EAE829CA95D70047593B /* BeginMissionButton.swift in Sources */,
 				CA744D2D29A8113E00F40B4F /* TutorialView.swift in Sources */,
