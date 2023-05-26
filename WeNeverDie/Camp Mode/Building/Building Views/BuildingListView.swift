@@ -15,11 +15,10 @@ struct BuildingListView: View {
     var body: some View {
         ScrollView{
             ForEach(buildingMan.buildings.indices, id: \.self) { index in
-                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan)
+                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan).padding()
                 
             }
-            
-        }.padding()
+        }
     }
 }
 

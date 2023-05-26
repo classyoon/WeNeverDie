@@ -44,7 +44,7 @@ class Building: ObservableObject {
     }
 
     var isComplete: Bool {
-        model.workProgress < model.workCost
+        model.workProgress >= model.workCost
     }
 
     init(model: BuildingData) {
@@ -61,6 +61,7 @@ class Building: ObservableObject {
 
     func updateBuilding() {
         if isComplete {
+            
             doSomething()
         } else {
             model.build()
@@ -68,7 +69,7 @@ class Building: ObservableObject {
     }
 
     func doSomething() {
-        // implementation here
+//        print("Did something, nothing")
     }
     init(producer : ProducerData) {
         self.model = BuildingData(producer: producer)

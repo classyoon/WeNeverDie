@@ -17,7 +17,7 @@ struct AdvancementData : Codable, Identifiable {
     var constructionStarted: Bool
     var techBranch : [BuildingData]
     var hasGiven : Bool
-    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=true, materialCost: Int=0, constructionStarted: Bool=false, techBranch : [BuildingData], hasGiven : Bool = false) {
+    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=false, materialCost: Int=0, constructionStarted: Bool=false, techBranch : [BuildingData], hasGiven : Bool = false) {
         self.id = UUID()
         self.name = name
         self.workers = workers

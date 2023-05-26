@@ -16,7 +16,7 @@ struct CampView: View {
     @ObservedObject var uiSettings: UserSettingsManager
     // TODO: remove Timer from production. for testing purposes only
     //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
-    
+    var gameCon : GameCondition = GameCondition.shared
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -44,17 +44,17 @@ struct CampView: View {
                     //.opacity(gameData.death || gameData.victory ? 0.5 : 1)
             ).ignoresSafeArea()
             
-                .blur(radius: gameData.gameCon.getDeath() || (gameData.gameCon.checkVictory() && !gameData.gameCon.checkHaveWon()) ? 10 : 0)
+                .blur(radius: gameCon.getDeath() || (gameCon.checkVictory() && !gameCon.checkHaveWon()) ? 10 : 0)
             //MARK: Death
                 .overlay {
-                    gameData.gameCon.getDeath() ?
+                    gameCon.getDeath() ?
                     DefeatView(gameData: gameData, uiSettings: uiSettings)
                         .padding()
                     : nil
                 }.foregroundColor(.white)
             //MARK: Victory
                 .overlay {
-                    (gameData.gameCon.checkVictory() && !gameData.gameCon.checkHaveWon()) ?
+                    (gameCon.checkVictory() && !gameCon.checkHaveWon()) ?
                     HStack {
                         Spacer()
                         VictoryView(gameData: gameData)

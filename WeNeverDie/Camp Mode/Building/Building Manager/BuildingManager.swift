@@ -9,6 +9,7 @@ import Foundation
 ///GOOD
 class BuildingManager : ObservableObject {
     @Published var stockpile : Stockpile = Stockpile.shared
+    
     @Published var advancementBuilding : AdvancementData {
         didSet {
             // Save function.
@@ -36,17 +37,15 @@ class BuildingManager : ObservableObject {
         }
     }
     @Published var buildings : [Building]
-    
-    
     init() {
         self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [BuildingData( name: "Cure", workCost: 50), BuildingData(name: "Upgrade", workCost: 10)])
         self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 10, rate: 3, produces: .food)
         self.house = load(key: "house") ?? ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
-        self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 5, rate: 3, produces: .material)
+        self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 10, rate: 3, produces: .material)
         self.buildings = [Building]()
-        //            buildings.append(Building(advancement: advancementBuilding))
-        //            buildings.append(Building(producer: farm))
-        buildings.append(Building(producer: mine))
+        
+        buildings.append(ResourceProducer(extraModel: mine))
+        buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
         print("Intializing...")
         print("Constructed \(buildings[0].name), has \(buildings[0].workers) workers")
     }
@@ -59,23 +58,23 @@ class BuildingManager : ObservableObject {
     }
     
     func updateWorkProgress() {
-      //  print("Starting with : \(buildings[0].name), has \(buildings[0].workers) workers, has \(buildings[0].workProgress) progress")///FOR SOME REASON IT JUST DISAPPEARS HERE
         for building in buildings {
+            
             building.updateBuilding()
+            
             if building.isComplete {
                 if building.autoWithDrawed == false && withdrawWorkersWhenBuildingIsCompleted {
                     print("withdrawing workers")
                     returnAllWorkers(from: building)
                     
                 }
-                print("utilizing building")
+                
                 utilizeBuilding(building)
-               
             }
-            //print("Updated!!! \(buildings[0].name), has \(buildings[0].workers) workers, has \(buildings[0].workProgress) progress")
         }
     }
     func utilizeBuilding(_ building : Building){
+        
         if let advancementBuilding = building as? AdvancementBuilding, !advancementBuilding.hasGiven {
             activateAdvancement(advancementBuilding)
         }
@@ -114,9 +113,6 @@ class BuildingManager : ObservableObject {
         if canAssignWorker(to: building) {
             building.increaseWorker()
             Stockpile.shared.stockpileData.builders+=1
-            print("Builders = \(building.workers)")
-            buildings[0] = building//USED HARD SET, but it still doesn't work.
-            print("Result = \(buildings[0].workers)")
         }
     }
     

@@ -8,16 +8,16 @@
 import Foundation
 
 class GameCondition : ObservableObject {
-    @Published var stockpile : Stockpile
     @Published var data : GameConditionModel
+    @Published var stockpile : Stockpile = Stockpile.shared
     var starving : Bool {
         stockpile.stockpileData.foodStored<=0
     }
+    static let shared = GameCondition(data: GameConditionModel())
+    private init(data: GameConditionModel) {
+            self.data = data
+        }
     
-    init(_ stockpile : Stockpile, data : GameConditionModel){
-        self.stockpile = stockpile
-        self.data = data
-    }
     func checkForDefeat() {
         print("check for defeat starting at \(data.progressToDeath)")
         if !starving {
@@ -29,6 +29,7 @@ class GameCondition : ObservableObject {
         }
         if data.starvedToDeath() || stockpile.runOutOfPeople() {
             data.setDefeat()
+            
             print("Starved to death")
         }
         

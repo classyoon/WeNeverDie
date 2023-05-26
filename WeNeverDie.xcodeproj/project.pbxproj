@@ -110,7 +110,6 @@
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
-		CAF863042A1D9A9400D5957A /* BuildingManagerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF863032A1D9A9400D5957A /* BuildingManagerVM.swift */; };
 		CAF863062A1E8FC800D5957A /* Alert Noise 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863052A1E8FC800D5957A /* Alert Noise 2.mp3 */; };
 		CAF863082A1E916200D5957A /* Alert Noise Much Louder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863072A1E916200D5957A /* Alert Noise Much Louder.mp3 */; };
 		CAF8630A2A1E931400D5957A /* cleanFootsteps2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */; };
@@ -249,7 +248,6 @@
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
-		CAF863032A1D9A9400D5957A /* BuildingManagerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingManagerVM.swift; sourceTree = "<group>"; };
 		CAF863052A1E8FC800D5957A /* Alert Noise 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alert Noise 2.mp3"; sourceTree = "<group>"; };
 		CAF863072A1E916200D5957A /* Alert Noise Much Louder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alert Noise Much Louder.mp3"; sourceTree = "<group>"; };
 		CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cleanFootsteps2.mp3; sourceTree = "<group>"; };
@@ -706,7 +704,6 @@
 		CAF8636C2A20035200D5957A /* Building Manager */ = {
 			isa = PBXGroup;
 			children = (
-				CAF863032A1D9A9400D5957A /* BuildingManagerVM.swift */,
 				CA3323182A1C352D0078E79C /* BuildingManager.swift */,
 			);
 			path = "Building Manager";
@@ -931,7 +928,6 @@
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CA3323192A1C352D0078E79C /* BuildingManager.swift in Sources */,
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
-				CAF863042A1D9A9400D5957A /* BuildingManagerVM.swift in Sources */,
 				CA7510B32A097A53004AAAE3 /* MuteToggleButton.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,

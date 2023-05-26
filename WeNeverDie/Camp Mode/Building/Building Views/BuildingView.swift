@@ -16,8 +16,10 @@ struct BuildingView: View {
     
     var body: some View {
         VStack {
-            Text(constructor.workCostText(for: building))
-            Text(constructor.workerText(for: building))
+            HStack{
+                Text(constructor.workCostText(for: building))
+                Text(constructor.workerText(for: building))
+            }
             constructor.buildingButtons(for: building, buildMan: buildMan, stock: stock )
                 
             
@@ -41,3 +43,9 @@ struct BuildingView: View {
 }
 
 
+struct BuildingView_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        BuildingView(building: AdvancementBuilding(extraModel: AdvancementData(name: "Tester", workCost: 10, techBranch: [])), buildMan: BuildingManager())
+    }
+}

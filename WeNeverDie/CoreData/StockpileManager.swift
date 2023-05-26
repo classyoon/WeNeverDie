@@ -80,12 +80,18 @@ struct StockpileModel : Codable, Identifiable {
     mutating func reset(){
         survivorNumber = survivorDefaultNumber
         foodStored = 10
-        buildingResources = 0
+        buildingResources = 10
         survivorSent = 0
         builders = 0
+        buildingResources = 0
     }
     mutating func calcConsumption(){
-        foodStored -= survivorNumber
+        if foodStored > 0{
+            foodStored -= survivorNumber
+        }
+        else {
+            foodStored = 0
+        }
         print("Eating")
         print(foodStored)
     }

@@ -14,14 +14,12 @@ class ResourcePool : ObservableObject {
     @Published var gameConData : GameConditionModel = GameConditionModel()
     @Published var audio : AudioManager = AudioManager()
     var constructor : BuildingViewConstructor = BuildingViewConstructor.shared
-    var buildingMan : BuildingManager = BuildingManager()
+    @Published var buildingMan : BuildingManager = BuildingManager()
     
-
+    
     @Published var stockpileData : StockpileModel = StockpileModel()
     @Published var stockpile : Stockpile = Stockpile.shared
-    var gameCon : GameCondition {
-        GameCondition(self.stockpile, data: gameConData)
-    }
+    @Published var gameCon : GameCondition = GameCondition.shared
     @Published var isInMission = false
     
     
@@ -40,7 +38,7 @@ class ResourcePool : ObservableObject {
         self.selectStatuses = resourcePoolData.selectStatuses
         self.stockpileData = resourcePoolData.stockpileData
     }
-
+    
     func reset() {
         stockpile.reset()
         selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople()-stockpile.stockpileData.builders)
@@ -67,17 +65,22 @@ class ResourcePool : ObservableObject {
     
     func passDay(){
         days+=1
-        print("day")
-        print(buildingMan.mine.output)
+        buildingMan.updateWorkProgress()
         Stockpile.shared.calcConsumption()
         gameCon.checkForDefeat()
+        if gameCon.getDeath() {
+            audio.playMusic("Death")
+        }
         checkCure()
     }
     func checkCure() {
         for building in buildingMan.buildings {
             if building.name == "Cure" && building.isComplete {
                 gameCon.data.victory = true
+                print("Won")
+                audio.playMusic("Victory")
             }
+            print(building.name)
         }
     }
     func transferResourcesToResourcePool(vm : Board){

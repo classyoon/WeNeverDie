@@ -34,7 +34,7 @@ struct CureProgressView: View {
             }
             Group{
                 if showCureHelp {
-                    CureProgressInfoView(showCure: $showCureHelp, buildingMan : gameData.buildingMan, stock : gameData.stockpile)
+                    CureProgressInfoView(showCure: $showCureHelp, buildingMan : $gameData.buildingMan, stock : gameData.stockpile)
                 }else{
                     Spacer()
                 }
