@@ -60,6 +60,7 @@ class Board : ObservableObject, BoardProtocol {
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
     @Published var foodNew = 0
+    @Published var materialNew = 0
     @Published var uiSettings : UserSettingsManager
     @Published var audio : AudioManager
     

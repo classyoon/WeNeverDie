@@ -13,12 +13,13 @@ struct TileType {
     var movementPenalty = 0
     var houseLoot = 4
     var waterPenalty = 1
-    
-    
+    var rawMaterials = 0
+    var rawMaterialsBonus = 4
     mutating func setTileBonuses(){
         switch name {
         case "h":
             loot += houseLoot
+            rawMaterials += rawMaterialsBonus
         case "w":
             movementPenalty += waterPenalty
         default :

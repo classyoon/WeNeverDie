@@ -20,7 +20,14 @@ struct BuildingView: View {
                 Text(constructor.workCostText(for: building))
                 Text(constructor.workerText(for: building))
             }
-            constructor.buildingButtons(for: building, buildMan: buildMan, stock: stock )
+            if building.isComplete && building is AdvancementBuilding {
+                Text("Researcher Jobs not implemented yet")
+               
+            } else {
+    
+                constructor.startConstructionButton(for: building, buildMan: buildMan)
+                constructor.workerButtons(for: building, buildMan: buildMan)
+            }
                 
             
             if building.constructionStarted && (buildMan.canAssignWorker(to: building) || building.workers > 0) {
@@ -33,6 +40,8 @@ struct BuildingView: View {
                         message: Text(constructor.alert2Text),
                         primaryButton: .destructive(Text(constructor.confirmScrap)) {
                             buildMan.scrap(building)
+                            
+                           
                         },
                         secondaryButton: .cancel()
                     )

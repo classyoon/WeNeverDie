@@ -10,7 +10,14 @@ import SwiftUI
 struct FoodCounter: View {
     @ObservedObject var vm : Board
     var body: some View {
-        Text("Food collected : \(vm.foodNew)")
+        Text("Food : \(vm.foodNew)")
+            .foregroundColor(vm.changeToNight ? .white : .black)
+    }
+}
+struct MaterialCounter: View {
+    @ObservedObject var vm : Board
+    var body: some View {
+        Text("Materials : \(vm.materialNew)")
             .foregroundColor(vm.changeToNight ? .white : .black)
     }
 }

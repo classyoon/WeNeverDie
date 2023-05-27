@@ -27,6 +27,7 @@ class ResourcePool : ObservableObject {
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
+    @Published var isSelectingForBuilders = false
     
     init() {
         stockpileData = StockpileModel()
@@ -97,26 +98,61 @@ class ResourcePool : ObservableObject {
     }
     
     func balance(_ index: Int) {
+    
+            selectingSurvivors(index)
+        
+    }
+    func selectingSurvivors(_ index: Int){
+        
+//        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
+//            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
+//                selectStatuses[i] = false
+//            }
+//        }
         if lastTappedIndex == index {
             // Tapped the same button twice set all buttons to false
             for i in 0...index {
                 selectStatuses[i] = false
             }
-            stockpile.setSurvivorSent(0)
+            Stockpile.shared.setSurvivorSent(0)
             lastTappedIndex = nil
         } else {
             // Set the survivorSent value based on the index and switchToLeft flag
             if uiSetting.switchToLeft {
-                stockpile.setSurvivorSent(selectStatuses.count - index)
+                Stockpile.shared.setSurvivorSent(selectStatuses.count - index)
             } else {
-                stockpile.setSurvivorSent(index + 1)
+                Stockpile.shared.setSurvivorSent(index + 1)
             }
             
             // Set the selectStatuses array based on the survivorSent value
             for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < stockpile.getSurvivorSent())
+                selectStatuses[i] = (i < Stockpile.shared.getSurvivorSent())
             }
             lastTappedIndex = index
         }
     }
+    func selectingBuilders(_ index: Int){
+        if lastTappedIndex == index {
+            // Tapped the same button twice set all buttons to false
+            for i in 0...index {
+                selectStatuses[i] = false
+            }
+            stockpile.setBuilders(0)
+            lastTappedIndex = nil
+        } else {
+            // Set the survivorSent value based on the index and switchToLeft flag
+            if uiSetting.switchToLeft {
+                stockpile.setBuilders(selectStatuses.count - index)
+            } else {
+                stockpile.setBuilders(index + 1)
+            }
+            
+            // Set the selectStatuses array based on the survivorSent value
+            for i in 0..<selectStatuses.count {
+                selectStatuses[i] = (i < stockpile.getBuilders())
+            }
+            lastTappedIndex = index
+        }
+    }
+
 }

@@ -17,10 +17,11 @@ struct CureProgressInfoView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
-            .frame(width: 600, height: 200)
+            .frame(width: 400, height: 200)
             .overlay(
                 VStack{
-                    Text("Workers \(stock.getNumOfPeople()-stock.getSurvivorSent()), Materials \(stock.getNumOfMat())").padding()
+                    
+//                    Text("Workers \(Stockpile.shared.getNumOfPeople()-Stockpile.shared.getSurvivorSent()), Materials \(Stockpile.shared.getNumOfMat())").padding()
                     ScrollView{
                         VStack{
                             ForEach(buildingMan.buildings.indices, id: \.self) { index in

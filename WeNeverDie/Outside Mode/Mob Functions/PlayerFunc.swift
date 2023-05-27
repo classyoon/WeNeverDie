@@ -85,5 +85,28 @@ extension Board {
             deselectUnit()
         }
     }
+    func secondSearch(){
+        if unitWasSelected, var selected = selectedUnit, let piece = getCoord(of: selected){ //?? nil
+            if selected.getCanMove(){
+                board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
+                selected.movementCount+=1
+                
+                if terrainBoard[piece.row][piece.col].rawMaterials>0{
+                    materialNew+=1
+                    terrainBoard[piece.row][piece.col].rawMaterials-=1
+                    audio.playSFX(.grabbing)
+                }
+                else {
+                    audio.playSFX(.empty)
+                }
+            }
+            selectedUnit = selected
+        }
+        canAnyoneMove = isAnyoneStillActive()
+        turn = UUID()
+        if !(selectedUnit?.getCanMove() ?? true) {
+            deselectUnit()
+        }
+    }
 }
 

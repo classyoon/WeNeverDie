@@ -17,6 +17,7 @@ struct CampView: View {
     // TODO: remove Timer from production. for testing purposes only
     //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
     var gameCon : GameCondition = GameCondition.shared
+    var stock : Stockpile = Stockpile.shared
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {

@@ -17,8 +17,16 @@ struct StatusViewBar: View {
                 .frame(maxWidth: 70)
                 .padding()
             CountDown(vm: vm, uiSettings: gameData.uiSetting)
-            FoodCounter(vm: vm)
-            SearchButton(vm: vm)
+            Text("-- Collected --")
+            HStack{
+                FoodCounter(vm: vm)
+                MaterialCounter(vm: vm)
+            }
+            Text("-- Search for --")
+            HStack{
+                SearchButton(vm: vm)
+                SearchForMaterialsButton(vm: vm)
+            }
             NextTurnButton(uiSettings: gameData.uiSetting, vm: vm)
             
         }

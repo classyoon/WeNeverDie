@@ -39,15 +39,15 @@ class BuildingManager : ObservableObject {
     @Published var buildings : [Building]
     init() {
         self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [BuildingData( name: "Cure", workCost: 50), BuildingData(name: "Upgrade", workCost: 10)])
-        self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 10, rate: 3, produces: .food)
+        self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 10, materialCost : 10, rate: 3, produces: .food)
         self.house = load(key: "house") ?? ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
         self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 10, rate: 3, produces: .material)
         self.buildings = [Building]()
         
         buildings.append(ResourceProducer(extraModel: mine))
         buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
-        print("Intializing...")
-        print("Constructed \(buildings[0].name), has \(buildings[0].workers) workers")
+        buildings.append(ResourceProducer(extraModel: farm))
+      
     }
     var withdrawWorkersWhenBuildingIsCompleted: Bool = true
     
@@ -103,8 +103,9 @@ class BuildingManager : ObservableObject {
         }
     }
     func canAssignWorker(to building: Building) -> Bool {
-        
         let assignedWorkers = buildings.reduce(0) { $0 + $1.workers }
+        print("\(assignedWorkers) are working")
+        print("\(Stockpile.shared.getNumOfPeople()-Stockpile.shared.getSurvivorSent()) are not working")
         let result = assignedWorkers < Stockpile.shared.getNumOfPeople()-Stockpile.shared.getSurvivorSent()
         return result
     }

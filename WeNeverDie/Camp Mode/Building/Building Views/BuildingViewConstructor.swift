@@ -22,7 +22,7 @@ class BuildingViewConstructor {
     let workerTitle = "Workers"
     let builderTitle = "Builders"
     let insufficentResourcesText = "Not enough resources, Need"
-    
+   var stockpile : Stockpile = Stockpile.shared
     func workerText(for building: Building) -> String {
         if !building.isComplete {
             return "\(builderTitle): \(building.workers)"
@@ -39,13 +39,13 @@ class BuildingViewConstructor {
             return "Build a \(building.name) | Progress : \(building.workProgress) / \(building.workCost)"
         }
     }
-    func startConstructionButton(for building: Building, buildMan: BuildingManager, stockpile : Stockpile) -> some View {
+    func startConstructionButton(for building: Building, buildMan: BuildingManager) -> some View {
         Group {
-            if checkBuildRequirements(for: building, stockpile: stockpile){
+            if checkBuildRequirements(for: building){
                 Button(startToBuild) {
                     building.constructionStarted = true
                     buildMan.assignWorker(to: building)
-                    stockpile.stockpileData.buildingResources -= building.materialCost
+                    Stockpile.shared.stockpileData.buildingResources -= building.materialCost
                 }
             } else if !building.constructionStarted{
                 Text(giveInsufficent(for:building.materialCost))
@@ -56,11 +56,11 @@ class BuildingViewConstructor {
         return "\(insufficentResourcesText) \(cost)"
         
     }
-    func checkBuildRequirements(for building : Building, stockpile : Stockpile)->Bool{
-        return !building.constructionStarted && stockpile.getNumOfMat() >= building.materialCost
+    func checkBuildRequirements(for building : Building)->Bool{
+        return !building.constructionStarted && Stockpile.shared.getNumOfMat() >= building.materialCost
     }
-    func deductCost(of building : Building, from stockpile : Stockpile){
-        stockpile.stockpileData.buildingResources -= building.materialCost
+    func deductCost(of building : Building){
+        Stockpile.shared.stockpileData.buildingResources -= building.materialCost
     }
     
     func workerButtons(for building: Building, buildMan: BuildingManager) -> some View {
@@ -87,14 +87,14 @@ class BuildingViewConstructor {
     }
     
     
-    func buildingButtons(for building: Building, buildMan: BuildingManager, stock : Stockpile) -> some View {
+    func buildingButtons(for building: Building, buildMan: BuildingManager) -> some View {
         Group {
             if building.isComplete && building is AdvancementBuilding {
                 Text("Researcher Jobs not implemented yet")
                
             } else {
     
-                startConstructionButton(for: building, buildMan: buildMan, stockpile: stock)
+                startConstructionButton(for: building, buildMan: buildMan)
                 workerButtons(for: building, buildMan: buildMan)
             }
         }

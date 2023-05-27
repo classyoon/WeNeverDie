@@ -14,7 +14,7 @@ struct CampStats : View {
     @Binding var showBoard : Bool
     @ObservedObject var uiSettings : UserSettingsManager
     
-  var stockpile : Stockpile = Stockpile.shared
+  @ObservedObject var stockpile : Stockpile = Stockpile.shared
     
     @State var survivorsArr: [Int] = []
     
@@ -41,7 +41,7 @@ struct CampStats : View {
         if gameData.stockpile.isStarving(){
             return "We are starving. Days till death \(gameData.gameCon.getDeathCountdown())"
         }
-        if Stockpile.shared.getNumOfFood() <= 0{
+        if Stockpile.shared.getNumOfFood() < 0{
             return "If you see this then it is a bug. You shouldn't see this."
         }
         else{

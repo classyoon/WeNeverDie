@@ -16,7 +16,23 @@ struct SearchButton: View {
                 vm.searchLocationVM()
                 
             } label: {
-                Text("Search")
+                Text("Food")
+            }
+            .foregroundColor(vm.canAnyoneMove ? .white : .red)
+            .buttonStyle(.borderedProminent)
+        }
+    }
+}
+struct SearchForMaterialsButton: View {
+    @ObservedObject var vm : Board
+    var body: some View {
+        VStack(spacing: 30.0){
+            Button {
+                
+                vm.secondSearch()
+                
+            } label: {
+                Text("Materials")
             }
             .foregroundColor(vm.canAnyoneMove ? .white : .red)
             .buttonStyle(.borderedProminent)

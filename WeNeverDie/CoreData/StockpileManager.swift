@@ -36,6 +36,7 @@ class Stockpile : ObservableObject {
         stockpileData.survivorNumber+=vm.UnitsRecruited
         stockpileData.survivorNumber-=vm.UnitsDied
         stockpileData.survivorSent = 0
+        stockpileData.buildingResources += vm.materialNew
     }
     func runOutOfPeople()->Bool{
         return stockpileData.runOutOfPeople()
@@ -58,14 +59,20 @@ class Stockpile : ObservableObject {
     func getSurvivorSent()->Int{
         return stockpileData.survivorSent
     }
+    func getBuilders()->Int{
+        return stockpileData.builders
+    }
     func setSurvivorSent(_ survivors : Int){
     stockpileData.survivorSent = survivors
+    }
+    func setBuilders(_ survivors : Int){
+    stockpileData.builders = survivors
     }
 }
 
 struct StockpileModel : Codable, Identifiable {
     var id = UUID()
-    var foodStored : Int = 3
+    var foodStored : Int = 100
     var survivorNumber : Int = 3
     var builders : Int = 0
     var buildingResources : Int = 10
@@ -75,7 +82,7 @@ struct StockpileModel : Codable, Identifiable {
         foodStored<0 ? true : false
     }
     var unemployed : Int {
-        survivorNumber-builders
+        survivorNumber-builders-survivorSent
     }
     mutating func reset(){
         survivorNumber = survivorDefaultNumber

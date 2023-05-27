@@ -11,20 +11,21 @@ struct LazySurvivorSelector: View {
     
     @ObservedObject var GameData: ResourcePool
     @ObservedObject var uiSettings : UserSettingsManager
+    @ObservedObject var stock = Stockpile.shared
     
     var body: some View {
         VStack{
             HStack{
-                
-                ForEach(0..<GameData.selectStatuses.count-GameData.stockpile.stockpileData.builders, id: \.self){ index in
-                  
+                ForEach(0..<GameData.selectStatuses.count-stock.getBuilders(), id: \.self){ index in
                         Button {
-                            GameData.balance(index)
+                            
+                                GameData.balance(index)
+                            
                             GameData.audio.playSFX(.enterDoor)
                         } label: {
                             Image(systemName: uiSettings.switchToLeft ?
-                                  (index >= GameData.selectStatuses.count - GameData.stockpile.getSurvivorSent() ? "person.fill" : "person") :
-                                    (index < GameData.stockpile.getSurvivorSent() ? "person.fill" : "person")) .resizable()
+                                  (index >= GameData.selectStatuses.count -  Stockpile.shared.getSurvivorSent() ? "person.fill" : "person") :
+                                    (index < Stockpile.shared.getSurvivorSent() ? "person.fill" : "person")) .resizable()
                                 .aspectRatio(1, contentMode: .fit)
                         }
                     

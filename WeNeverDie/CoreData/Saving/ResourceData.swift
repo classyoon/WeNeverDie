@@ -30,7 +30,7 @@ struct ResourcePoolData : Codable & Identifiable {
         days = 0
         stockpileData = StockpileModel()
         gameConData = GameConditionModel()
-        selectStatuses = Array(repeating: false, count: stockpileData.survivorNumber)
+        selectStatuses = Array(repeating: false, count: stockpileData.survivorNumber-stockpileData.builders)
         
     }
 //    init(foodStored: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
