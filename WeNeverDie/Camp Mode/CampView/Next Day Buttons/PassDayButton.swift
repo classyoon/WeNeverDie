@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct PassDayButton: View {
-    var canSendMission: Bool {
-        surivorsSentOnMission != 0
-    }
+    @ObservedObject var stockpile : Stockpile = Stockpile.shared
+   
     @Binding var surivorsSentOnMission: Int
     @ObservedObject var gameData : ResourcePool
-    var stockpile : Stockpile = Stockpile.shared
+   
     @Binding var showBoard: Bool
     func shouldShowMap() -> Bool {
-        if surivorsSentOnMission > 0 {
+        if Stockpile.shared.getSurvivorSent() > 0 {
             return true
         }
         return false
@@ -32,9 +31,8 @@ struct PassDayButton: View {
     var body: some View {
         Button {
             campPassDay()
-            if canSendMission {
-              
-                gameData.audio.playSFX(.carStarting)
+            if shouldShowMap() {
+               showBoard = true
             }
         } label: {
             VStack {

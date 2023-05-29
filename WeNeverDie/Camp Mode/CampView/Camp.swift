@@ -27,7 +27,6 @@ struct CampView: View {
                     //MARK: Stats
                     CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard, uiSettings: gameData.uiSetting)
                     Spacer()
-                    PassDayButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
                 }
                 HStack{
                     BeginMissionButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)

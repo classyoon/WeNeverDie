@@ -17,7 +17,8 @@ struct CureProgressInfoView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
-            .frame(width: 400, height: 200)
+            //.frame(width: 400, height: 200)
+            .frame(height: 200)
             .overlay(
                 VStack{
                     
@@ -26,7 +27,8 @@ struct CureProgressInfoView: View {
                         VStack{
                             ForEach(buildingMan.buildings.indices, id: \.self) { index in
                                 
-                                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan, stock: stock).frame(width: 500)
+                                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan, stock: stock).padding(1)
+                                    //.frame(width: 500)
                                 
                             }
                         }

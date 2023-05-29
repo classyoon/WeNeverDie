@@ -37,12 +37,14 @@ class ResourcePool : ObservableObject {
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses
         self.stockpileData = resourcePoolData.stockpileData
+        self.gameConData = resourcePoolData.gameConData
+        buildingMan.saveAll()
     }
     
     func reset() {
-        stockpile.reset()
+        Stockpile.shared.reset()
         selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople()-stockpile.stockpileData.builders)
-        gameCon.reset()
+        GameCondition.shared.reset()
         audio.playMusic("Kurt")
         days = 0
     }
@@ -60,7 +62,7 @@ class ResourcePool : ObservableObject {
     }
     func generateMap() -> Board{
         
-        return Board(players: stockpile.getSurvivorSent(), audio, uiSetting)
+        return Board(players: Stockpile.shared.getSurvivorSent(), audio, uiSetting)
     }
     
     func passDay(){
@@ -98,17 +100,17 @@ class ResourcePool : ObservableObject {
     }
     
     func balance(_ index: Int) {
-    
-            selectingSurvivors(index)
+        
+        selectingSurvivors(index)
         
     }
     func selectingSurvivors(_ index: Int){
         
-//        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
-//            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
-//                selectStatuses[i] = false
-//            }
-//        }
+        //        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
+        //            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
+        //                selectStatuses[i] = false
+        //            }
+        //        }
         if lastTappedIndex == index {
             // Tapped the same button twice set all buttons to false
             for i in 0...index {
@@ -130,29 +132,7 @@ class ResourcePool : ObservableObject {
             }
             lastTappedIndex = index
         }
+        print("Survivors selected \(Stockpile.shared.getSurvivorSent())")
     }
-    func selectingBuilders(_ index: Int){
-        if lastTappedIndex == index {
-            // Tapped the same button twice set all buttons to false
-            for i in 0...index {
-                selectStatuses[i] = false
-            }
-            stockpile.setBuilders(0)
-            lastTappedIndex = nil
-        } else {
-            // Set the survivorSent value based on the index and switchToLeft flag
-            if uiSetting.switchToLeft {
-                stockpile.setBuilders(selectStatuses.count - index)
-            } else {
-                stockpile.setBuilders(index + 1)
-            }
-            
-            // Set the selectStatuses array based on the survivorSent value
-            for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < stockpile.getBuilders())
-            }
-            lastTappedIndex = index
-        }
-    }
-
+    
 }

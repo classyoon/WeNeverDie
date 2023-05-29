@@ -11,7 +11,8 @@ import SwiftUI
 
 struct TutorialView: View {
     @ObservedObject var gameData : ResourcePool
-    @State var seenTutorialBool : Bool
+    
+    @ObservedObject var gameCon : GameCondition = GameCondition.shared
     @State var largeText = false
     var testBool  = true
     var body: some View {
@@ -20,8 +21,7 @@ struct TutorialView: View {
                 Button("Toggle Text Enlargement") {
                     largeText.toggle()
                 }.buttonStyle(.bordered).font(.largeTitle)
-                (!seenTutorialBool ? SkipTutorialButton(gameData: gameData) : nil)
-//                (!gameData.hasViewedTutorial ? SkipTutorialButton(gameData: gameData) : nil)
+                (gameCon.checkViewedTutorial() ? SkipTutorialButton(gameData: gameData) : nil)
                 introText()
                 HowToMove()
                 Spacer()
@@ -29,7 +29,7 @@ struct TutorialView: View {
                 enemyView()
                 tileExplainView()
                 sendOff()
-                (!seenTutorialBool ? firstTutorialExit(gameData: gameData) : nil)
+                (gameCon.checkViewedTutorial()  ? firstTutorialExit(gameData: gameData) : nil)
             }.textSelection(.enabled)
                 .font(largeText ? .title2 : .body).padding().navigationTitle("Tutorial")
         }
@@ -38,7 +38,7 @@ struct TutorialView: View {
 
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
-        TutorialView(gameData: (ResourcePool()), seenTutorialBool: false)
+        TutorialView(gameData: (ResourcePool()))
     }
 }
 

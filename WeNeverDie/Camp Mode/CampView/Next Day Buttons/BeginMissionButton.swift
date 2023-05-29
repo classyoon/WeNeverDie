@@ -12,35 +12,40 @@ struct BeginMissionButton: View {
     @ObservedObject var gameData: ResourcePool
     @State var degrees: Double = 0
     @Binding var showBoard: Bool
-    var canSendMission: Bool {
-        return surivorsSentOnMission != 0
+    @ObservedObject var stockpile : Stockpile = Stockpile.shared
+    func checkSendMission()->Bool{
+        return stockpile.getSurvivorSent() > 0
     }
+    
     
     var body: some View {
     Button {
             withAnimation {
                 degrees = degrees == 0 ? 180 : 0
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + (checkSendMission() ? 1.0 : 0)) {
                 // Code you want to be delayed
-                showBoard = true
-                gameData.audio.playSFX(.carStarting)
-              
+                if checkSendMission() {
+                    showBoard = true
+                    gameData.audio.playSFX(.carStarting)
+                }
+                else {
+                    gameData.passDay()
+                }
             }
         } label: {
             VStack {
                 //MARK: Mission Start
-                Image("Bus")
+                    Image(checkSendMission() ? "Bus" : "Clock")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .shadow(color: .white, radius: canSendMission ? 5 : 0)
-                    .rotation3DEffect(.degrees(degrees), axis: (x: 0, y: 1, z: 0))
-                Text("Start Mission")
+                    .shadow(color: .white, radius: checkSendMission() ? 5 : 15)
+                    .rotation3DEffect(checkSendMission() ? .degrees(degrees) : .degrees(0), axis: (x: 0, y: 1, z: 0))
+                Text(checkSendMission() ? "Start Mission" : "Stay Inside")
                     .foregroundColor(.white)
                     .bold()
             }
-        }.disabled(!canSendMission)
-            .opacity(canSendMission ? 1 : 0.6)
+        }.opacity(1)
             .padding()
             .frame(maxHeight: UIScreen.screenHeight * 0.4)
     }

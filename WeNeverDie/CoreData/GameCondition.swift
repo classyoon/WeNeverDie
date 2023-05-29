@@ -20,7 +20,7 @@ class GameCondition : ObservableObject {
     
     func checkForDefeat() {
         print("check for defeat starting at \(data.progressToDeath)")
-        if !starving {
+        if !starving && data.progressToDeath>0{
             data.progressToDeath -= 1
             print("Regen")
         } else {

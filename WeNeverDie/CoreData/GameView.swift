@@ -14,12 +14,13 @@ struct GameView: View {
     @ObservedObject var board: Board
     @State var showBoard = outsideTesting && devMode ? true : false
     @ObservedObject var buildMan : BuildingManager
+    @ObservedObject var gameCon : GameCondition = GameCondition.shared
     var body: some View {
         ZStack {
             VStack {
                 
-                if gameData.gameCon.data.hasViewedTutorial {
-                    TutorialView(gameData: gameData, seenTutorialBool: gameData.gameCon.data.hasViewedTutorial)
+                if GameCondition.shared.checkViewedTutorial() {//BROKEN
+                    TutorialView(gameData: gameData)
                 }
                 else if  showBoard {
                     // Show the tutorial

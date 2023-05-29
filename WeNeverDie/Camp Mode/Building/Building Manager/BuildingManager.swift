@@ -54,12 +54,13 @@ class BuildingManager : ObservableObject {
         }
     }
     func saveAll(){
-        save(items: farm, key: "farm")
         save(items: mine, key: "mine")
+        save(items: farm, key: "farm")
         save(items: house, key: "house")
         save(items: cure, key: "cure")
         save(items: upgrade, key: "upgrade")
     }
+
     func utilizeBuilding(_ building : Building){
         
         if let advancementBuilding = building as? AdvancementBuilding, !advancementBuilding.hasGiven {
