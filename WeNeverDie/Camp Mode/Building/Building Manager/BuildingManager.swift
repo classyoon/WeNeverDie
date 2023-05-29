@@ -14,20 +14,21 @@ class BuildingManager : ObservableObject {
         didSet {
             // Save function.
             save(items: advancementBuilding, key: "lab")
-            
+            print("Saved lab")
         }
     }
     @Published var farm : ProducerData {
         didSet {
             // Save function.
             save(items: farm, key: "farm")
+            print("Saved farm")
         }
     }
     @Published var mine : ProducerData {
         didSet {
             // Save function.
             save(items: mine, key: "mine")
-            print("Workers \(advancementBuilding.workers)")
+            print("Saved mine")
         }
     }
     @Published var house : ProducerData {
@@ -36,6 +37,7 @@ class BuildingManager : ObservableObject {
             save(items: house, key: "house")
         }
     }
+   
     @Published var buildings : [Building]
     init() {
         self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [BuildingData( name: "Cure", workCost: 50), BuildingData(name: "Upgrade", workCost: 10)])
@@ -47,7 +49,7 @@ class BuildingManager : ObservableObject {
         buildings.append(ResourceProducer(extraModel: mine))
         buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
         buildings.append(ResourceProducer(extraModel: farm))
-      
+        
     }
     var withdrawWorkersWhenBuildingIsCompleted: Bool = true
     
@@ -59,19 +61,16 @@ class BuildingManager : ObservableObject {
     
     func updateWorkProgress() {
         for building in buildings {
-            
             building.updateBuilding()
-            
             if building.isComplete {
                 if building.autoWithDrawed == false && withdrawWorkersWhenBuildingIsCompleted {
-                    print("withdrawing workers")
                     returnAllWorkers(from: building)
-                    
                 }
                 
                 utilizeBuilding(building)
             }
         }
+        mine = buildings[0].model as! ProducerData
     }
     func utilizeBuilding(_ building : Building){
         
@@ -82,6 +81,7 @@ class BuildingManager : ObservableObject {
             runProductionBuildings(resourceProducer)
         }
     }
+    
     
     func activateAdvancement(_ advancementBuilding : AdvancementBuilding){
         advancementBuilding.hasGiven = true

@@ -30,13 +30,11 @@ class BuildingViewConstructor {
             return "\(workerTitle): \(building.workers)"
         }
     }
-    
-    
     func workCostText(for building: Building) -> String {
         if building.isComplete {
             return "\(building.name)"
         } else {
-            return "Build a \(building.name) | Progress : \(building.workProgress) / \(building.workCost)"
+            return "\(building.name) (\(building.workProgress) / \(building.workCost)) <- "
         }
     }
     func startConstructionButton(for building: Building, buildMan: BuildingManager) -> some View {
@@ -67,10 +65,10 @@ class BuildingViewConstructor {
         Group {
             if shouldShowInterface(of: building, using: buildMan) {
                 HStack {
-                    Button(stopConstruction) {
-                        Stockpile.shared.stockpileData.builders -= building.workers
-                        building.workers = 0
-                    }
+//                    Button(stopConstruction) {
+//                        Stockpile.shared.stockpileData.builders -= building.workers
+//                        building.workers = 0
+//                    }
                     Button(decreaseWorkerButton) {
                         buildMan.removeWorker(from: building)
                     }
@@ -89,8 +87,11 @@ class BuildingViewConstructor {
     
     func buildingButtons(for building: Building, buildMan: BuildingManager) -> some View {
         Group {
-            if building.isComplete && building is AdvancementBuilding {
-                Text("Researcher Jobs not implemented yet")
+            if building.name == "Upgrade" {
+                Text("Feature not implemented yet.")
+            }
+            else if building.isComplete && building is AdvancementBuilding {
+                Text("Feature Jobs not implemented yet")
                
             } else {
     

@@ -27,7 +27,6 @@ class ResourcePool : ObservableObject {
     @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
-    @Published var isSelectingForBuilders = false
     
     init() {
         stockpileData = StockpileModel()

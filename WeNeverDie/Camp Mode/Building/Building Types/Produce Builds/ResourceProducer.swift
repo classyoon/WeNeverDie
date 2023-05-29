@@ -29,7 +29,6 @@ class ResourceProducer: Building {
 
     override func doSomething() {
         output = rate * workers
-        print("WOooooooork")
     }
 
     init(extraModel : ProducerData) {

@@ -15,7 +15,7 @@ struct BuildingView: View {
     @State private var showScrapAlert = false
     
     var body: some View {
-        VStack {
+        HStack {
             HStack{
                 Text(constructor.workCostText(for: building))
                 Text(constructor.workerText(for: building))

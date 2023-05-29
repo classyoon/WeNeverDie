@@ -13,7 +13,7 @@ struct WeNeverDieApp: App {
     @StateObject var gameData = ResourcePool()
     @StateObject var board = Board()
     @State var returnedData = ResourcePoolData()
-    
+
     var body: some Scene {
         
         WindowGroup {
@@ -23,6 +23,7 @@ struct WeNeverDieApp: App {
                     returnedData = load(key: key) ?? ResourcePoolData()
                     gameData.setValue(resourcePoolData: returnedData)
                     gameData.audio.playMusic("Kurt")
+                    
                 }
             //DeviceRotationViewTest()
         }

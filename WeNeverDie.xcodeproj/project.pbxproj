@@ -712,6 +712,7 @@
 		CAF8636D2A20036000D5957A /* Building Types */ = {
 			isa = PBXGroup;
 			children = (
+				CAF863A42A22BC1A00D5957A /* Upgrades */,
 				CAF863702A20038700D5957A /* Produce Builds */,
 				CAF8636F2A20037C00D5957A /* Advance Builds */,
 				CAF8636E2A20036F00D5957A /* Default Builds */,
@@ -744,6 +745,13 @@
 				CAF8637B2A20049900D5957A /* ResourceProducer.swift */,
 			);
 			path = "Produce Builds";
+			sourceTree = "<group>";
+		};
+		CAF863A42A22BC1A00D5957A /* Upgrades */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Upgrades;
 			sourceTree = "<group>";
 		};
 		E5DE11A529AD28E10095416B /* Style */ = {
