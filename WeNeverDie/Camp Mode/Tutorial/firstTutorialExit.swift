@@ -9,10 +9,12 @@ import SwiftUI
 
 struct firstTutorialExit: View {
     @ObservedObject var gameData : ResourcePool
+    @ObservedObject var gameCon : GameCondition = GameCondition.shared
     @AppStorage("viewedTutorial") var didViewTutorial: Bool = false
     var body: some View {
         Button("Begin Game"){
             didViewTutorial = true
+            gameCon.data.hasViewedTutorial = true
         }.buttonStyle(.bordered)
             .padding()
     }

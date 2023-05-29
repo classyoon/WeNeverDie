@@ -21,7 +21,7 @@ struct TutorialView: View {
                 Button("Toggle Text Enlargement") {
                     largeText.toggle()
                 }.buttonStyle(.bordered).font(.largeTitle)
-                (gameCon.checkViewedTutorial() ? SkipTutorialButton(gameData: gameData) : nil)
+                (!gameCon.checkViewedTutorial() ? SkipTutorialButton(gameData: gameData) : nil)
                 introText()
                 HowToMove()
                 Spacer()
@@ -29,7 +29,7 @@ struct TutorialView: View {
                 enemyView()
                 tileExplainView()
                 sendOff()
-                (gameCon.checkViewedTutorial()  ? firstTutorialExit(gameData: gameData) : nil)
+                (!gameCon.checkViewedTutorial()  ? firstTutorialExit(gameData: gameData) : nil)
             }.textSelection(.enabled)
                 .font(largeText ? .title2 : .body).padding().navigationTitle("Tutorial")
         }

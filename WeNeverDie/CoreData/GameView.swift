@@ -19,7 +19,7 @@ struct GameView: View {
         ZStack {
             VStack {
                 
-                if GameCondition.shared.checkViewedTutorial() {//BROKEN
+                if !GameCondition.shared.checkViewedTutorial() {//BROKEN
                     TutorialView(gameData: gameData)
                 }
                 else if  showBoard {
