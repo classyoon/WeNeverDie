@@ -26,7 +26,9 @@ struct GameView: View {
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData, uiSettings: gameData.uiSetting)
                 }
                 else {
-                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.stockpile.stockpileData.survivorSent, uiSettings: gameData.uiSetting)
+                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.stockpile.stockpileData.survivorSent, uiSettings: gameData.uiSetting).onAppear{
+                        buildMan.saveAll()
+                    }
                 }
             }
         }.onChange(of: showBoard) { newValue in

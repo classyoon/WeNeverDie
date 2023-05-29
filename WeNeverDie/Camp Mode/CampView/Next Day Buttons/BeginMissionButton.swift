@@ -13,7 +13,7 @@ struct BeginMissionButton: View {
     @State var degrees: Double = 0
     @Binding var showBoard: Bool
     var canSendMission: Bool {
-        surivorsSentOnMission != 0
+        return surivorsSentOnMission != 0
     }
     
     var body: some View {

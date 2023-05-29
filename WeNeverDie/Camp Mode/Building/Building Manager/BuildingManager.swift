@@ -10,46 +10,28 @@ import Foundation
 class BuildingManager : ObservableObject {
     @Published var stockpile : Stockpile = Stockpile.shared
     
-    @Published var advancementBuilding : AdvancementData {
-        didSet {
-            // Save function.
-            save(items: advancementBuilding, key: "lab")
-            print("Saved lab")
-        }
-    }
-    @Published var farm : ProducerData {
-        didSet {
-            // Save function.
-            save(items: farm, key: "farm")
-            print("Saved farm")
-        }
-    }
-    @Published var mine : ProducerData {
-        didSet {
-            // Save function.
-            save(items: mine, key: "mine")
-            print("Saved mine")
-        }
-    }
-    @Published var house : ProducerData {
-        didSet {
-            // Save function.
-            save(items: house, key: "house")
-        }
-    }
-   
+    @Published var advancementBuilding : AdvancementData
+    @Published var farm : ProducerData
+    @Published var mine : ProducerData
+    @Published var house : ProducerData
+    
+    @Published var cure : BuildingData
+    @Published var upgrade : BuildingData
+    
     @Published var buildings : [Building]
     init() {
-        self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [BuildingData( name: "Cure", workCost: 50), BuildingData(name: "Upgrade", workCost: 10)])
+        self.cure = load(key: "cure") ?? BuildingData(name: "Cure", workCost: 20)
+        self.upgrade = load(key: "upgrade") ?? BuildingData(name: "Upgrade", workCost: 50)
+        self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [])
         self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 10, materialCost : 10, rate: 3, produces: .food)
         self.house = load(key: "house") ?? ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
         self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 10, rate: 3, produces: .material)
         self.buildings = [Building]()
-        
+        self.advancementBuilding.techBranch.append(cure)
+        self.advancementBuilding.techBranch.append(upgrade)
         buildings.append(ResourceProducer(extraModel: mine))
         buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
         buildings.append(ResourceProducer(extraModel: farm))
-        
     }
     var withdrawWorkersWhenBuildingIsCompleted: Bool = true
     
@@ -70,7 +52,13 @@ class BuildingManager : ObservableObject {
                 utilizeBuilding(building)
             }
         }
-        mine = buildings[0].model as! ProducerData
+    }
+    func saveAll(){
+        save(items: farm, key: "farm")
+        save(items: mine, key: "mine")
+        save(items: house, key: "house")
+        save(items: cure, key: "cure")
+        save(items: upgrade, key: "upgrade")
     }
     func utilizeBuilding(_ building : Building){
         

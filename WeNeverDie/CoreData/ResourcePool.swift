@@ -72,6 +72,7 @@ class ResourcePool : ObservableObject {
             audio.playMusic("Death")
         }
         checkCure()
+        buildingMan.saveAll()
     }
     func checkCure() {
         for building in buildingMan.buildings {
