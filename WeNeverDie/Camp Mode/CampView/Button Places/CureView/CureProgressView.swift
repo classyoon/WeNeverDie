@@ -11,7 +11,6 @@ struct CureProgressView: View {
     @ObservedObject var gameData : ResourcePool
     @ObservedObject var uiSettings : UserSettingsManager
     @Binding var showCureHelp : Bool
-    
     var constructor = BuildingViewConstructor.shared
     
     var body: some View {
@@ -22,7 +21,7 @@ struct CureProgressView: View {
                     Button {
                         showCureHelp = true
                     } label: {
-                        Image(systemName: gameData.gameCon.data.AlreadyWon ? "syringe.fill" : "syringe")
+                        Image("Hammer")
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(.accentColor)
@@ -34,7 +33,7 @@ struct CureProgressView: View {
             }
             Group{
                 if showCureHelp {
-                    CureProgressInfoView(showCure: $showCureHelp, buildingMan : $gameData.buildingMan, stock : gameData.stockpile)
+                    CureProgressInfoView(showCure: $showCureHelp, stock : gameData.stockpile)
                 }else{
                     Spacer()
                 }

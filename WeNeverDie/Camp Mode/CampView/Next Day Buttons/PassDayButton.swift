@@ -25,7 +25,6 @@ struct PassDayButton: View {
         gameData.passDay()
       
         Stockpile.shared.stockpileData.survivorSent = surivorsSentOnMission
-        gameData.buildingMan.saveAll()
         save(items: ResourcePoolData(resourcePool: gameData), key: key)
     }
     var body: some View {

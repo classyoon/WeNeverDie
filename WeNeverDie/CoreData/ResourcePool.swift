@@ -14,7 +14,7 @@ class ResourcePool : ObservableObject {
     @Published var gameConData : GameConditionModel = GameConditionModel()
     @Published var audio : AudioManager = AudioManager()
     var constructor : BuildingViewConstructor = BuildingViewConstructor.shared
-    @Published var buildingMan : BuildingManager = BuildingManager()
+    @Published var buildingMan : BuildingManager = BuildingManager.shared
     
     
     @Published var stockpileData : StockpileModel = StockpileModel()
@@ -28,22 +28,18 @@ class ResourcePool : ObservableObject {
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
     
-    init() {
-        stockpileData = StockpileModel()
-        stockpile = Stockpile(stockpileData)
-    }
-    
     func setValue(resourcePoolData: ResourcePoolData) {
         self.days = resourcePoolData.days
         self.selectStatuses = resourcePoolData.selectStatuses
         self.stockpileData = resourcePoolData.stockpileData
         self.gameConData = resourcePoolData.gameConData
-        buildingMan.saveAll()
     }
     
     func reset() {
         Stockpile.shared.reset()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople()-stockpile.stockpileData.builders)
+        BuildingManager.shared.reset()
+        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        
         GameCondition.shared.reset()
         audio.playMusic("Kurt")
         days = 0
@@ -74,7 +70,7 @@ class ResourcePool : ObservableObject {
             audio.playMusic("Death")
         }
         checkCure()
-        buildingMan.saveAll()
+        save(items: ResourcePoolData(resourcePool: self), key: key)
     }
     func checkCure() {
         for building in buildingMan.buildings {
@@ -95,7 +91,8 @@ class ResourcePool : ObservableObject {
     }
     func hardmodeReset(){
         reset()
-        stockpile = Stockpile(StockpileModel(foodStored: 0, survivorNumber: 1))
+        Stockpile.shared.stockpileData.foodStored = 0
+        Stockpile.shared.stockpileData.survivorNumber = 1
         selectStatuses = Array(repeating: false, count: 1)
     }
     
@@ -105,6 +102,7 @@ class ResourcePool : ObservableObject {
         
     }
     func selectingSurvivors(_ index: Int){
+        print("Survivors selected \(Stockpile.shared.getSurvivorSent()), Builders : \(Stockpile.shared.getBuilders())")
         
         //        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
         //            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
@@ -132,7 +130,7 @@ class ResourcePool : ObservableObject {
             }
             lastTappedIndex = index
         }
-        print("Survivors selected \(Stockpile.shared.getSurvivorSent())")
+        print("Survivors selected \(Stockpile.shared.getSurvivorSent()), Builders : \(Stockpile.shared.getBuilders())")
     }
     
 }

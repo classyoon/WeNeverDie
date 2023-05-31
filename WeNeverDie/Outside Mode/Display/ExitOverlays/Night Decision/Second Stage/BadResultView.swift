@@ -11,17 +11,18 @@ struct BadResultView: View {
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
     @Binding var showBoard : Bool
+    @ObservedObject var stockpile = Stockpile.shared
     var body: some View {
         VStack{
-            Text(gameData.stockpile.getNumOfPeople() != 1 ? "End Mission : Gathered \(vm.foodNew) pieces of food. Someone didn't make it though." : "It was agony...\nYou didn't make it...")
+            Text(stockpile.getNumOfPeople() != 1 ? "End Mission : Gathered \(vm.foodNew) pieces of food. Someone didn't make it though." : "It was agony...\nYou didn't make it...")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 showBoard = false
-                gameData.transferResourcesToResourcePool(vm: vm)
+                stockpile.transferResourcesToResourcePool(vm: vm)
                 gameData.passDay()
                
             } label: {
-                Text(gameData.stockpile.getNumOfPeople() != 1 ? "Move on" : "Perish")
+                Text(stockpile.getNumOfPeople() != 1 ? "Move on" : "Perish")
             }.buttonStyle(.borderedProminent)
             
         }.padding()

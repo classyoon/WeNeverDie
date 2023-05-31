@@ -16,19 +16,19 @@ import Foundation
 import Foundation
 class Stockpile : ObservableObject {
     @Published var stockpileData : StockpileModel
+
+    
     var survivorDefaultNumber : Int = 3
     static let shared = Stockpile()
     private init() {
-        self.stockpileData = StockpileModel()
-    }
-    init(_ stock : StockpileModel) {
-        self.stockpileData = stock
+        self.stockpileData = load(key: "stocks") ?? StockpileModel()
     }
     func reset(){
         stockpileData.reset()
     }
     func calcConsumption(){
         stockpileData.calcConsumption()
+        save(items: stockpileData, key: "stocks")
     }
     
     func transferResourcesToResourcePool(vm : Board){
@@ -37,6 +37,8 @@ class Stockpile : ObservableObject {
         stockpileData.survivorNumber-=vm.UnitsDied
         stockpileData.survivorSent = 0
         stockpileData.buildingResources += vm.materialNew
+        print(vm.UnitsRecruited)
+            save(items: stockpileData, key: "stocks")
     }
     func runOutOfPeople()->Bool{
         return stockpileData.runOutOfPeople()
@@ -68,8 +70,8 @@ class Stockpile : ObservableObject {
     func setBuilders(_ survivors : Int){
     stockpileData.builders = survivors
     }
+    
 }
-
 struct StockpileModel : Codable, Identifiable {
     var id = UUID()
     var foodStored : Int = 10
@@ -84,6 +86,7 @@ struct StockpileModel : Codable, Identifiable {
     var unemployed : Int {
         survivorNumber-builders-survivorSent
     }
+    
     mutating func reset(){
         survivorNumber = survivorDefaultNumber
         foodStored = 10

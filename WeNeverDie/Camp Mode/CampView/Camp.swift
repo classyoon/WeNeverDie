@@ -16,8 +16,8 @@ struct CampView: View {
     @ObservedObject var uiSettings: UserSettingsManager
     // TODO: remove Timer from production. for testing purposes only
     //    let timer = Timer.publish(every: 10, on: .current, in: .common).autoconnect()
-    var gameCon : GameCondition = GameCondition.shared
-    var stock : Stockpile = Stockpile.shared
+   @State var gameCon : GameCondition = GameCondition.shared
+   @State var stock : Stockpile = Stockpile.shared
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -25,11 +25,11 @@ struct CampView: View {
                 VStack {
                     Spacer()
                     //MARK: Stats
-                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, surivorsSentOnMission: $surivorsSentOnMission, showBoard: $showBoard, uiSettings: gameData.uiSetting)
+                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, showBoard: $showBoard, uiSettings: gameData.uiSetting)
                     Spacer()
                 }
                 HStack{
-                    BeginMissionButton(surivorsSentOnMission: $surivorsSentOnMission, gameData: gameData, showBoard: $showBoard)
+                    BeginMissionButton(gameData: gameData, showBoard: $showBoard)
                     uiSettings.switchToLeft ? Spacer() : nil
                 }
                 !uiSettings.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil

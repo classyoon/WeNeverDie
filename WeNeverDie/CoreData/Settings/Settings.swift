@@ -49,7 +49,7 @@ struct Settings: View {
             Button(uiSettings.switchToLeft ? "Left Hand" : "Right Hand"){
                 uiSettings.toggleLeftHandMode()
             }.buttonStyle(.bordered)
-            !gameData.isInMission ? nil : Text("Reset unavailible during mission")
+            !gameData.isInMission ? nil : Text("Reset unavailable during mission")
             !gameData.isInMission ? ResetButtons(gameData: gameData, uiSettings: uiSettings) : nil
         }
     }

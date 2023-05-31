@@ -11,19 +11,24 @@ let kurtSong = Bundle.main.url(forResource: "Kurt - Cheel", withExtension: "mp3"
 var musicPlayer = try? AVAudioPlayer(contentsOf: (kurtSong!))
 class AudioManager : ObservableObject{
     enum SFXTag: String, CaseIterable{
-        case monsterNoises = "Monster Noises"
-        case longGrowl = "Long Growl"
-        case nom = "Nom"
-        case stab = "stabTrimmed"
-        case footsteps = "cleanFootsteps2.mp3"
-        case grabbing = "trimmedGrabbing"
-        case empty = "EmptySearch.mp3"
-        case badResult = "Wet Eating"
-        case vanDoor = "Van DoorSFX.mp3"
-        case enterDoor = "close door sfx.mp3"
-        case carStarting = "quieter car starting.mp3"
-        case leaving = "LeavingSFX.mp3"
-        case alerted = "Alert Noise Much Louder.mp3"
+        case monsterNoises = "Monster Noises.m4a"
+        case longGrowl = "Long Growl.m4a"
+        case nom = "Nom.m4a"
+        case stab = "betterStabs"
+        case footsteps = "cleanFootsteps2"
+        case grabbing = "betterGrabbing"
+        case empty = "EmptySearch"
+        case badResult = "Wet Eating.m4a"
+        case vanDoor = "Van DoorSFX"
+        case enterDoor = "close door sfx"
+        case carStarting = "quieter car starting"
+        case leaving = "LeavingSFX"
+        case alerted = "Alert Noise 2"
+        case finished = "Smaller Complete Hammer"
+        case wood = "Improved Thump"
+        case starting = "Better Hammer"
+        case next = "Next Turn Quiet"
+        
     }
     var musicPlayer: AVAudioPlayer?
     var songList = [String : URL]()
@@ -36,7 +41,7 @@ class AudioManager : ObservableObject{
             }
         }
     }
-    @Published var musicVolume: Float = 0.5{
+    @Published var musicVolume: Float = 0.1{
         didSet {
             musicPlayer?.volume = musicMute ? 0 : (musicVolume * masterVolume)
         }
@@ -123,25 +128,19 @@ class AudioManager : ObservableObject{
         musicPlayer?.play()
     }
     func soundURL(_ name: String) -> URL {
-        let defaultExt = "m4a"
-        let isSong = (name.contains(" - ") || name.contains(" -") || name.contains("- "))
-        
+        let defaultExt = "mp3"
         var finalExt = defaultExt
         var components = name.components(separatedBy: ".")
         if components.count > 1, let ext = components.popLast()?.lowercased() {
             finalExt = ext
-        } else if isSong {
-            finalExt = "mp3"
         }
-        
         let fileName = components.joined(separator: ".")
         guard let url = Bundle.main.url(forResource: fileName, withExtension: finalExt) else {
             fatalError("Could not find sound file: \(fileName).\(finalExt)")
         }
-        
         return url
     }
-    
+
     func toggleMusicMute() {
         musicMute.toggle()
         if let player = musicPlayer {

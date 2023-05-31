@@ -9,13 +9,13 @@ import SwiftUI
 
 struct BuildingListView: View {
    
-    @ObservedObject var buildingMan : BuildingManager
+    @ObservedObject var buildMan = BuildingManager.shared
     @ObservedObject var stockpile = Stockpile.shared
     var constructor = BuildingViewConstructor.shared
     var body: some View {
         ScrollView{
-            ForEach(buildingMan.buildings.indices, id: \.self) { index in
-                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan).padding()
+            ForEach(buildMan.buildings.indices, id: \.self) { index in
+                BuildingView(building: BuildingManager.shared.buildings[index]).padding()
                 
             }
         }
@@ -24,6 +24,6 @@ struct BuildingListView: View {
 
 struct BuildListView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingListView(buildingMan: BuildingManager())
+        BuildingListView()
     }
 }

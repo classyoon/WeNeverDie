@@ -13,13 +13,14 @@ struct GameView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var board: Board
     @State var showBoard = outsideTesting && devMode ? true : false
-    @ObservedObject var buildMan : BuildingManager
     @ObservedObject var gameCon : GameCondition = GameCondition.shared
+    @ObservedObject var buildingMan : BuildingManager = BuildingManager.shared
+    @ObservedObject var stockpile : Stockpile = Stockpile.shared
     var body: some View {
         ZStack {
             VStack {
                 
-                if !GameCondition.shared.checkViewedTutorial() {//BROKEN
+                if GameCondition.shared.data.hasViewedTutorial {//BROKEN
                     TutorialView(gameData: gameData)
                 }
                 else if  showBoard {
@@ -27,15 +28,13 @@ struct GameView: View {
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData, uiSettings: gameData.uiSetting)
                 }
                 else {
-                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $gameData.stockpile.stockpileData.survivorSent, uiSettings: gameData.uiSetting).onAppear{
-                        buildMan.saveAll()
-                    }
+                    CampView(showBoard: $showBoard, gameData: gameData, surivorsSentOnMission: $stockpile.stockpileData.survivorSent, uiSettings: gameData.uiSetting)
                 }
             }
         }.onChange(of: showBoard) { newValue in
             if newValue {
                 gameData.isInMission = true
-                board.generateBoard(gameData.stockpile.getSurvivorSent())
+                board.generateBoard(stockpile.getSurvivorSent())
                
             }
         }

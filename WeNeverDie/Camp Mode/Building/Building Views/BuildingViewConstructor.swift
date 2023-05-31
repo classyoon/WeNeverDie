@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 class BuildingViewConstructor {
+    var audio = AudioManager()
     static let shared = BuildingViewConstructor()
     private init(){
         
@@ -44,7 +45,9 @@ class BuildingViewConstructor {
                     building.constructionStarted = true
                     buildMan.assignWorker(to: building)
                     Stockpile.shared.stockpileData.buildingResources -= building.materialCost
-                }
+                    self.audio.playSFX(.starting)
+                    
+                }.buttonStyle(.bordered)
             } else if !building.constructionStarted{
                 Text(giveInsufficent(for:building.materialCost))
             }
@@ -71,10 +74,10 @@ class BuildingViewConstructor {
 //                    }
                     Button(decreaseWorkerButton) {
                         buildMan.removeWorker(from: building)
-                    }
+                    }.buttonStyle(.bordered)
                     Button(increaseWorkerButton) {
                         buildMan.assignWorker(to: building)
-                    }
+                    }.buttonStyle(.bordered)
                 }
             }
         }

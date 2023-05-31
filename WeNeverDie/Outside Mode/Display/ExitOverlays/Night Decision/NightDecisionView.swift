@@ -12,6 +12,7 @@ struct NightDecisionView: View {
     @Binding var showBoard : Bool
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
+    @ObservedObject var stockpile = Stockpile.shared
     var body: some View {
         VStack{
             Text("You have to get home now. \(resultCalculator.zombieCount) zombies nearby.")
@@ -20,7 +21,7 @@ struct NightDecisionView: View {
                     // code for the safe option
                     print("Dropping some food and running...")
                     vm.foodNew-=resultCalculator.results.costOfSafeOption
-
+                    
                     vm.neutralOutcome = true
                     vm.audio.playSFX(.carStarting)
                     vm.showEscapeOption = false
@@ -31,7 +32,6 @@ struct NightDecisionView: View {
                     let randomNumber = Double.random(in: 0...1)
                     if randomNumber < resultCalculator.results.chanceOfFailure {
                         vm.UnitsDied+=1
-                        gameData.transferResourcesToResourcePool(vm: vm)
                         print("You were caught by the zombies and lost everything!")
                         vm.badOutcome = true                       
                         vm.audio.playSFX(.badResult)
@@ -41,7 +41,7 @@ struct NightDecisionView: View {
                         print("You made it out safely!")
                         vm.audio.playSFX(.carStarting)
                         vm.showEscapeOption = false
-                        vm.avoidedOutcome = true             
+                        vm.avoidedOutcome = true
                     }
                     
                 }.buttonStyle(.bordered)

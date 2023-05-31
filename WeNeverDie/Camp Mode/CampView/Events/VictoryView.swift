@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VictoryView: View {
     @ObservedObject var gameData: ResourcePool
+    @ObservedObject var gameCon: GameCondition = GameCondition.shared
     var body: some View {
         VStack {
             
@@ -23,8 +24,8 @@ struct VictoryView: View {
             // Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
             HStack(alignment: .top) {
                 Button {
-                    gameData.gameCon.data.victory = false
-                    gameData.gameCon.data.AlreadyWon = true
+                    GameCondition.shared.data.victory = false
+                    GameCondition.shared.data.AlreadyWon = true
                 } label: {
                     Text("Endless")
                         .font(.headline)

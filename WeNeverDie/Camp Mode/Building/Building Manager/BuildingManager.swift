@@ -8,18 +8,8 @@
 import Foundation
 ///GOOD
 class BuildingManager : ObservableObject {
-    @Published var stockpile : Stockpile = Stockpile.shared
-    
-    @Published var advancementBuilding : AdvancementData
-    @Published var farm : ProducerData
-    @Published var mine : ProducerData
-    @Published var house : ProducerData
-    
-    @Published var cure : BuildingData
-    @Published var upgrade : BuildingData
-    
-    @Published var buildings : [Building]
-    init() {
+    static let shared = BuildingManager()
+    private init() {
         self.cure = load(key: "cure") ?? BuildingData(name: "Cure", workCost: 20)
         self.upgrade = load(key: "upgrade") ?? BuildingData(name: "Upgrade", workCost: 50)
         self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 20, materialCost: 10, techBranch: [])
@@ -33,6 +23,18 @@ class BuildingManager : ObservableObject {
         buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
         buildings.append(ResourceProducer(extraModel: farm))
     }
+    
+    @Published var stockpile : Stockpile = Stockpile.shared
+    
+    @Published var advancementBuilding : AdvancementData
+    @Published var farm : ProducerData
+    @Published var mine : ProducerData
+    @Published var house : ProducerData
+    
+    @Published var cure : BuildingData
+    @Published var upgrade : BuildingData
+    
+    @Published var buildings : [Building]
     var withdrawWorkersWhenBuildingIsCompleted: Bool = true
     
     func returnAllWorkers(from building : Building){
@@ -51,14 +53,41 @@ class BuildingManager : ObservableObject {
                 
                 utilizeBuilding(building)
             }
+            if let advancementBuilding = building as? AdvancementBuilding {
+                switch building.name {
+                case "Lab" :
+                    save(items: AdvancementData(buildAdvance: advancementBuilding), key: "lab")
+                default :
+                    break
+                }
+            }
+            if let resourceProducer = building as? ResourceProducer {
+                print("Detected : \(resourceProducer.workProgress)")
+                switch building.name {
+                case "Mine" :
+                    save(items: ProducerData(Producer: resourceProducer), key: "mine")
+                case "Farm" :
+                    save(items: ProducerData(Producer: resourceProducer), key: "farm")
+                case "House" :
+                    save(items: ProducerData(Producer: resourceProducer), key: "house")
+                default :
+                    break
+                }
+            }
+            else {
+                switch building.name {
+                case "Cure" :
+                    save(items : BuildingData(buildData: building), key: "cure")
+                case "Upgrade" :
+                    save(items : BuildingData(buildData: building), key: "upgrade")
+                default :
+                    break
+                }
+            }
         }
-    }
-    func saveAll(){
-        save(items: mine, key: "mine")
-        save(items: farm, key: "farm")
-        save(items: house, key: "house")
-        save(items: cure, key: "cure")
-        save(items: upgrade, key: "upgrade")
+       
+        
+       // saveAll()
     }
 
     func utilizeBuilding(_ building : Building){
@@ -113,6 +142,26 @@ class BuildingManager : ObservableObject {
         }
     }
     
+    func reset(){
+        self.cure = load(key: "cure") ?? BuildingData(name: "Cure", workCost: 1)
+        self.upgrade = load(key: "upgrade") ?? BuildingData(name: "Upgrade", workCost: 50)
+        self.advancementBuilding = load(key: "lab") ?? AdvancementData(name: "Lab", workCost: 1, materialCost: 10, techBranch: [])
+        self.farm = load(key: "farm") ?? ProducerData(name: "Farm", workCost: 1, materialCost : 0, rate: 3, produces: .food)
+        self.house = load(key: "house") ?? ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
+        self.mine = load(key: "mine") ?? ProducerData(name: "Mine", workCost: 1, rate: 3, produces: .material)
+        self.buildings = [Building]()
+        self.advancementBuilding.techBranch.append(cure)
+        self.advancementBuilding.techBranch.append(upgrade)
+        
+        buildings.append(ResourceProducer(extraModel: mine))
+        buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
+        buildings.append(ResourceProducer(extraModel: farm))
+        for building in buildings {
+            building.constructionStarted = false
+            building.workProgress = 0
+            building.workers = 0
+        }
+    }
     func scrap(_ building: Building) {
         Stockpile.shared.stockpileData.builders-=building.workers
         building.workers = 0

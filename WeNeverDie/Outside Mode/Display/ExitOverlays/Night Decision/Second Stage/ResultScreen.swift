@@ -11,14 +11,15 @@ import SwiftUI
 struct ResultScreen: View {
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
+    @ObservedObject var stockpile = Stockpile.shared
     @Binding var showBoard : Bool
     var body: some View {
         VStack{
-            Text(gameData.stockpile.getSurvivorSent() > 1 ? "You sprinted as fast as you could, hopping inside your van and slamming the accelerator. You made it with \(vm.foodNew) pieces of food." : "Y'all sprinted and y'all made it back with \(vm.foodNew) pieces of food")
+            Text(stockpile.getSurvivorSent() > 1 ? "You sprinted as fast as you could, hopping inside your van and slamming the accelerator. You made it with \(vm.foodNew) pieces of food." : "Y'all sprinted and y'all made it back with \(vm.foodNew) pieces of food")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 showBoard = false
-                gameData.transferResourcesToResourcePool(vm: vm)
+                stockpile.transferResourcesToResourcePool(vm: vm)
                 gameData.passDay()
                
             } label: {

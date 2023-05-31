@@ -37,6 +37,15 @@ struct BuildingData : Codable, Identifiable {
         self.constructionStarted = constructionStarted
         self.workCost = workCost
     }
+    init(buildData : Building) {
+        self.name = buildData.name
+        self.workers = buildData.workers
+        self.workProgress = buildData.workProgress
+        self.autoWithDrawed = buildData.autoWithDrawed
+        self.materialCost = buildData.materialCost
+        self.constructionStarted = buildData.constructionStarted
+        self.workCost = buildData.workCost
+    }
     init(advancement : AdvancementData) {
         self.id = advancement.id
         self.name = advancement.name

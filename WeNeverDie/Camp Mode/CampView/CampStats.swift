@@ -10,16 +10,17 @@ import SwiftUI
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
     @Binding var shouldResetGame : Bool
-    @Binding var surivorsSentOnMission: Int
+   
     @Binding var showBoard : Bool
     @ObservedObject var uiSettings : UserSettingsManager
     
+    @ObservedObject var buildingMan : BuildingManager = BuildingManager.shared
   @ObservedObject var stockpile : Stockpile = Stockpile.shared
     
     @State var survivorsArr: [Int] = []
     
     func shouldShowMap() -> Bool{
-        if surivorsSentOnMission > 0{
+        if Stockpile.shared.getSurvivorSent() > 0{
             return true
         }
         return false
@@ -28,17 +29,17 @@ struct CampStats : View {
         gameData.passDay()
         showBoard = shouldShowMap()
         print(showBoard)
-        print("Sent \(surivorsSentOnMission)")
-        gameData.stockpile.setSurvivorSent(surivorsSentOnMission)
+        print("Sent \(Stockpile.shared.getSurvivorSent())")
+        Stockpile.shared.setSurvivorSent(Stockpile.shared.getSurvivorSent())
     }
     func starvationColor()->Color{
-        if gameData.stockpile.getNumOfFood() <= 0 {
+        if Stockpile.shared.getNumOfFood() <= 0 {
             return uiSettings.visionAssist ? Color.purple : Color.red
         }
         return uiSettings.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
-        if gameData.stockpile.isStarving(){
+        if Stockpile.shared.isStarving(){
             return "We are starving. Days till death \(gameData.gameCon.getDeathCountdown())"
         }
         if Stockpile.shared.getNumOfFood() < 0{
@@ -116,6 +117,6 @@ struct CampStats : View {
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false), uiSettings: UserSettingsManager())
+        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), showBoard: Binding.constant(false), uiSettings: UserSettingsManager())
     }
 }

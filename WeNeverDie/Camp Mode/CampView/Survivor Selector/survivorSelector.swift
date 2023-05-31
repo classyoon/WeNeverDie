@@ -10,6 +10,7 @@ import SwiftUI
 struct survivorSelector : View {
     @ObservedObject var gameData : ResourcePool
     var stockpile : Stockpile = Stockpile.shared
+    
     var body: some View {
         VStack(alignment: .trailing) {
             Text("People going outside: \(stockpile.getSurvivorSent()), People in camp: \(stockpile.getNumOfPeople()-stockpile.getSurvivorSent())")

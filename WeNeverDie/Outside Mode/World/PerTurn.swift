@@ -52,6 +52,7 @@ extension Board {
             }
         }
     }
+  
     //MARK: Unused Transfer Survivors
     func transferSurvivorsToCamp()->[any Piece]{
         return survivorList
@@ -63,52 +64,27 @@ extension Board {
 //        }
     }
     //MARK: Check Endmission? Maybe not used?
-    func checkEndMission(playerCoords: [Coord]? = nil){
-        let playerCoords  = playerCoords ?? createLists().playerCoords
-        
-        if playerCoords.isEmpty{
-//            print("END MISSION")
-//            print(survivorList)
-            missionUnderWay = false
+    func checkEndMission(playerCoords: [Coord]? = nil) {
+        let playerCoords = playerCoords ?? createLists().playerCoords
+        if playerCoords.isEmpty {
+            endMission()
             return
-        }
-        else if playerCoords.count == 1{
-            let lastSurvivor = playerCoords[0]
-            if terrainBoard[lastSurvivor.row][lastSurvivor.col].name=="X"{//Exit
-                if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
-                    survivorList.append(survivorOnCoord)
-                    board[lastSurvivor.row][lastSurvivor.col]=nil
-                    if survivorOnCoord.id  == selectedUnit?.id {
-                        selectedUnit = nil
-                        audio.playSFX(.vanDoor)
-                     
-                    }
-                }
-                audio.playSFX(.carStarting)
-                print("END MISSION")
-             
-//                print(survivorList)
-                missionUnderWay = false
-            }
-        }
-        else{
+        } else {
             for survivor in playerCoords {
-                if terrainBoard[survivor.row][survivor.col].name=="X"{//Exit
-                    if let survivorOnCoord = board[survivor.row][survivor.col] {
-                        survivorList.append(survivorOnCoord)
-                        board[survivor.row][survivor.col]=nil
-                        audio.playSFX(.vanDoor)
-                        
-                        if survivorOnCoord.id  == selectedUnit?.id {
-                            selectedUnit = nil
-                            audio.playSFX(.vanDoor)
-                            
-                        }
-                    }
+                if terrainBoard[survivor.row][survivor.col].name == "X" {
+                    handleUnitEscape(survivor: survivor)
                 }
             }
         }
     }
+
+    func endMission() {
+        missionUnderWay = false
+        audio.playSFX(.carStarting)
+    }
+
+
+
     //MARK: Daylight
     func updateDayLightStatus(_ zombieNumber : Int){
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
@@ -125,6 +101,7 @@ extension Board {
     }
     //MARK: Next Turn
     func nextTurn(){
+        //audio.playSFX(.next)
         turnsSinceStart += 1
         let lists = createLists()
        

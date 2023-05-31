@@ -9,26 +9,26 @@ import SwiftUI
 
 struct CureProgressInfoView: View {
     @Binding var showCure : Bool
-    @Binding var buildingMan : BuildingManager
+    @ObservedObject var buildMan = BuildingManager.shared
     @ObservedObject var stock = Stockpile.shared
     var progress = 0
     var max = 0
-   
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(Color(.secondarySystemBackground))
-            //.frame(width: 400, height: 200)
+        //.frame(width: 400, height: 200)
             .frame(height: 200)
             .overlay(
                 VStack{
                     
-//                    Text("Workers \(Stockpile.shared.getNumOfPeople()-Stockpile.shared.getSurvivorSent()), Materials \(Stockpile.shared.getNumOfMat())").padding()
+                    //                    Text("Workers \(Stockpile.shared.getNumOfPeople()-Stockpile.shared.getSurvivorSent()), Materials \(Stockpile.shared.getNumOfMat())").padding()
                     ScrollView{
                         VStack{
-                            ForEach(buildingMan.buildings.indices, id: \.self) { index in
+                            ForEach(BuildingManager.shared.buildings.indices, id: \.self) { index in
                                 
-                                BuildingView(building: buildingMan.buildings[index], buildMan: buildingMan, stock: stock).padding(1)
-                                    //.frame(width: 500)
+                                BuildingView(building: BuildingManager.shared.buildings[index], stock: stock).padding(1)
+                                //.frame(width: 500)
                                 
                             }
                         }
@@ -40,7 +40,7 @@ struct CureProgressInfoView: View {
                     }.buttonStyle(.bordered)
                 }.padding()
             )
-
+        
         
     }
     private var progressString : String {
@@ -59,9 +59,9 @@ struct CureProgressInfo_Previews: PreviewProvider {
     var game = ResourcePool()
     static var previews: some View {
         VStack{
-            CureProgressInfoView(showCure: .constant(true), buildingMan: .constant(BuildingManager()))
+            CureProgressInfoView(showCure: .constant(true))
             //CureProgressView(gameData: ResourcePool(), uiSettings: UserSettingsManager(), showCureHelp: .constant(true), vm: BuildingsViewModel())
-           
+            
         }
     }
 }

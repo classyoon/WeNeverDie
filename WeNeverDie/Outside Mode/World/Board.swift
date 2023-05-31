@@ -155,7 +155,9 @@ class Board : ObservableObject, BoardProtocol {
                     if counter >= amount {
                         break
                     }
-                    set(moveable: playerUnit(name: namesSurvivors[counter], board: self), Coord: Coord(r, c))
+                    var temp = playerUnit(name: namesSurvivors[counter], board: self)
+                    temp.checkForUpgrade()
+                    set(moveable: temp, Coord: Coord(r, c))
                     terrainBoard[r][c].name = "t"
                     counter += 1
                     c += 1

@@ -12,6 +12,7 @@ func save<T: Identifiable & Codable>(items: T, key: String) {
     if let encoded = try? encoder.encode(items) {
         let defaults = UserDefaults.standard
         defaults.set(encoded, forKey: key)
+        print("Saving \(key)")
     }
 }
 func load<T: Identifiable & Codable>(key: String) -> T? {
@@ -19,6 +20,7 @@ func load<T: Identifiable & Codable>(key: String) -> T? {
     
     let decoder = JSONDecoder()
     if let dataArray = try? decoder.decode(T.self, from: data) {
+        print("Loading \(key)")
         return dataArray
     }
     

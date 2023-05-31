@@ -30,4 +30,18 @@ struct AdvancementData : Codable, Identifiable {
         self.hasGiven = hasGiven
         
     }
+    init(buildAdvance : AdvancementBuilding) {
+        self.id = UUID()
+        self.name = buildAdvance.name
+        self.workers = buildAdvance.workers
+        self.workProgress = buildAdvance.workProgress
+        self.workCost = buildAdvance.workCost
+        self.autoWithDrawed = buildAdvance.autoWithDrawed
+        self.materialCost = buildAdvance.materialCost
+        self.constructionStarted = buildAdvance.constructionStarted
+        self.techBranch = buildAdvance.techBranch
+        self.hasGiven = buildAdvance.hasGiven
+        
+    }
+    
 }

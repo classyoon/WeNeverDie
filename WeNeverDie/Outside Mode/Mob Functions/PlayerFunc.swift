@@ -27,13 +27,29 @@ extension Board {
         deselectUnit()
         board[startPoint.row][startPoint.col]?.incrementMoveCounter()
         turn = UUID()
+        canAnyoneMove = isAnyoneStillActive()
         if secondPiece.trust >= 5 {
             set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
             UnitsRecruited+=1
+            print("Joined!")
             turn = UUID()
+            
             
         }
     }
+    func handleUnitEscape(survivor: Coord) {
+        if let survivorOnCoord = board[survivor.row][survivor.col] {
+            survivorList.append(survivorOnCoord)
+            board[survivor.row][survivor.col] = nil
+            audio.playSFX(.vanDoor)
+            canAnyoneMove = isAnyoneStillActive()
+            if survivorOnCoord.id == selectedUnit?.id {
+                selectedUnit = nil
+                audio.playSFX(.vanDoor)
+            }
+        }
+    }
+
     func movePlayerUnit(tapRow: Int, tapCol: Int, startPoint : Coord, piece : inout any Piece){
         
         move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
@@ -94,7 +110,7 @@ extension Board {
                 if terrainBoard[piece.row][piece.col].rawMaterials>0{
                     materialNew+=1
                     terrainBoard[piece.row][piece.col].rawMaterials-=1
-                    audio.playSFX(.grabbing)
+                    audio.playSFX(.wood)
                 }
                 else {
                     audio.playSFX(.empty)

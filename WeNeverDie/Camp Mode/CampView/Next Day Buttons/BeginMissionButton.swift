@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BeginMissionButton: View {
-    @Binding var surivorsSentOnMission: Int
     @ObservedObject var gameData: ResourcePool
     @State var degrees: Double = 0
     @Binding var showBoard: Bool
@@ -47,11 +46,11 @@ struct BeginMissionButton: View {
             }
         }.opacity(1)
             .padding()
-            .frame(maxHeight: UIScreen.screenHeight * 0.4)
+            .frame(maxWidth: UIScreen.screenWidth * 0.4, maxHeight: UIScreen.screenHeight * 0.4)
     }
 }
 struct BeginMissionButton_Previews: PreviewProvider {
     static var previews: some View {
-        BeginMissionButton(surivorsSentOnMission: .constant(1), gameData: ResourcePool(), showBoard: .constant(false))
+        BeginMissionButton(gameData: ResourcePool(), showBoard: .constant(false))
     }
 }

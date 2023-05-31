@@ -21,10 +21,8 @@ struct ResourcePoolData : Codable & Identifiable {
     init(resourcePool : ResourcePool){
         self.days = resourcePool.days
         self.selectStatuses = resourcePool.selectStatuses
-       
         self.gameConData = resourcePool.gameConData
         self.stockpileData = resourcePool.stockpileData
-        
     }
     init(){
         days = 0
@@ -47,8 +45,8 @@ struct ResourcePoolData : Codable & Identifiable {
 //        self.WinProgress = WinProgress
 //        self.days = days
 //        self.selectStatuses = Array(repeating: false, count: survivorNumber)
-//        
-//    
+//
+//
 //    }
     
 }

@@ -12,11 +12,15 @@ struct LazySurvivorSelector: View {
     @ObservedObject var GameData: ResourcePool
     @ObservedObject var uiSettings : UserSettingsManager
     @ObservedObject var stock = Stockpile.shared
-    
+    var buildMan : BuildingManager = BuildingManager.shared
+//    func checkBuilders()->Int{
+//        Stockpile.shared.setBuilders(buildMan.buildings.reduce(0) { $0 + $1.workers })
+//        return Stockpile.shared.getBuilders()
+//    }
     var body: some View {
         VStack{
             HStack{
-                ForEach(0..<GameData.selectStatuses.count-stock.getBuilders(), id: \.self){ index in
+                ForEach(0..<stock.getNumOfPeople()-stock.getBuilders(), id: \.self){ index in
                         Button {
                             
                                 GameData.balance(index)

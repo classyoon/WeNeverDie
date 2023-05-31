@@ -36,8 +36,6 @@
 		CA2A2E6A2A06C7B4006FEE7D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */; };
 		CA2A2E6B2A06F58C006FEE7D /* Wet Eating.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */; };
 		CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314DD29C8096D00442EC3 /* ResultScreen.swift */; };
-		CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */; };
-		CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */; };
 		CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */; };
 		CA3323192A1C352D0078E79C /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3323182A1C352D0078E79C /* BuildingManager.swift */; };
 		CA33231B2A1C37C80078E79C /* ResourceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33231A2A1C37C80078E79C /* ResourceData.swift */; };
@@ -102,11 +100,16 @@
 		CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA9A036929C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 */; };
 		CA9A036C29C0EED600ED390B /* AlertExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A036B29C0EED600ED390B /* AlertExample.swift */; };
 		CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */; };
+		CAAD62EC2A25641A00670216 /* Next Turn Quiet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62EB2A25641A00670216 /* Next Turn Quiet.mp3 */; };
+		CAAD62EE2A2564A200670216 /* Improved Thump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62ED2A2564A200670216 /* Improved Thump.mp3 */; };
+		CAAD62F02A25651200670216 /* Smaller Complete Hammer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62EF2A25651200670216 /* Smaller Complete Hammer.mp3 */; };
+		CAAD62F22A25655B00670216 /* Better Hammer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F12A25655B00670216 /* Better Hammer.mp3 */; };
+		CAAD62F42A256A4800670216 /* betterGrabbing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */; };
+		CAAD62F62A256ACB00670216 /* betterStabs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F52A256ACB00670216 /* betterStabs.mp3 */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
 		CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8729AD15000037C6F6 /* BoardView.swift */; };
-		CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA16EAF329CAA7330047593B /* stabTrimmed.m4a */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
@@ -166,7 +169,6 @@
 		CA16EAEB29CAA0750047593B /* RightHandButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightHandButtons.swift; sourceTree = "<group>"; };
 		CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftHandButtons.swift; sourceTree = "<group>"; };
 		CA16EAEF29CAA3410047593B /* survivorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = survivorSelector.swift; sourceTree = "<group>"; };
-		CA16EAF329CAA7330047593B /* stabTrimmed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = stabTrimmed.m4a; sourceTree = "<group>"; };
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
@@ -174,8 +176,6 @@
 		CA2A2E692A06C7B4006FEE7D /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		CA3314DD29C8096D00442EC3 /* ResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
 		CA3314DF29C80C0F00442EC3 /* Wet Eating.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wet Eating.m4a"; sourceTree = "<group>"; };
-		CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = trimmedGrabbing.m4a; sourceTree = "<group>"; };
-		CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cleanFootsteps.m4a; sourceTree = "<group>"; };
 		CA3314EB29C9136F00442EC3 /* PieceStatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStatsDisplay.swift; sourceTree = "<group>"; };
 		CA3323182A1C352D0078E79C /* BuildingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		CA33231A2A1C37C80078E79C /* ResourceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceData.swift; sourceTree = "<group>"; };
@@ -241,6 +241,12 @@
 		CA9A036929C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shadows - Anno Domini Beats.mp3"; sourceTree = "<group>"; };
 		CA9A036B29C0EED600ED390B /* AlertExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExample.swift; sourceTree = "<group>"; };
 		CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePool.swift; sourceTree = "<group>"; };
+		CAAD62EB2A25641A00670216 /* Next Turn Quiet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Next Turn Quiet.mp3"; sourceTree = "<group>"; };
+		CAAD62ED2A2564A200670216 /* Improved Thump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Improved Thump.mp3"; sourceTree = "<group>"; };
+		CAAD62EF2A25651200670216 /* Smaller Complete Hammer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Smaller Complete Hammer.mp3"; sourceTree = "<group>"; };
+		CAAD62F12A25655B00670216 /* Better Hammer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Better Hammer.mp3"; sourceTree = "<group>"; };
+		CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterGrabbing.mp3; sourceTree = "<group>"; };
+		CAAD62F52A256ACB00670216 /* betterStabs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterStabs.mp3; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
@@ -413,10 +419,9 @@
 		CA16EAF229CAA7220047593B /* PlayerSFX */ = {
 			isa = PBXGroup;
 			children = (
-				CA3314E129C8DD8900442EC3 /* trimmedGrabbing.m4a */,
-				CA16EAF329CAA7330047593B /* stabTrimmed.m4a */,
 				CAF863092A1E931400D5957A /* cleanFootsteps2.mp3 */,
-				CA3314E929C8E12800442EC3 /* cleanFootsteps.m4a */,
+				CAAD62F52A256ACB00670216 /* betterStabs.mp3 */,
+				CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */,
 				CA9A036329C0DE8D00ED390B /* EmptySearch.mp3 */,
 				CA9A034F29BFF57200ED390B /* knifestabsfx.mp3 */,
 			);
@@ -448,6 +453,10 @@
 		CA17474229A944AB00B81EF8 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				CAAD62EF2A25651200670216 /* Smaller Complete Hammer.mp3 */,
+				CAAD62F12A25655B00670216 /* Better Hammer.mp3 */,
+				CAAD62ED2A2564A200670216 /* Improved Thump.mp3 */,
+				CAAD62EB2A25641A00670216 /* Next Turn Quiet.mp3 */,
 				CA16EAF429CAA7690047593B /* TransitionSFX */,
 				CA16EAF229CAA7220047593B /* PlayerSFX */,
 				CA16EAF129CAA7000047593B /* ZombieSFX */,
@@ -867,8 +876,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA2A2E6B2A06F58C006FEE7D /* Wet Eating.m4a in Resources */,
-				CAE0469829D33DC600E72665 /* stabTrimmed.m4a in Resources */,
-				CA3314E229C8DD8900442EC3 /* trimmedGrabbing.m4a in Resources */,
 				CA9A036429C0DE8D00ED390B /* EmptySearch.mp3 in Resources */,
 				CA9A036829C0E06900ED390B /* LeavingSFX.mp3 in Resources */,
 				CA33239B2A1D520B0078E79C /* car startingSFX.mp3 in Resources */,
@@ -876,15 +883,20 @@
 				CA9A034C29BFD50000ED390B /* Long Growl.m4a in Resources */,
 				CA2A2E682A06C071006FEE7D /* Kurt - Cheel.mp3 in Resources */,
 				CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */,
+				CAAD62F22A25655B00670216 /* Better Hammer.mp3 in Resources */,
+				CAAD62F62A256ACB00670216 /* betterStabs.mp3 in Resources */,
 				CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
+				CAAD62EC2A25641A00670216 /* Next Turn Quiet.mp3 in Resources */,
 				91355A9B293AEE4800907610 /* Assets.xcassets in Resources */,
 				CAF8630C2A1E94E200D5957A /* quieter car starting.mp3 in Resources */,
 				CA9A034829BFD14400ED390B /* Monster Noises.m4a in Resources */,
 				CA9A036629C0DF7200ED390B /* Van DoorSFX.mp3 in Resources */,
+				CAAD62F42A256A4800670216 /* betterGrabbing.mp3 in Resources */,
+				CAAD62EE2A2564A200670216 /* Improved Thump.mp3 in Resources */,
 				CA9A034E29BFD57000ED390B /* Nom.m4a in Resources */,
 				CA9A034A29BFD25400ED390B /* The Dismal Hand - The Whole Other.mp3 in Resources */,
-				CA3314EA29C8E12800442EC3 /* cleanFootsteps.m4a in Resources */,
+				CAAD62F02A25651200670216 /* Smaller Complete Hammer.mp3 in Resources */,
 				CAF8630F2A1E98CA00D5957A /* close door sfx.mp3 in Resources */,
 				CAF863062A1E8FC800D5957A /* Alert Noise 2.mp3 in Resources */,
 				CAF863082A1E916200D5957A /* Alert Noise Much Louder.mp3 in Resources */,

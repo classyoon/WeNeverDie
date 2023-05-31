@@ -21,7 +21,7 @@ struct ExitOverlayView: View {
             Button {
                 vm.showEscapeOption = false
                 showBoard = false
-    
+                stockpile.transferResourcesToResourcePool(vm: vm)
                 gameData.passDay()
             } label: {
                 Text("Back to Camp")

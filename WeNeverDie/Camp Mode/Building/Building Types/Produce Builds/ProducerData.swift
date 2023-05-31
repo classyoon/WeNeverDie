@@ -20,6 +20,21 @@ struct ProducerData : Codable, Identifiable {
     var output = 0
     var produces : ResourceType
     
+    //func setValue()
+    init(Producer : ResourceProducer) {
+    
+    self.name = Producer.name
+    self.workers = Producer.workers
+    self.workProgress = Producer.workProgress
+    self.workCost = Producer.workCost
+    self.autoWithDrawed = Producer.autoWithDrawed
+    self.materialCost = Producer.materialCost
+    self.constructionStarted = Producer.constructionStarted
+    self.rate = Producer.rate
+    self.output = Producer.output
+    self.produces = Producer.produces
+    
+    }
     init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=true, materialCost: Int=0, constructionStarted: Bool=false, rate: Int, output: Int = 0, produces: ResourceType) {
         self.id = UUID()
         self.name = name

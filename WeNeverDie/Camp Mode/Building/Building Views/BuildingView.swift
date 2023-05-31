@@ -10,10 +10,9 @@ import Foundation
 struct BuildingView: View {
     @ObservedObject var building: Building
     var constructor = BuildingViewConstructor.shared
-    @ObservedObject var buildMan : BuildingManager
+    @ObservedObject var buildMan = BuildingManager.shared
     @ObservedObject var stock = Stockpile.shared
     @State private var showScrapAlert = false
-    
     var body: some View {
         HStack {
             HStack{
@@ -33,7 +32,7 @@ struct BuildingView: View {
             if building.constructionStarted && (buildMan.canAssignWorker(to: building) || building.workers > 0) {
                 Button(constructor.confirmScrap) {
                     showScrapAlert = true
-                }
+                }.buttonStyle(.bordered)
                 .alert(isPresented: $showScrapAlert) {
                     Alert(
                         title: Text(constructor.alertText),
@@ -55,6 +54,6 @@ struct BuildingView: View {
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
         
-        BuildingView(building: AdvancementBuilding(extraModel: AdvancementData(name: "Tester", workCost: 10, techBranch: [])), buildMan: BuildingManager())
+        BuildingView(building: AdvancementBuilding(extraModel: AdvancementData(name: "Tester", workCost: 10, techBranch: [])))
     }
 }

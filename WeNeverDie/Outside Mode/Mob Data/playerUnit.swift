@@ -8,6 +8,7 @@
 import SwiftUI
 struct playerUnit: Piece, Identifiable, Equatable{
     
+    @ObservedObject var BuildMan : BuildingManager = BuildingManager.shared
     static func == (lhs: playerUnit, rhs: playerUnit) -> Bool {
         lhs.id == rhs.id
     }
@@ -17,6 +18,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
     let isZombie : Bool = false
     var isStruck = false
    
+
     var isHidden = false
     
     var name : String
@@ -24,13 +26,19 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var damage = 5
     var trust = 0
     var movementCount = 0
-    let stamina = (devMode ? 10 : 2)
+    var stamina = (devMode ? 10 : 2)
     
     var isSelected = false
     var alert = false
     var facing: Direction = .down
 
-    
+    mutating func checkForUpgrade(){
+        for building in BuildMan.buildings {
+            if building.name == "Upgrade" && building.isComplete {
+                stamina = 3
+            }
+        }
+    }
     
     var id = UUID()
     

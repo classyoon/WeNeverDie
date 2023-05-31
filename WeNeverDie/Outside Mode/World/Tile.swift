@@ -14,7 +14,7 @@ struct TileType {
     var houseLoot = 4
     var waterPenalty = 1
     var rawMaterials = 0
-    var rawMaterialsBonus = 4
+    var rawMaterialsBonus = 2
     mutating func setTileBonuses(){
         switch name {
         case "h":
