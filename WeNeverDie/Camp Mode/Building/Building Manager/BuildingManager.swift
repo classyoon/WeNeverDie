@@ -8,11 +8,11 @@
 import Foundation
 ///GOOD
 class BuildingManager : ObservableObject {
-    let labTemplate = AdvancementData(name: "Lab", workCost: 1, materialCost: 0, techBranch: [])
+    let labTemplate = AdvancementData(name: "Lab", workCost: 30, materialCost: 10, techBranch: [])
     let cureTemplate = BuildingData(name: "Cure", workCost: 20, isStartingBuild: false)
     let upgradeTemplate = BuildingData(name: "Upgrade", workCost: 50, isStartingBuild: false)
     let farmTemplate = ProducerData(name: "Farm", workCost: 10, materialCost : 10, rate: 3, produces: .food)
-    let houseTemplate = ProducerData(name: "House", workCost: 20, rate: 1, produces: .people)
+    let houseTemplate = ProducerData(name: "Nursery", workCost: 20, rate: 1, produces: .people)
     let mineTemplate = ProducerData(name: "Mine", workCost: 10, rate: 3, produces: .material)
     
     static let shared = BuildingManager()
@@ -30,6 +30,7 @@ class BuildingManager : ObservableObject {
         
         buildings.append(ResourceProducer(extraModel: mine))
         buildings.append(AdvancementBuilding(extraModel: advancementBuilding))
+        buildings.append(ResourceProducer(extraModel: house))
         buildings.append(ResourceProducer(extraModel: farm))
         buildings.append(Building(model: cure))
         buildings.append(Building(model: upgrade))
@@ -79,7 +80,7 @@ class BuildingManager : ObservableObject {
                     save(items: ProducerData(Producer: resourceProducer), key: "mine")
                 case "Farm" :
                     save(items: ProducerData(Producer: resourceProducer), key: "farm")
-                case "House" :
+                case "Nursery" :
                     save(items: ProducerData(Producer: resourceProducer), key: "house")
                 default :
                     break
@@ -117,6 +118,7 @@ class BuildingManager : ObservableObject {
     func activateAdvancement(_ advancementBuilding : AdvancementBuilding){
         advancementBuilding.hasGiven = true
         //let newBuildings = advancementBuilding.extraModel.techBranch.map { Building(model: $0) }
+        returnAllWorkers(from: advancementBuilding)
         for unlockedBuilding in advancementBuilding.techBranch  {
             for building in buildings {
                 if building.name == unlockedBuilding.name {
@@ -191,7 +193,7 @@ class BuildingManager : ObservableObject {
             Stockpile.shared.stockpileData.builders-=1
         }
     }
-    
+
     func reset(){
         self.cure = load(key: "cure") ?? cureTemplate
         self.upgrade = load(key: "upgrade") ?? upgradeTemplate
@@ -209,6 +211,7 @@ class BuildingManager : ObservableObject {
         buildings.append(ResourceProducer(extraModel: farm))
         buildings.append(Building(model: cure))
         buildings.append(Building(model: upgrade))
+        buildings.append(ResourceProducer(extraModel: house))
         
         for building in buildings {
             building.constructionStarted = false

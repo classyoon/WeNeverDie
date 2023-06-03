@@ -25,7 +25,7 @@ struct CureProgressView: View {
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(.accentColor)
-                            .frame(maxHeight: 70)
+                            .frame(maxHeight: 100)
                         
                     }.padding(.top)
                 }

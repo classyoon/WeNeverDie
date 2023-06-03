@@ -12,7 +12,7 @@ struct AdvancementData : Codable, Identifiable {
     var workers: Int
     var workProgress: Int
     var workCost: Int
-    var autoWithDrawed: Bool
+    var autoWithDrawed: Bool = false
     var materialCost: Int
     var constructionStarted: Bool
     var techBranch : [BuildingData]

@@ -23,7 +23,7 @@ struct MuteToggleButton: View {
                 Text(name)
             }
             // Music volume slider
-            TappableSlider(value: soundSet == .music ? $audio.musicVolume : $audio.sfxVolume,range: 0...1, step: 0.01, isLeftHanded: uiSettings.switchToLeft)//For some reason this code will do
+            TappableSlider(value: soundSet == .music ? $audio.musicVolume : $audio.sfxVolume,range: 0...1, step: 0.01, isLeftHanded: uiSettings.switchToLeft)//FIX THIS Line
             if uiSettings.switchToLeft {
                 Text(name)
             }
@@ -57,6 +57,9 @@ enum SoundSet {
 
 struct MuteToggleButton_Previews: PreviewProvider {
     static var previews: some View {
-        MuteToggleButton(name: "Test", audio: AudioManager(), uiSettings: UserSettingsManager(), soundSet: .sfx)
+        VStack{
+            MuteToggleButton(name: "SFX Test", audio: AudioManager(), uiSettings: UserSettingsManager(), soundSet: .sfx)
+            MuteToggleButton(name: "Music Test", audio: AudioManager(), uiSettings: UserSettingsManager(), soundSet: .music)
+        }
     }
 }

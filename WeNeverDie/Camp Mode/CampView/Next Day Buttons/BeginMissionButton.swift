@@ -18,35 +18,37 @@ struct BeginMissionButton: View {
     
     
     var body: some View {
-    Button {
-            withAnimation {
-                degrees = degrees == 0 ? 180 : 0
-            }
-        DispatchQueue.main.asyncAfter(deadline: .now() + (checkSendMission() ? 1.0 : 0)) {
-                // Code you want to be delayed
-                if checkSendMission() {
-                    showBoard = true
-                    gameData.audio.playSFX(.carStarting)
+        Group{
+            Button {
+                withAnimation {
+                    degrees = degrees == 0 ? 180 : 0
                 }
-                else {
-                    gameData.passDay()
+                DispatchQueue.main.asyncAfter(deadline: .now() + (checkSendMission() ? 1.0 : 0)) {
+                    // Code you want to be delayed
+                    if checkSendMission() {
+                        showBoard = true
+                        gameData.audio.playSFX(.carStarting)
+                    }
+                    else {
+                        gameData.passDay()
+                    }
                 }
-            }
-        } label: {
-            VStack {
-                //MARK: Mission Start
+            } label: {
+                VStack {
+                    //MARK: Mission Start
                     Image(checkSendMission() ? "Bus" : "Clock")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .shadow(color: .white, radius: checkSendMission() ? 5 : 15)
-                    .rotation3DEffect(checkSendMission() ? .degrees(degrees) : .degrees(0), axis: (x: 0, y: 1, z: 0))
-                Text(checkSendMission() ? "Start Mission" : "Stay Inside")
-                    .foregroundColor(.white)
-                    .bold()
-            }
-        }.opacity(1)
-            .padding()
-            .frame(maxWidth: UIScreen.screenWidth * 0.4, maxHeight: UIScreen.screenHeight * 0.4)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .shadow(color: .white, radius: checkSendMission() ? 5 : 15)
+                        .rotation3DEffect(checkSendMission() ? .degrees(degrees) : .degrees(0), axis: (x: 0, y: 1, z: 0))
+                    Text(checkSendMission() ? "Start Mission" : "Stay Inside")
+                        .foregroundColor(.white)
+                        .bold()
+                }
+            }.opacity(1)
+                .padding()
+                
+        }
     }
 }
 struct BeginMissionButton_Previews: PreviewProvider {

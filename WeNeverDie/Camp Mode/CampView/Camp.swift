@@ -21,19 +21,20 @@ struct CampView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                
-                VStack {
-                    Spacer()
-                    //MARK: Stats
-                    CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, showBoard: $showBoard, uiSettings: gameData.uiSetting)
-                    Spacer()
-                }
-                HStack{
-                    BeginMissionButton(gameData: gameData, showBoard: $showBoard)
-                    uiSettings.switchToLeft ? Spacer() : nil
-                }
-                !uiSettings.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
-                uiSettings.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData) : nil
+//                HStack(spacing : 0){
+                    VStack {
+//                        Spacer()
+                        //MARK: Stats
+                        CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, showBoard: $showBoard, uiSettings: gameData.uiSetting)
+                        Spacer()
+                    }
+//                    HStack{
+//                        BeginMissionButton(gameData: gameData, showBoard: $showBoard)
+//                        uiSettings.switchToLeft ? Spacer() : nil
+//                    }
+                !uiSettings.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, showBoard: $showBoard, gameData: gameData) : nil
+                uiSettings.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData, showBoard : $showBoard) : nil
+                //}
                 
             }
             //MARK: Background

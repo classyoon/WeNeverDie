@@ -180,12 +180,14 @@ class Board : ObservableObject, BoardProtocol {
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(players : players, trees: 0.4, houses: 0.2, water: 0.1, exit : bottomRight)
+        terrainBoard = randomGenerateTerrain(players : players, trees: 0.5, houses: 0.3, water: 0.1, exit : bottomRight)
         //print("Terrain generated, generating players")
      
         spawnPlayers(players)
-        spawnZombies(2)
-        set(moveable: recruit(board: self), Coord: randomLoc())
+        spawnZombies(Int.random(in: 1...4))
+        var loc = randomLoc()
+        terrainBoard[loc.row][loc.col].name = "t"
+        set(moveable: recruit(board: self), Coord: loc)
     }
     init(players : Int, _ audioInit : AudioManager, _ settings : UserSettingsManager){
         audio = audioInit

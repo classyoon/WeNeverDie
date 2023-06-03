@@ -105,6 +105,7 @@
 		CAAD62F22A25655B00670216 /* Better Hammer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F12A25655B00670216 /* Better Hammer.mp3 */; };
 		CAAD62F42A256A4800670216 /* betterGrabbing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */; };
 		CAAD62F62A256ACB00670216 /* betterStabs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F52A256ACB00670216 /* betterStabs.mp3 */; };
+		CAB1618E2A2BD7B700EEF16A /* CampInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
@@ -245,6 +246,7 @@
 		CAAD62F12A25655B00670216 /* Better Hammer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Better Hammer.mp3"; sourceTree = "<group>"; };
 		CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterGrabbing.mp3; sourceTree = "<group>"; };
 		CAAD62F52A256ACB00670216 /* betterStabs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterStabs.mp3; sourceTree = "<group>"; };
+		CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampInterface.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 			children = (
 				CA8B95DB29EB82940099C121 /* Next Day Buttons */,
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
+				CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */,
 				CA8B95DA29EB823B0099C121 /* Button Places */,
 				CA8B95D929EB816B0099C121 /* Survivor Selector */,
 				CA90F82A29ABDDC600AD34E9 /* CampStats.swift */,
@@ -946,6 +949,7 @@
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
 				CA7510B32A097A53004AAAE3 /* MuteToggleButton.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
+				CAB1618E2A2BD7B700EEF16A /* CampInterface.swift in Sources */,
 				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,
 				CA7510B52A097E29004AAAE3 /* ResetButtons.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,

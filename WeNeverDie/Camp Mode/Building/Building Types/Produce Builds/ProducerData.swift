@@ -25,7 +25,6 @@ struct ProducerData : Codable, Identifiable {
     var consumes : ResourceType = .nothing
     var isActive : Bool = true
     var isStartingBuild : Bool = false
-    
     //func setValue()
     init(Producer : ResourceProducer) {
         

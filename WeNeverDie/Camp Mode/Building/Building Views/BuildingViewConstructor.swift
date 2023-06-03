@@ -29,7 +29,11 @@ class BuildingViewConstructor {
             return "\(builderTitle): \(building.workers)"
         } else {
             if let resourceProducer = building as? ResourceProducer  {
-                return "\(workerTitle): \(building.workers) produce \(resourceProducer.output)"
+                if resourceProducer.rateIn == 0 {
+                    return "\(workerTitle): \(building.workers) per worker \(resourceProducer.rate)"
+                }else{
+                    return "\(workerTitle): \(building.workers) per worker \(resourceProducer.rate) costing \(resourceProducer.rateIn) materials per"
+                }
             }
             return "\(workerTitle): \(building.workers)"
         }

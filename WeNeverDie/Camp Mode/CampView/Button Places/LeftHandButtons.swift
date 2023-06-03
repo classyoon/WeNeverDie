@@ -10,30 +10,34 @@ import SwiftUI
 struct LeftHandButtons: View {
     @Binding var showCureHelp : Bool
     @ObservedObject var gameData : ResourcePool
+    @Binding var showBoard : Bool
     var body: some View {
         HStack {
             //MARK: Cure
+           
+            //survivorSelector(gameData: gameData)
             
             VStack{
-                TopButtons(gameData: gameData)
-                Spacer()
+                
+                VStack{
+                    TopButtons(gameData: gameData)
+                    Spacer()
+                }
+                BeginMissionButton(gameData: gameData, showBoard: $showBoard).frame(maxHeight: 250)
             }
-            .frame(maxWidth: 70)
-            .padding()
+//                .frame(maxWidth: 70)
+                .padding()
             Spacer()
-            
             CureProgressView(gameData: gameData, uiSettings: gameData.uiSetting, showCureHelp: $showCureHelp)
-            
-                .foregroundColor(.primary)
-            
+                .foregroundColor(.primary).padding()
             
         }.padding()
-            .frame(maxHeight: UIScreen.screenHeight)
+            //.frame(maxHeight: UIScreen.screenHeight)
     }
 }
 
 struct LeftHandButtons_Previews: PreviewProvider {
     static var previews: some View {
-        LeftHandButtons(showCureHelp: .constant(false), gameData: ResourcePool())
+        LeftHandButtons(showCureHelp: .constant(false), gameData: ResourcePool(), showBoard: .constant(false))
     }
 }

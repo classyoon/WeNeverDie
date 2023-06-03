@@ -112,6 +112,7 @@ struct CampStats : View {
                     .frame(width: UIScreen.screenWidth)
             }
         }
+        .padding()
     }
 }
 
