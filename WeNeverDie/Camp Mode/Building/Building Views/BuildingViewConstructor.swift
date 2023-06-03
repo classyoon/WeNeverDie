@@ -20,7 +20,7 @@ class BuildingViewConstructor {
     let stopConstruction = "Stop Working"
     let increaseWorkerButton = "+"
     let decreaseWorkerButton = "-"
-    let workerTitle = "Workers"
+    let workerTitle = "workers"
     let builderTitle = "Builders"
     let insufficentResourcesText = "Not enough resources, Need"
    var stockpile : Stockpile = Stockpile.shared
@@ -30,9 +30,9 @@ class BuildingViewConstructor {
         } else {
             if let resourceProducer = building as? ResourceProducer  {
                 if resourceProducer.rateIn == 0 {
-                    return "\(workerTitle): \(building.workers) per worker \(resourceProducer.rate)"
+                    return "\(building.workers) \(workerTitle) * \(resourceProducer.rate) per worker"
                 }else{
-                    return "\(workerTitle): \(building.workers) per worker \(resourceProducer.rate) costing \(resourceProducer.rateIn) materials per"
+                    return "\(building.workers) \(workerTitle) * \(resourceProducer.rate) per worker at a cost of \(resourceProducer.rateIn) materials per"
                 }
             }
             return "\(workerTitle): \(building.workers)"
