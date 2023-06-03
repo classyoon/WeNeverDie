@@ -18,11 +18,17 @@ struct TileType {
     mutating func setTileBonuses(){
         switch name {
         case "h":
-            loot += houseLoot
-            rawMaterials += rawMaterialsBonus
+            loot += Int.random(in: houseLoot...houseLoot+2)
+            rawMaterials += Int.random(in: 0...2)
+        case "t" :
+            rawMaterials+=rawMaterialsBonus
+            loot += Int.random(in: 0...1)
+            movementPenalty+=waterPenalty
         case "w":
             movementPenalty += waterPenalty
+            loot += Int.random(in: 2...4)
         default :
+            loot += Int.random(in: 0...1)
             _ = 0
         }
     }

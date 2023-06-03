@@ -24,7 +24,7 @@ struct DefaultStatDisplay: View {
             }.padding(0.5)
             Spacer()
             !piece.isRecruitable ? staminaBars(uiSettings: uiSetting, piece: piece) : nil
-            !piece.isRecruitable ?  nil : Text("Trust : \(piece.trust)").padding(2)
+            !piece.isRecruitable ?  nil : Text("Trust : \(piece.trust) / 10").padding(2)
                 .foregroundColor(.black)
                 .background(.white)
                 .cornerRadius(10)
