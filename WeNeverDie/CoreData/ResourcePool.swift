@@ -7,7 +7,7 @@
 
 import Foundation
 var devMode = false
-var outsideTesting = false
+var outsideTesting = true
 var printZombieThoughts = false
 //var campStats = true
 class ResourcePool : ObservableObject {

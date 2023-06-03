@@ -8,7 +8,10 @@
 import Foundation
 extension Board {
     func handleTap(tapRow: Int, tapCol: Int) {
+        examinePiece(tapRow: tapRow, tapCol: tapCol)
         !unitWasSelected ? handleTapWithoutSelectedUnit(tapRow: tapRow, tapCol: tapCol) : handleTapWithSelectedPiece(tapRow: tapRow, tapCol: tapCol)
+        
+     
     }
     
     func handleTapWithSelectedPiece(tapRow: Int, tapCol: Int) {
@@ -39,7 +42,15 @@ extension Board {
             
         }
     }
+    func examinePiece(tapRow: Int, tapCol: Int) {
+        if board[tapRow][tapCol] != nil {
+            examinedPiece = board[tapRow][tapCol]
+        }else {
+            examinedPiece = nil
+        }
+    }
     func handleTapWithoutSelectedUnit(tapRow: Int, tapCol: Int) {
+        
         if board[tapRow][tapCol]?.getCanMove() == true && (board[tapRow][tapCol]?.isPlayerUnit==true) {
             SelectUnitOn(tapRow, tapCol)
         }
@@ -58,6 +69,7 @@ extension Board {
     func SelectUnitOn(_ tapRow: Int, _ tapCol: Int){
         selectedUnit = board[tapRow][tapCol]
         highlightSquare = Coord(tapRow, tapCol)
+        examinedPiece = board[tapRow][tapCol]
     }
     
     func deselectUnit(){

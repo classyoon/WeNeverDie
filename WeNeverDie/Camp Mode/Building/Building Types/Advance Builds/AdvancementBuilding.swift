@@ -18,6 +18,8 @@ class AdvancementBuilding: Building {
         get { extraModel.hasGiven }
         set { extraModel.hasGiven = newValue }
     }
+    
+
 
     override func doSomething() {
         hasGiven = true

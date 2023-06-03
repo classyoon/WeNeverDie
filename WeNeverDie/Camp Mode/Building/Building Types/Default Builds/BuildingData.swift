@@ -13,9 +13,17 @@ struct BuildingData : Codable, Identifiable {
     var workers: Int = 0
     var workProgress: Int = 0
     var autoWithDrawed : Bool = true
+
     var materialCost : Int = 0
     var constructionStarted : Bool = false
     var workCost: Int = 0
+
+    var rateIn : Int = 0
+    var input = 0
+    var consumes : ResourceType = .nothing
+    var isActive : Bool = false
+    var isStartingBuild : Bool = false
+    
     mutating func increaseWorker() {
         workers += 1
     }
@@ -27,7 +35,7 @@ struct BuildingData : Codable, Identifiable {
     mutating func build(){
         workProgress += workers
     }
-    init(id: UUID = UUID(), name: String, workers: Int = 0, workProgress: Int = 0, autoWithDrawed: Bool = true, materialCost: Int = 0, constructionStarted: Bool = false, workCost: Int) {
+    init(id: UUID = UUID(), name: String, workers: Int = 0, workProgress: Int = 0, autoWithDrawed: Bool = true, materialCost: Int = 0, constructionStarted: Bool = false, workCost: Int, rateIn : Int = 0, input : Int = 0, consumes : ResourceType = .nothing, isActive : Bool = false, isStartingBuild : Bool = false) {
         self.id = id
         self.name = name
         self.workers = workers
@@ -36,6 +44,13 @@ struct BuildingData : Codable, Identifiable {
         self.materialCost = materialCost
         self.constructionStarted = constructionStarted
         self.workCost = workCost
+        
+        self.rateIn = rateIn
+        self.input = input
+        self.consumes = consumes
+        
+        self.isActive = isActive
+        self.isStartingBuild = isStartingBuild
     }
     init(buildData : Building) {
         self.name = buildData.name
@@ -45,6 +60,14 @@ struct BuildingData : Codable, Identifiable {
         self.materialCost = buildData.materialCost
         self.constructionStarted = buildData.constructionStarted
         self.workCost = buildData.workCost
+        
+        self.rateIn = buildData.rateIn
+        self.input = buildData.input
+        self.consumes = buildData.consumes
+        
+        self.isActive = buildData.isActive
+        self.isStartingBuild = buildData.isStartingBuild
+        
     }
     init(advancement : AdvancementData) {
         self.id = advancement.id
@@ -55,6 +78,13 @@ struct BuildingData : Codable, Identifiable {
         self.materialCost = advancement.materialCost
         self.constructionStarted = advancement.constructionStarted
         self.workCost = advancement.workCost
+        
+        self.rateIn = advancement.rateIn
+        self.input = advancement.input
+        self.consumes = advancement.consumes
+        
+        self.isActive = advancement.isActive
+        self.isStartingBuild = advancement.isStartingBuild
     }
     init(producer : ProducerData) {
         self.id = producer.id
@@ -65,5 +95,12 @@ struct BuildingData : Codable, Identifiable {
         self.materialCost = producer.materialCost
         self.constructionStarted = producer.constructionStarted
         self.workCost = producer.workCost
+        
+        self.rateIn = producer.rateIn
+        self.input = producer.input
+        self.consumes = producer.consumes
+        
+        self.isActive = producer.isActive
+        self.isStartingBuild = producer.isStartingBuild
     }
 }

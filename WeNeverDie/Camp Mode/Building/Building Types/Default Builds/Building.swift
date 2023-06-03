@@ -42,11 +42,36 @@ class Building: ObservableObject {
         get { model.workCost }
         set { model.workCost = newValue }
     }
+    
+    var input: Int {
+        get { model.input }
+        set { model.input = newValue }
+    }
+
+    var rateIn: Int {
+        get { model.rateIn }
+        set { model.rateIn = newValue }
+    }
+
+    var consumes: ResourceType {
+        get { model.consumes }
+        set { model.consumes = newValue }
+    }
+
 
     var isComplete: Bool {
         model.workProgress >= model.workCost
     }
 
+    var isStartingBuild: Bool {
+        get { model.isStartingBuild }
+        set { model.isStartingBuild = newValue }
+    }
+    var isActive: Bool {
+        get { model.isActive }
+        set { model.isActive = newValue }
+    }
+    
     init(model: BuildingData) {
         self.model = model
     }

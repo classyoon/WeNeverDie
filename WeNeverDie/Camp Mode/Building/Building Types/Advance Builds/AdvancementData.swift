@@ -17,7 +17,14 @@ struct AdvancementData : Codable, Identifiable {
     var constructionStarted: Bool
     var techBranch : [BuildingData]
     var hasGiven : Bool
-    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=false, materialCost: Int=0, constructionStarted: Bool=false, techBranch : [BuildingData], hasGiven : Bool = false) {
+    
+    var rateIn : Int = 0
+    var input = 0
+    var consumes : ResourceType = .nothing
+    var isActive : Bool = true
+    var isStartingBuild : Bool = false
+    
+    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=false, materialCost: Int=0, constructionStarted: Bool=false, techBranch : [BuildingData], hasGiven : Bool = false, isActive : Bool = true, isStartingBuild : Bool = true) {
         self.id = UUID()
         self.name = name
         self.workers = workers
@@ -28,6 +35,8 @@ struct AdvancementData : Codable, Identifiable {
         self.constructionStarted = constructionStarted
         self.techBranch = techBranch
         self.hasGiven = hasGiven
+        self.isActive = isActive
+        self.isStartingBuild = isStartingBuild
         
     }
     init(buildAdvance : AdvancementBuilding) {
@@ -41,6 +50,8 @@ struct AdvancementData : Codable, Identifiable {
         self.constructionStarted = buildAdvance.constructionStarted
         self.techBranch = buildAdvance.techBranch
         self.hasGiven = buildAdvance.hasGiven
+        self.isActive = buildAdvance.isActive
+        self.isStartingBuild = buildAdvance.isStartingBuild
         
     }
     

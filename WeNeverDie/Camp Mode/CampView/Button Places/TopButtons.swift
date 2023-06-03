@@ -12,7 +12,7 @@ struct TopButtons: View {
     @State var initialLoad = true
 
     var body: some View {
-        VStack(spacing: 15) {
+        HStack(spacing: 15) {
             NavigationLink {
                 TutorialView(gameData: gameData)
                     .foregroundColor(Color(.label))

@@ -28,7 +28,7 @@ struct StatusViewBar: View {
                 SearchForMaterialsButton(vm: vm)
             }
             NextTurnButton(uiSettings: gameData.uiSetting, vm: vm)
-            
+            Text("\(vm.examinedPiece?.stamina ?? 0)")
         }
         .padding()
         .background(ZStack{Color.orange

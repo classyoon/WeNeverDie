@@ -7,7 +7,7 @@
 
 import Foundation
 enum ResourceType : Codable {
-    case food, material, people
+    case food, material, people, nothing
 }
 class ResourceProducer: Building {
    @Published var extraModel: ProducerData
@@ -26,9 +26,12 @@ class ResourceProducer: Building {
         get { extraModel.produces }
         set { extraModel.produces = newValue }
     }
+    
+
 
     override func doSomething() {
         output = rate * workers
+        input = rateIn * workers
     }
 
     init(extraModel : ProducerData) {

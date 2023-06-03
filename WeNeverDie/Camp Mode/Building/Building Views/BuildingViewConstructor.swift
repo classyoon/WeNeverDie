@@ -28,6 +28,9 @@ class BuildingViewConstructor {
         if !building.isComplete {
             return "\(builderTitle): \(building.workers)"
         } else {
+            if let resourceProducer = building as? ResourceProducer  {
+                return "\(workerTitle): \(building.workers) produce \(resourceProducer.output)"
+            }
             return "\(workerTitle): \(building.workers)"
         }
     }

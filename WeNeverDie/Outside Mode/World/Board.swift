@@ -16,6 +16,7 @@ protocol BoardProtocol {
 //let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
 
+
 class Board : ObservableObject, BoardProtocol {
     
     @Published var UnitsDied = 0
@@ -32,6 +33,7 @@ class Board : ObservableObject, BoardProtocol {
     var unitWasSelected : Bool {
         selectedUnit != nil
     }
+    @Published var examinedPiece : (any Piece)? = nil
     
     @Published var turnsSinceStart = 0
     @Published var lengthOfPlay = 0

@@ -43,7 +43,6 @@
 		CA33231F2A1C40540078E79C /* GameCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33231E2A1C40540078E79C /* GameCondition.swift */; };
 		CA3323232A1C46A10078E79C /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3323222A1C46A10078E79C /* BuildingView.swift */; };
 		CA3323462A1D11220078E79C /* BuildingViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3323452A1D11220078E79C /* BuildingViewConstructor.swift */; };
-		CA3323482A1D270F0078E79C /* BuildingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3323472A1D270F0078E79C /* BuildingListView.swift */; };
 		CA33239B2A1D520B0078E79C /* car startingSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA33239A2A1D520B0078E79C /* car startingSFX.mp3 */; };
 		CA48C74C298387E200106B97 /* MobFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48C74B298387E200106B97 /* MobFunc.swift */; };
 		CA744D2B29A7D10A00F40B4F /* BoardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */; };
@@ -183,7 +182,6 @@
 		CA33231E2A1C40540078E79C /* GameCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCondition.swift; sourceTree = "<group>"; };
 		CA3323222A1C46A10078E79C /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		CA3323452A1D11220078E79C /* BuildingViewConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingViewConstructor.swift; sourceTree = "<group>"; };
-		CA3323472A1D270F0078E79C /* BuildingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingListView.swift; sourceTree = "<group>"; };
 		CA33239A2A1D520B0078E79C /* car startingSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "car startingSFX.mp3"; sourceTree = "<group>"; };
 		CA341E8529A5912E00225529 /* Kurt - Cheel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kurt - Cheel.mp3"; sourceTree = "<group>"; };
 		CA48C74B298387E200106B97 /* MobFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobFunc.swift; sourceTree = "<group>"; };
@@ -704,7 +702,6 @@
 			isa = PBXGroup;
 			children = (
 				CA3323222A1C46A10078E79C /* BuildingView.swift */,
-				CA3323472A1D270F0078E79C /* BuildingListView.swift */,
 				CA3323452A1D11220078E79C /* BuildingViewConstructor.swift */,
 			);
 			path = "Building Views";
@@ -741,8 +738,8 @@
 		CAF8636F2A20037C00D5957A /* Advance Builds */ = {
 			isa = PBXGroup;
 			children = (
-				CAF863752A20041D00D5957A /* AdvancementData.swift */,
 				CAF863732A2003FE00D5957A /* AdvancementBuilding.swift */,
+				CAF863752A20041D00D5957A /* AdvancementData.swift */,
 			);
 			path = "Advance Builds";
 			sourceTree = "<group>";
@@ -750,8 +747,8 @@
 		CAF863702A20038700D5957A /* Produce Builds */ = {
 			isa = PBXGroup;
 			children = (
-				CAF863772A20045D00D5957A /* ProducerData.swift */,
 				CAF8637B2A20049900D5957A /* ResourceProducer.swift */,
+				CAF863772A20045D00D5957A /* ProducerData.swift */,
 			);
 			path = "Produce Builds";
 			sourceTree = "<group>";
@@ -940,7 +937,6 @@
 				CA744D3129A83D5B00F40B4F /* Settings.swift in Sources */,
 				CA9A032E29BE36AA00ED390B /* firstTutorialExit.swift in Sources */,
 				CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */,
-				CA3323482A1D270F0078E79C /* BuildingListView.swift in Sources */,
 				CA16EABE29C9356D0047593B /* ResetButtonView.swift in Sources */,
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
 				CA9A028B29B6DF8000ED390B /* escapeExplainView.swift in Sources */,

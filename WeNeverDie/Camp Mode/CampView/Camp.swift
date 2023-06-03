@@ -46,6 +46,16 @@ struct CampView: View {
             
                 .blur(radius: gameCon.getDeath() || (gameCon.checkVictory() && !gameCon.checkHaveWon()) ? 10 : 0)
             //MARK: Death
+                .overlay(
+                        Group {
+                            if gameCon.getDeath() {
+                                Rectangle()
+                                    .fill(Color.clear)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {}
+                            }
+                        }
+                    )
                 .overlay {
                     gameCon.getDeath() ?
                     DefeatView(gameData: gameData, uiSettings: uiSettings)

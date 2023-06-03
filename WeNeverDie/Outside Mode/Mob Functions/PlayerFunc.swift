@@ -42,13 +42,14 @@ extension Board {
             survivorList.append(survivorOnCoord)
             board[survivor.row][survivor.col] = nil
             audio.playSFX(.vanDoor)
-            canAnyoneMove = isAnyoneStillActive()
+            
             if survivorOnCoord.id == selectedUnit?.id {
                 selectedUnit = nil
                 audio.playSFX(.vanDoor)
             }
         }
     }
+
 
     func movePlayerUnit(tapRow: Int, tapCol: Int, startPoint : Coord, piece : inout any Piece){
         

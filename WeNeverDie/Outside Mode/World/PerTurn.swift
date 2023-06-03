@@ -7,7 +7,7 @@
 
 import Foundation
 extension Board {
-//MARK: Runs through whole Board
+    //MARK: Runs through whole Board
     func createLists()-> (zombieList : [any Piece], playerCoords: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()
@@ -19,7 +19,7 @@ extension Board {
                     if piece.isPlayerUnit {
                         playerCoordPins.append( Coord(row: row, col: col))
                         playerPieces.append(piece)
-            
+                        
                     }
                     if piece.isZombie {
                         zombies.append(piece as! Zombie)
@@ -31,11 +31,11 @@ extension Board {
         numberOfZombies = zombies.count
         return (zombies, playerCoordPins, ZomCoordPins)
     }
-
+    
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
-            
+                
                 if let piece = board[row][col] {
                     
                     if piece.health <= 0 {
@@ -52,46 +52,61 @@ extension Board {
             }
         }
     }
-  
+    
     //MARK: Unused Transfer Survivors
     func transferSurvivorsToCamp()->[any Piece]{
         return survivorList
     }
-    func checkEndMission2(){
-//        if numOfUnits == UnitsDied {
-//            missionUnderWay = false
-//            
-//        }
-    }
+ 
     //MARK: Check Endmission? Maybe not used?
-    func checkEndMission(playerCoords: [Coord]? = nil) {
+    func checkEndMission(playerCoords: [Coord]? = nil){
         let playerCoords = playerCoords ?? createLists().playerCoords
-        if playerCoords.isEmpty {
-            endMission()
+        if playerCoords.isEmpty{
+            missionUnderWay = false
             return
-        } else {
+        }
+        else if playerCoords.count == 1{
+            let lastSurvivor = playerCoords[0]
+            if terrainBoard[lastSurvivor.row][lastSurvivor.col].name=="X"{//Exit
+                if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
+                    survivorList.append(survivorOnCoord)
+                    board[lastSurvivor.row][lastSurvivor.col]=nil
+                    if survivorOnCoord.id == selectedUnit?.id {
+                        selectedUnit = nil
+                        canAnyoneMove = isAnyoneStillActive()
+                        audio.playSFX(.vanDoor)
+                    }
+                }
+                audio.playSFX(.carStarting)
+                missionUnderWay = false
+            }
+        }
+        else{
             for survivor in playerCoords {
-                if terrainBoard[survivor.row][survivor.col].name == "X" {
-                    handleUnitEscape(survivor: survivor)
+                if terrainBoard[survivor.row][survivor.col].name=="X"{//Exit
+                    if let survivorOnCoord = board[survivor.row][survivor.col] {
+                        survivorList.append(survivorOnCoord)
+                        board[survivor.row][survivor.col]=nil
+                        canAnyoneMove = isAnyoneStillActive()
+                        audio.playSFX(.vanDoor)
+                        if survivorOnCoord.id == selectedUnit?.id {
+                            selectedUnit = nil
+                            canAnyoneMove = isAnyoneStillActive()
+                            audio.playSFX(.vanDoor)
+                        }
+                    }
                 }
             }
         }
     }
-
-    func endMission() {
-        missionUnderWay = false
-        audio.playSFX(.carStarting)
-    }
-
-
-
+    
     //MARK: Daylight
     func updateDayLightStatus(_ zombieNumber : Int){
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
             if zombieNumber < 10 {
                 spawnZombies(2)
-//
+                //
                 audio.playSFX(.longGrowl)
             }
         } else if turnsSinceStart > lengthOfPlay {
@@ -104,7 +119,7 @@ extension Board {
         //audio.playSFX(.next)
         turnsSinceStart += 1
         let lists = createLists()
-       
+        
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
         updateDayLightStatus(zombies.count)
         applyTileStatuses(players)

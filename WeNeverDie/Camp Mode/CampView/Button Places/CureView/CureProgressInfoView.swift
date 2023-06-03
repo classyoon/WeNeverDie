@@ -26,8 +26,10 @@ struct CureProgressInfoView: View {
                     ScrollView{
                         VStack{
                             ForEach(BuildingManager.shared.buildings.indices, id: \.self) { index in
-                                
-                                BuildingView(building: BuildingManager.shared.buildings[index], stock: stock).padding(1)
+                                if BuildingManager.shared.buildings[index].isActive {
+                                    BuildingView(building: BuildingManager.shared.buildings[index], stock: stock).padding(1)
+                                  
+                                }
                                 //.frame(width: 500)
                                 
                             }
