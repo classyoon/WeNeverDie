@@ -71,6 +71,10 @@ class Building: ObservableObject {
         get { model.isActive }
         set { model.isActive = newValue }
     }
+    var hasNotified: Bool {
+        get { model.hasNotified }
+        set { model.hasNotified = newValue }
+    }
     
     init(model: BuildingData) {
         self.model = model

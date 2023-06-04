@@ -12,16 +12,32 @@ struct CureProgressView: View {
     @ObservedObject var uiSettings : UserSettingsManager
     @Binding var showCureHelp : Bool
     var constructor = BuildingViewConstructor.shared
-    
+    @ObservedObject var buildingMan : BuildingManager = BuildingManager.shared
+    func giveWhichImage()->String{
+        if !buildingMan.allBuildingAreMaintained && buildingMan.isABuildingCompleted {
+            return "Hammer Both"
+        }
+        if buildingMan.isABuildingCompleted{
+            return "Hammer Complete"
+        }
+        if !buildingMan.allBuildingAreMaintained{
+            return "Hammer Issue"
+        }
+        return "Hammer"
+    }
+    func printImage(){
+        print(giveWhichImage())
+    }
     var body: some View {
         ZStack {
             HStack{
             uiSettings.switchToLeft ? Spacer() : nil
                 VStack{
                     Button {
+                        printImage()
                         showCureHelp = true
                     } label: {
-                        Image("Hammer")
+                        Image(giveWhichImage())
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(.accentColor)

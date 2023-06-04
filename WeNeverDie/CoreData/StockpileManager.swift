@@ -62,6 +62,7 @@ class Stockpile : ObservableObject {
         return stockpileData.survivorSent
     }
     func getBuilders()->Int{
+        print(stockpileData.builders)
         return stockpileData.builders
     }
     func setSurvivorSent(_ survivors : Int){
@@ -93,7 +94,7 @@ struct StockpileModel : Codable, Identifiable {
         buildingResources = 10
         survivorSent = 0
         builders = 0
-        buildingResources = 0
+        
     }
     mutating func calcConsumption(){
         if foodStored-survivorNumber > 0{

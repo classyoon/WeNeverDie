@@ -45,7 +45,8 @@ class BuildingManager : ObservableObject {
     
     @Published var cure : BuildingData
     @Published var upgrade : BuildingData
-    
+    @Published var allBuildingAreMaintained : Bool = true
+    @Published var isABuildingCompleted : Bool = false
     @Published var buildings : [Building]
     var withdrawWorkersWhenBuildingIsCompleted: Bool = true
     
@@ -56,8 +57,16 @@ class BuildingManager : ObservableObject {
     }
     
     func updateWorkProgress() {
+        isABuildingCompleted = false
+        allBuildingAreMaintained = true
         for building in buildings {
             building.updateBuilding()
+            if building.model.shouldNotify &&  !building.model.hasNotified {
+                isABuildingCompleted = true
+                building.model.hasNotified = true
+                building.model.shouldNotify = false
+            }
+            
             if building.isComplete {
                 if building.autoWithDrawed == false && withdrawWorkersWhenBuildingIsCompleted {
                     returnAllWorkers(from: building)
@@ -97,11 +106,45 @@ class BuildingManager : ObservableObject {
                 }
             }
         }
-       
         
-       // saveAll()
+        
+        // saveAll()
     }
-
+    func getProjectedOutputOf(_ name : String)->Int{
+        for building in buildings {
+            if let resourceProducer = building as? ResourceProducer {
+                if resourceProducer.name == name {
+                    return resourceProducer.output
+                }
+            }
+        }
+        return -1
+    }
+    func getProjectedInputOf(_ name : String)->Int{
+        for building in buildings {
+            
+            if building.name == name {
+                return building.input
+            }
+            
+        }
+        return -1
+    }
+    func getStatusOf(_ name : String)->Bool{
+        for building in buildings {
+            
+            if building.name == name {
+                if building.isComplete {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            
+        }
+        return false
+    }
     func utilizeBuilding(_ building : Building){
         runMantainance(building)
         if buildingMaintained() {
@@ -126,9 +169,9 @@ class BuildingManager : ObservableObject {
                 }
             }
         }
-//        buildings.append(contentsOf: newBuildings)
+        //        buildings.append(contentsOf: newBuildings)
     }
-   
+    
     func runProductionBuildings(_ resourceProducer : ResourceProducer){
         switch resourceProducer.produces {
         case .food:
@@ -156,20 +199,29 @@ class BuildingManager : ObservableObject {
         case .people:
             Stockpile.shared.stockpileData.survivorNumber -= building.input
         }
+        print("Input \(building.input)")
     }
     func buildingMaintained()->Bool{
-        if Stockpile.shared.getNumOfFood() >= 0 &&  Stockpile.shared.getNumOfPeople() >= 0 &&  Stockpile.shared.getNumOfPeople() >= 0{
+        if Stockpile.shared.getNumOfFood() >= 0 &&  Stockpile.shared.getNumOfMat() >= 0 &&  Stockpile.shared.getNumOfPeople() >= 0{
+            print("Building maintained")
             return true
         }
         else if Stockpile.shared.getNumOfFood() < 0 {
             Stockpile.shared.stockpileData.foodStored = 0
+            print("Building not maintained")
+            allBuildingAreMaintained = false
         }
         else if Stockpile.shared.getNumOfMat() < 0 {
             Stockpile.shared.stockpileData.buildingResources = 0
+            print("Building not maintained")
+            allBuildingAreMaintained = false
         }
         else if Stockpile.shared.getNumOfPeople() < 0 {
             Stockpile.shared.stockpileData.survivorNumber = 0
+            print("Building not maintained")
+            allBuildingAreMaintained = false
         }
+        allBuildingAreMaintained = false
         return false
     }
     func canAssignWorker(to building: Building) -> Bool {
@@ -193,7 +245,7 @@ class BuildingManager : ObservableObject {
             Stockpile.shared.stockpileData.builders-=1
         }
     }
-
+    
     func reset(){
         self.cure = load(key: "cure") ?? cureTemplate
         self.upgrade = load(key: "upgrade") ?? upgradeTemplate
@@ -213,6 +265,8 @@ class BuildingManager : ObservableObject {
         buildings.append(Building(model: upgrade))
         buildings.append(ResourceProducer(extraModel: house))
         
+        isABuildingCompleted = false
+        allBuildingAreMaintained = true
         for building in buildings {
             building.constructionStarted = false
             if !building.isStartingBuild {

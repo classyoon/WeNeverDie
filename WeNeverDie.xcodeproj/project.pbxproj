@@ -321,6 +321,8 @@
 				91355AD1293AF5FE00907610 /* CoreData */,
 				CACCD579298C8C10005BE6DE /* Outside Mode */,
 				CA17474129A9446B00B81EF8 /* Camp Mode */,
+				CA17474729A9457900B81EF8 /* Tutorial */,
+				CA16EACA29C93FF00047593B /* Settings */,
 				CA8A319A296CC03E00755BCE /* Sounds */,
 				91355A9A293AEE4800907610 /* Assets.xcassets */,
 				91355A9C293AEE4800907610 /* WeNeverDie.entitlements */,
@@ -373,7 +375,6 @@
 				CAA91FD929A2DF5C00DCCEC5 /* ResourcePool.swift */,
 				CA33231E2A1C40540078E79C /* GameCondition.swift */,
 				CA33231C2A1C38920078E79C /* StockpileManager.swift */,
-				CA16EACA29C93FF00047593B /* Settings */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -445,7 +446,6 @@
 			children = (
 				CA3323402A1C6EBB0078E79C /* Building */,
 				CA90F82929ABDDA500AD34E9 /* CampView */,
-				CA17474729A9457900B81EF8 /* Tutorial */,
 			);
 			path = "Camp Mode";
 			sourceTree = "<group>";

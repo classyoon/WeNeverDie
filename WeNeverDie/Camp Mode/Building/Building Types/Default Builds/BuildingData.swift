@@ -23,19 +23,24 @@ struct BuildingData : Codable, Identifiable {
     var consumes : ResourceType = .nothing
     var isActive : Bool = false
     var isStartingBuild : Bool = false
-    
+    var hasNotified : Bool = false
+    var shouldNotify : Bool = false
     mutating func increaseWorker() {
         workers += 1
     }
     mutating func decreaseWorker() {
         if workers > 0 {
+            print("\(name) is decreasing workers")
             workers -= 1
         }
     }
     mutating func build(){
         workProgress += workers
+        if workProgress>=workCost {
+            shouldNotify = true
+        }
     }
-    init(id: UUID = UUID(), name: String, workers: Int = 0, workProgress: Int = 0, autoWithDrawed: Bool = true, materialCost: Int = 0, constructionStarted: Bool = false, workCost: Int, rateIn : Int = 0, input : Int = 0, consumes : ResourceType = .nothing, isActive : Bool = false, isStartingBuild : Bool = false) {
+    init(id: UUID = UUID(), name: String, workers: Int = 0, workProgress: Int = 0, autoWithDrawed: Bool = true, materialCost: Int = 0, constructionStarted: Bool = false, workCost: Int, rateIn : Int = 0, input : Int = 0, consumes : ResourceType = .nothing, isActive : Bool = false, isStartingBuild : Bool = false,hasNotified : Bool = false, shouldNotify : Bool = false) {
         self.id = id
         self.name = name
         self.workers = workers
@@ -51,6 +56,7 @@ struct BuildingData : Codable, Identifiable {
         
         self.isActive = isActive
         self.isStartingBuild = isStartingBuild
+        self.hasNotified = hasNotified
     }
     init(buildData : Building) {
         self.name = buildData.name
@@ -67,6 +73,7 @@ struct BuildingData : Codable, Identifiable {
         
         self.isActive = buildData.isActive
         self.isStartingBuild = buildData.isStartingBuild
+        self.hasNotified = buildData.hasNotified
         
     }
     init(advancement : AdvancementData) {
@@ -85,6 +92,7 @@ struct BuildingData : Codable, Identifiable {
         
         self.isActive = advancement.isActive
         self.isStartingBuild = advancement.isStartingBuild
+        self.hasNotified = advancement.hasNotified
     }
     init(producer : ProducerData) {
         self.id = producer.id
@@ -102,5 +110,7 @@ struct BuildingData : Codable, Identifiable {
         
         self.isActive = producer.isActive
         self.isStartingBuild = producer.isStartingBuild
+        
+        self.hasNotified = producer.hasNotified
     }
 }

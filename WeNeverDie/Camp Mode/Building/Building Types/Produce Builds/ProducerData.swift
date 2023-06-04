@@ -20,11 +20,13 @@ struct ProducerData : Codable, Identifiable {
     var output = 0
     var produces : ResourceType
     
-    var rateIn : Int = 0
+    var rateIn : Int
     var input = 0
-    var consumes : ResourceType = .nothing
+    var consumes : ResourceType
     var isActive : Bool = true
     var isStartingBuild : Bool = false
+    var hasNotified : Bool = false
+    var shouldNotify : Bool = false
     //func setValue()
     init(Producer : ResourceProducer) {
         
@@ -47,9 +49,11 @@ struct ProducerData : Codable, Identifiable {
         self.isActive = Producer.isActive
         self.isStartingBuild = Producer.isStartingBuild
         
+        self.hasNotified = Producer.hasNotified
+        
         
     }
-    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=true, materialCost: Int=0, constructionStarted: Bool=false, rate: Int, output: Int = 0, produces: ResourceType, rateIn : Int = 0, input : Int = 0, consumes: ResourceType = .nothing, isActive : Bool = true, isStartingBuild : Bool = true) {
+    init(name: String, workers: Int=0, workProgress: Int=0, workCost: Int, autoWithDrawed: Bool=true, materialCost: Int=0, constructionStarted: Bool=false, rate: Int, output: Int = 0, produces: ResourceType, rateIn : Int = 0, input : Int = 0, consumes: ResourceType = .nothing, isActive : Bool = true, isStartingBuild : Bool = true,hasNotified : Bool = false, shouldNotify : Bool = false) {
         self.id = UUID()
         self.name = name
         self.workers = workers
@@ -69,6 +73,7 @@ struct ProducerData : Codable, Identifiable {
         
         self.isActive = isActive
         self.isStartingBuild = isStartingBuild
+        self.hasNotified = hasNotified
     }
 }
 

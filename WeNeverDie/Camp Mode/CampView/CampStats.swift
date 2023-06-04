@@ -10,12 +10,12 @@ import SwiftUI
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
     @Binding var shouldResetGame : Bool
-   
+    
     @Binding var showBoard : Bool
     @ObservedObject var uiSettings : UserSettingsManager
     
     @ObservedObject var buildingMan : BuildingManager = BuildingManager.shared
-  @ObservedObject var stockpile : Stockpile = Stockpile.shared
+    @ObservedObject var stockpile : Stockpile = Stockpile.shared
     
     @State var survivorsArr: [Int] = []
     
@@ -39,6 +39,14 @@ struct CampStats : View {
         return uiSettings.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
+        if buildingMan.getStatusOf("Farm") && buildingMan.getStatusOf("House"){
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also produce  \(buildingMan.getProjectedOutputOf("Farm")) and consume \(buildingMan.getProjectedInputOf("Nursery")) per day."
+        }else if buildingMan.getStatusOf("Farm")  {
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also produce  \(buildingMan.getProjectedOutputOf("Farm")) per day"
+            
+        }   else if buildingMan.getStatusOf("Nursury"){
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also consume \(buildingMan.getProjectedInputOf("Nursery")) per day."
+        }
         if Stockpile.shared.isStarving(){
             return "We are starving. Days till death \(gameData.gameCon.getDeathCountdown())"
         }
@@ -48,9 +56,19 @@ struct CampStats : View {
         else{
             return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations)."
         }
+        
     }
     func resourceAmount()->String{
-        if Stockpile.shared.getNumOfMat() == 0 {
+        if buildingMan.getStatusOf("Farm") &&  buildingMan.getStatusOf("Mine") {
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will produce \(buildingMan.getProjectedOutputOf("Mine")). We will consume \(buildingMan.getProjectedInputOf("Farm"))"
+        }
+        if buildingMan.getStatusOf("Farm"){
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will consume \(buildingMan.getProjectedInputOf("Farm"))"
+    }
+        if buildingMan.getStatusOf("Mine"){
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will produce \(buildingMan.getProjectedOutputOf("Mine"))"
+    }
+            if Stockpile.shared.getNumOfMat() == 0 {
             return "We have no building material"
         }
         else if Stockpile.shared.getNumOfMat() < 0 {
@@ -76,7 +94,7 @@ struct CampStats : View {
             Color(.black).opacity(0.7)
         }
     }
-
+    
     var body: some View {
         VStack {
             Text(gameData.days == 0 ? "The Beginning" : "Day \(gameData.days)")
@@ -95,9 +113,9 @@ struct CampStats : View {
                             Spacer()
                             Spacer()
                         }
-
+                        
                         survivorSelector(gameData: gameData)
-
+                        
                         if uiSettings.switchToLeft {
                             Spacer()
                             Spacer()
@@ -105,7 +123,7 @@ struct CampStats : View {
                         } else {
                             Spacer()
                         }
-
+                        
                     }
                     Spacer()
                 }.padding(.horizontal, 100)
