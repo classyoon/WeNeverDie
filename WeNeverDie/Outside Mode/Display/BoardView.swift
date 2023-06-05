@@ -12,8 +12,8 @@ struct BoardView: View {
     @ObservedObject var vm: Board
 
     var size: Int {
-        vm.colMax * vm.rowMax * 30
-    }
+        
+700    }
 
     var body: some View {
         ScrollView([.horizontal, .vertical], showsIndicators: false) {

@@ -19,12 +19,12 @@ protocol BoardProtocol {
 
 class Board : ObservableObject, BoardProtocol {
     @Published var stockpile : Stockpile = Stockpile.shared
-
+    
     @Published var UnitsDied = 0
     @Published var UnitsRecruited = 0
     
     @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
-   
+    
     @Published var showBoard = false
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
@@ -57,8 +57,8 @@ class Board : ObservableObject, BoardProtocol {
     @Published var turn = UUID()
     
     @Published var possibleLoc: [Coord] = []
-    let rowMax: Int = 4
-    let colMax: Int = 5
+    let rowMax: Int = 7
+    let colMax: Int = 7
     let startSquares = 4
     var availibleTiles : Int {rowMax*colMax-startSquares-1}
     
@@ -74,19 +74,19 @@ class Board : ObservableObject, BoardProtocol {
     }
     
     func randomGenerateTerrain(players : Int, trees : Double = 0, houses : Double = 0, water : Double = 0, exit escapePoint : Coord)->[[TileType]]{
-      //  print(board)
+        //  print(board)
         let trees = randomCountFromPercent(trees)
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
         
         var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: colMax), count: rowMax)
-//        print(tempTerrain)
-//        print("\(rowMax), \(colMax)")
-//        print("\(escapePoint)")
+        //        print(tempTerrain)
+        //        print("\(rowMax), \(colMax)")
+        //        print("\(escapePoint)")
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
         
-        //print(tempTerrain)
-
+        
+        
         
         var counter = 0 // Sharing the counter
         var numberAdded = 0
@@ -122,21 +122,27 @@ class Board : ObservableObject, BoardProtocol {
             
             counter+=1
         }
+        for row in tempTerrain {
+            for tile in row {
+                print(tile.name, terminator: " ")
+            }
+            print()
+        }
         
-       // print(tempTerrain)
+        
         return tempTerrain
     }
     
     func randomLoc() -> Coord{
         
         var ranR = Int.random(in: 0...rowMax-1); var ranC = Int.random(in: 0...colMax-1)
-       // print("checking \(ranR), \(ranC)")
+        // print("checking \(ranR), \(ranC)")
         while board[ranR][ranC] != nil || (ranR == rowMax-1 && ranC == colMax-1) {
             ranR = Int.random(in: 0...rowMax-1); ranC = Int.random(in: 0...colMax-1)
         }
         return Coord(row: ranR, col: ranC)
     }
- 
+    
     func spawnZombies(_ amount : Int){
         var counter = 0
         while counter<amount{
@@ -174,7 +180,7 @@ class Board : ObservableObject, BoardProtocol {
             }
         }
     }
-
+    
     func generateBoard(_ players : Int){
         
         missionUnderWay = true
@@ -185,9 +191,9 @@ class Board : ObservableObject, BoardProtocol {
         
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         let bottomRight = Coord(safeNum(r: rowMax), safeNum(c:colMax))
-        terrainBoard = randomGenerateTerrain(players : players, trees: 0.5, houses: Double(Stockpile.shared.getNumOfPeople())*0.1, water: 0.1, exit : bottomRight)
+        terrainBoard = convertLevel(level: levelWreckage)//randomGenerateTerrain(players : players, trees: 0.5, houses: Double(Stockpile.shared.getNumOfPeople())*0.1, water: 0.1, exit : bottomRight)
         //print("Terrain generated, generating players")
-     
+        
         spawnPlayers(players)
         spawnZombies(Int.random(in: 1...4))
         let loc = randomLoc()
@@ -206,4 +212,34 @@ class Board : ObservableObject, BoardProtocol {
         generateBoard(1)
         uiSettings.isAutoPauseMusic ? audio.pauseMusic() : nil
     }
+    func convertLevel(level: [[String]]) -> [[TileType]] {
+        var tempTerrain: [[TileType]] = []
+        for row in level {
+            var tileRow: [TileType] = []
+            for tileName in row {
+                var tile = TileType(name: tileName, loot: 0, movementPenalty: 0)
+                tile.setTileBonuses()
+                tileRow.append(tile)
+            }
+            tempTerrain.append(tileRow)
+        }
+        
+        return tempTerrain
+    }
+var levelRoadBlock = [["t","t","g", "g","w","t","t",],
+                      ["t","g","g","h","w","t","g",],
+                      ["g","g","g","w","h","g","g",],
+                      ["g","w","w","g","t","h","g",],
+                      ["w","g","h","t","g","g","w",],
+                      ["t","t","g","h","g","g","g",],
+                      ["t","t","g","g","w","g","X",]]
+var levelWreckage = [["t","t","g","g","w","h","h",],
+                     ["t","t","g","g","g","g","g",],
+                     ["w","w","w","w","g","g","g",],
+                     ["g","g","g","g","w","g","X",],
+                     ["t","t","t","g","g","w","g",],
+                     ["h","h","t","t","g","w","g",],
+                     ["h","h","h","t","g","w","g",]]
+
 }
+
