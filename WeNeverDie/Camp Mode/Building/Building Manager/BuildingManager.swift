@@ -8,12 +8,12 @@
 import Foundation
 ///GOOD
 class BuildingManager : ObservableObject {
-    let labTemplate = AdvancementData(name: "Lab", workCost: 30, materialCost: 10, techBranch: [])
+    let labTemplate = AdvancementData(name: "Lab", workCost: 30, materialCost: 20, techBranch: [])
     let cureTemplate = BuildingData(name: "Cure", workCost: 20, isStartingBuild: false)
     let upgradeTemplate = BuildingData(name: "Upgrade", workCost: 50, isStartingBuild: false)
-    let farmTemplate = ProducerData(name: "Farm", workCost: 1, materialCost : 0, rate: 3, produces: .food, rateIn : 1, consumes: .material)
+    let farmTemplate = ProducerData(name: "Farm", workCost: 20, materialCost : 10, rate: 3, produces: .food, rateIn : 1, consumes: .material)
     let houseTemplate = ProducerData(name: "Nursery", workCost: 20, rate: 1, produces: .people)
-    let mineTemplate = ProducerData(name: "Mine", workCost: 10, rate: 3, produces: .material)
+    let mineTemplate = ProducerData(name: "Mine", workCost: 15, rate: 3, produces: .material)
     
     static let shared = BuildingManager()
     private init() {

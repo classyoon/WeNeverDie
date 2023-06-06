@@ -110,6 +110,7 @@
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
 		CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */; };
 		CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD25F8729AD15000037C6F6 /* BoardView.swift */; };
+		CAE340BD2A2F9BF500A9B735 /* BoardSpawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE340BC2A2F9BF500A9B735 /* BoardSpawn.swift */; };
 		CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */; };
 		CAE88A4D2975E4DC00AEB5B0 /* PlayerFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */; };
 		CAE88A512975E6AB00AEB5B0 /* PerTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */; };
@@ -251,6 +252,7 @@
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
 		CAD25F8529AD11ED0037C6F6 /* StatusViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewBar.swift; sourceTree = "<group>"; };
 		CAD25F8729AD15000037C6F6 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		CAE340BC2A2F9BF500A9B735 /* BoardSpawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSpawn.swift; sourceTree = "<group>"; };
 		CAE88A4A2975E43000AEB5B0 /* ZombieFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieFunc.swift; sourceTree = "<group>"; };
 		CAE88A4C2975E4DC00AEB5B0 /* PlayerFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFunc.swift; sourceTree = "<group>"; };
 		CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerTurn.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				CA23AE5A29514D69003DC26D /* Tile.swift */,
 				CAE88A502975E6AB00AEB5B0 /* PerTurn.swift */,
 				91355AC1293AEE5C00907610 /* Board.swift */,
+				CAE340BC2A2F9BF500A9B735 /* BoardSpawn.swift */,
 				CA744D2A29A7D10A00F40B4F /* BoardFunctions.swift */,
 			);
 			path = World;
@@ -942,6 +945,7 @@
 				CA9A034029BE9D6E00ED390B /* NightDecisionView.swift in Sources */,
 				CA16EABE29C9356D0047593B /* ResetButtonView.swift in Sources */,
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
+				CAE340BD2A2F9BF500A9B735 /* BoardSpawn.swift in Sources */,
 				CA9A028B29B6DF8000ED390B /* escapeExplainView.swift in Sources */,
 				CA16EAC729C93E3B0047593B /* CountDown.swift in Sources */,
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
