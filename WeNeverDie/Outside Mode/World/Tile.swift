@@ -26,7 +26,6 @@ struct TileType {
             movementPenalty+=waterPenalty
         case "w":
             movementPenalty += waterPenalty
-            print("Water \(movementPenalty)")
             loot += Int.random(in: 2...4)
         default :
             loot += Int.random(in: 0...1)

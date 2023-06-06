@@ -11,9 +11,7 @@ struct BoardView: View {
     @ObservedObject var gameData: ResourcePool
     @ObservedObject var vm: Board
 
-    var size: Int {
-        
-700    }
+    
 
     var body: some View {
         ScrollView([.horizontal, .vertical], showsIndicators: false) {
@@ -26,7 +24,7 @@ struct BoardView: View {
                     }
                 }
             }
-            .frame(width: CGFloat(size))
+            .frame(width: CGFloat(vm.size))
             .id(vm.turn)
             
         }

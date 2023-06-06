@@ -104,7 +104,7 @@ extension Board {
     func updateDayLightStatus(_ zombieNumber : Int){
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
-            if zombieNumber < 10 {
+            if zombieNumber < zombieSpawnLimit {
                 spawnZombies(2)
                 //
                 audio.playSFX(.longGrowl)
