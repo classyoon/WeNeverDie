@@ -61,6 +61,7 @@ struct GameConditionModel : Identifiable, Codable {
     var hasViewedTutorial = false
     var death = false
     var victory = false
+    var isOnHardmode = false
     var deathRequirement : Int = 3 
     var progressToDeath : Int = 0
     mutating func reset(){

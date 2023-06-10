@@ -16,7 +16,7 @@ struct CureProgressInfoView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .fill(Color(.white))
+            .fill(Color(.secondarySystemBackground))
         //.frame(width: 400, height: 200)
             .frame(height: 200)
             .overlay(

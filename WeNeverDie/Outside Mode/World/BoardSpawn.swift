@@ -12,6 +12,7 @@ extension Board {
         while counter < number {
             let loc = randomLoc()
             terrainBoard[loc.row][loc.col].name = "t"
+            terrainBoard[loc.row][loc.col].setTileBonuses()
             set(moveable: recruit(board: self), Coord: loc)
             counter += 1
         }
@@ -32,6 +33,7 @@ extension Board {
                     temp.checkForUpgrade()
                     set(moveable: temp, Coord: Coord(r, c))
                     terrainBoard[r][c].name = "t"
+                    terrainBoard[r][c].setTileBonuses()
                     counter += 1
                     c += 1
                     print("\(counter)")

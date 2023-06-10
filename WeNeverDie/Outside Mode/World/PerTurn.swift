@@ -19,6 +19,7 @@ extension Board {
                     if piece.isPlayerUnit {
                         playerCoordPins.append( Coord(row: row, col: col))
                         playerPieces.append(piece)
+                        print("\(piece.isHidden)")
                         
                     }
                     if piece.isZombie {
@@ -105,7 +106,7 @@ extension Board {
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
             if zombieNumber < zombieSpawnLimit {
-                spawnZombies(2)
+                spawnZombies(3)
                 //
                 audio.playSFX(.longGrowl)
             }
@@ -114,6 +115,7 @@ extension Board {
             missionUnderWay = false
         }
     }
+   
     //MARK: Next Turn
     func nextTurn(){
         //audio.playSFX(.next)
@@ -123,6 +125,7 @@ extension Board {
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
         updateDayLightStatus(zombies.count)
         applyTileStatuses(players)
+        print()
         runBehaviorOfAllZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()

@@ -12,8 +12,8 @@ class BuildingManager : ObservableObject {
     let cureTemplate = BuildingData(name: "Cure", workCost: 20, isStartingBuild: false)
     let upgradeTemplate = BuildingData(name: "Upgrade", workCost: 50, isStartingBuild: false)
     let farmTemplate = ProducerData(name: "Farm", workCost: 20, materialCost : 10, rate: 3, produces: .food, rateIn : 1, consumes: .material)
-    let houseTemplate = ProducerData(name: "Nursery", workCost: 20, rate: 1, produces: .people)
-    let mineTemplate = ProducerData(name: "Mine", workCost: 15, rate: 3, produces: .material)
+    let houseTemplate = ProducerData(name: "Nursery", workCost: 20, materialCost : 20, rate: 1, produces: .people,  rateIn : 1, consumes: .food)
+    let mineTemplate = ProducerData(name: "Mine", workCost: 15, materialCost : 5, rate: 2, produces: .material)
     
     static let shared = BuildingManager()
     private init() {

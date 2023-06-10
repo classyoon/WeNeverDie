@@ -15,7 +15,7 @@ struct HowToAttack : View {
            
             Image("SurvivorW")
             Text("Growing Your Numbers").font(.title)
-            Text("This is another survivor, who is not part of your group. You may encounter them outside your camp. You can recruit them by having your survivor approach and talk to them. You do this in same fashion you command your survivors to attack.")
+            Text("Above is another survivor, who is not part of your group. You may encounter them outside your camp. You can recruit them by having your survivor approach and talk to them. You do this in same fashion you command your survivors to attack.")
         }
     }
 }

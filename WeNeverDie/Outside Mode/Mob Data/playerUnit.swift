@@ -19,7 +19,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var isStruck = false
    
 
-    var isHidden = false
+    var isHidden = true
     
     var name : String
     var health: Int = 10

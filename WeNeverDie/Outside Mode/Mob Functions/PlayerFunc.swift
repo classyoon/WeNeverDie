@@ -75,7 +75,8 @@ extension Board {
     func applyTileStatuses(_ playerCoordPins : [Coord]){
         for coord in playerCoordPins {
             if board[coord.row][coord.col] != nil {
-                board[coord.row][coord.col]?.isHidden = (terrainBoard[coord.row][coord.col].name=="t" ? true : false)
+                board[coord.row][coord.col]?.isHidden = (terrainBoard[coord.row][coord.col].concealingTerrain ? true : false)
+                print("unit is hidden \(board[coord.row][coord.col]?.isHidden)")
             }
         }
     }

@@ -65,8 +65,8 @@ class Board : ObservableObject, BoardProtocol {
     @Published var audio : AudioManager
     
     @Published var size : Int = 100
-    @Published var zombieSpawnLimit = 10
-    
+    @Published var zombieSpawnLimit = 15
+    @Published var recruitNum = Int.random(in: 0...2)
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
         let maxPercent = percent+varience
@@ -129,7 +129,7 @@ class Board : ObservableObject, BoardProtocol {
             zombieNumber += 3
             print("Wreckage Map")
             size = 700
-            zombieSpawnLimit = 15
+            zombieSpawnLimit = 20
             return convertLevel(level: levelWreckage)
         case 2...4:
             rowMax = 7
@@ -137,10 +137,32 @@ class Board : ObservableObject, BoardProtocol {
             turnsOfDaylight += 3
             turnsOfNight += 3
             zombieNumber += 2
-            zombieSpawnLimit = 20
+            zombieSpawnLimit = 25
             print("Roadblock Map")
             size = 700
+            recruitNum = Int.random(in: 1...2)
             return convertLevel(level: levelRoadBlock)
+        case 5...8:
+            rowMax = 7
+            colMax = 7
+            turnsOfDaylight += 2
+            turnsOfNight += 2
+            zombieNumber += 4
+            zombieSpawnLimit = 30
+            recruitNum = Int.random(in: 2...4)
+            print("Neighborhood Map")
+            size = 700
+            return convertLevel(level: levelNeighborhood)
+        case 9...10:
+            rowMax = 7
+            colMax = 7
+            turnsOfDaylight += 1
+            turnsOfNight += 2
+            zombieNumber += 4
+            zombieSpawnLimit = 25
+            print("Cabin Map")
+            size = 700
+            return convertLevel(level: levelCabin)
         default :
             colMax = 5
             rowMax = 5
@@ -160,7 +182,7 @@ class Board : ObservableObject, BoardProtocol {
         terrainBoard = chooseMap(players)
         spawnPlayers(players)
         spawnZombies(zombieNumber)
-        spawnRecruit(Int.random(in: 0...2))
+        spawnRecruit(recruitNum)
        
     }
 
@@ -191,21 +213,35 @@ class Board : ObservableObject, BoardProtocol {
         return tempTerrain
     }
    
-    var mapIndex = Int.random(in: 0...10)
-    var levelRoadBlock = [["t","t","g", "g","w","t","t",],
-                      ["t","g","g","h","w","t","g",],
-                      ["g","g","g","w","h","g","g",],
-                      ["g","w","w","g","t","h","g",],
-                      ["w","g","h","t","g","g","w",],
-                      ["t","t","g","h","g","g","g",],
-                      ["t","t","g","g","w","g","X",]]
-    var levelWreckage = [["t","t","g","g","w","h","h",],
-                     ["t","t","g","g","g","g","g",],
-                     ["w","w","w","w","g","g","g",],
-                     ["g","g","g","g","w","g","X",],
-                     ["t","t","t","g","g","w","g",],
-                     ["h","h","t","t","g","w","g",],
-                     ["h","h","h","t","g","w","g",]]
+    var mapIndex = Int.random(in: 0...30)
+    var levelRoadBlock = [["t","t","g", "g","w","t","t"],
+                      ["t","g","g","h","w","t","g"],
+                      ["g","g","g","w","h","g","g"],
+                      ["g","w","w","g","t","h","g"],
+                      ["w","g","h","t","g","g","w"],
+                      ["t","t","g","h","g","g","g"],
+                      ["t","t","g","g","w","g","X"]]
+    var levelWreckage = [["t","t","g","g","w","h","h"],
+                     ["t","t","g","g","g","g","g"],
+                     ["w","w","w","w","g","g","g"],
+                     ["g","g","g","g","w","g","X"],
+                     ["t","t","t","g","g","w","g"],
+                     ["h","h","t","t","g","w","g"],
+                     ["h","h","h","t","g","w","g"]]
+    var levelNeighborhood = [["t","t","t","g","g","w","w",],
+                             ["t","g","g","g","t","t","t",],
+                             ["g","t","t","g","g","g","t",],
+                             ["t","w","h","g","h","g","h",],
+                             ["w","w","g","g","g","g","t",],
+                             ["w","w","h","g","h","g","t",],
+                             ["w","t","g","g","t","g","X",]]
+    var levelCabin = [["t","t","t","g","t","t","t",],
+                      ["t","g","g","g","g","t","t",],
+                      ["g","g","g","g","g","g","t",],
+                      ["g","g","h","h","h","g","g",],
+                      ["t","g","h","h","h","g","g",],
+                      ["t","t","g","g","g","g","g",],
+                      ["t","t","g","g","g","g","X",]]
 
 }
 

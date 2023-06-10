@@ -75,11 +75,11 @@ class Stockpile : ObservableObject {
 }
 struct StockpileModel : Codable, Identifiable {
     var id = UUID()
-    var foodStored : Int = 10
-    var survivorNumber : Int = 3
+    var foodStored : Int = 0
+    var survivorNumber : Int = 1
     var builders : Int = 0
-    var buildingResources : Int = 10
-    var survivorDefaultNumber : Int = 3
+    var buildingResources : Int = 0
+    var survivorDefaultNumber : Int = 1
     var survivorSent : Int = 0
     var starving : Bool {
         return foodStored==0 ? true : false
@@ -90,8 +90,8 @@ struct StockpileModel : Codable, Identifiable {
     
     mutating func reset(){
         survivorNumber = survivorDefaultNumber
-        foodStored = 10
-        buildingResources = 10
+        foodStored = 0
+        buildingResources = 0
         survivorSent = 0
         builders = 0
         

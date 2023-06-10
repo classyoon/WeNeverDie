@@ -15,6 +15,12 @@ struct BuildingView: View {
     @State private var showScrapAlert = false
     var body: some View {
         HStack {
+//            Button {
+//                var t = 1
+//            } label: {
+//                Image(systemName: "info.circle")
+//            }
+
             HStack{
                 Text(constructor.workCostText(for: building))
                 Text(constructor.workerText(for: building))
