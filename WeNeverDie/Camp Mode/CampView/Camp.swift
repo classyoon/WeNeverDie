@@ -30,10 +30,10 @@ struct CampView: View {
                     }
 //                    HStack{
 //                        BeginMissionButton(gameData: gameData, showBoard: $showBoard)
-//                        uiSettings.switchToLeft ? Spacer() : nil
+//                        uiSettings.isUsingLeftHandedInterface ? Spacer() : nil
 //                    }
-                !uiSettings.switchToLeft ? RightHandButtons(showCureHelp: $showCureHelp, showBoard: $showBoard, gameData: gameData) : nil
-                uiSettings.switchToLeft ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData, showBoard : $showBoard) : nil
+                !uiSettings.isUsingLeftHandedInterface ? RightHandButtons(showCureHelp: $showCureHelp, showBoard: $showBoard, gameData: gameData) : nil
+                uiSettings.isUsingLeftHandedInterface ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData, showBoard : $showBoard) : nil
                 //}
                 
             }

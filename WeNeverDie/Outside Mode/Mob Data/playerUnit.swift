@@ -6,27 +6,33 @@
 //
 
 import SwiftUI
-struct playerUnit: Piece, Identifiable, Equatable{
+struct playerUnit: Piece, Identifiable, Equatable, Codable{
     
-    @ObservedObject var BuildMan : BuildingManager = BuildingManager.shared
     static func == (lhs: playerUnit, rhs: playerUnit) -> Bool {
         lhs.id == rhs.id
     }
+    var isBeingSent = false
     var isRecruitable: Bool = false
     var isPlayerUnit = true
     var isAttackable: Bool = false
-    let isZombie : Bool = false
+    var isZombie : Bool = false
     var isStruck = false
-   
+    var isDeceased = false
+    var childhood : String
+    var currentOccupation : String
+    var daysAlive : Int = 0
 
-    var isHidden = true
+    
+    var isHidden = false
     
     var name : String
+    var firstName : String
+    var lastName : String
     var health: Int = 10
     var damage = 5
     var trust = 0
     var movementCount = 0
-    var stamina = (devMode ? 10 : 2)
+    var stamina =  2
     
     var isSelected = false
     var alert = false
@@ -87,10 +93,8 @@ struct playerUnit: Piece, Identifiable, Equatable{
 
 struct playerUnit_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board()
-        let playerUnit = playerUnit(name: "Steve Jobs", board: board)
+        let playerUnit = playerUnit(childhood: "Unknown", currentOccupation : "Tech Entreprenuer", name: "Steve Jobs", firstName: "Steve", lastName: "Jobs")
         playerUnit.getView()
             .previewLayout(.sizeThatFits)
     }
 }
-

@@ -16,18 +16,18 @@ struct MuteToggleButton: View {
     
     var body: some View {
         HStack{
-            if uiSettings.switchToLeft {
+            if uiSettings.isUsingLeftHandedInterface {
                 MuteButton(audio: audio, uiSettings: uiSettings)
             }
-            if !uiSettings.switchToLeft {
+            if !uiSettings.isUsingLeftHandedInterface {
                 Text(name)
             }
             // Music volume slider
-            TappableSlider(value: soundSet == .music ? $audio.musicVolume : $audio.sfxVolume,range: 0...1, step: 0.01, isLeftHanded: uiSettings.switchToLeft)//FIX THIS Line
-            if uiSettings.switchToLeft {
+            TappableSlider(value: soundSet == .music ? $audio.musicVolume : $audio.sfxVolume,range: 0...1, step: 0.01, isLeftHanded: uiSettings.isUsingLeftHandedInterface)//FIX THIS Line
+            if uiSettings.isUsingLeftHandedInterface {
                 Text(name)
             }
-            if !uiSettings.switchToLeft {
+            if !uiSettings.isUsingLeftHandedInterface {
                 MuteButton(audio: audio, uiSettings: uiSettings)
             }
         }

@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol BoardProtocol {
-    var rowMax: Int { set get }
-    var colMax: Int { set get }
-    func getCoord(of moveable: any Moveable) -> Coord?
-}
+
 
 //let testSoundPlayer = try? AVAudioPlayer(contentsOf: soundUrl!)
 // Start playing the music
@@ -21,7 +17,6 @@ class Board : ObservableObject, BoardProtocol {
     @Published var stockpile : Stockpile = Stockpile.shared
     @Published var UnitsDied = 0
     @Published var UnitsRecruited = 0
-    @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
     @Published var showBoard = false
     @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]

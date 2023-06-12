@@ -37,7 +37,7 @@ protocol Piece: Moveable & Displayable {
     var id : UUID {set get}
 }
 
-protocol Moveable: Identifiable  {
+protocol Moveable: Identifiable, Codable  {
     var isPlayerUnit : Bool {get}
     var isRecruitable : Bool {get}
     var isAttackable : Bool {get}

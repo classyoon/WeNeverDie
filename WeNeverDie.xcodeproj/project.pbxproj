@@ -600,7 +600,6 @@
 			isa = PBXGroup;
 			children = (
 				CA90F83029ABDE9900AD34E9 /* TopButtons.swift */,
-				CA8B95D829EB814D0099C121 /* CureView */,
 				CA16EAEB29CAA0750047593B /* RightHandButtons.swift */,
 				CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */,
 			);
@@ -619,6 +618,7 @@
 		CA90F82929ABDDA500AD34E9 /* CampView */ = {
 			isa = PBXGroup;
 			children = (
+				CA8B95D829EB814D0099C121 /* CureView */,
 				CA8B95DB29EB82940099C121 /* Next Day Buttons */,
 				CACCD570298C8B5A005BE6DE /* Camp.swift */,
 				CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */,

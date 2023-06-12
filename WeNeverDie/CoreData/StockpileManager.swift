@@ -32,13 +32,7 @@ class Stockpile : ObservableObject {
     }
     
     func transferResourcesToResourcePool(vm : Board){
-        stockpileData.foodStored += vm.foodNew
-        stockpileData.survivorNumber+=vm.UnitsRecruited
-        stockpileData.survivorNumber-=vm.UnitsDied
-        stockpileData.survivorSent = 0
-        stockpileData.buildingResources += vm.materialNew
-        print(vm.UnitsRecruited)
-            save(items: stockpileData, key: "stocks")
+        stockpileData.transferResourcesToResourcePool(vm: vm)
     }
     func runOutOfPeople()->Bool{
         return stockpileData.runOutOfPeople()
@@ -71,6 +65,9 @@ class Stockpile : ObservableObject {
     func setBuilders(_ survivors : Int){
     stockpileData.builders = survivors
     }
+    func getRosterOfSurvivors()->[playerUnit] {
+       return stockpileData.rosterOfSurvivors
+    }
     
 }
 struct StockpileModel : Codable, Identifiable {
@@ -87,6 +84,53 @@ struct StockpileModel : Codable, Identifiable {
     var unemployed : Int {
         survivorNumber-builders-survivorSent
     }
+    var graveyard: [playerUnit] = []
+    var rosterOfSurvivors = [playerUnit]()
+    
+    func generateSurvivors(_ number : Int)->[playerUnit] {
+        let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
+        let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
+        let childhood = ["Shy", "Inquisitive", "Imaginative", "Scared", "Joyful", "Crafty", "Rich", "Peculiar", "Athletic", "Adventurous", "Artistic", "Studious", "Independent", "Resilient"]
+        let occupations = ["University Student", "Police Officer", "Firefighter", "Doctor", "Mechanic", "Activist", "Self Employed", "Patient", "Single Parent", "Scientist", "Engineer", "Teacher", "Soldier", "Artist", "Chef", "Social Worker", "Entrepreneur", "Musician", "Journalist", "Convict", "Teenager", "Entertainer"]
+        var generatedRoster = [playerUnit]()
+        var stringList = [String]()
+        for _ in 0..<number {
+            let randomFirstName = firstNames.randomElement()!
+            let randomLastName = lastNames.randomElement()!
+            let randomChildhood = childhood.randomElement()!
+            let randomOccupation = occupations.randomElement()!
+            let fullName = "\(randomFirstName) \(randomLastName)"
+            stringList.append(fullName)
+            generatedRoster.append(playerUnit(childhood: randomChildhood, currentOccupation : randomOccupation, name: fullName, firstName: randomFirstName, lastName: randomLastName))
+        }
+   // print(stringList)
+        return generatedRoster
+    }
+    
+    func transferResourcesToResourcePool(vm : Board){
+        func transferResourcesToResourcePool(vm : Board){
+            foodStored += vm.foodNew
+            survivorNumber+=vm.UnitsRecruited
+            survivorNumber-=vm.UnitsDied
+            survivorSent = 0
+            
+            buildingResources += vm.materialNew
+            for unit in vm.survivorsLocal {
+                for checker in 0..<rosterOfSurvivors.count {
+                    if unit == rosterOfSurvivors[checker] {
+                        rosterOfSurvivors[checker] = unit
+                    }
+                }
+                if !rosterOfSurvivors.contains(where: { $0 == unit }) {
+                    rosterOfSurvivors.append(unit)
+                }
+            }
+           
+            refreshRoster()
+            survivorNumber = rosterOfSurvivors.count
+            save(items: self, key: "stocks")
+        }
+    }
     
     mutating func reset(){
         survivorNumber = survivorDefaultNumber
@@ -94,7 +138,23 @@ struct StockpileModel : Codable, Identifiable {
         buildingResources = 0
         survivorSent = 0
         builders = 0
+        rosterOfSurvivors = generateSurvivors(survivorNumber)
         
+    }
+    mutating func refreshRoster (){
+        var temp = [playerUnit]()
+        for survivor in rosterOfSurvivors {
+            if !survivor.isDeceased{
+                temp.append(survivor)
+            }
+            else {
+                print("Death registered")
+                survivorNumber-=1
+                graveyard.append(survivor)
+            }
+        }
+       
+        rosterOfSurvivors = temp
     }
     mutating func calcConsumption(){
         if foodStored-survivorNumber > 0{

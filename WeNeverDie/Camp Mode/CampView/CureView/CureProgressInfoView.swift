@@ -28,7 +28,7 @@ struct CureProgressInfoView: View {
                             ForEach(BuildingManager.shared.buildings.indices, id: \.self) { index in
                                 if BuildingManager.shared.buildings[index].isActive {
                                     BuildingView(building: BuildingManager.shared.buildings[index], stock: stock).padding(1)
-                                  
+                                    
                                 }
                                 //.frame(width: 500)
                                 

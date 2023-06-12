@@ -24,13 +24,13 @@ class ResourcePool : ObservableObject {
     
     
     @Published var lastTappedIndex: Int?
-    @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
+    @Published var displayOfSelectedIcons : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
     
     func setValue(resourcePoolData: ResourcePoolData) {
         self.days = resourcePoolData.days
-        self.selectStatuses = resourcePoolData.selectStatuses
+        self.displayOfSelectedIcons = resourcePoolData.displayOfSelectedIcons
         self.stockpileData = resourcePoolData.stockpileData
         self.gameConData = resourcePoolData.gameConData
     }
@@ -38,7 +38,7 @@ class ResourcePool : ObservableObject {
     func reset() {
         Stockpile.shared.reset()
         BuildingManager.shared.reset()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        displayOfSelectedIcons = Array(repeating: false, count: stockpile.getNumOfPeople())
         
         GameCondition.shared.reset()
         audio.playMusic("Kurt")
@@ -85,15 +85,20 @@ class ResourcePool : ObservableObject {
     func transferResourcesToResourcePool(vm : Board){
         Stockpile.shared.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        displayOfSelectedIcons = Array(repeating: false, count: stockpile.getNumOfPeople())
         isInMission = false
+        
+        
+        
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
+    
+    
     func hardmodeReset(){
         reset()
         Stockpile.shared.stockpileData.foodStored = 0
         Stockpile.shared.stockpileData.survivorNumber = 1
-        selectStatuses = Array(repeating: false, count: 1)
+        displayOfSelectedIcons = Array(repeating: false, count: 1)
     }
     
     func balance(_ index: Int) {
@@ -104,29 +109,27 @@ class ResourcePool : ObservableObject {
     func selectingSurvivors(_ index: Int){
         print("Survivors selected \(Stockpile.shared.getSurvivorSent()), Builders : \(Stockpile.shared.getBuilders())")
         
-        //        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
-        //            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
-        //                selectStatuses[i] = false
+        //        if displayOfSelectedIcons.count-stockpile.getBuilders()<displayOfSelectedIcons.count {
+        //            for i in displayOfSelectedIcons.count-stockpile.getBuilders()...displayOfSelectedIcons.count {
+        //                displayOfSelectedIcons[i] = false
         //            }
         //        }
         if lastTappedIndex == index {
             // Tapped the same button twice set all buttons to false
-            for i in 0...index {
-                selectStatuses[i] = false
-            }
+            displayOfSelectedIcons = Array(repeating: false, count: Stockpile.shared.getNumOfPeople()-Stockpile.shared.getBuilders())
             Stockpile.shared.setSurvivorSent(0)
             lastTappedIndex = nil
         } else {
-            // Set the survivorSent value based on the index and switchToLeft flag
-            if uiSetting.switchToLeft {
-                Stockpile.shared.setSurvivorSent(selectStatuses.count - index)
+            // Set the survivorSent value based on the index and isUsingLeftHandedInterface flag
+            if uiSetting.isUsingLeftHandedInterface {
+                Stockpile.shared.setSurvivorSent(displayOfSelectedIcons.count - index)
             } else {
                 Stockpile.shared.setSurvivorSent(index + 1)
             }
             
-            // Set the selectStatuses array based on the survivorSent value
-            for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < Stockpile.shared.getSurvivorSent())
+            // Set the displayOfSelectedIcons array based on the survivorSent value
+            for i in 0..<displayOfSelectedIcons.count {
+                displayOfSelectedIcons[i] = (i < Stockpile.shared.getSurvivorSent())
             }
             lastTappedIndex = index
         }
