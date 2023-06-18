@@ -65,7 +65,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var audio : AudioManager
     
     @Published var size : Int = 100
-    @Published zombieSpawnLimit = 10
+    @Published var zombieSpawnLimit = 10
     
     func randomCountFromPercent(_ percent : Double,  varience : Double = 0.05)->Int{
         let minPercent = percent-varience
