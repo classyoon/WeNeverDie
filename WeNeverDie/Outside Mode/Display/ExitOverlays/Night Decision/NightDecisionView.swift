@@ -8,22 +8,57 @@
 import SwiftUI
 
 struct NightDecisionView: View {
-    var chanceOfFailure = NightResultCalculator(zombieCount: 10).results.chanceOfFailure
-    var costOfSafeOption = NightResultCalculator(zombieCount: 10).results.costOfSafeOption
+    let resultCalculator : NightResultCalculator
+    @Binding var showBoard : Bool
+    @ObservedObject var vm : Board
+    @ObservedObject var gameData : ResourcePool
+    @ObservedObject var stockpile = Stockpile.shared
     var body: some View {
-        HStack{
-            Button("drop some food and run"){
-               
+        VStack{
+            Text("You have to get home now. \(resultCalculator.zombieCount) zombies nearby.")
+            HStack{
+                vm.foodNew >= resultCalculator.results.costOfSafeOption ? Button("Distract with \(resultCalculator.results.costOfSafeOption)") {
+                    // code for the safe option
+                    print("Dropping some food and running...")
+                    vm.foodNew-=resultCalculator.results.costOfSafeOption
+                    
+                    vm.neutralOutcome = true
+                    vm.audio.playSFX(.carStarting)
+                    vm.showEscapeOption = false
+                } : Button("Unable to distract. Cost : \(resultCalculator.results.costOfSafeOption)"){}
+                Button("Run"){
+                    // code for the risky option
+                    print("Just running...")
+                    let randomNumber = Double.random(in: 0...1)
+                    if randomNumber < resultCalculator.results.chanceOfFailure {
+                        vm.UnitsDied+=1
+                        print("You were caught by the zombies and lost everything!")
+                        vm.badOutcome = true                       
+                        vm.audio.playSFX(.badResult)
+                        vm.showEscapeOption = false
+                    }
+                    else {
+                        print("You made it out safely!")
+                        vm.audio.playSFX(.carStarting)
+                        vm.showEscapeOption = false
+                        vm.avoidedOutcome = true
+                    }
+                    
+                }.buttonStyle(.bordered)
             }
-            Button("just run"){
-                
-            }
-        }.buttonStyle(.bordered)
+            
+        }.frame(width: 300, height: 300)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.thickMaterial)
+            )
     }
+    
 }
+
 
 struct NighttimeExitDecisonView_Previews: PreviewProvider {
     static var previews: some View {
-        NightDecisionView()
+        NightDecisionView(resultCalculator: NightResultCalculator(zombieCount: 10), showBoard: .constant(true), vm: Board(), gameData: ResourcePool())
     }
 }

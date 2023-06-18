@@ -14,9 +14,11 @@ extension Board {
     ///   - piece: Piece that will be moved.
     ///   - from: original spot the piece was at.
     ///   - to: new spot piece will be at.
+    //   MARK: Move Function
     func move(_ piece: inout any Piece, from : Coord, to: Coord){
         let moveCost = terrainBoard[to.row][to.col].movementPenalty+1
         
+        print("Move cost \(terrainBoard[to.row][to.col].name) \(moveCost)")
         //If the moving piece has energy and square is unoccupied
         if board[to.row][to.col]==nil &&
             piece.movementCount+moveCost<=piece.stamina && to != from{
@@ -44,6 +46,7 @@ extension Board {
                 highlightSquare = nil
             }
         }
+        canAnyoneMove = isAnyoneStillActive()
     }
 }
 

@@ -28,7 +28,7 @@ struct recruit: Piece, Identifiable, Equatable {
     var health: Int = 10
     
     var damage: Int = 5
-    
+    var isStruck = false
     var board: BoardProtocol
     var vectors: [Vector] = [
         Vector(row: 1, col: 1),

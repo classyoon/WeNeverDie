@@ -7,7 +7,7 @@
 
 import Foundation
 extension Board {
- 
+    //MARK: Runs through whole Board
     func createLists()-> (zombieList : [any Piece], playerCoords: [Coord], zombieCoord : [Coord]) {
         var playerCoordPins = [Coord]()
         var ZomCoordPins = [Coord]()
@@ -19,6 +19,7 @@ extension Board {
                     if piece.isPlayerUnit {
                         playerCoordPins.append( Coord(row: row, col: col))
                         playerPieces.append(piece)
+                        
                     }
                     if piece.isZombie {
                         zombies.append(piece as! Zombie)
@@ -30,13 +31,13 @@ extension Board {
         numberOfZombies = zombies.count
         return (zombies, playerCoordPins, ZomCoordPins)
     }
-
     
     func checkHPAndRefreshStamina(){
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 
                 if let piece = board[row][col] {
+                    
                     if piece.health <= 0 {
                         if piece.isPlayerUnit{
                             UnitsDied+=1
@@ -51,21 +52,16 @@ extension Board {
             }
         }
     }
+    
+    //MARK: Unused Transfer Survivors
     func transferSurvivorsToCamp()->[any Piece]{
         return survivorList
     }
-    func checkEndMission2(){
-//        if numOfUnits == UnitsDied {
-//            missionUnderWay = false
-//            
-//        }
-    }
+ 
+    //MARK: Check Endmission? Maybe not used?
     func checkEndMission(playerCoords: [Coord]? = nil){
-        let playerCoords  = playerCoords ?? createLists().playerCoords
-        
+        let playerCoords = playerCoords ?? createLists().playerCoords
         if playerCoords.isEmpty{
-//            print("END MISSION")
-//            print(survivorList)
             missionUnderWay = false
             return
         }
@@ -75,16 +71,13 @@ extension Board {
                 if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
                     survivorList.append(survivorOnCoord)
                     board[lastSurvivor.row][lastSurvivor.col]=nil
-                    if survivorOnCoord.id  == selectedUnit?.id {
+                    if survivorOnCoord.id == selectedUnit?.id {
                         selectedUnit = nil
-                     
+                        canAnyoneMove = isAnyoneStillActive()
+                        audio.playSFX(.vanDoor)
                     }
                 }
-                leavingSoundPlayer?.prepareToPlay()
-                leavingSoundPlayer?.play()
-                print("END MISSION")
-             
-//                print(survivorList)
+                audio.playSFX(.carStarting)
                 missionUnderWay = false
             }
         }
@@ -94,44 +87,50 @@ extension Board {
                     if let survivorOnCoord = board[survivor.row][survivor.col] {
                         survivorList.append(survivorOnCoord)
                         board[survivor.row][survivor.col]=nil
-                        
-                        if survivorOnCoord.id  == selectedUnit?.id {
+                        canAnyoneMove = isAnyoneStillActive()
+                        audio.playSFX(.vanDoor)
+                        if survivorOnCoord.id == selectedUnit?.id {
                             selectedUnit = nil
-                            
+                            canAnyoneMove = isAnyoneStillActive()
+                            audio.playSFX(.vanDoor)
                         }
                     }
                 }
             }
         }
     }
+    
+    //MARK: Daylight
     func updateDayLightStatus(_ zombieNumber : Int){
         if turnsSinceStart > turnsOfDaylight && turnsSinceStart < lengthOfPlay {
             changeToNight = true
-            if zombieNumber < 10 {
-                spawnZombies(1)
-                monsterSpawnSFXPlayer?.prepareToPlay()
-                monsterSpawnSFXPlayer?.play()
+            if zombieNumber < zombieSpawnLimit {
+                spawnZombies(2)
+                //
+                audio.playSFX(.longGrowl)
             }
         } else if turnsSinceStart > lengthOfPlay {
+            showEscapeOption = true
             missionUnderWay = false
         }
     }
+    //MARK: Next Turn
     func nextTurn(){
+        //audio.playSFX(.next)
         turnsSinceStart += 1
         let lists = createLists()
-       
+        
         let zombies = lists.zombieList; let players = lists.playerCoords; let zombieLoc = lists.zombieCoord
         updateDayLightStatus(zombies.count)
         applyTileStatuses(players)
-        moveZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
+        runBehaviorOfAllZombies(zombies, playerCoords: players, zombieLoc: zombieLoc)
         checkHPAndRefreshStamina()
         deselectUnit()
         //checkEndMission()
         if createLists().playerCoords.count <= 0 {
             missionUnderWay = false
-//            leavingSoundPlayer?.prepareToPlay()
-//            leavingSoundPlayer?.play()
         }
+        turn = UUID()
         
     }
 }

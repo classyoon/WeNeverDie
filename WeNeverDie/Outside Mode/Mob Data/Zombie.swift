@@ -15,8 +15,9 @@ struct Zombie: Piece, Equatable {
     var isAttackable: Bool = true
     var isPlayerUnit = false
     var isHidden = false
+    var isStruck = false
     var isZombie: Bool = true
-    
+   
     var health = 10
     var damage = (devMode ? 0 : 3)
     var alert = false

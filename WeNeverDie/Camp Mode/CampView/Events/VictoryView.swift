@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VictoryView: View {
     @ObservedObject var gameData: ResourcePool
+    @ObservedObject var gameCon: GameCondition = GameCondition.shared
     var body: some View {
         VStack {
             
@@ -19,11 +20,12 @@ struct VictoryView: View {
                 .font(.body)
                 .lineLimit(nil)
                 .padding()
+                //.font
             // Spacer()//You go on to set the new future for the world that was seemingly brought to an end. Although you may have died many times, you never let your hope (or at least determination) die. Humanity shall never die as long as it has people like you (and your survivors) in this world.
             HStack(alignment: .top) {
                 Button {
-                    gameData.victory = false
-                    gameData.AlreadyWon = true
+                    GameCondition.shared.data.victory = false
+                    GameCondition.shared.data.AlreadyWon = true
                 } label: {
                     Text("Endless")
                         .font(.headline)
@@ -52,7 +54,15 @@ struct VictoryView: View {
             }.padding(.horizontal, 30)
         }
         .padding()
-        .aspectRatio(3, contentMode: .fit)
+        //.aspectRatio(3, contentMode: .fit)
+        // TODO: remove .onReceive from production. for testing purposes only
+        //            .onReceive(timer) { _ in
+        //                if gameData.victory {
+        //                    gameData.victory = false
+        //                } else {
+        //                    gameData.victory = true
+        //                }
+        //            }
     }
 }
 

@@ -19,52 +19,46 @@ struct OutsideView: View {
     //    @Namespace var nameSpace : Namespace.ID
     @ObservedObject var vm : Board
     @ObservedObject var gameData : ResourcePool
-    @State var people = 2
-    
+    @ObservedObject var uiSettings : UserSettingsManager
+
     
     var body: some View {
         NavigationStack {
             HStack{
+                uiSettings.switchToLeft ? StatusViewBar(vm: vm, gameData: gameData) : nil
+                
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
-                        vm.showEscapeOption ?
-                        ExitOverlayView(vm: vm, food: food, gameData: gameData, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
+                        (!vm.missionUnderWay && !vm.showEscapeOption) ?
+                        ExitOverlayView(vm: vm, gameData: gameData, stockpile: gameData.stockpile, showBoard: $showBoard, unitsDied: vm.UnitsDied, unitsRecruited: vm.UnitsRecruited)
                         : nil
                         
                     }
                     .overlay{
-                        !vm.missionUnderWay ?
+                        vm.showEscapeOption ?
                         Group{
-                                VStack{
-                                    Text("Message to the user:")
-                                    HStack{
-                                        Button(action: {
-                                            
-                                            vm.showEscapeOption = true
-                                            vm.missionUnderWay = false
-                                        }, label: {
-                                            Text("Drop food")
-                                        })
-                                        .buttonStyle(.bordered)
-                                        Button(action: {
-                                            vm.showEscapeOption = true
-                                            vm.missionUnderWay = false
-                                        }, label: {
-                                            Text("Run")
-                                        })
-                                        .buttonStyle(.bordered)
-                                    }
-                                }
-                                .frame(width: 300, height: 300)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .fill(.thickMaterial)
-                                )
+                            NightDecisionView(resultCalculator: NightResultCalculator(zombieCount: vm.numberOfZombies), showBoard: $showBoard, vm: vm, gameData: gameData)
+                        }
+                        : nil
+                        vm.badOutcome ?
+                        Group{
+                            BadResultView(vm: vm, gameData: gameData, showBoard: $showBoard)
+                        }
+                        : nil
+                        vm.avoidedOutcome ?
+                        Group{
+                            ResultScreen(vm: vm, gameData: gameData, showBoard: $showBoard)
+                        }
+                        : nil
+                        vm.neutralOutcome ?
+                        Group{
+                            DistractionView(vm: vm, gameData: gameData, showBoard: $showBoard)
                         }
                         : nil
                     }
                 
-                StatusViewBar(food: $food, vm: vm, gameData: gameData)
+                uiSettings.switchToLeft ? nil :
+                StatusViewBar(vm: vm, gameData: gameData)
             }.background(Color.black)
         }
     }
@@ -72,6 +66,6 @@ struct OutsideView: View {
 
 struct OutsideView_Previews: PreviewProvider {
     static var previews: some View {
-        OutsideView(showBoard: Binding.constant(false), vm: Board(), gameData: ResourcePool())
+        OutsideView(showBoard: Binding.constant(false), vm: Board(), gameData: ResourcePool(), uiSettings: UserSettingsManager())
     }
 }

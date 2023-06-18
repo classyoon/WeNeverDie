@@ -10,13 +10,17 @@ import SwiftUI
 struct CampStats : View {
     @ObservedObject var gameData : ResourcePool
     @Binding var shouldResetGame : Bool
-    @Binding var surivorsSentOnMission: Int
+    
     @Binding var showBoard : Bool
-
+    @ObservedObject var uiSettings : UserSettingsManager
+    
+    @ObservedObject var buildingMan : BuildingManager = BuildingManager.shared
+    @ObservedObject var stockpile : Stockpile = Stockpile.shared
+    
     @State var survivorsArr: [Int] = []
-
+    
     func shouldShowMap() -> Bool{
-        if surivorsSentOnMission > 0{
+        if Stockpile.shared.getSurvivorSent() > 0{
             return true
         }
         return false
@@ -25,48 +29,56 @@ struct CampStats : View {
         gameData.passDay()
         showBoard = shouldShowMap()
         print(showBoard)
-        print("Sending \(gameData.survivorSent)")
-        print("Sent \(surivorsSentOnMission)")
-        gameData.survivorSent = surivorsSentOnMission
-        print(surivorsSentOnMission)
-        print("Sending \(gameData.survivorSent)")
+        print("Sent \(Stockpile.shared.getSurvivorSent())")
+        Stockpile.shared.setSurvivorSent(Stockpile.shared.getSurvivorSent())
     }
     func starvationColor()->Color{
-        if gameData.foodResource <= 0 {
-            return Color.red
+        if Stockpile.shared.getNumOfFood() <= 0 {
+            return uiSettings.visionAssist ? Color.purple : Color.red
         }
-        return Color.green
+        return uiSettings.visionAssist ? Color.yellow : Color.green
     }
     func starvationText()->String{
-        if gameData.starving{
-            return "We are starving. Days till death \(gameData.deathRequirement-gameData.progressToDeath)"
+        if buildingMan.getStatusOf("Farm") && buildingMan.getStatusOf("House"){
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also produce  \(buildingMan.getProjectedOutputOf("Farm")) and consume \(buildingMan.getProjectedInputOf("Nursery")) per day."
+        }else if buildingMan.getStatusOf("Farm")  {
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also produce  \(buildingMan.getProjectedOutputOf("Farm")) per day"
+            
+        }   else if buildingMan.getStatusOf("Nursury"){
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations). However, we will also consume \(buildingMan.getProjectedInputOf("Nursery")) per day."
         }
-        if gameData.survivorNumber <= 0{
+        if Stockpile.shared.isStarving(){
+            return "We are starving. Days till death \(gameData.gameCon.getDeathCountdown())"
+        }
+        if Stockpile.shared.getNumOfFood() < 0{
             return "If you see this then it is a bug. You shouldn't see this."
         }
         else{
-            return "We have food for \(gameData.foodResource / gameData.survivorNumber) days, (\(gameData.foodResource) rations)."
+            return "We have food for \(Stockpile.shared.getNumOfFood() / Stockpile.shared.getNumOfPeople()) days, (\(Stockpile.shared.getNumOfFood()) rations)."
+        }
+        
+    }
+    func resourceAmount()->String{
+        if buildingMan.getStatusOf("Farm") &&  buildingMan.getStatusOf("Mine") {
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will produce \(buildingMan.getProjectedOutputOf("Mine")). We will consume \(buildingMan.getProjectedInputOf("Farm"))"
+        }
+        if buildingMan.getStatusOf("Farm"){
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will consume \(buildingMan.getProjectedInputOf("Farm"))"
+    }
+        if buildingMan.getStatusOf("Mine"){
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials. We will produce \(buildingMan.getProjectedOutputOf("Mine"))"
+    }
+            if Stockpile.shared.getNumOfMat() == 0 {
+            return "We have no building material"
+        }
+        else if Stockpile.shared.getNumOfMat() < 0 {
+            return "This is a bug and you should not see this"
+        }
+        else {
+            return "We have \(Stockpile.shared.getNumOfMat()) building materials."
         }
     }
-
-    var survivorStepper: some View {
-        VStack(alignment: .trailing) {
-            Text("People to send scavenging: \(surivorsSentOnMission)")
-                .font(.footnote)
-            Stepper(value: $surivorsSentOnMission, in: 0 ... gameData.survivorNumber) {
-                HStack {
-                    ForEach(survivorsArr, id: \.self) { index in
-                        Image(systemName: index < surivorsSentOnMission ? "person.fill" : "person")
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fit)
-                    }
-                }.frame(maxHeight: 50)
-            }
-        }.padding()
-            .background(.brown.opacity(0.7))
-    }
-    
-   var instructions: some View {
+    var instructions: some View {
         VStack {
             Text("Survive. Get food. Don't die. Make it back to camp.")
                 .font(.headline)
@@ -75,11 +87,14 @@ struct CampStats : View {
                 .font(.subheadline)
                 .foregroundColor(starvationColor())
                 .shadow(color: .black, radius: 5)
+            Text(resourceAmount())
+                .font(.subheadline)
+                .foregroundColor(.white)
         }.background {
             Color(.black).opacity(0.7)
         }
     }
-
+    
     var body: some View {
         VStack {
             Text(gameData.days == 0 ? "The Beginning" : "Day \(gameData.days)")
@@ -90,22 +105,37 @@ struct CampStats : View {
                 VStack {
                     instructions
                     Spacer()
-                    survivorStepper
+                    HStack{
+                        if uiSettings.switchToLeft {
+                            Spacer()
+                        } else {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        }
+                        
+                        survivorSelector(gameData: gameData)
+                        
+                        if uiSettings.switchToLeft {
+                            Spacer()
+                            Spacer()
+                            Spacer()
+                        } else {
+                            Spacer()
+                        }
+                        
+                    }
                     Spacer()
                 }.padding(.horizontal, 100)
                     .frame(width: UIScreen.screenWidth)
             }
         }
-        .onAppear {
-            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
-        }.onChange(of: gameData.survivorNumber) { _ in
-            survivorsArr = (0 ..< gameData.survivorNumber).map { index in index }
-        }
+        .padding()
     }
 }
 
 struct CampStats_Previews: PreviewProvider {
     static var previews: some View {
-        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), surivorsSentOnMission: Binding.constant(0), showBoard: Binding.constant(false))
+        CampStats(gameData: ResourcePool(), shouldResetGame: Binding.constant(false), showBoard: Binding.constant(false), uiSettings: UserSettingsManager())
     }
 }

@@ -6,46 +6,23 @@
 //
 
 import SwiftUI
-
+// TODO: Move this to resource pool
 struct ExitOverlayView: View {
     var vm : Board
-    let food : Int
-    var gameData : ResourcePool
+    @ObservedObject var gameData : ResourcePool
+    @ObservedObject var stockpile = Stockpile.shared
     @Binding var showBoard : Bool
     var unitsDied : Int
     var unitsRecruited : Int
-    func transferResourcesToResourcePool(){
-        print("Adding -> Food : \(gameData.foodResource)")
-        gameData.foodResource += food
-        print("Result -> Food : \(gameData.foodResource)")
-        
-        gameData.survivorNumber+=unitsRecruited
-        
-        gameData.survivorSent = 0
-        
-        
-        print("Subtracting Deaths -> Survivors : \(gameData.survivorNumber)")
-        gameData.survivorNumber-=vm.UnitsDied
-        print("Result -> Survivors : \(gameData.survivorNumber)")
-        
-        print("Saving Data -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
-        save(items: ResourcePoolData(resourcePool: gameData), key: key)
-    }
     var body: some View {
         VStack{
-            Text(!vm.changeToNight ? "End Mission : Gathered \(food) rations, total food for the day should be \(gameData.foodResource-gameData.survivorNumber+food)" : "We made it back, or we survived till dawn. Let's not do that again. Feature coming soon.")
+            Text("End Mission : Gathered \(vm.foodNew) rations, total food for the day should be \(Stockpile.shared.getNumOfFood()-Stockpile.shared.getNumOfPeople()+vm.foodNew)")
                 .font(.title).foregroundColor(Color.black)
             Button {
                 vm.showEscapeOption = false
                 showBoard = false
-                
-                leavingSoundPlayer?.stop()
-                
-               
-                transferResourcesToResourcePool()
-                print("Pre Pass Day Function -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
+                stockpile.transferResourcesToResourcePool(vm: vm)
                 gameData.passDay()
-                print("Post Pass Day Function -> Food : \(gameData.foodResource) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
             } label: {
                 Text("Back to Camp")
             }.buttonStyle(.borderedProminent)
@@ -59,6 +36,27 @@ struct ExitOverlayView: View {
 
 struct ExitOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitOverlayView(vm: Board(), food: 20, gameData: ResourcePool(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
+        ExitOverlayView(vm: Board(), gameData: ResourcePool(), showBoard: .constant(false), unitsDied: 2, unitsRecruited: 1)
     }
 }
+
+
+/*
+ func transferResourcesToResourcePool(){
+     print("Adding -> Food : \(gameData.foodStored)")
+     gameData.foodStored += vm.foodNew
+     print("Result -> Food : \(gameData.foodStored)")
+     
+     gameData.survivorNumber+=unitsRecruited
+     
+     gameData.survivorSent = 0
+     
+     gameData.isInMission = false
+     print("Subtracting Deaths -> Survivors : \(gameData.survivorNumber)")
+     gameData.survivorNumber-=vm.UnitsDied
+     print("Result -> Survivors : \(gameData.survivorNumber)")
+     
+     print("Saving Data -> Food : \(gameData.foodStored) Survivors : \(gameData.survivorNumber) Cure Progress : \(gameData.WinProgress) Death Progress : \(gameData.progressToDeath)")
+     save(items: ResourcePoolData(resourcePool: gameData), key: key)
+ }
+ */

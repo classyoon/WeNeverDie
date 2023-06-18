@@ -43,7 +43,7 @@ protocol Moveable: Identifiable  {
     var isAttackable : Bool {get}
     var isHidden : Bool {set get}
     var id: UUID { set get }
-    
+    var isStruck : Bool {set get}
     var isZombie : Bool {get}
     
     var alert : Bool {set get}
