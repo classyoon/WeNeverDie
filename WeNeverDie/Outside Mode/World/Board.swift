@@ -141,6 +141,16 @@ class Board : ObservableObject, BoardProtocol {
             print("Roadblock Map")
             size = 700
             return convertLevel(level: levelRoadBlock)
+        case 5...6:
+            rowMax = 7
+            colMax = 7
+            turnsOfDaylight += 4
+            turnsOfNight += 4
+            zombieNumber += 3
+            zombieSpawnLimit = 25
+            print("Neighborhood Map")
+            size = 700
+            return convertLevel(level: levelneighborhood)
         default :
             colMax = 5
             rowMax = 5
@@ -206,6 +216,13 @@ class Board : ObservableObject, BoardProtocol {
                      ["t","t","t","g","g","w","g",],
                      ["h","h","t","t","g","w","g",],
                      ["h","h","h","t","g","w","g",]]
+    var levelneighborhood = [["t","t","g","g","t","t","t",],
+                             ["t","g","g","g","g","t","t",],
+                             ["g","g","g","g","g","g","g",],
+                             ["w","g","h","h","h","h","g",],
+                             ["w","w","g","g","g","g","g",],
+                             ["w","w","h","h","h","h","g",],
+                             ["w","w","t","t","g","g","X",]]
 
 }
 
