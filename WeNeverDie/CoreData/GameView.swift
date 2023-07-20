@@ -20,10 +20,13 @@ struct GameView: View {
         ZStack {
             VStack {
                 
-                if GameCondition.shared.data.hasViewedTutorial {//BROKEN
-                    TutorialView(gameData: gameData)
+                if !GameCondition.shared.data.hasViewedTutorial && autoShowTutorial {//BROKEN
+                    TutorialView(gameData: gameData).onAppear{
+                        print("Presenting tutorial")
+                        print(gameCon.data.hasViewedTutorial)
+                    }
                 }
-                else if  showBoard {
+                else if showBoard {
                     // Show the tutorial
                     OutsideView(showBoard: $showBoard, vm: gameData.generateMap(), gameData: gameData, uiSettings: gameData.uiSetting)
                 }

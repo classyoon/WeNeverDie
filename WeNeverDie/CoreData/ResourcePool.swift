@@ -9,6 +9,7 @@ import Foundation
 var devMode = false
 var outsideTesting = true
 var printZombieThoughts = false
+var autoShowTutorial = false
 //var campStats = true
 class ResourcePool : ObservableObject {
     @Published var gameConData : GameConditionModel = GameConditionModel()

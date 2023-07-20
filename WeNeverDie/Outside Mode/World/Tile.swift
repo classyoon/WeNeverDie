@@ -32,13 +32,13 @@ struct TileType {
             _ = 0
         }
     }
-    
 }
 
 struct Tile2: View {
     var image: String
     var difference = 1.0
     var tileLocation: Coord
+    var image2: String = ""
     var optionalColor = Color.clear
     @ViewBuilder
     var body: some View {
@@ -49,19 +49,7 @@ struct Tile2: View {
             Image(image)
                 .resizable()
                 .padding(difference)
-        }
-    }
-}
-struct Tile: View {
-    var difference = 1.0
-    var tileLocation: Coord
-    var optionalColor = Color.clear
-    @ViewBuilder
-    var body: some View {
-        ZStack{
-            Rectangle()
-                .fill(optionalColor)
-                .border(Color.white, width: difference)
+            image2 != nil ? Image(image2).resizable() : nil
         }
     }
 }

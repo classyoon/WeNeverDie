@@ -29,6 +29,9 @@
 		CA16EAEE29CAA0A20047593B /* LeftHandButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */; };
 		CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA16EAEF29CAA3410047593B /* survivorSelector.swift */; };
 		CA17474029A938AB00B81EF8 /* PieceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */; };
+		CA2255AB2A69EB44008028DB /* OutsidePhaseTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255AA2A69EB44008028DB /* OutsidePhaseTutorial.swift */; };
+		CA2255AD2A69EB50008028DB /* CampPhaseTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255AC2A69EB50008028DB /* CampPhaseTutorial.swift */; };
+		CA2255AF2A69F786008028DB /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA2255AE2A69F786008028DB /* ReadMe.rtf */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */; };
@@ -105,6 +108,8 @@
 		CAAD62F22A25655B00670216 /* Better Hammer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F12A25655B00670216 /* Better Hammer.mp3 */; };
 		CAAD62F42A256A4800670216 /* betterGrabbing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */; };
 		CAAD62F62A256ACB00670216 /* betterStabs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAAD62F52A256ACB00670216 /* betterStabs.mp3 */; };
+		CAAFB3EE2A5DBBBA00254EA3 /* TestingChatGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFB3ED2A5DBBBA00254EA3 /* TestingChatGPT.swift */; };
+		CAAFB3F02A5DD16200254EA3 /* TutorialVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFB3EF2A5DD16200254EA3 /* TutorialVM.swift */; };
 		CAB1618E2A2BD7B700EEF16A /* CampInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */; };
 		CACCD56F298C8085005BE6DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD56E298C8085005BE6DE /* GameView.swift */; };
 		CACCD571298C8B5A005BE6DE /* Camp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCD570298C8B5A005BE6DE /* Camp.swift */; };
@@ -171,6 +176,9 @@
 		CA16EAED29CAA0A20047593B /* LeftHandButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftHandButtons.swift; sourceTree = "<group>"; };
 		CA16EAEF29CAA3410047593B /* survivorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = survivorSelector.swift; sourceTree = "<group>"; };
 		CA17473F29A938AB00B81EF8 /* PieceDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDisplay.swift; sourceTree = "<group>"; };
+		CA2255AA2A69EB44008028DB /* OutsidePhaseTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsidePhaseTutorial.swift; sourceTree = "<group>"; };
+		CA2255AC2A69EB50008028DB /* CampPhaseTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampPhaseTutorial.swift; sourceTree = "<group>"; };
+		CA2255AE2A69F786008028DB /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alert Noise Trimmed.m4a"; sourceTree = "<group>"; };
@@ -247,6 +255,8 @@
 		CAAD62F12A25655B00670216 /* Better Hammer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Better Hammer.mp3"; sourceTree = "<group>"; };
 		CAAD62F32A256A4800670216 /* betterGrabbing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterGrabbing.mp3; sourceTree = "<group>"; };
 		CAAD62F52A256ACB00670216 /* betterStabs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = betterStabs.mp3; sourceTree = "<group>"; };
+		CAAFB3ED2A5DBBBA00254EA3 /* TestingChatGPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingChatGPT.swift; sourceTree = "<group>"; };
+		CAAFB3EF2A5DD16200254EA3 /* TutorialVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVM.swift; sourceTree = "<group>"; };
 		CAB1618D2A2BD7B700EEF16A /* CampInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampInterface.swift; sourceTree = "<group>"; };
 		CACCD56E298C8085005BE6DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CACCD570298C8B5A005BE6DE /* Camp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camp.swift; sourceTree = "<group>"; };
@@ -297,6 +307,7 @@
 		91355A85293AEE4700907610 = {
 			isa = PBXGroup;
 			children = (
+				CA2255AE2A69F786008028DB /* ReadMe.rtf */,
 				91355A90293AEE4700907610 /* WeNeverDie */,
 				91355AA7293AEE4800907610 /* WeNeverDieTests */,
 				91355AB1293AEE4800907610 /* WeNeverDieUITests */,
@@ -512,6 +523,10 @@
 				CA9A032D29BE36AA00ED390B /* firstTutorialExit.swift */,
 				CA9A028329B6DD8000ED390B /* Tiles */,
 				CA9A028629B6DF4400ED390B /* sendOff.swift */,
+				CAAFB3ED2A5DBBBA00254EA3 /* TestingChatGPT.swift */,
+				CA2255AA2A69EB44008028DB /* OutsidePhaseTutorial.swift */,
+				CA2255AC2A69EB50008028DB /* CampPhaseTutorial.swift */,
+				CAAFB3EF2A5DD16200254EA3 /* TutorialVM.swift */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -634,11 +649,11 @@
 			isa = PBXGroup;
 			children = (
 				CA744D2E29A82C6300F40B4F /* tileExplainView.swift */,
-				CA9A028429B6DF1800ED390B /* waterExplainView.swift */,
 				CA9A028829B6DF6400ED390B /* grassTutorial.swift */,
-				CA9A028A29B6DF8000ED390B /* escapeExplainView.swift */,
-				CA9A028C29B6DF9700ED390B /* buildingAndScavengeExplained.swift */,
 				CA9A028E29B6DFAB00ED390B /* forestExplainView.swift */,
+				CA9A028C29B6DF9700ED390B /* buildingAndScavengeExplained.swift */,
+				CA9A028429B6DF1800ED390B /* waterExplainView.swift */,
+				CA9A028A29B6DF8000ED390B /* escapeExplainView.swift */,
 			);
 			path = Tiles;
 			sourceTree = "<group>";
@@ -888,6 +903,7 @@
 				CA9A036A29C0E41E00ED390B /* Shadows - Anno Domini Beats.mp3 in Resources */,
 				CAAD62F22A25655B00670216 /* Better Hammer.mp3 in Resources */,
 				CAAD62F62A256ACB00670216 /* betterStabs.mp3 in Resources */,
+				CA2255AF2A69F786008028DB /* ReadMe.rtf in Resources */,
 				CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */,
 				91355A9F293AEE4800907610 /* Preview Assets.xcassets in Resources */,
 				CAAD62EC2A25641A00670216 /* Next Turn Quiet.mp3 in Resources */,
@@ -928,6 +944,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2255AD2A69EB50008028DB /* CampPhaseTutorial.swift in Sources */,
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */,
 				CA7510AF2A095392004AAAE3 /* TappableSlider.swift in Sources */,
@@ -984,6 +1001,7 @@
 				CAA91FDA29A2DF5C00DCCEC5 /* ResourcePool.swift in Sources */,
 				CA9A036C29C0EED600ED390B /* AlertExample.swift in Sources */,
 				91355AC6293AEE6A00907610 /* OutsideView.swift in Sources */,
+				CAAFB3EE2A5DBBBA00254EA3 /* TestingChatGPT.swift in Sources */,
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
 				CA9A029329B6DFEC00ED390B /* enemyView.swift in Sources */,
@@ -1002,6 +1020,7 @@
 				CA16EAC329C93D1F0047593B /* NextTurnButton.swift in Sources */,
 				CA3323462A1D11220078E79C /* BuildingViewConstructor.swift in Sources */,
 				CA90F82F29ABDE2A00AD34E9 /* VictoryView.swift in Sources */,
+				CAAFB3F02A5DD16200254EA3 /* TutorialVM.swift in Sources */,
 				CA9A029529B6E00200ED390B /* HowToMove.swift in Sources */,
 				CA16EAE829CA95D70047593B /* BeginMissionButton.swift in Sources */,
 				CAF863722A2003DA00D5957A /* BuildingData.swift in Sources */,
@@ -1013,6 +1032,7 @@
 				CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */,
 				CA9A029129B6DFCF00ED390B /* introText.swift in Sources */,
 				CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */,
+				CA2255AB2A69EB44008028DB /* OutsidePhaseTutorial.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 				CA16EAEE29CAA0A20047593B /* LeftHandButtons.swift in Sources */,
 				CA9A028F29B6DFAB00ED390B /* forestExplainView.swift in Sources */,

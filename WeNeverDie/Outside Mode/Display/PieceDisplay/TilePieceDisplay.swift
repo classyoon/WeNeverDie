@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TilePieceDisplay: View {
     @ObservedObject var gameData : ResourcePool
-
+    
+  
     @ViewBuilder
     func getTileAppearance(row : Int, col : Int)-> some View{
         switch vm.terrainBoard[row][col].name{
@@ -20,17 +21,14 @@ struct TilePieceDisplay: View {
         case "w":
             Tile2(image: "water", tileLocation: Coord(row, col))
         case "X":
-            ZStack{
-                Tile2(image: "grass", tileLocation: Coord(row, col))
-                Image("escape").resizable()
-            }
+            Tile2(image: "grass", tileLocation: Coord(row, col), image2: "escape")
         default:
             Tile2(image: "grass", tileLocation: Coord(row, col))
         }
     }
     let row, col : Int
     @ObservedObject var vm : Board
-//    let nameSpace : Namespace
+    //    let nameSpace : Namespace
     var body: some View {
         ZStack {
             getTileAppearance(row: row, col: col)
@@ -47,7 +45,7 @@ struct TilePieceDisplay: View {
                             Circle().fill(Color.red.opacity(0.5)).padding()
                         }
                         if piece.isRecruitable {
-                            Circle().fill(Color.green.opacity(0.5)).padding() 
+                            Circle().fill(Color.green.opacity(0.5)).padding()
                         }
                     }
                 }

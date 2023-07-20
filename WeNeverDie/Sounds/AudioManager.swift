@@ -28,7 +28,6 @@ class AudioManager : ObservableObject{
         case wood = "Improved Thump"
         case starting = "Better Hammer"
         case next = "Next Turn Quiet"
-        
     }
     var musicPlayer: AVAudioPlayer?
     var songList = [String : URL]()

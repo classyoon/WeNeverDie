@@ -118,7 +118,7 @@ class Board : ObservableObject, BoardProtocol {
         }
         return tempTerrain
     }
-
+    
     func chooseMap(_ number : Int)->[[TileType]] {
         switch mapIndex {
         case 0...1 :
@@ -171,9 +171,9 @@ class Board : ObservableObject, BoardProtocol {
         spawnPlayers(players)
         spawnZombies(zombieNumber)
         spawnRecruit(Int.random(in: 0...2))
-       
+        
     }
-
+    
     init(players : Int, _ audioInit : AudioManager, _ settings : UserSettingsManager){
         audio = audioInit
         uiSettings = settings
@@ -200,22 +200,22 @@ class Board : ObservableObject, BoardProtocol {
         board = Array(repeating: Array(repeating: nil, count: colMax), count: rowMax)
         return tempTerrain
     }
-   
+    
     var mapIndex = Int.random(in: 0...10)
     var levelRoadBlock = [["t","t","g", "g","w","t","t",],
-                      ["t","g","g","h","w","t","g",],
-                      ["g","g","g","w","h","g","g",],
-                      ["g","w","w","g","t","h","g",],
-                      ["w","g","h","t","g","g","w",],
-                      ["t","t","g","h","g","g","g",],
-                      ["t","t","g","g","w","g","X",]]
+                          ["t","g","g","h","w","t","g",],
+                          ["g","g","g","w","h","g","g",],
+                          ["g","w","w","g","t","h","g",],
+                          ["w","g","h","t","g","g","w",],
+                          ["t","t","g","h","g","g","g",],
+                          ["t","t","g","g","w","g","X",]]
     var levelWreckage = [["t","t","g","g","w","h","h",],
-                     ["t","t","g","g","g","g","g",],
-                     ["w","w","w","w","g","g","g",],
-                     ["g","g","g","g","w","g","X",],
-                     ["t","t","t","g","g","w","g",],
-                     ["h","h","t","t","g","w","g",],
-                     ["h","h","h","t","g","w","g",]]
+                         ["t","t","g","g","g","g","g",],
+                         ["w","w","w","w","g","g","g",],
+                         ["g","g","g","g","w","g","X",],
+                         ["t","t","t","g","g","w","g",],
+                         ["h","h","t","t","g","w","g",],
+                         ["h","h","h","t","g","w","g",]]
     var levelneighborhood = [["t","t","g","g","t","t","t",],
                              ["t","g","g","g","g","t","t",],
                              ["g","g","g","g","g","g","g",],
@@ -223,6 +223,5 @@ class Board : ObservableObject, BoardProtocol {
                              ["w","w","g","g","g","g","g",],
                              ["w","w","h","h","h","h","g",],
                              ["w","w","t","t","g","g","X",]]
-
+    
 }
-

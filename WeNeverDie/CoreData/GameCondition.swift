@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+protocol DailyCalled {
+    func runDay()
+}
 class GameCondition : ObservableObject {
     @Published var data : GameConditionModel
     @Published var stockpile : Stockpile = Stockpile.shared
@@ -19,6 +21,7 @@ class GameCondition : ObservableObject {
         }
     
     func checkForDefeat() {
+        
         print("check for defeat starting at \(data.progressToDeath)")
         if !starving && data.progressToDeath>0{
             data.progressToDeath -= 1

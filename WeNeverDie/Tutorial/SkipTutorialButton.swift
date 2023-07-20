@@ -18,6 +18,7 @@ struct SkipTutorialButton: View {
                 Button("Skip to game"){
                     gameCon.data.hasViewedTutorial = true
                     save(items: ResourcePoolData(resourcePool: gameData), key: key)
+                    print(gameCon.checkViewedTutorial())
 
                 }.buttonStyle(.bordered)
             }

@@ -23,6 +23,5 @@ func load<T: Identifiable & Codable>(key: String) -> T? {
         print("Loading \(key)")
         return dataArray
     }
-    
     return nil
 }
