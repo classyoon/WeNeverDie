@@ -17,7 +17,7 @@ protocol BoardProtocol {
 // Start playing the music
 
 
-class Board : ObservableObject, BoardProtocol {
+class Board : ObservableObject {
     @Published var stockpile : Stockpile = Stockpile.shared
     @Published var UnitsDied = 0
     @Published var UnitsRecruited = 0

@@ -71,6 +71,21 @@ class Stockpile : ObservableObject {
     func setBuilders(_ survivors : Int){
     stockpileData.builders = survivors
     }
+    func getRosterOfSurvivors()->[playerUnit] {
+       return stockpileData.rosterOfSurvivors
+    }
+    func getRandomPerson()->playerUnit {
+        return stockpileData.generateSurvivors(1)[0]
+    }
+    func getName(index : Int)->String {
+        return stockpileData.rosterOfSurvivors[index].name
+    }
+    func getSurvivor(index : Int)->playerUnit {
+        return stockpileData.rosterOfSurvivors[index]
+    }
+    func swapSurvivors(index : Int, current : Int){
+        stockpileData.swapSurvivors(index: index, current: current)
+    }
     
 }
 struct StockpileModel : Codable, Identifiable {
@@ -81,6 +96,8 @@ struct StockpileModel : Codable, Identifiable {
     var buildingResources : Int = 10
     var survivorDefaultNumber : Int = 3
     var survivorSent : Int = 0
+    var graveyard: [playerUnit] = []
+    var rosterOfSurvivors = [playerUnit]()
     var starving : Bool {
         return foodStored==0 ? true : false
     }
@@ -114,6 +131,23 @@ struct StockpileModel : Codable, Identifiable {
         }
         return false
     }
-    
+    func generateSurvivors(_ number : Int)->[playerUnit] {
+        var generatedRoster = [playerUnit]()
+        for _ in 0..<number {
+            generatedRoster.append(generateRandomSurvivor())
+        }
+        return generatedRoster
+    }
+    func generateRandomSurvivor()->playerUnit {
+        let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
+        let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
+        let childhood = ["Shy", "Inquisitive", "Imaginative", "Scared", "Joyful", "Crafty", "Rich", "Peculiar", "Athletic", "Adventurous", "Artistic", "Studious", "Independent", "Resilient"]
+        let occupations = ["University Student", "Police Officer", "Firefighter", "Doctor", "Mechanic", "Activist", "Self Employed", "Patient", "Single Parent", "Scientist", "Engineer", "Teacher", "Soldier", "Artist", "Chef", "Social Worker", "Entrepreneur", "Musician", "Journalist", "Convict", "Teenager", "Entertainer"]
+        let randomFirstName = firstNames.randomElement()!
+        let randomLastName = lastNames.randomElement()!
+        let randomChildhood = childhood.randomElement()!
+        let randomOccupation = occupations.randomElement()!
+        return playerUnit(childhood: randomChildhood, currentOccupation : randomOccupation, name: "\(randomFirstName) \(randomLastName)", firstName: randomFirstName, lastName: randomLastName)
+    }
 }
 

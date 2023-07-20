@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-struct playerUnit: Piece, Identifiable, Equatable{
+struct playerUnit: Piece, Identifiable, Equatable, Codable{
     
-    @ObservedObject var BuildMan : BuildingManager = BuildingManager.shared
     static func == (lhs: playerUnit, rhs: playerUnit) -> Bool {
         lhs.id == rhs.id
     }
@@ -32,17 +31,22 @@ struct playerUnit: Piece, Identifiable, Equatable{
     var alert = false
     var facing: Direction = .down
 
-    mutating func checkForUpgrade(){
-        for building in BuildMan.buildings {
-            if building.name == "Upgrade" && building.isComplete {
-                stamina = 3
-            }
-        }
-    }
+    
+    var isBeingSent = false
+    var isDeceased = false
+    var childhood : String
+    var currentOccupation : String
+    var daysAlive : Int = 0
+  
+    var firstName : String
+    var lastName : String
+
+
+    
+
     
     var id = UUID()
-    
-    var board: BoardProtocol
+ 
     var vectors: [Vector] = [
         Vector(row: 1, col: 1),
         Vector(row: 1, col: 0),
@@ -87,8 +91,7 @@ struct playerUnit: Piece, Identifiable, Equatable{
 
 struct playerUnit_Previews: PreviewProvider {
     static var previews: some View {
-        let board = Board()
-        let playerUnit = playerUnit(name: "Steve Jobs", board: board)
+        let playerUnit = playerUnit(name: "Steve Jobs", childhood: "Unknown", currentOccupation : "Tech Entreprenuer", firstName: "Steve", lastName: "Jobs")
         playerUnit.getView()
             .previewLayout(.sizeThatFits)
     }

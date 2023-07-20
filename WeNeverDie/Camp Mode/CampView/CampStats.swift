@@ -106,7 +106,7 @@ struct CampStats : View {
                     instructions
                     Spacer()
                     HStack{
-                        if uiSettings.switchToLeft {
+                        if uiSettings.isUsingLeftHandedInterface {
                             Spacer()
                         } else {
                             Spacer()
@@ -116,7 +116,7 @@ struct CampStats : View {
                         
                         survivorSelector(gameData: gameData)
                         
-                        if uiSettings.switchToLeft {
+                        if uiSettings.isUsingLeftHandedInterface {
                             Spacer()
                             Spacer()
                             Spacer()

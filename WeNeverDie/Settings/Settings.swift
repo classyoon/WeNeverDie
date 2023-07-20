@@ -15,12 +15,12 @@ import SwiftUI
 //                            print("devMode \(devMode)")
 //                        }.buttonStyle(.bordered)
 class UserSettingsManager : ObservableObject {
-    @Published var switchToLeft = false
+    @Published var isUsingLeftHandedInterface = false
     @Published var visionAssist = false
     @Published var isAutoPauseMusic = true
     
     func toggleLeftHandMode(){
-        switchToLeft.toggle()
+        isUsingLeftHandedInterface.toggle()
     }
     
     func toggleAssistMode(){
@@ -37,7 +37,7 @@ struct Settings: View {
     @ObservedObject var audio : AudioManager
     var body: some View {
         
-        VStack (alignment: uiSettings.switchToLeft ? .leading : .trailing){
+        VStack (alignment: uiSettings.isUsingLeftHandedInterface ? .leading : .trailing){
             
             MuteToggleButton(name: "Music", audio: audio, uiSettings: uiSettings,  soundSet: .music)
             
@@ -46,7 +46,7 @@ struct Settings: View {
             Button(uiSettings.visionAssist ? "Alternative Vision" : "Common Vision"){
                 uiSettings.toggleAssistMode()
             }.buttonStyle(.bordered)
-            Button(uiSettings.switchToLeft ? "Left Hand" : "Right Hand"){
+            Button(uiSettings.isUsingLeftHandedInterface ? "Left Hand" : "Right Hand"){
                 uiSettings.toggleLeftHandMode()
             }.buttonStyle(.bordered)
             !gameData.isInMission ? nil : Text("Reset unavailable during mission")

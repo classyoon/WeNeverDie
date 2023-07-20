@@ -11,7 +11,7 @@ struct ResourcePoolData : Codable & Identifiable {
     
     //Sent Variables
     var days = 0
-    var selectStatuses : [Bool] = Array(repeating: false, count: 3)
+    var displayOfSelectedIcons : [Bool] = Array(repeating: false, count: 3)
     //Game Condition
     var lastTappedIndex: Int?
     
@@ -20,7 +20,7 @@ struct ResourcePoolData : Codable & Identifiable {
 
     init(resourcePool : ResourcePool){
         self.days = resourcePool.days
-        self.selectStatuses = resourcePool.selectStatuses
+        self.displayOfSelectedIcons = resourcePool.displayOfSelectedIcons
         self.gameConData = resourcePool.gameConData
         self.stockpileData = resourcePool.stockpileData
     }
@@ -28,7 +28,7 @@ struct ResourcePoolData : Codable & Identifiable {
         days = 0
         stockpileData = StockpileModel()
         gameConData = GameConditionModel()
-        selectStatuses = Array(repeating: false, count: stockpileData.survivorNumber-stockpileData.builders)
+        displayOfSelectedIcons = Array(repeating: false, count: stockpileData.survivorNumber-stockpileData.builders)
         
     }
 //    init(foodStored: Int, survivorNumber: Int, starving: Bool = false, survivorSent: Int, AlreadyWon: Bool = false, shouldResetGame: Bool = false, death: Bool = false, victory: Bool = false, WinCondition: Int = 30, progressToDeath: Int, WinProgress: Int = 0, days: Int = 0) {
@@ -44,7 +44,7 @@ struct ResourcePoolData : Codable & Identifiable {
 //        self.progressToDeath = progressToDeath
 //        self.WinProgress = WinProgress
 //        self.days = days
-//        self.selectStatuses = Array(repeating: false, count: survivorNumber)
+//        self.displayOfSelectedIcons = Array(repeating: false, count: survivorNumber)
 //
 //
 //    }

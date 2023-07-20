@@ -31,7 +31,7 @@ struct CureProgressView: View {
     var body: some View {
         ZStack {
             HStack{
-            uiSettings.switchToLeft ? Spacer() : nil
+            uiSettings.isUsingLeftHandedInterface ? Spacer() : nil
                 VStack{
                     Button {
                         printImage()
@@ -45,7 +45,7 @@ struct CureProgressView: View {
                         
                     }.padding(.top)
                 }
-                !uiSettings.switchToLeft ? Spacer() : nil
+                !uiSettings.isUsingLeftHandedInterface ? Spacer() : nil
             }
             Group{
                 if showCureHelp {

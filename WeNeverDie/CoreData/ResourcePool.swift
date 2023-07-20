@@ -25,13 +25,16 @@ class ResourcePool : ObservableObject {
     
     
     @Published var lastTappedIndex: Int?
-    @Published var selectStatuses : [Bool] = Array(repeating: false, count: 3)
+    @Published var displayOfSelectedIcons : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
     
+    @Published var displayInfo  = true
+    @Published var viewedPiece = Stockpile.shared.getRandomPerson()
+    
     func setValue(resourcePoolData: ResourcePoolData) {
         self.days = resourcePoolData.days
-        self.selectStatuses = resourcePoolData.selectStatuses
+        self.displayOfSelectedIcons = resourcePoolData.displayOfSelectedIcons
         self.stockpileData = resourcePoolData.stockpileData
         self.gameConData = resourcePoolData.gameConData
     }
@@ -39,24 +42,13 @@ class ResourcePool : ObservableObject {
     func reset() {
         Stockpile.shared.reset()
         BuildingManager.shared.reset()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        displayOfSelectedIcons = Array(repeating: false, count: stockpile.getNumOfPeople())
         
         GameCondition.shared.reset()
         audio.playMusic("Kurt")
         days = 0
     }
-    func generateSurvivors(_ number : Int)->[any Piece] {
-        let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
-        let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
-        var generatedRoster = [any Piece]()
-        for _ in 0..<number {
-            let randomFirstName = firstNames.randomElement()!
-            let randomLastName = lastNames.randomElement()!
-            let fullName = "\(randomFirstName) \(randomLastName)"
-            generatedRoster.append(playerUnit(name: fullName, board: Board(players: number, audio, uiSetting)))
-        }
-        return generatedRoster
-    }
+    
     func generateMap() -> Board{
         
         return Board(players: Stockpile.shared.getSurvivorSent(), audio, uiSetting)
@@ -86,7 +78,7 @@ class ResourcePool : ObservableObject {
     func transferResourcesToResourcePool(vm : Board){
         Stockpile.shared.transferResourcesToResourcePool(vm: vm)
         audio.resumeMusic()
-        selectStatuses = Array(repeating: false, count: stockpile.getNumOfPeople())
+        displayOfSelectedIcons = Array(repeating: false, count: stockpile.getNumOfPeople())
         isInMission = false
         save(items: ResourcePoolData(resourcePool: self), key: key)
     }
@@ -94,44 +86,73 @@ class ResourcePool : ObservableObject {
         reset()
         Stockpile.shared.stockpileData.foodStored = 0
         Stockpile.shared.stockpileData.survivorNumber = 1
-        selectStatuses = Array(repeating: false, count: 1)
+        displayOfSelectedIcons = Array(repeating: false, count: 1)
     }
     
-    func balance(_ index: Int) {
-        
-        selectingSurvivors(index)
-        
-    }
-    func selectingSurvivors(_ index: Int){
-        print("Survivors selected \(Stockpile.shared.getSurvivorSent()), Builders : \(Stockpile.shared.getBuilders())")
-        
-        //        if selectStatuses.count-stockpile.getBuilders()<selectStatuses.count {
-        //            for i in selectStatuses.count-stockpile.getBuilders()...selectStatuses.count {
-        //                selectStatuses[i] = false
-        //            }
-        //        }
-        if lastTappedIndex == index {
-            // Tapped the same button twice set all buttons to false
-            for i in 0...index {
-                selectStatuses[i] = false
+    func getSurvivorsSelcted()->[playerUnit]{
+        var returningList = [playerUnit]()
+        for survivor in  Stockpile.shared.stockpileData.rosterOfSurvivors  {
+            if survivor.isBeingSent {
+                returningList.append(survivor)
+                print(survivor.name)
             }
-            Stockpile.shared.setSurvivorSent(0)
-            lastTappedIndex = nil
-        } else {
-            // Set the survivorSent value based on the index and switchToLeft flag
-            if uiSetting.switchToLeft {
-                Stockpile.shared.setSurvivorSent(selectStatuses.count - index)
-            } else {
-                Stockpile.shared.setSurvivorSent(index + 1)
-            }
-            
-            // Set the selectStatuses array based on the survivorSent value
-            for i in 0..<selectStatuses.count {
-                selectStatuses[i] = (i < Stockpile.shared.getSurvivorSent())
-            }
-            lastTappedIndex = index
         }
-        print("Survivors selected \(Stockpile.shared.getSurvivorSent()), Builders : \(Stockpile.shared.getBuilders())")
+        return returningList
+    }
+    func deselectAll(){
+        for i in 0...displayOfSelectedIcons.count-1 {
+            displayOfSelectedIcons[i] = false
+            // print(displayOfSelectedIcons.count-1)
+            Stockpile.shared.stockpileData.rosterOfSurvivors[i].isBeingSent = false
+        }
+        Stockpile.shared.setSurvivorSent(0)
+        lastTappedIndex = nil
+    }
+    func getUnselected()->[playerUnit]{
+        var returningList = [playerUnit]()
+        for survivor in  Stockpile.shared.stockpileData.rosterOfSurvivors  {
+            if !survivor.isBeingSent {
+                returningList.append(survivor)
+            }
+        }
+        return returningList
+    }
+    func selectRangeOfSurvivors(leftMostIndex : Int = 0, rightMostIndex : Int = Stockpile.shared.stockpileData.rosterOfSurvivors.count-1){
+        var count = 0
+        for survivor in leftMostIndex...rightMostIndex{
+            Stockpile.shared.stockpileData.rosterOfSurvivors[survivor].isBeingSent = true
+            print(Stockpile.shared.stockpileData.rosterOfSurvivors[survivor].name)
+            count += 1
+        }
+        Stockpile.shared.setSurvivorSent(count)
+    }
+    func balance(_ tapIndex: Int) {
+        displayOfSelectedIcons = Array(repeating: false, count: Stockpile.shared.stockpileData.rosterOfSurvivors.count)
+        if lastTappedIndex == tapIndex {
+            deselectAll()
+        } else {
+            deselectAll()
+            uiSetting.isUsingLeftHandedInterface ? selectRangeOfSurvivors(leftMostIndex: tapIndex) : selectRangeOfSurvivors(rightMostIndex: tapIndex)
+            
+            lastTappedIndex = tapIndex
+        }
+        
     }
     
+    func getBiography(of selectedPerson: playerUnit) -> String {
+        let title = "\(selectedPerson.childhood.lowercased()) \(selectedPerson.currentOccupation.lowercased())"
+        let vowels: Set<Character> = ["a", "e", "i", "o", "u"]
+        let article = vowels.contains(title.first ?? Character("")) ? "an" : "a"
+        let scriptBasic = "\(selectedPerson.name)\n\nOverall, \(selectedPerson.firstName) could be called \(article) \(title)."
+        return scriptBasic
+    }
+    func displayInfo(index : Int){
+        viewedPiece = stockpile.getSurvivor(index: index)
+        displayInfo = true
+    }
+    func getImageName(index : Int) ->String{
+        uiSetting.isUsingLeftHandedInterface ?
+        (index >= displayOfSelectedIcons.count -  stockpile.getSurvivorSent() ? "person.fill" : "person") :
+        (index < stockpile.getSurvivorSent() ? "person.fill" : "person")
+    }
 }

@@ -25,7 +25,7 @@ struct OutsideView: View {
     var body: some View {
         NavigationStack {
             HStack{
-                uiSettings.switchToLeft ? StatusViewBar(vm: vm, gameData: gameData) : nil
+                uiSettings.isUsingLeftHandedInterface ? StatusViewBar(vm: vm, gameData: gameData) : nil
                 
                 BoardView(gameData : gameData, vm: vm)
                     .overlay{
@@ -57,7 +57,7 @@ struct OutsideView: View {
                         : nil
                     }
                 
-                uiSettings.switchToLeft ? nil :
+                uiSettings.isUsingLeftHandedInterface ? nil :
                 StatusViewBar(vm: vm, gameData: gameData)
             }.background(Color.black)
         }

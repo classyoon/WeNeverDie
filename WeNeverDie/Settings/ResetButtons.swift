@@ -11,7 +11,7 @@ struct ResetButtons: View {
     @ObservedObject var gameData : ResourcePool
     @ObservedObject var uiSettings : UserSettingsManager
     var body: some View {
-        VStack(alignment: uiSettings.switchToLeft ? .leading : .trailing){
+        VStack(alignment: uiSettings.isUsingLeftHandedInterface ? .leading : .trailing){
             ResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting)
             HardModeResetButtonView(gameData: gameData, uiSettings: gameData.uiSetting)
         }
