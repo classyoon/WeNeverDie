@@ -72,11 +72,15 @@ extension Board {
         }
         return false
     }
+    private func applyConcealment(_ coord: Coord) {
+        if board[coord.row][coord.col] != nil {
+            board[coord.row][coord.col]?.isHidden = (terrainBoard[coord.row][coord.col].name=="t" ? true : false)
+        }
+    }
+    
     func applyTileStatuses(_ playerCoordPins : [Coord]){
         for coord in playerCoordPins {
-            if board[coord.row][coord.col] != nil {
-                board[coord.row][coord.col]?.isHidden = (terrainBoard[coord.row][coord.col].name=="t" ? true : false)
-            }
+            applyConcealment(coord)
         }
     }
     func searchLocationVM(){
@@ -85,9 +89,9 @@ extension Board {
                 board[piece.row][piece.col]?.movementCount+=1//Upfront stamina cost.
                 selected.movementCount+=1
                 
-                if terrainBoard[piece.row][piece.col].loot>0{
+                if terrainBoard[piece.row][piece.col].foodScraps>0{
                     foodNew+=1
-                    terrainBoard[piece.row][piece.col].loot-=1
+                    terrainBoard[piece.row][piece.col].foodScraps-=1
                     audio.playSFX(.grabbing)
                 }
                 else {

@@ -23,7 +23,7 @@ class Board : ObservableObject, BoardProtocol {
     @Published var UnitsRecruited = 0
     @Published var namesSurvivors = ["Steve", "Jobs", "Billy", "Gates", "Jeff", "Bezos", "Gates", "Jeff", "Bezos"]
     @Published var showBoard = false
-    @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",loot: 0,movementPenalty: 0)]]
+    @Published var terrainBoard: [[TileType]] = [[TileType(name: "g",foodScraps: 0,movementPenalty: 0)]]
     @Published var board: [[(any Piece)?]] = [[]]
     @Published var missionUnderWay = false
     @Published var alreadyEscaped = false
@@ -79,7 +79,7 @@ class Board : ObservableObject, BoardProtocol {
         let houses = randomCountFromPercent(houses)
         let water = randomCountFromPercent(water)
         
-        var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", loot: 0, movementPenalty: 0), count: colMax), count: rowMax)
+        var tempTerrain = Array(repeating: Array(repeating: TileType(name: "g", foodScraps: 0, movementPenalty: 0), count: colMax), count: rowMax)
         tempTerrain[escapePoint.row][escapePoint.col].name = "X"
         
         var counter = 0 // Sharing the counter
@@ -191,7 +191,7 @@ class Board : ObservableObject, BoardProtocol {
         for row in level {
             var tileRow: [TileType] = []
             for tileName in row {
-                var tile = TileType(name: tileName, loot: 0, movementPenalty: 0)
+                var tile = TileType(name: tileName, foodScraps: 0, movementPenalty: 0)
                 tile.setTileBonuses()
                 tileRow.append(tile)
             }

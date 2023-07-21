@@ -17,38 +17,42 @@ extension Board {
     //   MARK: Move Function
     func move(_ piece: inout any Piece, from : Coord, to: Coord){
         let moveCost = terrainBoard[to.row][to.col].movementPenalty+1
-        
-        print("Move cost \(terrainBoard[to.row][to.col].name) \(moveCost)")
-        //If the moving piece has energy and square is unoccupied
-        if board[to.row][to.col]==nil &&
-            piece.movementCount+moveCost<=piece.stamina && to != from{
-            board[to.row][to.col] = piece
-            board[to.row][to.col]?.movementCount+=moveCost// This may look redundent, but I have no idea why but these do not work if you get rid of one.
-            piece.movementCount+=moveCost//
-            board[from.row][from.col] = nil
-            
-            //Follows player unit
-            if (piece.isPlayerUnit) && piece.getCanMove(){
-                highlightSquare = to
-                selectedUnit = piece
-                
-            }
-            else if (piece.isPlayerUnit) {
-                canAnyoneMove = isAnyoneStillActive()
-                //print("exhaust")
-                deselectUnit()
-            }
+        if  canMovePiece(piece: piece, from: from, to: to, moveCost: moveCost){
+            updateBoard(piece: &piece, from: from, to: to, moveCost: moveCost)
+            followPlayerUnit(piece: piece, to: to)
         }
-        
         else if piece.getCanMove()==false{
-            if piece.isPlayerUnit {
-                deselectUnit()
-                highlightSquare = nil
-            }
+            handlePieceCannotMove(piece: piece)
         }
         canAnyoneMove = isAnyoneStillActive()
     }
+    func handlePieceCannotMove(piece: any Piece) {
+        if piece.isPlayerUnit {
+            deselectUnit()
+            highlightSquare = nil
+        }
+    }
+    func updateBoard(piece: inout any Piece, from: Coord, to: Coord, moveCost: Int) {
+        board[to.row][to.col] = piece
+        board[to.row][to.col]?.movementCount += moveCost
+        piece.movementCount += moveCost
+        board[from.row][from.col] = nil
+    }
+    func followPlayerUnit(piece: any Piece, to: Coord) {
+        if piece.isPlayerUnit && piece.getCanMove() {
+            highlightSquare = to
+            selectedUnit = piece
+        } else if piece.isPlayerUnit {
+            canAnyoneMove = isAnyoneStillActive()
+            deselectUnit()
+        }
+    }
+    func canMovePiece(piece: any Piece, from: Coord, to: Coord, moveCost: Int) -> Bool {
+        return board[to.row][to.col] == nil && piece.movementCount + moveCost <= piece.stamina && to != from
+    }
+
 }
+
 
 //struct pieceDisplay: View, Identifiable {
 //    @State var piece: any Piece

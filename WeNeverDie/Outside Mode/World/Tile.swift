@@ -9,26 +9,29 @@ import SwiftUI
 
 struct TileType {
     var name = "g"
-    var loot = 0
+    var foodScraps = Int.random(in: 0...1)
     var movementPenalty = 0
-    var houseLoot = 4
-    var waterPenalty = 1
     var rawMaterials = 0
-    var rawMaterialsBonus = 2
+    
     mutating func setTileBonuses(){
+        var pantryItems = Int.random(in: 2...4)
+        var thickWater = 1
+        var thickBrambles = 1
+        var lumber = 3
+        var fish = Int.random(in: 3...5)
+        var loosePlanks = Int.random(in: 0...2)
+        
         switch name {
         case "h"://Building
-            loot += Int.random(in: houseLoot...houseLoot+2)
-            rawMaterials += Int.random(in: 0...2)
+            foodScraps += pantryItems
+            rawMaterials += loosePlanks
         case "t" ://Forest
-            rawMaterials+=rawMaterialsBonus
-            loot += Int.random(in: 0...1)
-            movementPenalty+=waterPenalty
+            rawMaterials+=lumber
+            movementPenalty += thickBrambles
         case "w"://Water
-            movementPenalty += waterPenalty
-            loot += Int.random(in: 2...4)
+            movementPenalty += thickWater
+            foodScraps += fish
         default ://Default
-            loot += Int.random(in: 0...1)
             _ = 0
         }
     }
