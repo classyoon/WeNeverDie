@@ -9,12 +9,13 @@ import SwiftUI
 
 struct InfoView: View {
     @Binding var flagBool : Bool
+    var gameData : ResourcePool
     @State var infoText : String = "Text"
     @State var buttonText : String = "Text"
     var body: some View {
         VStack{
             ScrollView{
-                Text(infoText)
+                Text(gameData.getBiography(of: gameData.viewedPiece))
             }
                 .frame(width: 250, height: 200)
             Button(buttonText){
@@ -30,6 +31,6 @@ struct InfoView: View {
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView(flagBool: .constant(true))
+        InfoView(flagBool: .constant(true), gameData: ResourcePool())
     }
 }

@@ -27,13 +27,17 @@ struct CampView: View {
                         //MARK: Stats
                         CampStats(gameData: gameData, shouldResetGame: $shouldResetGame, showBoard: $showBoard, uiSettings: gameData.uiSetting)
                         Spacer()
+                    }.overlay{
+                        gameData.displayInfo ? InfoView(flagBool: $gameData.displayInfo, gameData: gameData) : nil
                     }
+
 //                    HStack{
 //                        BeginMissionButton(gameData: gameData, showBoard: $showBoard)
 //                        uiSettings.isUsingLeftHandedInterface ? Spacer() : nil
 //                    }
                 !uiSettings.isUsingLeftHandedInterface ? RightHandButtons(showCureHelp: $showCureHelp, showBoard: $showBoard, gameData: gameData) : nil
                 uiSettings.isUsingLeftHandedInterface ? LeftHandButtons(showCureHelp: $showCureHelp, gameData: gameData, showBoard : $showBoard) : nil
+                
                 //}
                 
             }

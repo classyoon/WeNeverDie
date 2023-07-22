@@ -16,12 +16,12 @@ extension Board {
         for row in 0..<rowMax {
             for col in 0..<colMax {
                 if let piece = board[row][col] {
-                    if piece.isPlayerUnit {
+                    if piece.team == .playerUnit {
                         playerCoordPins.append( Coord(row: row, col: col))
                         playerPieces.append(piece)
                         
                     }
-                    if piece.isZombie {
+                    if piece.team == .zombieUnit {
                         zombies.append(piece as! Zombie)
                         ZomCoordPins.append( Coord(row: row, col: col)); continue
                     }
@@ -39,7 +39,7 @@ extension Board {
                 if let piece = board[row][col] {
                     
                     if piece.health <= 0 {
-                        if piece.isPlayerUnit{
+                        if piece.team == .playerUnit{
                             UnitsDied+=1
                             checkEndMission()
                             print("Units died \(UnitsDied)")
@@ -54,7 +54,7 @@ extension Board {
     }
     
     //MARK: Unused Transfer Survivors
-    func transferSurvivorsToCamp()->[any Piece]{
+    func transferSurvivorsToCamp()->[nameTag]{
         return survivorList
     }
  
@@ -69,7 +69,7 @@ extension Board {
             let lastSurvivor = playerCoords[0]
             if terrainBoard[lastSurvivor.row][lastSurvivor.col].name=="X"{//Exit
                 if let survivorOnCoord = board[lastSurvivor.row][lastSurvivor.col] {
-                    survivorList.append(survivorOnCoord)
+                    survivorList.append(survivorOnCoord.info)
                     board[lastSurvivor.row][lastSurvivor.col]=nil
                     if survivorOnCoord.id == selectedUnit?.id {
                         selectedUnit = nil
@@ -85,7 +85,7 @@ extension Board {
             for survivor in playerCoords {
                 if terrainBoard[survivor.row][survivor.col].name=="X"{//Exit
                     if let survivorOnCoord = board[survivor.row][survivor.col] {
-                        survivorList.append(survivorOnCoord)
+                        survivorList.append(survivorOnCoord.info)
                         board[survivor.row][survivor.col]=nil
                         canAnyoneMove = isAnyoneStillActive()
                         audio.playSFX(.vanDoor)

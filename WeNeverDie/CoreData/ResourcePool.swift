@@ -28,8 +28,8 @@ class ResourcePool : ObservableObject {
     @Published var displayOfSelectedIcons : [Bool] = Array(repeating: false, count: 3)
     @Published var uiSetting = UserSettingsManager()
     @Published var days = 0
-    
-    @Published var displayInfo  = true
+
+    @Published var displayInfo  = false
     @Published var viewedPiece = Stockpile.shared.getRandomPerson()
     
     func setValue(resourcePoolData: ResourcePoolData) {
@@ -51,7 +51,7 @@ class ResourcePool : ObservableObject {
     
     func generateMap() -> Board{
         
-        return Board(players: Stockpile.shared.getSurvivorSent(), audio, uiSetting)
+        return Board(players: Stockpile.shared.getSurvivorSent(), audio, uiSetting, names: getNamesSelected())
     }
     
     func passDay(){
@@ -89,14 +89,15 @@ class ResourcePool : ObservableObject {
         displayOfSelectedIcons = Array(repeating: false, count: 1)
     }
     
-    func getSurvivorsSelcted()->[playerUnit]{
-        var returningList = [playerUnit]()
+    func getNamesSelected()->[nameTag]{
+        var returningList = [nameTag]()
         for survivor in  Stockpile.shared.stockpileData.rosterOfSurvivors  {
             if survivor.isBeingSent {
                 returningList.append(survivor)
-                print(survivor.name)
+              
             }
         }
+        
         return returningList
     }
     func deselectAll(){
@@ -108,11 +109,12 @@ class ResourcePool : ObservableObject {
         Stockpile.shared.setSurvivorSent(0)
         lastTappedIndex = nil
     }
-    func getUnselected()->[playerUnit]{
-        var returningList = [playerUnit]()
+    func getUnselected()->[String]{
+        var returningList = [String]()
+        print("NOT GOING")
         for survivor in  Stockpile.shared.stockpileData.rosterOfSurvivors  {
             if !survivor.isBeingSent {
-                returningList.append(survivor)
+                returningList.append(survivor.name)
             }
         }
         return returningList
@@ -139,7 +141,7 @@ class ResourcePool : ObservableObject {
         
     }
     
-    func getBiography(of selectedPerson: playerUnit) -> String {
+    func getBiography(of selectedPerson: nameTag) -> String {
         let title = "\(selectedPerson.childhood.lowercased()) \(selectedPerson.currentOccupation.lowercased())"
         let vowels: Set<Character> = ["a", "e", "i", "o", "u"]
         let article = vowels.contains(title.first ?? Character("")) ? "an" : "a"

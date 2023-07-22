@@ -41,10 +41,10 @@ struct TilePieceDisplay: View {
                 }
                 if vm.isPossibleLoc(row: row, col: col) && vm.unitWasSelected {
                     if let piece = vm.board[row][col] {
-                        if piece.isZombie {
+                        if piece.team == .zombieUnit {
                             Circle().fill(Color.red.opacity(0.5)).padding()
                         }
-                        if piece.isRecruitable {
+                        if piece.team == .recruitableUnit {
                             Circle().fill(Color.green.opacity(0.5)).padding()
                         }
                     }

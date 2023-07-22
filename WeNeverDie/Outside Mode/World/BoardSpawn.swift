@@ -20,6 +20,9 @@ extension Board {
         var counter = 0
         var r = 0
         var c = 0
+        guard nameOfEntering.count == amount else {
+            fatalError("The number of names does not match the number of players being sent. Int \(amount) List amount \(nameOfEntering.count)")
+        }
         
         while counter < amount {
             while r < safeNum(r: 3) {
@@ -28,8 +31,11 @@ extension Board {
                     if counter >= amount {
                         break
                     }
-                    var temp = playerUnit(name: namesSurvivors[counter], board: self)
-                    temp.checkForUpgrade()
+                    var temp = playerUnit(board: self, info: nameOfEntering[counter])
+                   /**
+                    These functions will be used, but have temporarily disabled, keep them.
+                    */
+                    //temp.checkForUpgrade()
                     set(moveable: temp, Coord: Coord(r, c))
                     terrainBoard[r][c].name = "t"
                     counter += 1

@@ -17,6 +17,7 @@ struct StatusViewBar: View {
                 .frame(maxWidth: 70)
                 .padding()
             CountDown(vm: vm, uiSettings: gameData.uiSetting)
+            Text(vm.examinedPiece?.info.name ?? "Nobody selected")
             Text("-- Collected --")
             HStack{
                 FoodCounter(vm: vm)

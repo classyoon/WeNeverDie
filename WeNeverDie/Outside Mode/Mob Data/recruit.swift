@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct recruit: Piece, Identifiable, Equatable {
-    var isPlayerUnit: Bool = false
-    var isRecruitable: Bool = true
-    var isAttackable : Bool  = false
-    let isZombie : Bool = false
-    
+    var team: TypeMob = .recruitableUnit
+    var info = nameTag(childhood: "Unknown", currentOccupation: "Infected", firstName: "Unknown", lastName: "Unknown")
     static func == (lhs: recruit, rhs: recruit) -> Bool {
         lhs.id == rhs.id
     }

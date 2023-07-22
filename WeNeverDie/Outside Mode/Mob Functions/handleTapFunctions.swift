@@ -30,13 +30,13 @@ extension Board {
     
     func handleTapOnSecondPiece(tapRow: Int, tapCol : Int, startPoint : Coord){
         if let piece = selectedUnit, let startPoint = highlightSquare, let secondPiece = board[tapRow][tapCol]{
-            if secondPiece.isAttackable && isPossibleLoc(row: tapRow, col: tapCol) {
+            if secondPiece.team == .zombieUnit && isPossibleLoc(row: tapRow, col: tapCol) {
                 handleAttackWithUnit(secondPiece: secondPiece, piece: piece, tapRow: tapRow, tapCol: tapCol, startPoint: startPoint)
             }
-            else if secondPiece.isRecruitable {
+            else if secondPiece.team == .recruitableUnit {
                 handleRecruitWithUnit(secondPiece: secondPiece, piece: piece, tapRow: tapRow, tapCol: tapCol, startPoint: startPoint)
             }
-            else if secondPiece.getCanMove() && secondPiece.isPlayerUnit {
+            else if secondPiece.getCanMove() && secondPiece.team == .playerUnit {
                 handleSwitchingUnit(tapRow: tapRow, tapCol: tapCol)
             }
             
@@ -51,7 +51,7 @@ extension Board {
     }
     func handleTapWithoutSelectedUnit(tapRow: Int, tapCol: Int) {
         
-        if board[tapRow][tapCol]?.getCanMove() == true && (board[tapRow][tapCol]?.isPlayerUnit==true) {
+        if board[tapRow][tapCol]?.getCanMove() == true && (board[tapRow][tapCol]?.team == .playerUnit) {
             SelectUnitOn(tapRow, tapCol)
         }
         else if highlightSquare == Coord(tapRow, tapCol) {

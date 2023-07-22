@@ -21,7 +21,7 @@ struct PieceStatsDisplay: View {
 struct PieceStatsDisplay_Previews: PreviewProvider {
     static var previews: some View {
 //        ZStack{
-        PieceStatsDisplay(gameData: ResourcePool(), piece: playerUnit(name: "JOHN", board: Board()))
+        PieceStatsDisplay(gameData: ResourcePool(), piece: playerUnit(board: Board()))
 //            PieceDisplay(piece: playerUnit(name: "JOHN", board: Board()))
 //            Tile2(image: "grass", tileLocation: Coord())
 //        }

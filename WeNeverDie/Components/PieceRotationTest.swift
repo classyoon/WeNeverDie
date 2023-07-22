@@ -35,7 +35,7 @@ struct PieceRotationTest: View {
     
     var body: some View {
         VStack{
-            PieceDisplay(gameData: ResourcePool(), piece: playerUnit(name: "Jones", board: Board())).rotationEffect(.degrees(direction.rawValue))
+            PieceDisplay(gameData: ResourcePool(), piece: playerUnit(board: Board())).rotationEffect(.degrees(direction.rawValue))
             Picker("Direction: \(direction.rawValue)", selection: $direction) {
                 ForEach(Direction.allCases){
                     Text("\($0.text)")

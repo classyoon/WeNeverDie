@@ -16,7 +16,7 @@ struct survivorSelector : View {
             Text("People going outside: \(stockpile.getSurvivorSent()), People in camp: \(stockpile.getNumOfPeople()-stockpile.getSurvivorSent())")
                 .font(.footnote)
             
-                LazySurvivorSelector(GameData: gameData, uiSettings: gameData.uiSetting)
+                LazySurvivorSelector(GameData: gameData)
             
         }.padding()
         .background(.brown.opacity(0.7))

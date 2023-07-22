@@ -36,15 +36,19 @@ struct Coord: Equatable, Hashable {
 protocol Piece: Moveable & Displayable {
     var id : UUID {set get}
 }
+enum TypeMob {
+    case playerUnit
+    case zombieUnit
+    case recruitableUnit
+}
 
 protocol Moveable: Identifiable  {
-    var isPlayerUnit : Bool {get}
-    var isRecruitable : Bool {get}
-    var isAttackable : Bool {get}
     var isHidden : Bool {set get}
     var id: UUID { set get }
     var isStruck : Bool {set get}
-    var isZombie : Bool {get}
+    
+    var team : TypeMob {set get}
+    
     
     var alert : Bool {set get}
     var isSelected: Bool {set get}
@@ -59,7 +63,8 @@ protocol Moveable: Identifiable  {
     var vectors: [Vector] { set get }
     var facing: Direction { set get }
 
-   
+    var info : nameTag {set get}
+    
     mutating func incrementMoveCounter()
     func getMoves()->[Coord]
     func getCanMove()->Bool

@@ -37,7 +37,7 @@ struct GameView: View {
         }.onChange(of: showBoard) { newValue in
             if newValue {
                 gameData.isInMission = true
-                board.generateBoard(stockpile.getSurvivorSent())
+                board.generateBoard(stockpile.getSurvivorSent(), names: gameData.getNamesSelected())
                
             }
         }

@@ -29,7 +29,7 @@ extension Board {
         turn = UUID()
         canAnyoneMove = isAnyoneStillActive()
         if secondPiece.trust >= 5 {
-            set(moveable: playerUnit(name: "Jones", board: self), Coord: Coord(tapRow, tapCol))
+            set(moveable: playerUnit(board: self), Coord: Coord(tapRow, tapCol))
             UnitsRecruited+=1
             print("Joined!")
             turn = UUID()
@@ -39,7 +39,7 @@ extension Board {
     }
     func handleUnitEscape(survivor: Coord) {
         if let survivorOnCoord = board[survivor.row][survivor.col] {
-            survivorList.append(survivorOnCoord)
+            survivorList.append(survivorOnCoord.info)
             board[survivor.row][survivor.col] = nil
             audio.playSFX(.vanDoor)
             
@@ -52,7 +52,6 @@ extension Board {
 
 
     func movePlayerUnit(tapRow: Int, tapCol: Int, startPoint : Coord, piece : inout any Piece){
-        
         move(&piece, from: startPoint, to: Coord(row: tapRow, col: tapCol))
         if terrainBoard[tapRow][tapCol].name == "X" {
             audio.playSFX(.vanDoor)

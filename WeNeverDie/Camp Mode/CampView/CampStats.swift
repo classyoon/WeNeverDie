@@ -114,7 +114,7 @@ struct CampStats : View {
                             Spacer()
                         }
                         
-                        survivorSelector(gameData: gameData)
+                        LazySurvivorSelector(GameData: gameData)
                         
                         if uiSettings.isUsingLeftHandedInterface {
                             Spacer()

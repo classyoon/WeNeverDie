@@ -37,8 +37,25 @@ class Stockpile : ObservableObject {
         stockpileData.survivorNumber-=vm.UnitsDied
         stockpileData.survivorSent = 0
         stockpileData.buildingResources += vm.materialNew
+        sortDeadfromLive(vm: vm)
         print(vm.UnitsRecruited)
-            save(items: stockpileData, key: "stocks")
+        save(items: stockpileData, key: "stocks")
+    }
+    
+    func sortDeadfromLive(vm: Board) {
+        let deceasedSet = Set(vm.survivorList.filter { $0.isDeceased })
+        stockpileData.graveyard.append(contentsOf: vm.nameOfEntering.filter { deceasedSet.contains($0) })
+        
+        let presentSurvivorSet = Set(stockpileData.rosterOfSurvivors)
+        stockpileData.rosterOfSurvivors.append(contentsOf: vm.survivorList.filter { !presentSurvivorSet.contains($0) })
+
+        // Set isBeingSent to false for all survivors in stockpileData.rosterOfSurvivors
+        for index in stockpileData.rosterOfSurvivors.indices {
+            stockpileData.rosterOfSurvivors[index].isBeingSent = false
+        }
+        
+        // Remove deceased survivors from stockpileData.rosterOfSurvivors
+        stockpileData.rosterOfSurvivors = stockpileData.rosterOfSurvivors.filter { !deceasedSet.contains($0) }
     }
     func runOutOfPeople()->Bool{
         return stockpileData.runOutOfPeople()
@@ -71,22 +88,35 @@ class Stockpile : ObservableObject {
     func setBuilders(_ survivors : Int){
     stockpileData.builders = survivors
     }
-    func getRosterOfSurvivors()->[playerUnit] {
-       return stockpileData.rosterOfSurvivors
+    func getRosterOfSurvivors()->[nameTag] {
+        return stockpileData.rosterOfSurvivors
     }
-    func getRandomPerson()->playerUnit {
+    func getRandomPerson()->nameTag {
         return stockpileData.generateSurvivors(1)[0]
     }
+    func getSentSurvivors()->[nameTag] {
+        var list = [nameTag]()
+        for survivor in stockpileData.rosterOfSurvivors {
+            if survivor.isBeingSent {
+                list.append(survivor)
+            }
+        }
+        return list
+    }
     func getName(index : Int)->String {
+        
+        while index > getRosterOfSurvivors().count-1 {
+            stockpileData.rosterOfSurvivors.append(stockpileData.generateBio())
+            print("Try")
+        }
         return stockpileData.rosterOfSurvivors[index].name
     }
-    func getSurvivor(index : Int)->playerUnit {
+    func getSurvivor(index : Int)->nameTag {
         return stockpileData.rosterOfSurvivors[index]
     }
     func swapSurvivors(index : Int, current : Int){
-        stockpileData.swapSurvivors(index: index, current: current)
+        stockpileData.swapSurvivors(first: index, second: current)
     }
-    
 }
 struct StockpileModel : Codable, Identifiable {
     var id = UUID()
@@ -96,8 +126,8 @@ struct StockpileModel : Codable, Identifiable {
     var buildingResources : Int = 10
     var survivorDefaultNumber : Int = 3
     var survivorSent : Int = 0
-    var graveyard: [playerUnit] = []
-    var rosterOfSurvivors = [playerUnit]()
+    var graveyard: [nameTag] = []
+    var rosterOfSurvivors = [nameTag]()
     var starving : Bool {
         return foodStored==0 ? true : false
     }
@@ -113,6 +143,17 @@ struct StockpileModel : Codable, Identifiable {
         builders = 0
         
     }
+    mutating func swapSurvivors(first : Int, second : Int){
+        let temp = rosterOfSurvivors[first]
+        let goingStatus = rosterOfSurvivors[first].isBeingSent
+        let goingStatusSec = rosterOfSurvivors[second].isBeingSent
+        rosterOfSurvivors[first] = rosterOfSurvivors[second]
+        rosterOfSurvivors[second] = temp
+        
+        rosterOfSurvivors[first].isBeingSent = goingStatus
+        rosterOfSurvivors[second].isBeingSent = goingStatusSec
+    }
+    
     mutating func calcConsumption(){
         if foodStored-survivorNumber > 0{
             foodStored -= survivorNumber
@@ -131,14 +172,20 @@ struct StockpileModel : Codable, Identifiable {
         }
         return false
     }
-    func generateSurvivors(_ number : Int)->[playerUnit] {
-        var generatedRoster = [playerUnit]()
+    func generateSurvivors(_ number : Int)->[nameTag] {
+        var generatedRoster = [nameTag]()
         for _ in 0..<number {
-            generatedRoster.append(generateRandomSurvivor())
+            generatedRoster.append(generateBio())
         }
         return generatedRoster
     }
+    func manifestSurvivor(info : nameTag)->playerUnit{
+        return playerUnit(board: Board(), info: info)
+    }
     func generateRandomSurvivor()->playerUnit {
+        return playerUnit(board: Board(), info: generateBio())
+    }
+    func generateBio()->nameTag {
         let firstNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Jack", "Kate", "Liam", "Mia", "Noah", "Olivia", "Peter", "Quinn", "Rachel", "Sarah", "Tom", "Ursula", "Victoria", "Wendy", "Xander", "Yara", "Zoe"]
         let lastNames = ["Anderson", "Brown", "Clark", "Davis", "Evans", "Ford", "Garcia", "Hill", "Ingram", "Jackson", "Kim", "Lee", "Miller", "Nguyen", "Olsen", "Perez", "Quinn", "Reed", "Smith", "Taylor", "Upton", "Vargas", "Walker", "Xu", "Young", "Zhang"]
         let childhood = ["Shy", "Inquisitive", "Imaginative", "Scared", "Joyful", "Crafty", "Rich", "Peculiar", "Athletic", "Adventurous", "Artistic", "Studious", "Independent", "Resilient"]
@@ -147,7 +194,7 @@ struct StockpileModel : Codable, Identifiable {
         let randomLastName = lastNames.randomElement()!
         let randomChildhood = childhood.randomElement()!
         let randomOccupation = occupations.randomElement()!
-        return playerUnit(childhood: randomChildhood, currentOccupation : randomOccupation, name: "\(randomFirstName) \(randomLastName)", firstName: randomFirstName, lastName: randomLastName)
+        return nameTag(childhood: randomChildhood, currentOccupation : randomOccupation, firstName: randomFirstName, lastName: randomLastName)
     }
 }
 

@@ -14,7 +14,7 @@ struct DefaultStatDisplay: View {
         VStack{
             HStack{
                 
-                (!piece.isRecruitable ? Text("\(piece.health)") : nil)
+                (!(piece.team == .recruitableUnit) ? Text("\(piece.health)") : nil)
                     .padding(2)
                     .foregroundColor(.black)
                     .background(.white)
@@ -23,8 +23,8 @@ struct DefaultStatDisplay: View {
                 
             }.padding(0.5)
             Spacer()
-            !piece.isRecruitable ? staminaBars(uiSettings: uiSetting, piece: piece) : nil
-            !piece.isRecruitable ?  nil : Text("Trust : \(piece.trust) / 10").padding(2)
+            !(piece.team == .recruitableUnit) ? staminaBars(uiSettings: uiSetting, piece: piece) : nil
+            !(piece.team == .recruitableUnit) ?  nil : Text("Trust : \(piece.trust) / 10").padding(2)
                 .foregroundColor(.black)
                 .background(.white)
                 .cornerRadius(10)

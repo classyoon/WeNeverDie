@@ -28,12 +28,12 @@ extension Board {
             board[from.row][from.col] = nil
             
             //Follows player unit
-            if (piece.isPlayerUnit) && piece.getCanMove(){
+            if (piece.team == .playerUnit) && piece.getCanMove(){
                 highlightSquare = to
                 selectedUnit = piece
                 
             }
-            else if (piece.isPlayerUnit) {
+            else if (piece.team == .playerUnit) {
                 canAnyoneMove = isAnyoneStillActive()
                 //print("exhaust")
                 deselectUnit()
@@ -41,7 +41,7 @@ extension Board {
         }
         
         else if piece.getCanMove()==false{
-            if piece.isPlayerUnit {
+            if piece.team == .playerUnit {
                 deselectUnit()
                 highlightSquare = nil
             }

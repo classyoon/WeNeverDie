@@ -7,16 +7,16 @@
 
 import SwiftUI
 struct Zombie: Piece, Equatable {
+    var info: nameTag = nameTag(childhood: "Unknown", currentOccupation: "Infected", firstName: "Unknown", lastName: "Unknown")
+    
     
     static func == (lhs: Zombie, rhs: Zombie) -> Bool {
         lhs.id == rhs.id
     }
-    var isRecruitable: Bool = false
-    var isAttackable: Bool = true
-    var isPlayerUnit = false
+    var team: TypeMob = .zombieUnit
     var isHidden = false
     var isStruck = false
-    var isZombie: Bool = true
+ 
    
     var health = 10
     var damage = (devMode ? 0 : 3)

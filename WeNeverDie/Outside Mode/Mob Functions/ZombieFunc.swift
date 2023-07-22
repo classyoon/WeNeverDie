@@ -38,7 +38,7 @@ extension Board {
         for r in safeNum(r: selfLoc.row-1)...safeNum(r: selfLoc.row+1) {//Checks if can attack
             for c in safeNum(c: selfLoc.col-1)...safeNum(c: selfLoc.col+1) {
                 if let nearbyPiece = board[r][c]{
-                    if nearbyPiece.isPlayerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
+                    if nearbyPiece.team == .playerUnit && nearbyPiece.isHidden == false { //print("I check \(r) \(c)")
                         board[r][c]?.health -= selfPiece.damage
                         audio.playSFX(.monsterNoises)
                         printZombieThoughts ? print(selfPiece.alert) : nil

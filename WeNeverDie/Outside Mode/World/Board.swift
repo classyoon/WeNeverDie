@@ -17,7 +17,7 @@ protocol BoardProtocol {
 // Start playing the music
 
 
-class Board : ObservableObject {
+class Board : ObservableObject, BoardProtocol {
     @Published var stockpile : Stockpile = Stockpile.shared
     @Published var UnitsDied = 0
     @Published var UnitsRecruited = 0
@@ -38,8 +38,10 @@ class Board : ObservableObject {
     @Published var turnsOfDaylight = 8
     @Published var turnsOfNight = 12
     @Published var selectedUnit : (any Piece)? = nil
-    @Published var enteringSurvivors = [any Piece]()
-    @Published var survivorList = [any Piece]()
+  
+    @Published var survivorList = [nameTag]()
+    @Published var nameOfEntering = [nameTag]()
+    
     @Published var numberOfZombies : Int = 0
     @Published var highlightSquare : Coord?{
         didSet{
@@ -163,27 +165,30 @@ class Board : ObservableObject {
         }
     }
     
-    func generateBoard(_ players : Int){
+    func generateBoard(_ players : Int, names : [nameTag]){
         missionUnderWay = true
         turnsSinceStart = 0
         lengthOfPlay = turnsOfDaylight + turnsOfNight
         terrainBoard = chooseMap(players)
+        nameOfEntering = names
         spawnPlayers(players)
         spawnZombies(zombieNumber)
         spawnRecruit(Int.random(in: 0...2))
         
     }
     
-    init(players : Int, _ audioInit : AudioManager, _ settings : UserSettingsManager){
+    init(players : Int, _ audioInit : AudioManager, _ settings : UserSettingsManager, names : [nameTag]){
         audio = audioInit
         uiSettings = settings
-        generateBoard(outsideTesting && devMode ? 1 : players)
+        generateBoard(outsideTesting && devMode ? 0 : players, names: stockpile.getSentSurvivors())
         uiSettings.isAutoPauseMusic ? audio.pauseMusic() : nil
+        nameOfEntering = names
     }
+
     init(){
         audio = AudioManager()
         uiSettings = UserSettingsManager()
-        generateBoard(1)
+        generateBoard(0, names: stockpile.getSentSurvivors())
         uiSettings.isAutoPauseMusic ? audio.pauseMusic() : nil
     }
     func convertLevel(level: [[String]]) -> [[TileType]] {

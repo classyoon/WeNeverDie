@@ -32,12 +32,12 @@
 		CA2255AB2A69EB44008028DB /* OutsidePhaseTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255AA2A69EB44008028DB /* OutsidePhaseTutorial.swift */; };
 		CA2255AD2A69EB50008028DB /* CampPhaseTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255AC2A69EB50008028DB /* CampPhaseTutorial.swift */; };
 		CA2255AF2A69F786008028DB /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA2255AE2A69F786008028DB /* ReadMe.rtf */; };
-		CA2255B62A69F950008028DB /* SurvivorButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255B12A69F950008028DB /* SurvivorButtonGroup.swift */; };
-		CA2255B72A69F950008028DB /* SwapAndInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255B22A69F950008028DB /* SwapAndInfoButton.swift */; };
-		CA2255B82A69F950008028DB /* SurvivorNameSwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255B32A69F950008028DB /* SurvivorNameSwapButton.swift */; };
-		CA2255B92A69F950008028DB /* SurvivorInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255B42A69F950008028DB /* SurvivorInfoButton.swift */; };
-		CA2255BA2A69F950008028DB /* SurvivorIconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255B52A69F950008028DB /* SurvivorIconButtonView.swift */; };
-		CA2255BC2A69FB88008028DB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2255BB2A69FB88008028DB /* InfoView.swift */; };
+		CA2256792A6C89E7008028DB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256732A6C89E7008028DB /* InfoView.swift */; };
+		CA22567A2A6C89E7008028DB /* SurvivorButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256742A6C89E7008028DB /* SurvivorButtonGroup.swift */; };
+		CA22567B2A6C89E7008028DB /* SwapAndInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256752A6C89E7008028DB /* SwapAndInfoButton.swift */; };
+		CA22567C2A6C89E7008028DB /* SurvivorNameSwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256762A6C89E7008028DB /* SurvivorNameSwapButton.swift */; };
+		CA22567D2A6C89E7008028DB /* SurvivorInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256772A6C89E7008028DB /* SurvivorInfoButton.swift */; };
+		CA22567E2A6C89E7008028DB /* SurvivorIconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2256782A6C89E7008028DB /* SurvivorIconButtonView.swift */; };
 		CA23AE5B29514D69003DC26D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5A29514D69003DC26D /* Tile.swift */; };
 		CA23AE5D29523977003DC26D /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA23AE5C29523977003DC26D /* Zombie.swift */; };
 		CA2A2E672A06B2D6006FEE7D /* Alert Noise Trimmed.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */; };
@@ -185,12 +185,12 @@
 		CA2255AA2A69EB44008028DB /* OutsidePhaseTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsidePhaseTutorial.swift; sourceTree = "<group>"; };
 		CA2255AC2A69EB50008028DB /* CampPhaseTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampPhaseTutorial.swift; sourceTree = "<group>"; };
 		CA2255AE2A69F786008028DB /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
-		CA2255B12A69F950008028DB /* SurvivorButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorButtonGroup.swift; sourceTree = "<group>"; };
-		CA2255B22A69F950008028DB /* SwapAndInfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapAndInfoButton.swift; sourceTree = "<group>"; };
-		CA2255B32A69F950008028DB /* SurvivorNameSwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorNameSwapButton.swift; sourceTree = "<group>"; };
-		CA2255B42A69F950008028DB /* SurvivorInfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorInfoButton.swift; sourceTree = "<group>"; };
-		CA2255B52A69F950008028DB /* SurvivorIconButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorIconButtonView.swift; sourceTree = "<group>"; };
-		CA2255BB2A69FB88008028DB /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		CA2256732A6C89E7008028DB /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		CA2256742A6C89E7008028DB /* SurvivorButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorButtonGroup.swift; sourceTree = "<group>"; };
+		CA2256752A6C89E7008028DB /* SwapAndInfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapAndInfoButton.swift; sourceTree = "<group>"; };
+		CA2256762A6C89E7008028DB /* SurvivorNameSwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorNameSwapButton.swift; sourceTree = "<group>"; };
+		CA2256772A6C89E7008028DB /* SurvivorInfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorInfoButton.swift; sourceTree = "<group>"; };
+		CA2256782A6C89E7008028DB /* SurvivorIconButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurvivorIconButtonView.swift; sourceTree = "<group>"; };
 		CA23AE5A29514D69003DC26D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		CA23AE5C29523977003DC26D /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		CA2A2E662A06B2D6006FEE7D /* Alert Noise Trimmed.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alert Noise Trimmed.m4a"; sourceTree = "<group>"; };
@@ -553,15 +553,15 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
-		CA2255B02A69F950008028DB /* LazySurvivorSelector */ = {
+		CA2256722A6C89E7008028DB /* LazySurvivorSelector */ = {
 			isa = PBXGroup;
 			children = (
-				CA2255B12A69F950008028DB /* SurvivorButtonGroup.swift */,
-				CA2255B22A69F950008028DB /* SwapAndInfoButton.swift */,
-				CA2255B32A69F950008028DB /* SurvivorNameSwapButton.swift */,
-				CA2255BB2A69FB88008028DB /* InfoView.swift */,
-				CA2255B42A69F950008028DB /* SurvivorInfoButton.swift */,
-				CA2255B52A69F950008028DB /* SurvivorIconButtonView.swift */,
+				CA2256732A6C89E7008028DB /* InfoView.swift */,
+				CA2256742A6C89E7008028DB /* SurvivorButtonGroup.swift */,
+				CA2256752A6C89E7008028DB /* SwapAndInfoButton.swift */,
+				CA2256762A6C89E7008028DB /* SurvivorNameSwapButton.swift */,
+				CA2256772A6C89E7008028DB /* SurvivorInfoButton.swift */,
+				CA2256782A6C89E7008028DB /* SurvivorIconButtonView.swift */,
 			);
 			path = LazySurvivorSelector;
 			sourceTree = "<group>";
@@ -631,7 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				CA8B95CF29DE42B90099C121 /* LazySurvivorSelector.swift */,
-				CA2255B02A69F950008028DB /* LazySurvivorSelector */,
+				CA2256722A6C89E7008028DB /* LazySurvivorSelector */,
 				CA16EAEF29CAA3410047593B /* survivorSelector.swift */,
 			);
 			path = "Survivor Selector";
@@ -973,10 +973,10 @@
 				CA2255AD2A69EB50008028DB /* CampPhaseTutorial.swift in Sources */,
 				CA9A027F29B64A4400ED390B /* recruit.swift in Sources */,
 				CA9A033429BE4D6700ED390B /* CureProgressInfoView.swift in Sources */,
-				CA2255B62A69F950008028DB /* SurvivorButtonGroup.swift in Sources */,
 				CA7510AF2A095392004AAAE3 /* TappableSlider.swift in Sources */,
 				CA2A2E6A2A06C7B4006FEE7D /* AudioManager.swift in Sources */,
 				91355A92293AEE4700907610 /* WeNeverDieApp.swift in Sources */,
+				CA22567A2A6C89E7008028DB /* SurvivorButtonGroup.swift in Sources */,
 				CA9A02B629B972F300ED390B /* PieceRotationTest.swift in Sources */,
 				CAF863742A2003FE00D5957A /* AdvancementBuilding.swift in Sources */,
 				CA9A029729B6E01800ED390B /* HowToAttack.swift in Sources */,
@@ -991,26 +991,27 @@
 				CA9A028D29B6DF9700ED390B /* buildingAndScavengeExplained.swift in Sources */,
 				CAE340BD2A2F9BF500A9B735 /* BoardSpawn.swift in Sources */,
 				CA9A028B29B6DF8000ED390B /* escapeExplainView.swift in Sources */,
+				CA2256792A6C89E7008028DB /* InfoView.swift in Sources */,
 				CA16EAC729C93E3B0047593B /* CountDown.swift in Sources */,
 				CA9A02B429B970EB00ED390B /* CureProgressView.swift in Sources */,
 				CA3323192A1C352D0078E79C /* BuildingManager.swift in Sources */,
 				CA16EAEC29CAA0750047593B /* RightHandButtons.swift in Sources */,
+				CA22567C2A6C89E7008028DB /* SurvivorNameSwapButton.swift in Sources */,
 				CA7510B32A097A53004AAAE3 /* MuteToggleButton.swift in Sources */,
 				CAE88A4B2975E43000AEB5B0 /* ZombieFunc.swift in Sources */,
 				CAB1618E2A2BD7B700EEF16A /* CampInterface.swift in Sources */,
 				CA7981E329DB2E16005D9382 /* staminaBars.swift in Sources */,
 				CA7510B52A097E29004AAAE3 /* ResetButtons.swift in Sources */,
 				CACCD56F298C8085005BE6DE /* GameView.swift in Sources */,
-				CA2255B92A69F950008028DB /* SurvivorInfoButton.swift in Sources */,
 				CA16EAF029CAA3410047593B /* survivorSelector.swift in Sources */,
 				CA9A028529B6DF1800ED390B /* waterExplainView.swift in Sources */,
-				CA2255BC2A69FB88008028DB /* InfoView.swift in Sources */,
 				CA3323232A1C46A10078E79C /* BuildingView.swift in Sources */,
 				91355ACA293AF0E600907610 /* playerUnit.swift in Sources */,
 				CA9A032C29BD7F7B00ED390B /* SkipTutorialButton.swift in Sources */,
 				CA3314EC29C9136F00442EC3 /* PieceStatsDisplay.swift in Sources */,
 				CA8B95DD29EB8CD40099C121 /* handleTapFunctions.swift in Sources */,
 				CA9A033929BE87E300ED390B /* VerticalProgressBar.swift in Sources */,
+				CA22567B2A6C89E7008028DB /* SwapAndInfoButton.swift in Sources */,
 				CA16EAC929C93EBC0047593B /* FoodCounter.swift in Sources */,
 				CAD25F8629AD11ED0037C6F6 /* StatusViewBar.swift in Sources */,
 				CA16EAEA29CA975F0047593B /* PassDayButton.swift in Sources */,
@@ -1034,7 +1035,6 @@
 				91355AC8293AEE6B00907610 /* Piece.swift in Sources */,
 				CA90F83129ABDE9900AD34E9 /* TopButtons.swift in Sources */,
 				CA9A029329B6DFEC00ED390B /* enemyView.swift in Sources */,
-				CA2255BA2A69F950008028DB /* SurvivorIconButtonView.swift in Sources */,
 				CA9A029D29B9363700ED390B /* Building.swift in Sources */,
 				CA9A02A629B94B2700ED390B /* DataService.swift in Sources */,
 				CA3314DE29C8096D00442EC3 /* ResultScreen.swift in Sources */,
@@ -1060,15 +1060,15 @@
 				CA9A02A429B946B700ED390B /* UserDefaultsPersistance.swift in Sources */,
 				CA90F82629ABAF1F00AD34E9 /* TilePieceDisplay.swift in Sources */,
 				CA90F82D29ABDE0C00AD34E9 /* DefeatView.swift in Sources */,
-				CA2255B72A69F950008028DB /* SwapAndInfoButton.swift in Sources */,
 				CA9A029129B6DFCF00ED390B /* introText.swift in Sources */,
 				CAD25F8829AD15000037C6F6 /* BoardView.swift in Sources */,
 				CA2255AB2A69EB44008028DB /* OutsidePhaseTutorial.swift in Sources */,
 				CA23AE5D29523977003DC26D /* Zombie.swift in Sources */,
 				CA16EAEE29CAA0A20047593B /* LeftHandButtons.swift in Sources */,
+				CA22567D2A6C89E7008028DB /* SurvivorInfoButton.swift in Sources */,
 				CA9A028F29B6DFAB00ED390B /* forestExplainView.swift in Sources */,
 				CA7510B72A098897004AAAE3 /* BadResultView.swift in Sources */,
-				CA2255B82A69F950008028DB /* SurvivorNameSwapButton.swift in Sources */,
+				CA22567E2A6C89E7008028DB /* SurvivorIconButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
